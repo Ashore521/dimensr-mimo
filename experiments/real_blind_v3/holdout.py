@@ -47,6 +47,7 @@ def freeze(runs, output, selection):
     if output.exists():
         raise FileExistsError(output)
     chosen = json.loads(selection.read_text(encoding="utf-8"))["selected_method"]
+    manifest = json.loads((HERE / "new_data/manifest.json").read_text(encoding="utf-8"))
     methods = list(dict.fromkeys(("joint", "independent", chosen)))
     expected = {(d, m, s) for d in ("gas_turbine", "sml2010") for m in methods for s in range(5)}
     expected |= {(d, m, s) for d in ("gas_turbine", "sml2010") for m in ("mean", "ridge", "extra_trees")
@@ -67,6 +68,10 @@ def freeze(runs, output, selection):
         for path in [result] + [result.parent / name for name in names]:
             files[path.resolve().relative_to(ROOT).as_posix()] = sha(path)
         provenance = report["provenance"]
+        if provenance["selection"]["sha256"] != sha(selection) or provenance["selection"]["selected_method"] != chosen:
+            raise ValueError(f"Selection changed after training: {result}")
+        if report.get("data_sha256", manifest["datasets"][key[0]]["trainval_sha256"]) != manifest["datasets"][key[0]]["trainval_sha256"]:
+            raise ValueError(f"Training data provenance changed: {result}")
         source = Path(provenance["source_directory"])
         for name, expected_hash in provenance["source_sha256"].items():
             path = source / "src" / name
@@ -84,7 +89,6 @@ def freeze(runs, output, selection):
     for path in list((ROOT / "src/dimensr_mimo").rglob("*.py")) + list(HERE.glob("*.py")) + [
             HERE / "PROTOCOL.md", HERE / "NEW_DATASETS.md", HERE / "new_data/manifest.json", selection]:
         files[path.resolve().relative_to(ROOT).as_posix()] = sha(path)
-    manifest = json.loads((HERE / "new_data/manifest.json").read_text(encoding="utf-8"))
     for item in manifest["datasets"].values():
         for field in ("trainval", "sealed"):
             path = ROOT / item[field + "_file"]
