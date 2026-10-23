@@ -133,6 +133,15 @@ budget. Both options are disabled by default. Their separate evaluation follows
 the [v3 protocol](experiments/real_blind_v3/PROTOCOL.md); neither option by itself
 guarantees improved predictions.
 
+The [equal-budget study and new real-data holdouts](docs/REAL_DATA_EQUAL_BUDGET.md)
+completed 180 development runs and 34 frozen holdout evaluations. Neither
+candidate coverage nor pruning passed its adoption gates, so defaults remain
+unchanged. Independent symbolic search had 3.29% lower development NRMSE with
+33.48% higher shared-DAG complexity. On new holdouts, Extra Trees was best on
+Gas Turbine and Ridge had the lowest point estimate on SML2010; joint symbolic
+search showed no general accuracy advantage. All per-output results and failed
+adoption gates are retained in the report.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.

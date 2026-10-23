@@ -1,0 +1,243 @@
+{
+  "complete": true,
+  "run_count": 34,
+  "failed": [],
+  "datasets": {
+    "gas_turbine": {
+      "joint": {
+        "runs": 5,
+        "mean_nrmse": 1.0239252313783023,
+        "per_output_nrmse": [
+          0.7147976775694582,
+          1.3330527851871463
+        ],
+        "per_output_r2": [
+          0.5050687330848509,
+          -0.6788630202733149
+        ],
+        "mean_complexity": 31.8,
+        "outside_training_box_rows": [
+          455
+        ],
+        "expanded_domain_statuses": [
+          "enclosed"
+        ]
+      },
+      "independent": {
+        "runs": 5,
+        "mean_nrmse": 1.009602629990479,
+        "per_output_nrmse": [
+          0.6843319831669034,
+          1.3348732768140545
+        ],
+        "per_output_r2": [
+          0.5487235210354121,
+          -0.6684073856515671
+        ],
+        "mean_complexity": 44.4,
+        "outside_training_box_rows": [
+          455
+        ],
+        "expanded_domain_statuses": [
+          "enclosed"
+        ]
+      },
+      "mean": {
+        "runs": 1,
+        "mean_nrmse": 1.2139656121546998,
+        "per_output_nrmse": [
+          1.1141699231935516,
+          1.313761301115848
+        ],
+        "per_output_r2": [
+          -0.19177288878778032,
+          -0.6152319036169729
+        ],
+        "mean_complexity": null
+      },
+      "ridge": {
+        "runs": 1,
+        "mean_nrmse": 1.0547363609853129,
+        "per_output_nrmse": [
+          0.9169506555285578,
+          1.192522066442068
+        ],
+        "per_output_r2": [
+          0.192797364730244,
+          -0.330867446645134
+        ],
+        "mean_complexity": null
+      },
+      "extra_trees": {
+        "runs": 5,
+        "mean_nrmse": 0.9222141092680968,
+        "per_output_nrmse": [
+          0.6676989449039494,
+          1.1767292736322439
+        ],
+        "per_output_r2": [
+          0.5719913243364104,
+          -0.2958820665819206
+        ],
+        "mean_complexity": null
+      }
+    },
+    "sml2010": {
+      "joint": {
+        "runs": 5,
+        "mean_nrmse": 0.4502076086129573,
+        "per_output_nrmse": [
+          0.4540527374748121,
+          0.4463624797511024
+        ],
+        "per_output_r2": [
+          0.7150947894627936,
+          0.7224100117219275
+        ],
+        "mean_complexity": 29.8,
+        "outside_training_box_rows": [
+          47
+        ],
+        "expanded_domain_statuses": [
+          "enclosed"
+        ]
+      },
+      "independent": {
+        "runs": 5,
+        "mean_nrmse": 0.4609872983954727,
+        "per_output_nrmse": [
+          0.44070109975618965,
+          0.48127349703475575
+        ],
+        "per_output_r2": [
+          0.7315116756939563,
+          0.6766725016598019
+        ],
+        "mean_complexity": 28.6,
+        "outside_training_box_rows": [
+          47
+        ],
+        "expanded_domain_statuses": [
+          "enclosed"
+        ]
+      },
+      "mean": {
+        "runs": 1,
+        "mean_nrmse": 1.5025369218830518,
+        "per_output_nrmse": [
+          1.4925870681420628,
+          1.5124867756240408
+        ],
+        "per_output_r2": [
+          -2.0740158338279326,
+          -2.1812182017582864
+        ],
+        "mean_complexity": null
+      },
+      "ridge": {
+        "runs": 1,
+        "mean_nrmse": 0.4081780803198911,
+        "per_output_nrmse": [
+          0.4182019002976579,
+          0.39815426034212426
+        ],
+        "per_output_r2": [
+          0.7586769781730346,
+          0.7795485190223512
+        ],
+        "mean_complexity": null
+      },
+      "extra_trees": {
+        "runs": 5,
+        "mean_nrmse": 0.6277948808077352,
+        "per_output_nrmse": [
+          0.6119243721988787,
+          0.6436653894165915
+        ],
+        "per_output_r2": [
+          0.4833097830870973,
+          0.4238479740829618
+        ],
+        "mean_complexity": null
+      }
+    }
+  },
+  "paired_intervals": {
+    "gas_turbine": {
+      "extra_trees": {
+        "groups": 308,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          -0.12123145941948278,
+          -0.08285345247500214
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      },
+      "independent": {
+        "groups": 308,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          -0.02684134901891757,
+          -0.002158935176315951
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      },
+      "mean": {
+        "groups": 308,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          0.13489198589415255,
+          0.24768287672912895
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      },
+      "ridge": {
+        "groups": 308,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          0.012708472818203809,
+          0.05013700863924885
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      }
+    },
+    "sml2010": {
+      "extra_trees": {
+        "groups": 9,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          0.06942227030811991,
+          0.30167904584392835
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      },
+      "independent": {
+        "groups": 9,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          -0.005049215459403608,
+          0.02805491241029842
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      },
+      "mean": {
+        "groups": 9,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          0.7573586236663018,
+          1.318264621020312
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      },
+      "ridge": {
+        "groups": 9,
+        "resamples": 2000,
+        "after_minus_joint_nrmse_95ci": [
+          -0.1218228056616561,
+          0.03623605437064988
+        ],
+        "interpretation": "Conditional on frozen seed models and observed test groups; not IID rows."
+      }
+    }
+  }
+}
