@@ -103,6 +103,28 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         if not available or counts["feature_attempts"] >= 2 * cfg.max_features:
             break
 
+    # Bounded generic scaled-unary and common-denominator productions.
+    enriched = []
+    for x in base[:-2]:
+        if "mul" in operators:
+            scaled = compose("mul", base[-1], x)
+            for op in operators:
+                if ARITY[op] == 1:
+                    try:
+                        enriched.append(compose(op, scaled))
+                    except ValueError:
+                        pass
+        if {"add", "square", "div"} <= set(operators):
+            try:
+                denominator = compose("add", base[-2], compose("square", x))
+                enriched.append(denominator)
+                enriched.extend(compose("div", numerator, denominator) for numerator in base[:-2])
+            except ValueError:
+                pass
+    for feature in enriched[:cfg.max_features]:
+        if admit(feature):
+            initial.append(feature)
+
     def relevance(feature, residual):
         v = cache[feature]
         score = 0.
@@ -154,22 +176,29 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         current = make_candidate((), np.empty((len(X), 0)), Y, scales, target_units, coefficient_units)
         counts["head_fits"] += 1
         archive.append(current)
+        beam = [current]
         for _ in range(cfg.max_terms):
-            residual = Y - predict_candidate(current, X)
-            remaining = [f for f in pool if f not in current["features"]]
-            shortlist = sorted(remaining, key=lambda f: (-relevance(f, residual), f.tree.size))[:12]
-            best = current
-            for feature in shortlist:
-                features = current["features"] + (feature,)
-                values = np.column_stack([cache[f] for f in features])
-                proposal = make_candidate(features, values, Y, scales, target_units, coefficient_units)
-                counts["head_fits"] += 1
-                if proposal["train_loss"] < best["train_loss"] - 1e-14:
-                    best = proposal
-            if best is current:
+            branches, seen_bases = [], set()
+            for parent in beam:
+                residual = Y - predict_candidate(parent, X)
+                remaining = [f for f in pool if f not in parent["features"]]
+                shortlist = sorted(remaining, key=lambda f: (-relevance(f, residual), f.tree.size))[:12]
+                for feature in shortlist:
+                    features = parent["features"] + (feature,)
+                    key = frozenset(features)
+                    if key in seen_bases:
+                        continue
+                    seen_bases.add(key)
+                    values = np.column_stack([cache[f] for f in features])
+                    proposal = make_candidate(features, values, Y, scales, target_units, coefficient_units)
+                    counts["head_fits"] += 1
+                    if proposal["train_loss"] < parent["train_loss"] - 1e-14:
+                        branches.append(proposal)
+            if not branches:
                 break
-            current = best
-            archive.append(current)
+            archive.extend(branches)
+            beam = sorted(branches, key=lambda c: (round(c["train_loss"], 12), c["complexity"], c["train_loss"]))[:4]
+            current = beam[0]
         selected = current["features"]
 
         if cfg.polish_max_nfev and any(f.constants for f in selected):

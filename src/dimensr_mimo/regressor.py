@@ -84,6 +84,15 @@ class MIMOSymbolicRegressor(RegressorMixin, BaseEstimator):
         self.target_units = target_units
         self.coefficient_units = coefficient_units
 
+    def _more_tags(self):
+        return {"multioutput": True, "multioutput_only": True}
+
+    def __sklearn_tags__(self):
+        tags = super().__sklearn_tags__()
+        tags.target_tags.multi_output = True
+        tags.target_tags.single_output = False
+        return tags
+
     def fit(self, X, Y, *, X_val=None, Y_val=None, input_bounds=None):
         for name in list(vars(self)):
             if name.endswith("_"):

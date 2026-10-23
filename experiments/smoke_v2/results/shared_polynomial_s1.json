@@ -1,0 +1,192 @@
+{
+  "format": "dimensr-mimo",
+  "version": 1,
+  "config": {
+    "max_features": 256,
+    "generations": 5,
+    "proposals_per_generation": 256,
+    "max_terms": 4,
+    "max_nodes": 13,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos"
+    ],
+    "complexity_weight": 0.0001,
+    "validation_fraction": 0.2,
+    "polish_max_nfev": 30,
+    "random_state": 1,
+    "interval_max_boxes": 32
+  },
+  "feature_names": [
+    "x0",
+    "x1",
+    "x2"
+  ],
+  "target_names": [
+    "y0",
+    "y1"
+  ],
+  "feature_units": [
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "target_units": [
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "coefficient_units": [
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "input_bounds": [
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ],
+    [
+      -1.0,
+      1.0
+    ]
+  ],
+  "target_scales": [
+    0.7936773925342541,
+    1.7395131609479353
+  ],
+  "model": {
+    "features": [
+      {
+        "tree": {
+          "token": "x2",
+          "units": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "children": []
+        },
+        "constants": []
+      },
+      {
+        "tree": {
+          "token": "mul",
+          "units": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "children": [
+            {
+              "token": "x0",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": []
+            },
+            {
+              "token": "x1",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": []
+            }
+          ]
+        },
+        "constants": []
+      }
+    ],
+    "coefficients": [
+      [
+        0.5000000000000001,
+        1.9999999999999984
+      ],
+      [
+        2.9999999999999996,
+        -0.9999999999999996
+      ]
+    ],
+    "intercepts": [
+      -4.512336369792013e-16,
+      -3.744859463053197e-16
+    ],
+    "train_loss": 4.449815919231807e-31,
+    "complexity": 10
+  }
+}
