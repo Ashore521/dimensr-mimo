@@ -142,6 +142,14 @@ Gas Turbine and Ridge had the lowest point estimate on SML2010; joint symbolic
 search showed no general accuracy advantage. All per-output results and failed
 adoption gates are retained in the report.
 
+The follow-up [budget and capacity diagnosis](docs/BUDGET_CAPACITY_DIAGNOSIS.md)
+completed 108 paired development runs at 20/60 CPU seconds. Tripling the budget
+did not improve aggregate joint-model error, and widening the basis bound alone
+worsened default operating points. Some gains appeared under tighter complexity
+caps. Full inner-validation-selected curves, candidate archives and paired
+results are available; this diagnosis changes no algorithm defaults and makes
+no new blind-evaluation claim.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.
