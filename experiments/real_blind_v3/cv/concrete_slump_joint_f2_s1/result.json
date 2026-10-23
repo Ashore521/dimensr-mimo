@@ -1,0 +1,878 @@
+{
+  "dataset": "concrete_slump",
+  "fold": 2,
+  "source_sha256": {
+    "dimensr_mimo/__init__.py": "37497cf8bea643c570cabfdbf5dd3d11f9bcc36a2694697c315f82a15ce4e21f",
+    "dimensr_mimo/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "dimensr_mimo/_vendor/__init__.py": "6550abc01cd175bae1af763e14a170ec4075f24aee7564dc1066d2d40770e11f",
+    "dimensr_mimo/_vendor/expression.py": "fb39cb99564b0e65c07a49bb700bd602f8067298a91bd0afa4412b73d0780425",
+    "dimensr_mimo/_vendor/intervals.py": "29a9675191bfd9ab69e4730ed91c89cb5ab5611482ff75ac1f9b64e85975add6",
+    "dimensr_mimo/_vendor/units.py": "d4ed54c3baeb6b52a0b44b38f962b53a48de82ce3be7d9d6f4bc3800a34a2213",
+    "dimensr_mimo/cli.py": "91423b20094390d7042d538fee8d17a7b4aadc88338270d71b59d2d3cfafd0ca",
+    "dimensr_mimo/config.py": "cd85e06db7aa39a2ecd747cda504f53d3beaefb041fb870f68d431a25e411fe1",
+    "dimensr_mimo/features.py": "09949ddbb73ef12e588967a4b2100580253baacb74467dca40a0b76d69f08bf7",
+    "dimensr_mimo/pruning.py": "3eb1f9bd9866543829d8fcda36b4255a12fa0e4f181d4dfc899f949199a80151",
+    "dimensr_mimo/regressor.py": "2fa3e727d13f6ec6ac490ccb5274ce7b8b40d9422509475c7f2882c9e9390714",
+    "dimensr_mimo/search.py": "924401c11cd700ae503e7207f8a507ff6ef385198d3fce3d743f8f877eec678b",
+    "dimensr_mimo/selection.py": "0e6803d1e25bcf97d4e2ba79cc7f9ccd0dc0cb1779c56b3a716870dbe72f7b5f"
+  },
+  "feature_names": [
+    "Cement",
+    "Slag",
+    "Fly ash",
+    "Water",
+    "SP",
+    "Coarse Aggr.",
+    "Fine Aggr."
+  ],
+  "target_names": [
+    "SLUMP(cm)",
+    "FLOW(cm)",
+    "Compressive Strength (28-day)(Mpa)"
+  ],
+  "input_mean": [
+    223.99772727272727,
+    89.73863636363636,
+    156.50227272727273,
+    199.1454545454545,
+    8.863636363636363,
+    864.7863636363637,
+    738.1272727272727
+  ],
+  "input_scale": [
+    80.09802655790638,
+    61.10228464672648,
+    83.07275422685052,
+    21.579719588554923,
+    3.0164014464176376,
+    86.90672531489538,
+    58.4354903198871
+  ],
+  "target_scale": [
+    9.89652690769397,
+    19.50791678136752,
+    7.731828693675714
+  ],
+  "row_ids": {
+    "train": [
+      "slump_test.data:line:55",
+      "slump_test.data:line:97",
+      "slump_test.data:line:54",
+      "slump_test.data:line:14",
+      "slump_test.data:line:25",
+      "slump_test.data:line:89",
+      "slump_test.data:line:60",
+      "slump_test.data:line:47",
+      "slump_test.data:line:35",
+      "slump_test.data:line:8",
+      "slump_test.data:line:20",
+      "slump_test.data:line:22",
+      "slump_test.data:line:43",
+      "slump_test.data:line:86",
+      "slump_test.data:line:74",
+      "slump_test.data:line:4",
+      "slump_test.data:line:71",
+      "slump_test.data:line:42",
+      "slump_test.data:line:26",
+      "slump_test.data:line:45",
+      "slump_test.data:line:85",
+      "slump_test.data:line:102",
+      "slump_test.data:line:94",
+      "slump_test.data:line:27",
+      "slump_test.data:line:36",
+      "slump_test.data:line:83",
+      "slump_test.data:line:70",
+      "slump_test.data:line:18",
+      "slump_test.data:line:17",
+      "slump_test.data:line:92",
+      "slump_test.data:line:96",
+      "slump_test.data:line:21",
+      "slump_test.data:line:31",
+      "slump_test.data:line:61",
+      "slump_test.data:line:44",
+      "slump_test.data:line:3",
+      "slump_test.data:line:32",
+      "slump_test.data:line:12",
+      "slump_test.data:line:28",
+      "slump_test.data:line:99",
+      "slump_test.data:line:79",
+      "slump_test.data:line:69",
+      "slump_test.data:line:50",
+      "slump_test.data:line:104"
+    ],
+    "val": [
+      "slump_test.data:line:78",
+      "slump_test.data:line:84",
+      "slump_test.data:line:77",
+      "slump_test.data:line:37",
+      "slump_test.data:line:10",
+      "slump_test.data:line:91",
+      "slump_test.data:line:30",
+      "slump_test.data:line:53",
+      "slump_test.data:line:62",
+      "slump_test.data:line:101",
+      "slump_test.data:line:39"
+    ],
+    "eval": [
+      "slump_test.data:line:67",
+      "slump_test.data:line:66",
+      "slump_test.data:line:72",
+      "slump_test.data:line:5",
+      "slump_test.data:line:7",
+      "slump_test.data:line:19",
+      "slump_test.data:line:63",
+      "slump_test.data:line:98",
+      "slump_test.data:line:38",
+      "slump_test.data:line:6",
+      "slump_test.data:line:75",
+      "slump_test.data:line:15",
+      "slump_test.data:line:56",
+      "slump_test.data:line:103",
+      "slump_test.data:line:49",
+      "slump_test.data:line:88",
+      "slump_test.data:line:93",
+      "slump_test.data:line:76",
+      "slump_test.data:line:57",
+      "slump_test.data:line:81",
+      "slump_test.data:line:51",
+      "slump_test.data:line:34",
+      "slump_test.data:line:82",
+      "slump_test.data:line:95",
+      "slump_test.data:line:29",
+      "slump_test.data:line:23",
+      "slump_test.data:line:13"
+    ]
+  },
+  "group_ids": {
+    "train": [
+      "slump_test.data:line:55",
+      "slump_test.data:line:97",
+      "slump_test.data:line:54",
+      "slump_test.data:line:14",
+      "slump_test.data:line:25",
+      "slump_test.data:line:89",
+      "slump_test.data:line:60",
+      "slump_test.data:line:47",
+      "slump_test.data:line:35",
+      "slump_test.data:line:8",
+      "slump_test.data:line:20",
+      "slump_test.data:line:22",
+      "slump_test.data:line:43",
+      "slump_test.data:line:86",
+      "slump_test.data:line:74",
+      "slump_test.data:line:4",
+      "slump_test.data:line:71",
+      "slump_test.data:line:42",
+      "slump_test.data:line:26",
+      "slump_test.data:line:45",
+      "slump_test.data:line:85",
+      "slump_test.data:line:102",
+      "slump_test.data:line:94",
+      "slump_test.data:line:27",
+      "slump_test.data:line:36",
+      "slump_test.data:line:83",
+      "slump_test.data:line:70",
+      "slump_test.data:line:18",
+      "slump_test.data:line:17",
+      "slump_test.data:line:92",
+      "slump_test.data:line:96",
+      "slump_test.data:line:21",
+      "slump_test.data:line:31",
+      "slump_test.data:line:61",
+      "slump_test.data:line:44",
+      "slump_test.data:line:3",
+      "slump_test.data:line:32",
+      "slump_test.data:line:12",
+      "slump_test.data:line:28",
+      "slump_test.data:line:99",
+      "slump_test.data:line:79",
+      "slump_test.data:line:69",
+      "slump_test.data:line:50",
+      "slump_test.data:line:104"
+    ],
+    "val": [
+      "slump_test.data:line:78",
+      "slump_test.data:line:84",
+      "slump_test.data:line:77",
+      "slump_test.data:line:37",
+      "slump_test.data:line:10",
+      "slump_test.data:line:91",
+      "slump_test.data:line:30",
+      "slump_test.data:line:53",
+      "slump_test.data:line:62",
+      "slump_test.data:line:101",
+      "slump_test.data:line:39"
+    ],
+    "eval": [
+      "slump_test.data:line:67",
+      "slump_test.data:line:66",
+      "slump_test.data:line:72",
+      "slump_test.data:line:5",
+      "slump_test.data:line:7",
+      "slump_test.data:line:19",
+      "slump_test.data:line:63",
+      "slump_test.data:line:98",
+      "slump_test.data:line:38",
+      "slump_test.data:line:6",
+      "slump_test.data:line:75",
+      "slump_test.data:line:15",
+      "slump_test.data:line:56",
+      "slump_test.data:line:103",
+      "slump_test.data:line:49",
+      "slump_test.data:line:88",
+      "slump_test.data:line:93",
+      "slump_test.data:line:76",
+      "slump_test.data:line:57",
+      "slump_test.data:line:81",
+      "slump_test.data:line:51",
+      "slump_test.data:line:34",
+      "slump_test.data:line:82",
+      "slump_test.data:line:95",
+      "slump_test.data:line:29",
+      "slump_test.data:line:23",
+      "slump_test.data:line:13"
+    ]
+  },
+  "row_counts": {
+    "train": 44,
+    "val": 11,
+    "eval": 27
+  },
+  "available_fitting_rows": 44,
+  "train_cap": 1200,
+  "fitting_subset_positions": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "split_seed": 20261026,
+  "units_policy": "Standardized inputs are dimensionless; no inferred physical units.",
+  "fold_sha256": "f6d7381e4c2add711d91ad774c6bfd7681d1bfb3f17403a9d718e4038ee1b4a8",
+  "pool_indices": {
+    "train": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      20,
+      24,
+      25,
+      26,
+      30,
+      31,
+      32,
+      33,
+      35,
+      37,
+      38,
+      41,
+      42,
+      43,
+      44,
+      46,
+      49,
+      51,
+      52,
+      54,
+      55,
+      57,
+      59,
+      60,
+      64,
+      65,
+      70,
+      72,
+      73,
+      74,
+      75,
+      76,
+      78
+    ],
+    "val": [
+      15,
+      19,
+      21,
+      29,
+      40,
+      47,
+      53,
+      58,
+      62,
+      66,
+      69
+    ],
+    "eval": [
+      0,
+      6,
+      7,
+      11,
+      16,
+      17,
+      18,
+      22,
+      23,
+      27,
+      28,
+      34,
+      36,
+      39,
+      45,
+      48,
+      50,
+      56,
+      61,
+      63,
+      67,
+      68,
+      71,
+      77,
+      79,
+      80,
+      81
+    ]
+  },
+  "method": "joint",
+  "seed": 1,
+  "status": "ok",
+  "cpu_budget_seconds": 20.0,
+  "allocated_search_seconds": [
+    20.0
+  ],
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sympy": "1.14.0",
+    "scikit-learn": "1.9.1",
+    "threadpoolctl": "3.7.0"
+  },
+  "configs": [
+    {
+      "max_features": 192,
+      "generations": 10000,
+      "proposals_per_generation": 128,
+      "max_terms": 8,
+      "max_nodes": 13,
+      "max_depth": 6,
+      "polish_max_nfev": 10,
+      "interval_max_boxes": 32,
+      "complexity_weight": 0.0001,
+      "head_ridge": 0.001,
+      "random_state": 1,
+      "search_seconds": 20.0,
+      "candidate_quota": 0,
+      "prune_tolerance": 0.0
+    }
+  ],
+  "diagnostics": [
+    {
+      "feature_attempts": 2209,
+      "feature_evaluations": 1511,
+      "domain_rejections": 157,
+      "head_fits": 4201,
+      "polish_residual_calls": 4210,
+      "prune_head_fits": 0,
+      "budget_exhausted": true,
+      "search_cpu_seconds": 20.0,
+      "budget_overshoot_seconds": 0.0,
+      "training_rows": 44,
+      "validation_rows": 11,
+      "selected_train_loss": 0.2926111624033949,
+      "selected_validation_loss": 0.30554348902114414,
+      "shared_features": 2,
+      "domain_source": "training_box"
+    }
+  ],
+  "model_fit_cpu_seconds": [
+    21.140625
+  ],
+  "model_fit_wall_seconds": [
+    21.547000000005937
+  ],
+  "data_sha256": "12f4f8e84f225dd5fe8cb8e61fd189ff7171af004c23dc9056f4f3ef9f6cc18d",
+  "fit_cpu_seconds": 21.171875,
+  "fit_wall_seconds": 21.578000000008615,
+  "complexity": 22,
+  "shared_dag_nodes": 13,
+  "nonzero_connections": 6,
+  "nonzero_intercepts": 3,
+  "storage_complexity": 22,
+  "expressions": [
+    "-4.30939733583385*Cement - 4.30939733583385*Fly ash - 5.689394607711362*Slag/(Fine Aggr.**2 + 0.6682214742993081) + 5.689394607711362*Water + 17.22056779685259",
+    "-6.929522636699789*Cement - 6.929522636699789*Fly ash - 12.31634981582607*Slag/(Fine Aggr.**2 + 0.6682214742993081) + 12.31634981582607*Water + 50.11290227492331",
+    "8.013079472999294*Cement + 8.013079472999294*Fly ash + 2.361461624713318*Slag/(Fine Aggr.**2 + 0.6682214742993081) - 2.361461624713318*Water + 36.57067272868464"
+  ],
+  "history": [
+    [
+      {
+        "generation": 0,
+        "train_loss": 0.20255581229992994,
+        "complexity": 47,
+        "retained_features": 192,
+        "feature_attempts": 465,
+        "feature_evaluations": 373,
+        "domain_rejections": 63,
+        "head_fits": 354,
+        "polish_residual_calls": 64,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 1,
+        "train_loss": 0.18446331395589874,
+        "complexity": 57,
+        "retained_features": 192,
+        "feature_attempts": 622,
+        "feature_evaluations": 512,
+        "domain_rejections": 71,
+        "head_fits": 707,
+        "polish_residual_calls": 243,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 2,
+        "train_loss": 0.12628699756922498,
+        "complexity": 81,
+        "retained_features": 192,
+        "feature_attempts": 782,
+        "feature_evaluations": 659,
+        "domain_rejections": 87,
+        "head_fits": 1057,
+        "polish_residual_calls": 628,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 3,
+        "train_loss": 0.130705577082404,
+        "complexity": 81,
+        "retained_features": 192,
+        "feature_attempts": 933,
+        "feature_evaluations": 761,
+        "domain_rejections": 98,
+        "head_fits": 1408,
+        "polish_residual_calls": 1018,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 4,
+        "train_loss": 0.13938633489376645,
+        "complexity": 83,
+        "retained_features": 192,
+        "feature_attempts": 1084,
+        "feature_evaluations": 870,
+        "domain_rejections": 108,
+        "head_fits": 1760,
+        "polish_residual_calls": 1469,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 5,
+        "train_loss": 0.1390488340321755,
+        "complexity": 74,
+        "retained_features": 192,
+        "feature_attempts": 1244,
+        "feature_evaluations": 967,
+        "domain_rejections": 118,
+        "head_fits": 2113,
+        "polish_residual_calls": 1894,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 6,
+        "train_loss": 0.13915073601735842,
+        "complexity": 86,
+        "retained_features": 192,
+        "feature_attempts": 1403,
+        "feature_evaluations": 1064,
+        "domain_rejections": 127,
+        "head_fits": 2466,
+        "polish_residual_calls": 2266,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 7,
+        "train_loss": 0.16531256123864424,
+        "complexity": 80,
+        "retained_features": 192,
+        "feature_attempts": 1531,
+        "feature_evaluations": 1133,
+        "domain_rejections": 131,
+        "head_fits": 2814,
+        "polish_residual_calls": 2540,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 8,
+        "train_loss": 0.16097587508743724,
+        "complexity": 76,
+        "retained_features": 192,
+        "feature_attempts": 1673,
+        "feature_evaluations": 1224,
+        "domain_rejections": 134,
+        "head_fits": 3165,
+        "polish_residual_calls": 2952,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 9,
+        "train_loss": 0.16022066886499367,
+        "complexity": 82,
+        "retained_features": 192,
+        "feature_attempts": 1801,
+        "feature_evaluations": 1305,
+        "domain_rejections": 144,
+        "head_fits": 3510,
+        "polish_residual_calls": 3340,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 10,
+        "train_loss": 0.16022287525548135,
+        "complexity": 82,
+        "retained_features": 192,
+        "feature_attempts": 1929,
+        "feature_evaluations": 1369,
+        "domain_rejections": 149,
+        "head_fits": 3855,
+        "polish_residual_calls": 3752,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      },
+      {
+        "generation": 11,
+        "train_loss": 0.14610957008583014,
+        "complexity": 83,
+        "retained_features": 192,
+        "feature_attempts": 2081,
+        "feature_evaluations": 1456,
+        "domain_rejections": 153,
+        "head_fits": 4201,
+        "polish_residual_calls": 4210,
+        "prune_head_fits": 0,
+        "budget_exhausted": false
+      }
+    ]
+  ],
+  "train": {
+    "rmse": [
+      6.5609915734680335,
+      11.021523549475141,
+      2.668543932800664
+    ],
+    "nrmse": [
+      0.6629589991178872,
+      0.5649769615586049,
+      0.34513748797660404
+    ],
+    "mean_nrmse": 0.5243578162176987,
+    "worst_nrmse": 0.6629589991178872,
+    "r2": [
+      0.5604853654886093,
+      0.6808010329080065,
+      0.8808801143931995
+    ]
+  },
+  "validation": {
+    "rmse": [
+      5.81251587236474,
+      13.706279729632431,
+      2.159759588069672
+    ],
+    "nrmse": [
+      0.5873288605769211,
+      0.7026008918965467,
+      0.279333605753094
+    ],
+    "mean_nrmse": 0.5230877860755206,
+    "worst_nrmse": 0.7026008918965467,
+    "r2": [
+      0.18053046024795683,
+      0.40633808860645404,
+      0.9267710066664837
+    ]
+  },
+  "eval": {
+    "rmse": [
+      8.938589141915473,
+      14.42912721298547,
+      3.4958429276673386
+    ],
+    "nrmse": [
+      0.9032046520245648,
+      0.7396549500747859,
+      0.4521366246159566
+    ],
+    "mean_nrmse": 0.698332075571769,
+    "worst_nrmse": 0.9032046520245648,
+    "r2": [
+      -0.37682147030424096,
+      -0.01223025477215356,
+      0.8276465856089038
+    ]
+  },
+  "raw_domain": {
+    "training": [
+      {
+        "status": "enclosed",
+        "features": [
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          },
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          }
+        ],
+        "outputs": [
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          },
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          },
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          }
+        ],
+        "input_bounds": [
+          [
+            -1.0861407079715353,
+            1.648009050907671
+          ],
+          [
+            -1.468662536637966,
+            1.4444854909544236
+          ],
+          [
+            -1.8839181893488797,
+            1.245868494862965
+          ],
+          [
+            -1.8139927344661042,
+            1.754172258782368
+          ],
+          [
+            -1.3140281338691466,
+            3.028895125088286
+          ],
+          [
+            -1.8040763021304556,
+            2.1035614413180843
+          ],
+          [
+            -1.6638394269481094,
+            2.4791907534216984
+          ]
+        ],
+        "guarantee": "Numerical interval screening, not a formal mathematical certificate."
+      }
+    ],
+    "observed_box": [
+      {
+        "status": "enclosed",
+        "features": [
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          },
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          }
+        ],
+        "outputs": [
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          },
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          },
+          {
+            "status": "enclosed",
+            "boxes_checked": 1,
+            "reason": null,
+            "witness": null
+          }
+        ],
+        "input_bounds": [
+          [
+            -1.0861407079715353,
+            1.7728560718610595
+          ],
+          [
+            -1.468662536637966,
+            1.689975493279625
+          ],
+          [
+            -1.8839181893488797,
+            1.245868494862965
+          ],
+          [
+            -1.8139927344661042,
+            1.754172258782368
+          ],
+          [
+            -1.4134843917078665,
+            3.360415984550685
+          ],
+          [
+            -1.8040763021304556,
+            2.1254239610841403
+          ],
+          [
+            -1.6638394269481094,
+            2.804335625074017
+          ]
+        ],
+        "guarantee": "Numerical interval screening, not a formal mathematical certificate."
+      }
+    ],
+    "note": "Observed-box audits occur after fitting and do not select a model."
+  },
+  "search_cpu_seconds": 20.0,
+  "budget_overshoot_seconds": 0.0,
+  "total_cpu_seconds": 21.1875,
+  "total_wall_seconds": 21.593000000008033,
+  "models": [
+    "model_0.json"
+  ],
+  "reload_prediction_exact": true,
+  "model_sha256": {
+    "model_0.json": "b7be8051390c37eb64471acb2e2b15c9d245887a361afef2f61b765b644d5531"
+  },
+  "mode": "cv",
+  "provenance": {
+    "source_directory": "D:\\符号回归项目\\dimensr-mimo\\outputs\\real_blind_v3_source\\source",
+    "source_sha256": {
+      "dimensr_mimo/__init__.py": "37497cf8bea643c570cabfdbf5dd3d11f9bcc36a2694697c315f82a15ce4e21f",
+      "dimensr_mimo/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+      "dimensr_mimo/_vendor/__init__.py": "6550abc01cd175bae1af763e14a170ec4075f24aee7564dc1066d2d40770e11f",
+      "dimensr_mimo/_vendor/expression.py": "fb39cb99564b0e65c07a49bb700bd602f8067298a91bd0afa4412b73d0780425",
+      "dimensr_mimo/_vendor/intervals.py": "29a9675191bfd9ab69e4730ed91c89cb5ab5611482ff75ac1f9b64e85975add6",
+      "dimensr_mimo/_vendor/units.py": "d4ed54c3baeb6b52a0b44b38f962b53a48de82ce3be7d9d6f4bc3800a34a2213",
+      "dimensr_mimo/cli.py": "91423b20094390d7042d538fee8d17a7b4aadc88338270d71b59d2d3cfafd0ca",
+      "dimensr_mimo/config.py": "cd85e06db7aa39a2ecd747cda504f53d3beaefb041fb870f68d431a25e411fe1",
+      "dimensr_mimo/features.py": "09949ddbb73ef12e588967a4b2100580253baacb74467dca40a0b76d69f08bf7",
+      "dimensr_mimo/pruning.py": "3eb1f9bd9866543829d8fcda36b4255a12fa0e4f181d4dfc899f949199a80151",
+      "dimensr_mimo/regressor.py": "2fa3e727d13f6ec6ac490ccb5274ce7b8b40d9422509475c7f2882c9e9390714",
+      "dimensr_mimo/search.py": "924401c11cd700ae503e7207f8a507ff6ef385198d3fce3d743f8f877eec678b",
+      "dimensr_mimo/selection.py": "0e6803d1e25bcf97d4e2ba79cc7f9ccd0dc0cb1779c56b3a716870dbe72f7b5f"
+    },
+    "study_sha256": {
+      "run_study.py": "7b88913172ce21d0e27106cb74ca575992c819c8e747a7e87dfc72e306a2450d",
+      "runner.py": "f884ae2007815e77ceab5d4f7edb103ce39208806e4b4571645f406d3bee8989",
+      "PROTOCOL.md": "70967598140f725f8a78eca9a9272a455e071fd8e3353ee71b8f87f465d283bc"
+    },
+    "python": "3.12.10",
+    "executable": "D:\\符号回归项目\\dimensr-mimo\\.venv\\Scripts\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0",
+      "scikit-learn": "1.9.1",
+      "threadpoolctl": "3.7.0",
+      "joblib": "1.6.0"
+    },
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1"
+    },
+    "search_cpu_seconds": 20.0,
+    "wall_timeout_seconds": 120,
+    "selection": null,
+    "dataset": "concrete_slump",
+    "method": "joint",
+    "fold": 2,
+    "seed": 1,
+    "mode": "cv",
+    "started_utc": "2026-10-23T14:16:39.906452+00:00"
+  },
+  "process_cpu_seconds": 22.765625,
+  "process_wall_seconds": 23.531000000002678
+}
