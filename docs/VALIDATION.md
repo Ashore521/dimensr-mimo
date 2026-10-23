@@ -41,3 +41,13 @@ The wheel and source distribution are built locally. GitHub CI is configured for
 Linux and Windows with Python 3.10 and 3.12; only completed CI runs establish those
 platform results. There is no upstream matched-budget comparison, real-data
 multi-output evaluation, or claim of improved performance over other methods.
+
+## Subsequent real-data study
+
+The historical v0.1.0 checks above remain intact. A separate [real-data report](REAL_DATA_BENCHMARK.md)
+now records the UCI data provenance, group/time splits, sealed holdout protocol,
+all development runs, frozen model hashes and final outcomes. The added optional
+regularized output heads have seven new tests; the complete source suite passed
+70 tests and the shared-system example passed. The overall holdout NRMSE changed
+from 0.94127 to 0.93297; all dataset-level paired 95% intervals included zero.
+No algorithm or hyperparameter was changed after opening those holdouts.

@@ -101,8 +101,18 @@ Complexity counts unique shared expression nodes, nonzero output connections and
 | `polish_max_nfev` | 30 | Nonlinear least-squares evaluation budget; 0 disables refinement |
 | `random_state` | 0 | Reproducible random seed |
 | `interval_max_boxes` | 32 | Interval subdivision budget per feature audit |
+| `head_ridge` | 0.0 | Ridge strength on column-scaled output heads; intercepts are unpenalized |
 
 Supported operators also include `neg`, `sqrt`, `exp` and `log`. Transcendental inputs must be dimensionless; addition and subtraction require matching dimensions. The search is stochastic and budgeted, so it may miss valid complex expressions.
+
+For noisy data, `SearchConfig(head_ridge=0.001)` enables regularized output heads.
+The default zero retains the original least-squares behavior and exact-formula
+recovery. Select regularization on validation data. In our [real-data sealed
+holdout study](docs/REAL_DATA_BENCHMARK.md), this option reduced aggregate test
+NRMSE by 0.88% across three UCI datasets; all paired 95% intervals crossed zero.
+Parkinson subject generalization remained worse than the mean predictor, and
+Extra Trees performed better on Air Quality. The result does not establish a
+general improvement. Raw datasets and fitted tree binaries are not distributed.
 
 ### Domain behavior
 

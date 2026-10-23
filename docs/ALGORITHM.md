@@ -1,7 +1,7 @@
 # Shared typed dictionary evolution
 
 For input X with n rows and d columns, the model predicts m outputs with a shared
-basis and separate sparse linear heads:
+basis and separate linear heads over that small basis:
 
     Y_hat[:, j] = b[j] + sum_k A[j,k] * phi_k(X; theta_k)
 
@@ -42,6 +42,23 @@ Complexity counts unique raw graph nodes, nonzero output coefficients, and
 nonzero intercepts. Sharing therefore reduces the structural cost. This is a
 finite Pareto filter, not DimenSR's NSGA-II or its neural policy. No Torch, neural
 policy training, Rademacher regularizer, or upstream PhySO/DSO runtime is required.
+
+## Optional regularized output heads
+
+`head_ridge=0` retains column-scaled ordinary least squares. For a positive
+value `alpha`, let D be the allowed basis columns plus an optional intercept,
+and let s[k] = max(abs(D[:, k])). Solve
+
+    min_w ||(D / s) w - y||^2 + n * alpha * ||w_basis||^2
+
+using an augmented least-squares system, then map coefficients back with w/s.
+The intercept is excluded from the penalty; unit masks remain in force. The
+same solver is used in dictionary selection and nonlinear constant fitting.
+Training/validation errors remain unpenalized normalized prediction errors.
+This discourages unstable canceling coefficients; it does not make individual
+output connections sparse or demonstrate a shared physical mechanism. Choose
+alpha on validation data. The real-data study used 0.001 and kept the default
+at zero because its holdout evidence did not establish a broad advantage.
 
 ## Dimensional and numerical semantics
 
