@@ -102,6 +102,9 @@ Complexity counts unique shared expression nodes, nonzero output connections and
 | `random_state` | 0 | Reproducible random seed |
 | `interval_max_boxes` | 32 | Interval subdivision budget per feature audit |
 | `head_ridge` | 0.0 | Ridge strength on column-scaled output heads; intercepts are unpenalized |
+| `search_seconds` | `None` | Optional process CPU time limit for search, including domain checks and pruning |
+| `candidate_quota` | 0 | Positive-relevance candidates reserved per output within the 12-candidate shortlist |
+| `prune_tolerance` | 0.0 | Optional per-output normalized training MSE allowance for connection pruning/refitting |
 
 Supported operators also include `neg`, `sqrt`, `exp` and `log`. Transcendental inputs must be dimensionless; addition and subtraction require matching dimensions. The search is stochastic and budgeted, so it may miss valid complex expressions.
 
@@ -113,6 +116,22 @@ NRMSE by 0.88% across three UCI datasets; all paired 95% intervals crossed zero.
 Parkinson subject generalization remained worse than the mean predictor, and
 Extra Trees performed better on Air Quality. The result does not establish a
 general improvement. Raw datasets and fitted tree binaries are not distributed.
+
+For a bounded run, use `SearchConfig(search_seconds=20, generations=10000)` and
+limit BLAS/OpenMP threads to one when comparing computation budgets. The search
+returns its completed archive at the time limit; diagnostics report CPU usage
+and overshoot from uninterruptible numerical calls. Validation, display and
+serialization are outside this search limit. Time-limited searches can vary
+across machines even with the same random seed; save the JSON model to preserve
+the fitted result.
+
+`candidate_quota=1` adds per-output shortlist coverage. `prune_tolerance=0.005`
+tries removing weak output connections and refits the remaining head, allowing
+at most 0.005 additional normalized training MSE per output relative to the
+unpruned candidate. With a time limit, pruning uses a reserved final 20% of the
+budget. Both options are disabled by default. Their separate evaluation follows
+the [v3 protocol](experiments/real_blind_v3/PROTOCOL.md); neither option by itself
+guarantees improved predictions.
 
 ### Domain behavior
 

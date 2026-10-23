@@ -1,11 +1,13 @@
 """Joint residual-guided evolution of a typed, shared feature dictionary."""
 from itertools import product
+import time
 import numpy as np
 from scipy.optimize import least_squares
 from .features import Feature, compose, evaluate_features, graph_size
 from ._vendor.expression import ARITY, Node
 from ._vendor.units import ZERO, sub
 from ._vendor.intervals import audit_box
+from .selection import shortlist_indices
 
 
 def fit_heads(features, values, Y, target_units, coefficient_units, ridge=0.0):
@@ -55,15 +57,59 @@ def pareto(candidates):
     return front
 
 
+class _BudgetExpired(Exception):
+    pass
+
+
 def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
-    rng = np.random.default_rng(cfg.random_state)
+    started = time.process_time()
     std = np.std(Y, axis=0)
     # Constant outputs use a finite magnitude scale, without suppressing small varying outputs.
     scales = np.where(std > 0, std, np.maximum(np.abs(Y).max(axis=0), 1.))
     if not np.isfinite(scales).all():
         raise ValueError("Target magnitudes exceed stable numerical scaling.")
     counts = dict(feature_attempts=0, feature_evaluations=0, domain_rejections=0,
-                  head_fits=0, polish_residual_calls=0)
+                  head_fits=0, polish_residual_calls=0, prune_head_fits=0)
+    archive, history = [], []
+    # A completed fallback must exist even when initialization exhausts the budget.
+    if cfg.search_seconds is not None:
+        archive.append(make_candidate((), np.empty((len(X), 0)), Y, scales,
+                                      target_units, coefficient_units, cfg.head_ridge))
+        counts["head_fits"] += 1
+    search_fraction = .8 if cfg.prune_tolerance else 1.
+    deadline = None if cfg.search_seconds is None else started + cfg.search_seconds * search_fraction
+
+    def check_budget():
+        if deadline is not None and time.process_time() >= deadline:
+            raise _BudgetExpired
+
+    counts["budget_exhausted"] = False
+    try:
+        _search_impl(X, Y, bounds, feature_units, target_units, coefficient_units,
+                     cfg, scales, counts, archive, history, check_budget)
+    except _BudgetExpired:
+        counts["budget_exhausted"] = True
+    if cfg.prune_tolerance:
+        from .pruning import prune_candidate
+        deadline = None if cfg.search_seconds is None else started + cfg.search_seconds
+        # Completed originals stay eligible if pruning runs out of time.
+        try:
+            for candidate in reversed(pareto(archive)):
+                check_budget()
+                archive.append(prune_candidate(candidate, X, Y, scales, target_units,
+                    coefficient_units, cfg.head_ridge, cfg.prune_tolerance, check_budget, counts))
+        except _BudgetExpired:
+            counts["budget_exhausted"] = True
+    front = pareto(archive)
+    counts["search_cpu_seconds"] = time.process_time() - started
+    counts["budget_overshoot_seconds"] = (max(0., counts["search_cpu_seconds"] - cfg.search_seconds)
+                                          if cfg.search_seconds is not None else 0.)
+    return front, scales, history, counts
+
+
+def _search_impl(X, Y, bounds, feature_units, target_units, coefficient_units,
+                 cfg, scales, counts, archive, history, check_budget):
+    rng = np.random.default_rng(cfg.random_state)
     cache, seen = {}, set()
     base = [Feature(Node(f"x{i}", units=u)) for i, u in enumerate(feature_units)]
     base += [Feature(Node("c0"), (v,)) for v in (1., 2.)]
@@ -71,6 +117,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         raise ValueError("max_features must allow all input features and two constant terminals.")
 
     def admit(feature):
+        check_budget()
         counts["feature_attempts"] += 1
         if feature in seen:
             return False
@@ -132,9 +179,10 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         if admit(feature):
             initial.append(feature)
 
-    def relevance(feature, residual):
+    def relevance_scores(feature, residual):
+        check_budget()
         v = cache[feature]
-        score = 0.
+        scores = np.zeros(len(target_units))
         for j, target in enumerate(target_units):
             if sub(target, feature.tree.units) not in coefficient_units:
                 continue
@@ -144,8 +192,11 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
             norm = np.linalg.norm(centered)
             if norm > 0 and np.isfinite(norm):
                 projection = np.dot(centered / norm, residual[:, j] / scales[j])
-                score += projection ** 2 / len(Y)
-        return score
+                scores[j] = projection ** 2 / len(Y)
+        return scores
+
+    def relevance(feature, residual):
+        return sum(relevance_scores(feature, residual))
 
     def trim(pool, protected=()):
         unique = list(dict.fromkeys(pool))
@@ -156,10 +207,10 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         random = [unique[i] for i in rng.permutation(len(unique))[:max(1, cfg.max_features // 8)]]
         return list(dict.fromkeys(list(base) + list(protected) + small + random + ranked))[:cfg.max_features]
 
-    archive, history = [], []
     pool = trim(initial)
     selected = ()
     for generation in range(cfg.generations + 1):
+        check_budget()
         if generation:
             additions = []
             for attempt in range(cfg.proposals_per_generation):
@@ -185,13 +236,17 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         archive.append(current)
         beam = [current]
         generation_candidates = []
-        for _ in range(cfg.max_terms):
+        for step in range(cfg.max_terms):
             branches, seen_bases = [], set()
             for parent in beam:
                 residual = Y - predict_candidate(parent, X)
                 remaining = [f for f in pool if f not in parent["features"]]
-                shortlist = sorted(remaining, key=lambda f: (-relevance(f, residual), f.tree.size))[:12]
+                scores = np.asarray([relevance_scores(f, residual) for f in remaining]).reshape(len(remaining), len(target_units))
+                indices = shortlist_indices(scores, [f.tree.size for f in remaining],
+                    per_output=cfg.candidate_quota, start_output=cfg.random_state + generation + step)
+                shortlist = [remaining[i] for i in indices]
                 for feature in shortlist:
+                    check_budget()
                     features = parent["features"] + (feature,)
                     key = frozenset(features)
                     if key in seen_bases:
@@ -202,9 +257,9 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
                     counts["head_fits"] += 1
                     if proposal["train_loss"] < parent["train_loss"] - 1e-14:
                         branches.append(proposal)
+                        archive.append(proposal)
             if not branches:
                 break
-            archive.extend(branches)
             generation_candidates.extend(branches)
             beam = sorted(branches, key=lambda c: (round(c["train_loss"], 12), c["complexity"], c["train_loss"]))[:4]
             current = beam[0]
@@ -221,6 +276,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
                 return tuple(Feature(f.tree, tuple(c)) for f, c in zip(basis, parts))
 
             def residual(values):
+                check_budget()
                 counts["polish_residual_calls"] += 1
                 features = unpack(values)
                 matrix = evaluate_features(features, X)

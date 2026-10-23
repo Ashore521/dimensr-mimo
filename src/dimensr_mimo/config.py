@@ -18,13 +18,16 @@ class SearchConfig:
     random_state: int = 0
     interval_max_boxes: int = 32
     head_ridge: float = 0.0
+    search_seconds: float | None = None
+    candidate_quota: int = 0
+    prune_tolerance: float = 0.0
 
     def validate(self):
         for name in ("max_features", "proposals_per_generation", "max_terms", "max_nodes", "max_depth", "interval_max_boxes"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, int) or value < 1:
                 raise ValueError(f"{name} must be a positive integer.")
-        for name in ("generations", "polish_max_nfev", "random_state"):
+        for name in ("generations", "polish_max_nfev", "random_state", "candidate_quota"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, int) or value < 0:
                 raise ValueError(f"{name} must be a nonnegative integer.")
@@ -32,6 +35,10 @@ class SearchConfig:
             raise ValueError("complexity_weight must be finite and nonnegative.")
         if not isinstance(self.head_ridge, (int, float)) or isinstance(self.head_ridge, bool) or not math.isfinite(self.head_ridge) or self.head_ridge < 0:
             raise ValueError("head_ridge must be finite and nonnegative.")
+        if not isinstance(self.prune_tolerance, (int, float)) or isinstance(self.prune_tolerance, bool) or not math.isfinite(self.prune_tolerance) or self.prune_tolerance < 0:
+            raise ValueError("prune_tolerance must be finite and nonnegative.")
+        if self.search_seconds is not None and (isinstance(self.search_seconds, bool) or not isinstance(self.search_seconds, (int, float)) or not math.isfinite(self.search_seconds) or self.search_seconds <= 0):
+            raise ValueError("search_seconds must be None or finite and positive.")
         if not 0 < self.validation_fraction < 1:
             raise ValueError("validation_fraction must be between zero and one.")
         if not self.operators or len(set(self.operators)) != len(self.operators) or set(self.operators) - set(ARITY):

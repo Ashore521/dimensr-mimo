@@ -1,0 +1,466 @@
+{
+  "protocol": "real_blind_v3",
+  "baseline_commit": "cfea3b1",
+  "seed": 20261024,
+  "split_randomness": "No shuffling; chronological/year/day rules fixed before model fitting.",
+  "units_policy": "Published raw values and source labels; no inferred unit conversions or normalization.",
+  "python_version": "3.12.10",
+  "numpy_version": "2.5.4",
+  "prepare_script_sha256": "4ab2312a8322c58c8b60ce64e696c1a64e26aa40b36c64cacdacfede46851793",
+  "datasets": {
+    "gas_turbine": {
+      "uci_id": 551,
+      "doi": "10.24432/C5WC95",
+      "attribution": "UCI Gas Turbine CO and NOx Emission Data Set (2019)",
+      "license": "CC BY 4.0",
+      "zip_sha256": "55fdb1acc25f05bd9c77aac285c424e9154ffb0dbf1bbadb56b69a1142231295",
+      "members_sha256": {
+        "gt_2011.csv": "d87ceef9aa59533cc7d924d10de241b1b06ecd11f9b26bab59191ea0f8a76b9a",
+        "gt_2012.csv": "be54b9d0e1a7de40c55d32fa489e75de892b000c066b5a09f09a19124ee29100",
+        "gt_2013.csv": "13c437bb440ec2045bd12057e6654c41dd4107a661eac16ba2e878e897a08f9e",
+        "gt_2014.csv": "c2a03c92c9c3207aad0c6be7de8d9b5b4bfa4720ad0efb2c1f21b6cec4d3f3fa",
+        "gt_2015.csv": "9b08f35fde0d4b138232a605db4093c2b8bf9d6757e6f1fbd9534ad616c13591"
+      },
+      "feature_names": [
+        "AT",
+        "AP",
+        "AH",
+        "AFDP",
+        "GTEP",
+        "TIT",
+        "TAT",
+        "TEY",
+        "CDP"
+      ],
+      "target_names": [
+        "CO",
+        "NOX"
+      ],
+      "feature_unit_labels": [
+        "degree Celsius",
+        "mbar (source label)",
+        "percent",
+        "mbar (source label)",
+        "mbar (source label)",
+        "degree Celsius",
+        "degree Celsius",
+        "MWH (source label)",
+        "mbar (source label)"
+      ],
+      "target_unit_labels": [
+        "mg/m^3",
+        "mg/m^3"
+      ],
+      "split_rule": "2011-2013 train; 2014 validation; 2015 sealed test; preserve published row order.",
+      "group_rule": "Year-prefixed nonoverlapping blocks of 24 original records; not asserted calendar days.",
+      "limitation": "Single plant, concurrent covariates, no individual timestamps; 2014 validation differs from original paper's 2014-2015 test protocol.",
+      "source_url": "https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set",
+      "download_url": "https://archive.ics.uci.edu/static/public/551/gas+turbine+co+and+nox+emission+data+set.zip",
+      "counts": {
+        "source_rows": 36733,
+        "incomplete_selected_columns": 0,
+        "eligible_rows": 36733
+      },
+      "split_counts": {
+        "train": 22191,
+        "val": 7158,
+        "test": 7384
+      },
+      "split_group_counts": {
+        "train": 925,
+        "val": 299,
+        "test": 308
+      },
+      "split_id_sha256": {
+        "train": "fa68ee6ae3c57cf56f4323aea5c07be49f1d19e98eb504659bf72913082fe46a",
+        "val": "7ab66e126dd631736355a2af03c521b3617b5f4d3159b503a600011e9dcce86f",
+        "test": "458c8bc301f276d0f5e5e0708fa517b5a1aed1f6314e19d2d0a158455dd4ca41"
+      },
+      "train_bounds": [
+        [
+          0.28985,
+          34.929
+        ],
+        [
+          985.85,
+          1034.2
+        ],
+        [
+          27.504,
+          100.2
+        ],
+        [
+          2.0874,
+          7.6106
+        ],
+        [
+          17.878,
+          37.402
+        ],
+        [
+          1000.8,
+          1100.8
+        ],
+        [
+          512.45,
+          550.61
+        ],
+        [
+          100.17,
+          174.61
+        ],
+        [
+          9.8754,
+          15.081
+        ]
+      ],
+      "training_statistics": {
+        "X_train": {
+          "mean": [
+            17.712246747330077,
+            1012.8126069127082,
+            79.55522437024052,
+            4.037750015772173,
+            25.31787251588477,
+            1083.0802802938024,
+            545.5201698886962,
+            133.53739308728888,
+            12.060207660763387
+          ],
+          "std": [
+            7.352623121510599,
+            6.396443710415441,
+            13.914704940338098,
+            0.8102046399406125,
+            4.234052004886048,
+            16.840385550579313,
+            7.708534192915003,
+            16.025746022339572,
+            1.1142397699761506
+          ],
+          "min": [
+            0.28985,
+            985.85,
+            27.504,
+            2.0874,
+            17.878,
+            1000.8,
+            512.45,
+            100.17,
+            9.8754
+          ],
+          "max": [
+            34.929,
+            1034.2,
+            100.2,
+            7.6106,
+            37.402,
+            1100.8,
+            550.61,
+            174.61,
+            15.081
+          ]
+        },
+        "Y_train": {
+          "mean": [
+            2.214390083043122,
+            68.7765287278625
+          ],
+          "std": [
+            2.2956947715314873,
+            11.035982546072557
+          ],
+          "min": [
+            0.00038751,
+            27.765
+          ],
+          "max": [
+            44.103,
+            119.91
+          ]
+        }
+      },
+      "trainval_file": "experiments/real_blind_v3/new_data/gas_turbine.npz",
+      "sealed_file": "outputs/real_blind_v3_sealed/gas_turbine.npz",
+      "trainval_sha256": "b980f32095b78ae556d1daa416af08ba7bcace31f230eaa7424dd7bed037c9bf",
+      "sealed_sha256": "c0e3691a20a7c78e857cf78d94c5d77246445e673638bdf7f99b4818f60917f1"
+    },
+    "sml2010": {
+      "uci_id": 274,
+      "doi": "10.24432/C5RS3S",
+      "attribution": "Pablo Romeu-Guallart and Francisco Zamora-Martinez (2014)",
+      "license": "CC BY 4.0",
+      "zip_sha256": "c270da7bca968dba4c117c3580b56d49a5031afea5cbf483951aa21f174545fa",
+      "members_sha256": {
+        "NEW-DATA-1.T15.txt": "bd5a4c4f1f6a0652258179c9963fb5c90885eedee4a981617898c18d6b5c4541",
+        "NEW-DATA-2.T15.txt": "1c008643381903a51557a0599cbd7706ae71b07f2d449d165b17f13b6e12a97e"
+      },
+      "feature_names": [
+        "Weather_Temperature",
+        "CO2_Comedor_Sensor",
+        "CO2_Habitacion_Sensor",
+        "Humedad_Comedor_Sensor",
+        "Humedad_Habitacion_Sensor",
+        "Lighting_Comedor_Sensor",
+        "Lighting_Habitacion_Sensor",
+        "Precipitacion",
+        "Meteo_Exterior_Crepusculo",
+        "Meteo_Exterior_Viento",
+        "Meteo_Exterior_Sol_Oest",
+        "Meteo_Exterior_Sol_Est",
+        "Meteo_Exterior_Sol_Sud",
+        "Meteo_Exterior_Piranometro",
+        "Exterior_Entalpic_1",
+        "Exterior_Entalpic_2",
+        "Exterior_Entalpic_turbo",
+        "Temperature_Exterior_Sensor",
+        "Humedad_Exterior_Sensor"
+      ],
+      "target_names": [
+        "Temperature_Comedor_Sensor",
+        "Temperature_Habitacion_Sensor"
+      ],
+      "feature_unit_labels": [
+        "degree Celsius",
+        "ppm",
+        "ppm",
+        "percent",
+        "percent",
+        "lux",
+        "lux",
+        "rain fraction",
+        "dusk; unit unspecified",
+        "m/s",
+        "lux",
+        "lux",
+        "lux",
+        "W/m^2",
+        "binary on/off",
+        "binary on/off",
+        "binary on/off",
+        "degree Celsius",
+        "percent"
+      ],
+      "target_unit_labels": [
+        "degree Celsius",
+        "degree Celsius"
+      ],
+      "split_rule": "Sort eligible UTC dates; whole-day cuts floor(0.6*N_dates), floor(0.8*N_dates); preserve chronological records.",
+      "group_rule": "UTC calendar day; no date crosses splits.",
+      "limitation": "Synchronous indoor thermal-state reconstruction, not forecasting; one house, 15-minute averaging, serial dependence and unknown forecast-covariate issuance history.",
+      "source_url": "https://archive.ics.uci.edu/dataset/274/sml2010",
+      "download_url": "https://archive.ics.uci.edu/static/public/274/sml2010.zip",
+      "counts": {
+        "source_rows": 4137,
+        "invalid_timestamp_or_columns": 0,
+        "duplicate_timestamps": 0,
+        "incomplete_selected_columns": 0,
+        "eligible_rows": 4137,
+        "eligible_utc_dates": 45
+      },
+      "split_counts": {
+        "train": 2545,
+        "val": 795,
+        "test": 797
+      },
+      "split_group_counts": {
+        "train": 27,
+        "val": 9,
+        "test": 9
+      },
+      "split_id_sha256": {
+        "train": "4e875dbe08d728c9cb6ca4aacb795e3c37596940a4ebc9bccc1b7784d2702da1",
+        "val": "58eaf97ad36b7baf034715c60daffa7d7ad75b442caa9d9ea916c1314ef2771a",
+        "test": "764f1cd50f778c9793d8e6b0db18739d548ae34600005c1a1ed998f827402db9"
+      },
+      "train_bounds": [
+        [
+          0.0,
+          26.0
+        ],
+        [
+          187.339,
+          594.389
+        ],
+        [
+          188.907,
+          609.237
+        ],
+        [
+          27.084,
+          60.9573
+        ],
+        [
+          29.5947,
+          62.5947
+        ],
+        [
+          10.74,
+          110.693
+        ],
+        [
+          11.328,
+          162.965
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.606667,
+          624.96
+        ],
+        [
+          0.0,
+          6.32133
+        ],
+        [
+          0.0,
+          95278.4
+        ],
+        [
+          0.0,
+          85535.4
+        ],
+        [
+          0.0,
+          95704.4
+        ],
+        [
+          -4.1,
+          1028.27
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          9.22333,
+          29.156
+        ],
+        [
+          22.728,
+          83.8053
+        ]
+      ],
+      "training_statistics": {
+        "X_train": {
+          "mean": [
+            13.703419174852645,
+            209.5651056974458,
+            212.3367013752454,
+            44.93732550098224,
+            47.482359017681745,
+            26.888521728880097,
+            40.81580161100186,
+            0.05108054958742633,
+            326.4761289222051,
+            1.075636538349707,
+            15005.43147190568,
+            12335.96085500983,
+            22492.837943418486,
+            214.58258458687806,
+            0.0,
+            0.0,
+            0.0,
+            16.554351567779992,
+            56.22650330058939
+          ],
+          "std": [
+            4.064740509213567,
+            27.875646326238392,
+            29.293489671300854,
+            6.766134177324743,
+            7.748360211982325,
+            23.500599452931876,
+            42.43297653522467,
+            0.21489561209123514,
+            304.97891282061784,
+            1.119482407354308,
+            26082.6501021786,
+            21856.003542821,
+            33175.309355603036,
+            295.673120026973,
+            0.0,
+            0.0,
+            0.0,
+            3.799524992629997,
+            12.899906582284494
+          ],
+          "min": [
+            0.0,
+            187.339,
+            188.907,
+            27.084,
+            29.5947,
+            10.74,
+            11.328,
+            0.0,
+            0.606667,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -4.1,
+            0.0,
+            0.0,
+            0.0,
+            9.22333,
+            22.728
+          ],
+          "max": [
+            26.0,
+            594.389,
+            609.237,
+            60.9573,
+            62.5947,
+            110.693,
+            162.965,
+            1.0,
+            624.96,
+            6.32133,
+            95278.4,
+            85535.4,
+            95704.4,
+            1028.27,
+            0.0,
+            0.0,
+            0.0,
+            29.156,
+            83.8053
+          ]
+        },
+        "Y_train": {
+          "mean": [
+            19.019351669941077,
+            18.64358781925343
+          ],
+          "std": [
+            2.830306097988792,
+            2.791707813168675
+          ],
+          "min": [
+            11.352,
+            11.076
+          ],
+          "max": [
+            25.54,
+            24.944
+          ]
+        }
+      },
+      "trainval_file": "experiments/real_blind_v3/new_data/sml2010.npz",
+      "sealed_file": "outputs/real_blind_v3_sealed/sml2010.npz",
+      "trainval_sha256": "1ccc7d53ab8e3df3ddd54be02ce7c149ffe4fce9da8d402a9dcd5e876a1ffcc0",
+      "sealed_sha256": "09a03f5471c76b1d9f3a1656a18fca175f9a4fc1637552991aaf0553c66a9dfa"
+    }
+  }
+}
