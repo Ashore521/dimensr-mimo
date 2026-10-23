@@ -36,6 +36,19 @@ def test_shared_graph_matches_raw_evaluation_with_distinct_constants():
     assert not np.allclose(values[:, 0], values[:, 2])
 
 
+def test_joint_polishing_learns_one_frequency_for_both_outputs():
+    rng = np.random.default_rng(42)
+    X = rng.uniform(-1, 1, (100, 2))
+    Y = np.column_stack((2*np.sin(1.7*X[:, 0])+.5*X[:, 1], -np.sin(1.7*X[:, 0])+3*X[:, 1]))
+    cfg = SearchConfig(generations=0, max_terms=3, polish_max_nfev=40, complexity_weight=1e-6)
+    model = MIMOSymbolicRegressor(cfg).fit(X[:60], Y[:60], X_val=X[60:80], Y_val=Y[60:80], input_bounds=[[-1, 1]]*2)
+    np.testing.assert_allclose(model.predict(X[80:]), Y[80:], atol=1e-9)
+    assert model.diagnostics_["polish_residual_calls"] > 0
+    oscillatory = [f for f in model.features_ if any(n.token == "sin" for _, n in f.tree.walk())]
+    assert len(oscillatory) == 1
+    assert any(abs(c-1.7) < 1e-8 for c in oscillatory[0].constants)
+
+
 @pytest.mark.parametrize("case", ["cancelled_pole", "off_grid", "log_zero", "hidden_overflow", "negative_root"])
 def test_illegal_raw_domains_are_never_enclosed(case):
     x, c = Feature(Node("x0")), Feature(Node("c0"), (.37123456789,))

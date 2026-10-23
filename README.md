@@ -2,7 +2,7 @@
 
 Dimension-aware symbolic regression for multiple inputs and outputs, with a shared dictionary of nonlinear expressions. Each output has its own linear coefficients; the search selects basis functions using the residuals of all outputs together.
 
-[中文说明](docs/README.zh-CN.md) · [Original DimenSR](https://github.com/Ashore521/DimenSR)
+[中文说明](docs/README.zh-CN.md) · [Algorithm](docs/ALGORITHM.md) · [Validation](docs/VALIDATION.md) · [Original DimenSR](https://github.com/Ashore521/dimensr)
 
 For example, the system
 
@@ -18,6 +18,8 @@ can use the same two basis functions, `a*b` and `c`. Shared expression nodes are
 Python 3.10 or newer is required. From a clone of this repository:
 
 ```bash
+git clone https://github.com/Ashore521/dimensr-mimo.git
+cd dimensr-mimo
 python -m venv .venv
 # Linux/macOS: source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1

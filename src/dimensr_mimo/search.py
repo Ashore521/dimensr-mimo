@@ -177,6 +177,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
         counts["head_fits"] += 1
         archive.append(current)
         beam = [current]
+        generation_candidates = []
         for _ in range(cfg.max_terms):
             branches, seen_bases = [], set()
             for parent in beam:
@@ -197,17 +198,20 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
             if not branches:
                 break
             archive.extend(branches)
+            generation_candidates.extend(branches)
             beam = sorted(branches, key=lambda c: (round(c["train_loss"], 12), c["complexity"], c["train_loss"]))[:4]
             current = beam[0]
         selected = current["features"]
 
-        if cfg.polish_max_nfev and any(f.constants for f in selected):
-            sizes = [len(f.constants) for f in selected]
-            start = np.concatenate([f.constants for f in selected])
+        polish_targets = [c for c in pareto(generation_candidates) if any(f.constants for f in c["features"])]
+        for polish_start in polish_targets[-4:] if cfg.polish_max_nfev else ():
+            basis = polish_start["features"]
+            sizes = [len(f.constants) for f in basis]
+            start = np.concatenate([f.constants for f in basis])
 
             def unpack(values):
                 parts = np.split(values, np.cumsum(sizes)[:-1])
-                return tuple(Feature(f.tree, tuple(c)) for f, c in zip(selected, parts))
+                return tuple(Feature(f.tree, tuple(c)) for f, c in zip(basis, parts))
 
             def residual(values):
                 counts["polish_residual_calls"] += 1
@@ -227,13 +231,14 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
             if all(audit_box(f.tree, f.constants, bounds, max_boxes=cfg.interval_max_boxes)["status"] == "enclosed" for f in polished):
                 candidate = make_candidate(polished, evaluate_features(polished, X), Y, scales, target_units, coefficient_units)
                 counts["head_fits"] += 1
-                if candidate["train_loss"] < current["train_loss"]:
+                if candidate["train_loss"] < polish_start["train_loss"]:
                     archive.append(candidate)
                     for f in polished:
                         admit(f)
                         cache[f] = f.tree.evaluate(X, f.constants)
-                    selected = polished
-                    current = candidate
+                    if candidate["train_loss"] < current["train_loss"]:
+                        selected = polished
+                        current = candidate
                     pool = trim(pool + list(polished), selected)
         history.append(dict(generation=generation, train_loss=current["train_loss"],
                             complexity=current["complexity"], retained_features=len(pool), **counts))

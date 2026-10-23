@@ -1,6 +1,7 @@
 """Recover two outputs using the same product and linear features."""
 
 import numpy as np
+from pathlib import Path
 
 from dimensr_mimo import MIMOSymbolicRegressor, SearchConfig
 
@@ -21,8 +22,10 @@ def main():
     prediction = model.predict(X[140:])
     print("Held-out RMSE per output:", np.sqrt(np.mean((prediction - Y[140:]) ** 2, axis=0)))
     print("Declared-domain audit:", model.audit_domain())
-    model.save("shared_system.json")
-    restored = MIMOSymbolicRegressor.load("shared_system.json")
+    output = Path("outputs/shared_system.json")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    model.save(output)
+    restored = MIMOSymbolicRegressor.load(output)
     np.testing.assert_allclose(restored.predict(X[140:]), prediction)
 
 

@@ -1,0 +1,494 @@
+{
+  "protocol": "smoke_v1",
+  "purpose": "Development regression evidence; no blind evaluation or comparative claim",
+  "split": {
+    "train": 160,
+    "validation": 40,
+    "test": 80
+  },
+  "input_bounds": [
+    [
+      -1,
+      1
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      -1,
+      1
+    ]
+  ],
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sympy": "1.14.0",
+    "scikit-learn": "1.9.1",
+    "dimensr-mimo": "0.1.0"
+  },
+  "runs": [
+    {
+      "case": "shared_polynomial",
+      "seed": 0,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 0,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        7.475720577079355e-16,
+        5.5291109969233305e-16
+      ],
+      "test_nrmse": [
+        9.419092250075288e-16,
+        3.178539329883702e-16
+      ],
+      "max_abs_error": 1.9984014443252818e-15,
+      "numerical_recovery": true,
+      "domain": "enclosed",
+      "expressions": [
+        "1.999999999999998*x0*x1 + 0.5000000000000001*x2 - 4.512336369792013e-16",
+        "-0.9999999999999996*x0*x1 + 3.0*x2 - 3.744859463053197e-16"
+      ],
+      "model": "shared_polynomial_s0.json",
+      "diagnostics": {
+        "feature_attempts": 1421,
+        "feature_evaluations": 1190,
+        "domain_rejections": 105,
+        "head_fits": 696,
+        "polish_residual_calls": 17,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 4.449815919231807e-31,
+        "selected_validation_loss": 6.202452961281755e-31,
+        "shared_features": 2,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 1.8910000000032596
+    },
+    {
+      "case": "shared_polynomial",
+      "seed": 1,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 1,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        7.475720577079355e-16,
+        5.5291109969233305e-16
+      ],
+      "test_nrmse": [
+        9.419092250075288e-16,
+        3.178539329883702e-16
+      ],
+      "max_abs_error": 1.9984014443252818e-15,
+      "numerical_recovery": true,
+      "domain": "enclosed",
+      "expressions": [
+        "1.999999999999998*x0*x1 + 0.5000000000000001*x2 - 4.512336369792013e-16",
+        "-0.9999999999999996*x0*x1 + 3.0*x2 - 3.744859463053197e-16"
+      ],
+      "model": "shared_polynomial_s1.json",
+      "diagnostics": {
+        "feature_attempts": 1422,
+        "feature_evaluations": 1183,
+        "domain_rejections": 106,
+        "head_fits": 655,
+        "polish_residual_calls": 78,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 4.449815919231807e-31,
+        "selected_validation_loss": 6.202452961281755e-31,
+        "shared_features": 2,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 1.3119999999908032
+    },
+    {
+      "case": "shared_trigonometric",
+      "seed": 0,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 0,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        4.988414454815186e-16,
+        7.830732824634899e-16
+      ],
+      "test_nrmse": [
+        4.4055510601488503e-16,
+        4.292112941189625e-16
+      ],
+      "max_abs_error": 1.3322676295501878e-15,
+      "numerical_recovery": true,
+      "domain": "enclosed",
+      "expressions": [
+        "0.4999999999999997*x2 + 1.999999999999999*sin(x0) - 3.663424637530272e-17",
+        "2.999999999999999*x2 - 1.0*sin(x0) + 1.778727484339769e-17"
+      ],
+      "model": "shared_trigonometric_s0.json",
+      "diagnostics": {
+        "feature_attempts": 1458,
+        "feature_evaluations": 1258,
+        "domain_rejections": 102,
+        "head_fits": 805,
+        "polish_residual_calls": 397,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 1.9402278965740583e-31,
+        "selected_validation_loss": 1.8487827823910943e-31,
+        "shared_features": 2,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 1.8440000000118744
+    },
+    {
+      "case": "shared_trigonometric",
+      "seed": 1,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 1,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        4.988414454815186e-16,
+        7.830732824634899e-16
+      ],
+      "test_nrmse": [
+        4.4055510601488503e-16,
+        4.292112941189625e-16
+      ],
+      "max_abs_error": 1.3322676295501878e-15,
+      "numerical_recovery": true,
+      "domain": "enclosed",
+      "expressions": [
+        "0.4999999999999997*x2 + 1.999999999999999*sin(x0) - 3.663424637530272e-17",
+        "2.999999999999999*x2 - 1.0*sin(x0) + 1.778727484339769e-17"
+      ],
+      "model": "shared_trigonometric_s1.json",
+      "diagnostics": {
+        "feature_attempts": 1421,
+        "feature_evaluations": 1206,
+        "domain_rejections": 110,
+        "head_fits": 844,
+        "polish_residual_calls": 8,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 1.9402278965740583e-31,
+        "selected_validation_loss": 1.8487827823910943e-31,
+        "shared_features": 2,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 1.437999999994645
+    },
+    {
+      "case": "shared_rational",
+      "seed": 0,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 0,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        8.752020556125066e-16,
+        7.704395015431871e-16
+      ],
+      "test_nrmse": [
+        8.677902588185337e-16,
+        4.2781116047577634e-16
+      ],
+      "max_abs_error": 1.7763568394002505e-15,
+      "numerical_recovery": true,
+      "domain": "enclosed",
+      "expressions": [
+        "2.000000000000002*x0/(x1**2 + 1.0) + 0.4999999999999999*x2 + 3.167594966907721e-16",
+        "-1.0*x0/(x1**2 + 1.0) + 2.999999999999999*x2 + 2.414332932318052e-17"
+      ],
+      "model": "shared_rational_s0.json",
+      "diagnostics": {
+        "feature_attempts": 1426,
+        "feature_evaluations": 1193,
+        "domain_rejections": 106,
+        "head_fits": 706,
+        "polish_residual_calls": 259,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 4.96718538543989e-31,
+        "selected_validation_loss": 5.068021976718832e-31,
+        "shared_features": 2,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 1.3589999999967404
+    },
+    {
+      "case": "shared_rational",
+      "seed": 1,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 1,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        8.752020556125066e-16,
+        7.704395015431871e-16
+      ],
+      "test_nrmse": [
+        8.677902588185337e-16,
+        4.2781116047577634e-16
+      ],
+      "max_abs_error": 1.7763568394002505e-15,
+      "numerical_recovery": true,
+      "domain": "enclosed",
+      "expressions": [
+        "2.000000000000002*x0/(x1**2 + 1.0) + 0.4999999999999999*x2 + 3.167594966907721e-16",
+        "-1.0*x0/(x1**2 + 1.0) + 2.999999999999999*x2 + 2.414332932318052e-17"
+      ],
+      "model": "shared_rational_s1.json",
+      "diagnostics": {
+        "feature_attempts": 1425,
+        "feature_evaluations": 1189,
+        "domain_rejections": 110,
+        "head_fits": 664,
+        "polish_residual_calls": 99,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 4.96718538543989e-31,
+        "selected_validation_loss": 5.068021976718832e-31,
+        "shared_features": 2,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 1.312000000005355
+    },
+    {
+      "case": "nonlinear_constant",
+      "seed": 0,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 0,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        0.0026477673111909693,
+        0.0013238836555945397
+      ],
+      "test_nrmse": [
+        0.0017057984242000298,
+        0.000698269333571066
+      ],
+      "max_abs_error": 0.005916386042210009,
+      "numerical_recovery": false,
+      "domain": "enclosed",
+      "expressions": [
+        "-1.231660799368427*x0 + 0.4997889680631095*x2 + 3.244736234526584*sin(1.422031630297277*x0) - 2.406716155980845e-5",
+        "0.6158303996842119*x0 + 3.000105515968442*x2 - 1.622368117263289*sin(1.422031630297277*x0) + 1.203358077913888e-5"
+      ],
+      "model": "nonlinear_constant_s0.json",
+      "diagnostics": {
+        "feature_attempts": 1494,
+        "feature_evaluations": 1207,
+        "domain_rejections": 111,
+        "head_fits": 966,
+        "polish_residual_calls": 613,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 1.7752709342366853e-06,
+        "selected_validation_loss": 1.790056676575944e-06,
+        "shared_features": 3,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 2.1089999999967404
+    },
+    {
+      "case": "nonlinear_constant",
+      "seed": 1,
+      "config": {
+        "max_features": 256,
+        "generations": 5,
+        "proposals_per_generation": 256,
+        "max_terms": 4,
+        "max_nodes": 13,
+        "max_depth": 6,
+        "operators": [
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "square",
+          "sin",
+          "cos"
+        ],
+        "complexity_weight": 0.0001,
+        "validation_fraction": 0.2,
+        "polish_max_nfev": 30,
+        "random_state": 1,
+        "interval_max_boxes": 32
+      },
+      "test_rmse": [
+        0.003516161412035989,
+        0.0017580807060183742
+      ],
+      "test_nrmse": [
+        0.0022652529059232532,
+        0.0009272822711934556
+      ],
+      "max_abs_error": 0.007964012965175682,
+      "numerical_recovery": false,
+      "domain": "enclosed",
+      "expressions": [
+        "0.7978656589861824*x0 + 0.5002736138016252*x2 + 1.312742763588882*sin(2.0*x0) + 1.581215847447668e-5",
+        "-0.3989328294930888*x0 + 2.999863193099186*x2 - 0.656371381794443*sin(2.0*x0) - 7.906079235939402e-6"
+      ],
+      "model": "nonlinear_constant_s1.json",
+      "diagnostics": {
+        "feature_attempts": 1514,
+        "feature_evaluations": 1204,
+        "domain_rejections": 105,
+        "head_fits": 966,
+        "polish_residual_calls": 378,
+        "training_rows": 160,
+        "validation_rows": 40,
+        "selected_train_loss": 3.149195605910443e-06,
+        "selected_validation_loss": 3.1891391022930313e-06,
+        "shared_features": 3,
+        "domain_source": "declared_box"
+      },
+      "elapsed_seconds": 2.0939999999973224
+    }
+  ],
+  "source_sha256": {
+    "__init__.py": "c30d13c21e219aadbdf57e35ee298a3cd89251cdbea21818ec054a7315f2d3d8",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "_vendor/__init__.py": "c1b9f424947be1e1717ad481f333088fb13e547056fa08b74bce43dd4090e160",
+    "_vendor/expression.py": "324fe34d65ad94261fbfcf2b9d377c52ddea10f579241f6fa63b2cc843b2c78f",
+    "_vendor/intervals.py": "8617de09e7204bc1bde0edd7bff7fe54ecc2ec37dd8ac2f3d3fa1027e2ef353c",
+    "_vendor/units.py": "33fb584c2e1a25b87bb60381ff5f19f95407b3f112f05e7fd94be25d4c736cde",
+    "cli.py": "8ec6680a0c0dcfd515fc6735048600dfa48f3ec7368119d2f862cd2c7c22bf92",
+    "config.py": "f5204259233641b826568333ea1066e99634028b95fa8af66743a72a1d52b851",
+    "features.py": "d569949dede41b7cc4266d47ce21158a665118a04fc2796788f38768eaac91e6",
+    "regressor.py": "bfab5e60d596f0761da526894bf3f69f8c79ebacff199173898677b30df5fe08",
+    "search.py": "2a84e69447081182a83c2dbcefecc1b3cf29a89df509634c1fa014e3a04fc3ba"
+  }
+}
