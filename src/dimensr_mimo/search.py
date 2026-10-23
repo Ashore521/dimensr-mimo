@@ -8,7 +8,7 @@ from ._vendor.units import ZERO, sub
 from ._vendor.intervals import audit_box
 
 
-def fit_heads(features, values, Y, target_units, coefficient_units):
+def fit_heads(features, values, Y, target_units, coefficient_units, ridge=0.0):
     weights = np.zeros((Y.shape[1], len(features)))
     intercepts = np.zeros(Y.shape[1])
     for j, target in enumerate(target_units):
@@ -19,15 +19,22 @@ def fit_heads(features, values, Y, target_units, coefficient_units):
             design = np.column_stack((design, np.ones(len(Y))))
         if design.shape[1]:
             norm = np.maximum(np.max(np.abs(design), axis=0), np.finfo(float).tiny)
-            coef = np.linalg.lstsq(design / norm, Y[:, j], rcond=None)[0] / norm
+            scaled, response = design / norm, Y[:, j]
+            if ridge:
+                penalty = np.eye(design.shape[1]) * np.sqrt(ridge * len(Y))
+                if offset:
+                    penalty[-1, -1] = 0.
+                scaled = np.vstack((scaled, penalty))
+                response = np.concatenate((response, np.zeros(design.shape[1])))
+            coef = np.linalg.lstsq(scaled, response, rcond=None)[0] / norm
             weights[j, indices] = coef[:len(indices)]
             if offset:
                 intercepts[j] = coef[-1]
     return weights, intercepts
 
 
-def make_candidate(features, values, Y, scales, targets, coefficient_units):
-    weights, intercepts = fit_heads(features, values, Y, targets, coefficient_units)
+def make_candidate(features, values, Y, scales, targets, coefficient_units, ridge=0.0):
+    weights, intercepts = fit_heads(features, values, Y, targets, coefficient_units, ridge)
     prediction = values @ weights.T + intercepts
     loss = float(np.mean(((prediction - Y) / scales) ** 2))
     complexity = graph_size(features) + int(np.count_nonzero(weights)) + int(np.count_nonzero(intercepts))
@@ -173,7 +180,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
                     additions.append(proposal)
             pool = trim(pool + additions, selected)
 
-        current = make_candidate((), np.empty((len(X), 0)), Y, scales, target_units, coefficient_units)
+        current = make_candidate((), np.empty((len(X), 0)), Y, scales, target_units, coefficient_units, cfg.head_ridge)
         counts["head_fits"] += 1
         archive.append(current)
         beam = [current]
@@ -191,7 +198,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
                         continue
                     seen_bases.add(key)
                     values = np.column_stack([cache[f] for f in features])
-                    proposal = make_candidate(features, values, Y, scales, target_units, coefficient_units)
+                    proposal = make_candidate(features, values, Y, scales, target_units, coefficient_units, cfg.head_ridge)
                     counts["head_fits"] += 1
                     if proposal["train_loss"] < parent["train_loss"] - 1e-14:
                         branches.append(proposal)
@@ -220,7 +227,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
                 if not np.isfinite(matrix).all():
                     return np.full(Y.size, 1e10)
                 try:
-                    weights, offsets = fit_heads(features, matrix, Y, target_units, coefficient_units)
+                    weights, offsets = fit_heads(features, matrix, Y, target_units, coefficient_units, cfg.head_ridge)
                     error = ((matrix @ weights.T + offsets - Y) / scales).ravel()
                     return error if np.isfinite(error).all() else np.full(Y.size, 1e10)
                 except np.linalg.LinAlgError:
@@ -229,7 +236,7 @@ def search(X, Y, bounds, feature_units, target_units, coefficient_units, cfg):
             result = least_squares(residual, start, max_nfev=cfg.polish_max_nfev)
             polished = unpack(result.x)
             if all(audit_box(f.tree, f.constants, bounds, max_boxes=cfg.interval_max_boxes)["status"] == "enclosed" for f in polished):
-                candidate = make_candidate(polished, evaluate_features(polished, X), Y, scales, target_units, coefficient_units)
+                candidate = make_candidate(polished, evaluate_features(polished, X), Y, scales, target_units, coefficient_units, cfg.head_ridge)
                 counts["head_fits"] += 1
                 if candidate["train_loss"] < polish_start["train_loss"]:
                     archive.append(candidate)

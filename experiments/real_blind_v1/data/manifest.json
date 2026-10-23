@@ -1,0 +1,361 @@
+{
+  "protocol": "real_blind_v1",
+  "seed": 20261023,
+  "source_checked_date": "2026-10-23",
+  "split_rule": "Cuts floor(0.6*N), floor(0.8*N); N=rows except Parkinsons subject groups.",
+  "units_policy": "Original published values and labels; no scaling or inferred SI units.",
+  "python_version": "3.12.10",
+  "numpy_version": "2.5.4",
+  "prepare_script_sha256": "9883770ea1447918cf474af7f4445e0662fd6b4c9cb723830ce890537c500534",
+  "datasets": {
+    "concrete_slump": {
+      "uci_id": 182,
+      "doi": "10.24432/C5FG7D",
+      "attribution": "I-Cheng Yeh (2007)",
+      "license": "CC BY 4.0",
+      "member": "slump_test.data",
+      "zip_sha256": "68d6a6813261bf8ecf79d8d7cc82b665bd5e9e6800c7705a16e671688c78e491",
+      "member_sha256": "78cea9fbb28ad8fc17f389e216e724dc04642c6c363143e67f6bcb97e74525ee",
+      "feature_names": [
+        "Cement",
+        "Slag",
+        "Fly ash",
+        "Water",
+        "SP",
+        "Coarse Aggr.",
+        "Fine Aggr."
+      ],
+      "target_names": [
+        "SLUMP(cm)",
+        "FLOW(cm)",
+        "Compressive Strength (28-day)(Mpa)"
+      ],
+      "feature_unit_labels": [
+        "kg/m^3",
+        "kg/m^3",
+        "kg/m^3",
+        "kg/m^3",
+        "kg/m^3",
+        "kg/m^3",
+        "kg/m^3"
+      ],
+      "target_unit_labels": [
+        "cm",
+        "cm",
+        "MPa"
+      ],
+      "split_kind": "random_rows",
+      "limitation": "103 laboratory mixtures; production-batch independence is not established.",
+      "source_url": "https://archive.ics.uci.edu/dataset/182/concrete+slump+test",
+      "download_url": "https://archive.ics.uci.edu/static/public/182/concrete+slump+test.zip",
+      "counts": {
+        "source_rows": 103,
+        "invalid_identifier_or_time": 0,
+        "duplicate_timestamps": 0,
+        "incomplete_selected_columns": 0,
+        "eligible_rows": 103
+      },
+      "split_counts": {
+        "train": 61,
+        "val": 21,
+        "test": 21
+      },
+      "split_group_counts": {
+        "train": 61,
+        "val": 21,
+        "test": 21
+      },
+      "split_id_sha256": {
+        "train": "9330b3a92c43b76c170bee740d87fec20b3f22d1c9b7f372fe39f6fa959039ae",
+        "val": "a6d90afa30ac6c083ec2aaa3a26554abb283abfdee39ba38c853143df4677445",
+        "test": "750ba1e845ff92623ed787d672ce08e77f186210ad85c863d4426ebab3834fd5"
+      },
+      "train_bounds": [
+        [
+          137.0,
+          356.0
+        ],
+        [
+          0.0,
+          178.0
+        ],
+        [
+          0.0,
+          248.0
+        ],
+        [
+          166.4,
+          237.0
+        ],
+        [
+          4.9,
+          19.0
+        ],
+        [
+          708.0,
+          1047.6
+        ],
+        [
+          640.9,
+          892.0
+        ]
+      ],
+      "trainval_file": "experiments/real_blind_v1/data/concrete_slump.npz",
+      "sealed_file": "outputs/real_blind_v1_sealed/concrete_slump.npz",
+      "trainval_sha256": "12f4f8e84f225dd5fe8cb8e61fd189ff7171af004c23dc9056f4f3ef9f6cc18d",
+      "sealed_sha256": "2aa2cfc8006220376a6bc6d3bb032a708123a4cf04b6b94cb361d38af1fe77a3"
+    },
+    "parkinsons": {
+      "uci_id": 189,
+      "doi": "10.24432/C5ZS3N",
+      "attribution": "Athanasios Tsanas and Max Little (2009)",
+      "license": "CC BY 4.0",
+      "member": "parkinsons_updrs.data",
+      "zip_sha256": "2f82bb0ef96fa7d8d7edf4d97b89173e07c2cca7723440a64bc38918a83345df",
+      "member_sha256": "f2c7d5025dec4e92e7feae367a5f7ccf58789a10ac6b54bdf15976c599f9dd39",
+      "feature_names": [
+        "Jitter(%)",
+        "Jitter(Abs)",
+        "Jitter:RAP",
+        "Jitter:PPQ5",
+        "Jitter:DDP",
+        "Shimmer",
+        "Shimmer(dB)",
+        "Shimmer:APQ3",
+        "Shimmer:APQ5",
+        "Shimmer:APQ11",
+        "Shimmer:DDA",
+        "NHR",
+        "HNR",
+        "RPDE",
+        "DFA",
+        "PPE"
+      ],
+      "target_names": [
+        "motor_UPDRS",
+        "total_UPDRS"
+      ],
+      "feature_unit_labels": [
+        "percent notation in source",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "dB",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified",
+        "not specified"
+      ],
+      "target_unit_labels": [
+        "UPDRS score",
+        "UPDRS score"
+      ],
+      "split_kind": "subject_groups",
+      "limitation": "Real voice recordings; both clinician UPDRS labels are linearly interpolated and correlated.",
+      "source_url": "https://archive.ics.uci.edu/dataset/189/parkinsons+telemonitoring",
+      "download_url": "https://archive.ics.uci.edu/static/public/189/parkinsons+telemonitoring.zip",
+      "counts": {
+        "source_rows": 5875,
+        "invalid_identifier_or_time": 0,
+        "duplicate_timestamps": 0,
+        "incomplete_selected_columns": 0,
+        "eligible_rows": 5875
+      },
+      "split_counts": {
+        "train": 3514,
+        "val": 1019,
+        "test": 1342
+      },
+      "split_group_counts": {
+        "train": 25,
+        "val": 8,
+        "test": 9
+      },
+      "split_id_sha256": {
+        "train": "0a31f717a8398c924d6fa0952bfc44d10db211275466aa06579c619a5793e7f9",
+        "val": "f01525df21b4585d93dbcefd15a874c105c73ebb0b8da69a88696ef943234886",
+        "test": "7f94f54d94f68ff496d32eba4d469199c22f9a1ddf1ec5f7c108751fd5fdf801"
+      },
+      "train_bounds": [
+        [
+          0.0012,
+          0.09999
+        ],
+        [
+          5.41e-06,
+          0.00039089
+        ],
+        [
+          0.00043,
+          0.05754
+        ],
+        [
+          0.00063,
+          0.06956
+        ],
+        [
+          0.00128,
+          0.17263
+        ],
+        [
+          0.00344,
+          0.26863
+        ],
+        [
+          0.03,
+          2.107
+        ],
+        [
+          0.00172,
+          0.16267
+        ],
+        [
+          0.00205,
+          0.16702
+        ],
+        [
+          0.00299,
+          0.27546
+        ],
+        [
+          0.00515,
+          0.48802
+        ],
+        [
+          0.000993,
+          0.74826
+        ],
+        [
+          1.659,
+          32.006
+        ],
+        [
+          0.24663,
+          0.96608
+        ],
+        [
+          0.51404,
+          0.8656
+        ],
+        [
+          0.035155,
+          0.73173
+        ]
+      ],
+      "trainval_file": "experiments/real_blind_v1/data/parkinsons.npz",
+      "sealed_file": "outputs/real_blind_v1_sealed/parkinsons.npz",
+      "trainval_sha256": "f79870e6c3fb76ef48a7051e2b8fd7950b1fecb8cb450f81ff946c44b6b09ec6",
+      "sealed_sha256": "f7f47280e5f3aaa5d4ca07c9a4bdaf083abb4756fa098ed836e68e662f051cd2"
+    },
+    "air_quality": {
+      "uci_id": 360,
+      "doi": "10.24432/C59K5F",
+      "attribution": "Saverio De Vito (2008)",
+      "license": "UCI CC BY 4.0 banner conflicts with legacy research-only/no-commercial statement; local research only.",
+      "member": "AirQualityUCI.csv",
+      "zip_sha256": "d4a64013fb385288a8a48d9d193ca7079b2e1bbddf6f8d458feb8c08ab2b8a2a",
+      "member_sha256": "13277ae5d8581e80b7be09d47c7d3d06fe9b8e957078f2cf6e859f955e62f996",
+      "feature_names": [
+        "PT08.S1(CO)",
+        "PT08.S2(NMHC)",
+        "PT08.S3(NOx)",
+        "PT08.S4(NO2)",
+        "PT08.S5(O3)",
+        "T",
+        "RH",
+        "AH"
+      ],
+      "target_names": [
+        "CO(GT)",
+        "NOx(GT)",
+        "NO2(GT)"
+      ],
+      "feature_unit_labels": [
+        "sensor response; unit unspecified",
+        "sensor response; unit unspecified",
+        "sensor response; unit unspecified",
+        "sensor response; unit unspecified",
+        "sensor response; unit unspecified",
+        "degree Celsius",
+        "percent",
+        "unit unspecified"
+      ],
+      "target_unit_labels": [
+        "mg/m^3",
+        "ppb",
+        "microgram/m^3"
+      ],
+      "split_kind": "chronological",
+      "limitation": "Single-site sensor drift, cross-sensitivity, serial dependence, complete-case selection and unresolved license conflict.",
+      "source_url": "https://archive.ics.uci.edu/dataset/360/air+quality",
+      "download_url": "https://archive.ics.uci.edu/static/public/360/air+quality.zip",
+      "counts": {
+        "source_rows": 9471,
+        "invalid_identifier_or_time": 114,
+        "duplicate_timestamps": 0,
+        "incomplete_selected_columns": 2416,
+        "eligible_rows": 6941
+      },
+      "split_counts": {
+        "train": 4164,
+        "val": 1388,
+        "test": 1389
+      },
+      "split_group_counts": {
+        "train": 213,
+        "val": 67,
+        "test": 63
+      },
+      "split_id_sha256": {
+        "train": "d53e61e5590cdb8c5e8734059fd530ac230dc5b246b44cb6867dd964f2466c92",
+        "val": "171503c3d21b6345a7ae4c7f835431bf60184740594c0549e533c6190fb6c037",
+        "test": "4f8632141f05f45991a9cf6889469ec8cf5d93c224524f9e0a8511932a6475dd"
+      },
+      "train_bounds": [
+        [
+          647.0,
+          2040.0
+        ],
+        [
+          397.0,
+          2007.0
+        ],
+        [
+          325.0,
+          2121.0
+        ],
+        [
+          779.0,
+          2775.0
+        ],
+        [
+          261.0,
+          2519.0
+        ],
+        [
+          5.7,
+          44.6
+        ],
+        [
+          9.2,
+          87.1
+        ],
+        [
+          0.3754,
+          2.1806
+        ]
+      ],
+      "trainval_file": "experiments/real_blind_v1/data/air_quality.npz",
+      "sealed_file": "outputs/real_blind_v1_sealed/air_quality.npz",
+      "trainval_sha256": "fb6a1599b9698437f0f2595ac0853f30536863ae6e6f4e05fe8683b23e47dc9f",
+      "sealed_sha256": "912dea267d6206d232c9ddb6a604f62619027cbae178a9740011f0c3db386e98"
+    }
+  }
+}

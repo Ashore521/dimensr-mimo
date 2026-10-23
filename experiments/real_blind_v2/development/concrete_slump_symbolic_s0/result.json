@@ -1,0 +1,232 @@
+{
+  "dataset": "concrete_slump",
+  "method": "symbolic",
+  "seed": 0,
+  "data_sha256": "12f4f8e84f225dd5fe8cb8e61fd189ff7171af004c23dc9056f4f3ef9f6cc18d",
+  "config": {
+    "max_features": 192,
+    "generations": 3,
+    "proposals_per_generation": 128,
+    "max_terms": 8,
+    "max_nodes": 13,
+    "max_depth": 6,
+    "polish_max_nfev": 10,
+    "interval_max_boxes": 32,
+    "complexity_weight": 0.0001,
+    "random_state": 0,
+    "head_ridge": 0.001
+  },
+  "train_rows": 61,
+  "validation_rows": 21,
+  "train_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+  ],
+  "input_mean": [
+    220.06065573770488,
+    89.65409836065575,
+    153.1786885245902,
+    198.49836065573763,
+    8.688524590163935,
+    876.3032786885246,
+    734.472131147541
+  ],
+  "input_scale": [
+    76.22836759238331,
+    55.81438375565129,
+    80.68663755695391,
+    19.89069715666407,
+    3.0620414470032586,
+    85.53102009847811,
+    62.58634201591927
+  ],
+  "target_scale": [
+    8.758673284210522,
+    17.425675083325984,
+    6.615018460193589
+  ],
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sympy": "1.14.0",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "source_sha256": {
+    "dimensr_mimo/__init__.py": "c30d13c21e219aadbdf57e35ee298a3cd89251cdbea21818ec054a7315f2d3d8",
+    "dimensr_mimo/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "dimensr_mimo/_vendor/__init__.py": "c1b9f424947be1e1717ad481f333088fb13e547056fa08b74bce43dd4090e160",
+    "dimensr_mimo/_vendor/expression.py": "324fe34d65ad94261fbfcf2b9d377c52ddea10f579241f6fa63b2cc843b2c78f",
+    "dimensr_mimo/_vendor/intervals.py": "8617de09e7204bc1bde0edd7bff7fe54ecc2ec37dd8ac2f3d3fa1027e2ef353c",
+    "dimensr_mimo/_vendor/units.py": "33fb584c2e1a25b87bb60381ff5f19f95407b3f112f05e7fd94be25d4c736cde",
+    "dimensr_mimo/cli.py": "8ec6680a0c0dcfd515fc6735048600dfa48f3ec7368119d2f862cd2c7c22bf92",
+    "dimensr_mimo/config.py": "1f4f5e916eeef5c7c245529d8e9fcf41e3a9fd4b22bc7db13bf950de4eda12ba",
+    "dimensr_mimo/features.py": "d569949dede41b7cc4266d47ce21158a665118a04fc2796788f38768eaac91e6",
+    "dimensr_mimo/regressor.py": "bfab5e60d596f0761da526894bf3f69f8c79ebacff199173898677b30df5fe08",
+    "dimensr_mimo/search.py": "92bb3475d08ddbdc609ba1eba8577b614beefff2db258eb7d8e4146bf2befd6d"
+  },
+  "complexity": 32,
+  "expressions": [
+    "1.847280953921636*Cement*SP - 1.263867410275258*Cement + 0.9745842956923488*Fine Aggr. - 1.263867410275258*Fly ash - 3.86502825234784*Slag + 3.86502825234784*Water + 6.757658447090491*cos(Slag) + 1.715956730702476*cos(Water) + 13.4168153405559",
+    "3.611306718686027*Cement*SP - 2.899450573493935*Cement + 2.294697143460039*Fine Aggr. - 2.899450573493935*Fly ash - 8.872264571029318*Slag + 8.872264571029318*Water + 12.17733497614154*cos(Slag) - 2.163910104068193*cos(Water) + 44.57344669405841",
+    "-1.168736424323528*Cement*SP + 7.370485008803642*Cement + 1.410895461935348*Fine Aggr. + 7.370485008803642*Fly ash + 1.780155769431371*Slag - 1.780155769431371*Water + 1.178899663770458*cos(Slag) - 3.708474610335429*cos(Water) + 37.09480248055008"
+  ],
+  "diagnostics": {
+    "feature_attempts": 935,
+    "feature_evaluations": 738,
+    "domain_rejections": 99,
+    "head_fits": 1394,
+    "polish_residual_calls": 526,
+    "training_rows": 61,
+    "validation_rows": 21,
+    "selected_train_loss": 0.3569405144062476,
+    "selected_validation_loss": 0.42258448268597604,
+    "shared_features": 6,
+    "domain_source": "training_box"
+  },
+  "history": [
+    {
+      "generation": 0,
+      "train_loss": 0.3292899043977187,
+      "complexity": 44,
+      "retained_features": 192,
+      "feature_attempts": 458,
+      "feature_evaluations": 368,
+      "domain_rejections": 63,
+      "head_fits": 349,
+      "polish_residual_calls": 71
+    },
+    {
+      "generation": 1,
+      "train_loss": 0.31713531543613643,
+      "complexity": 50,
+      "retained_features": 192,
+      "feature_attempts": 616,
+      "feature_evaluations": 500,
+      "domain_rejections": 75,
+      "head_fits": 699,
+      "polish_residual_calls": 178
+    },
+    {
+      "generation": 2,
+      "train_loss": 0.3139187292982826,
+      "complexity": 56,
+      "retained_features": 192,
+      "feature_attempts": 775,
+      "feature_evaluations": 625,
+      "domain_rejections": 88,
+      "head_fits": 1042,
+      "polish_residual_calls": 327
+    },
+    {
+      "generation": 3,
+      "train_loss": 0.26467684199597924,
+      "complexity": 64,
+      "retained_features": 192,
+      "feature_attempts": 935,
+      "feature_evaluations": 738,
+      "domain_rejections": 99,
+      "head_fits": 1394,
+      "polish_residual_calls": 526
+    }
+  ],
+  "domain": "enclosed",
+  "fit_seconds": 4.01600000000326,
+  "status": "ok",
+  "train": {
+    "rmse": [
+      6.49284846298549,
+      11.420995392287233,
+      2.003418274121049
+    ],
+    "nrmse": [
+      0.7413050187281571,
+      0.6554119331202027,
+      0.30285906020924674
+    ],
+    "mean_nrmse": 0.5665253373525355,
+    "r2": [
+      0.4504668692084466,
+      0.5704351979236388,
+      0.9082763896491719
+    ]
+  },
+  "validation": {
+    "rmse": [
+      6.784709999013536,
+      13.112450270781096,
+      2.107288509879638
+    ],
+    "nrmse": [
+      0.7746275924282393,
+      0.7524787537974892,
+      0.3185612440177481
+    ],
+    "mean_nrmse": 0.6152225300811588,
+    "r2": [
+      0.47855010929422104,
+      0.5248838351846266,
+      0.9623844210686965
+    ]
+  }
+}

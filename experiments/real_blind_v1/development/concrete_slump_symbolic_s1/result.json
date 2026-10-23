@@ -1,0 +1,231 @@
+{
+  "dataset": "concrete_slump",
+  "method": "symbolic",
+  "seed": 1,
+  "data_sha256": "12f4f8e84f225dd5fe8cb8e61fd189ff7171af004c23dc9056f4f3ef9f6cc18d",
+  "config": {
+    "max_features": 192,
+    "generations": 3,
+    "proposals_per_generation": 128,
+    "max_terms": 8,
+    "max_nodes": 13,
+    "max_depth": 6,
+    "polish_max_nfev": 10,
+    "interval_max_boxes": 32,
+    "complexity_weight": 0.0001,
+    "random_state": 1
+  },
+  "train_rows": 61,
+  "validation_rows": 21,
+  "train_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+  ],
+  "input_mean": [
+    220.06065573770488,
+    89.65409836065575,
+    153.1786885245902,
+    198.49836065573763,
+    8.688524590163935,
+    876.3032786885246,
+    734.472131147541
+  ],
+  "input_scale": [
+    76.22836759238331,
+    55.81438375565129,
+    80.68663755695391,
+    19.89069715666407,
+    3.0620414470032586,
+    85.53102009847811,
+    62.58634201591927
+  ],
+  "target_scale": [
+    8.758673284210522,
+    17.425675083325984,
+    6.615018460193589
+  ],
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sympy": "1.14.0",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "source_sha256": {
+    "dimensr_mimo/__init__.py": "37497cf8bea643c570cabfdbf5dd3d11f9bcc36a2694697c315f82a15ce4e21f",
+    "dimensr_mimo/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "dimensr_mimo/_vendor/__init__.py": "6550abc01cd175bae1af763e14a170ec4075f24aee7564dc1066d2d40770e11f",
+    "dimensr_mimo/_vendor/expression.py": "fb39cb99564b0e65c07a49bb700bd602f8067298a91bd0afa4412b73d0780425",
+    "dimensr_mimo/_vendor/intervals.py": "29a9675191bfd9ab69e4730ed91c89cb5ab5611482ff75ac1f9b64e85975add6",
+    "dimensr_mimo/_vendor/units.py": "d4ed54c3baeb6b52a0b44b38f962b53a48de82ce3be7d9d6f4bc3800a34a2213",
+    "dimensr_mimo/cli.py": "91423b20094390d7042d538fee8d17a7b4aadc88338270d71b59d2d3cfafd0ca",
+    "dimensr_mimo/config.py": "c3e6dca38268e413ac73cf20f4d17ef41b472b570c6b9382de8da0a1f7864b61",
+    "dimensr_mimo/features.py": "09949ddbb73ef12e588967a4b2100580253baacb74467dca40a0b76d69f08bf7",
+    "dimensr_mimo/regressor.py": "2fa3e727d13f6ec6ac490ccb5274ce7b8b40d9422509475c7f2882c9e9390714",
+    "dimensr_mimo/search.py": "7fe0faece98196f7bef7cdc85a35c6bba4ba6ab8b9c5250ec4c5b4257ef4e755"
+  },
+  "complexity": 23,
+  "expressions": [
+    "-1.221052580490809*Cement + 1.107088599769424*Fine Aggr. - 1.221052580490809*Fly ash - 3.312705594404776*Slag**2 - 4.198029978687003*Slag + 4.198029978687003*Water + 21.43155805342114",
+    "-2.995647463619688*Cement + 2.118041048401181*Fine Aggr. - 2.995647463619688*Fly ash - 5.437736437066105*Slag**2 - 9.752518780871728*Slag + 9.752518780871728*Water + 55.40003151903328",
+    "7.360617645361659*Cement + 1.182938452006448*Fine Aggr. + 7.360617645361659*Fly ash + 0.1905566948645513*Slag**2 + 1.862193827054115*Slag - 1.862193827054115*Water + 35.55157445267643"
+  ],
+  "diagnostics": {
+    "feature_attempts": 915,
+    "feature_evaluations": 749,
+    "domain_rejections": 92,
+    "head_fits": 1400,
+    "polish_residual_calls": 362,
+    "training_rows": 61,
+    "validation_rows": 21,
+    "selected_train_loss": 0.4092403137807038,
+    "selected_validation_loss": 0.45754939963025726,
+    "shared_features": 4,
+    "domain_source": "training_box"
+  },
+  "history": [
+    {
+      "generation": 0,
+      "train_loss": 0.30683790270458855,
+      "complexity": 40,
+      "retained_features": 192,
+      "feature_attempts": 438,
+      "feature_evaluations": 368,
+      "domain_rejections": 63,
+      "head_fits": 347,
+      "polish_residual_calls": 10
+    },
+    {
+      "generation": 1,
+      "train_loss": 0.29750089656855294,
+      "complexity": 53,
+      "retained_features": 192,
+      "feature_attempts": 597,
+      "feature_evaluations": 504,
+      "domain_rejections": 73,
+      "head_fits": 697,
+      "polish_residual_calls": 170
+    },
+    {
+      "generation": 2,
+      "train_loss": 0.256242237419237,
+      "complexity": 63,
+      "retained_features": 192,
+      "feature_attempts": 757,
+      "feature_evaluations": 634,
+      "domain_rejections": 81,
+      "head_fits": 1047,
+      "polish_residual_calls": 288
+    },
+    {
+      "generation": 3,
+      "train_loss": 0.29671954328680483,
+      "complexity": 63,
+      "retained_features": 192,
+      "feature_attempts": 915,
+      "feature_evaluations": 749,
+      "domain_rejections": 92,
+      "head_fits": 1400,
+      "polish_residual_calls": 362
+    }
+  ],
+  "domain": "enclosed",
+  "fit_seconds": 4.0460000000020955,
+  "status": "ok",
+  "train": {
+    "rmse": [
+      6.7541053579164645,
+      11.877120685839477,
+      2.715486064854647
+    ],
+    "nrmse": [
+      0.7711333827341474,
+      0.681587406458891,
+      0.41050317262080294
+    ],
+    "mean_nrmse": 0.6210746539379471,
+    "r2": [
+      0.4053533060329909,
+      0.5354386073566424,
+      0.8314871452682553
+    ]
+  },
+  "validation": {
+    "rmse": [
+      7.043181452212925,
+      12.404015448186318,
+      3.0978974957718584
+    ],
+    "nrmse": [
+      0.8041379354690446,
+      0.7118240979975166,
+      0.4683127514176579
+    ],
+    "mean_nrmse": 0.6614249282947396,
+    "r2": [
+      0.43806283419465886,
+      0.5748357935016692,
+      0.9187068711529607
+    ]
+  }
+}
