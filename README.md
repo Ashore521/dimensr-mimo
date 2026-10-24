@@ -157,6 +157,15 @@ NRMSE and 3.31% higher DAG complexity, so it did not advance. The experimental
 trainer, a runnable synthetic demonstration and portable JSON models are
 available in `experiments/shared_private_v1`; released defaults remain unchanged.
 
+The subsequent [optional semantic-transfer study](docs/SEMANTIC_TRANSFER_EXPERIMENT.md)
+completed 45 paired cells and 180 development evaluations. After full independent
+search, transferring subexpressions by residual similarity reduced DAG complexity
+by 7.31% with 0.065% higher NRMSE than independent search at the same 25-second
+allowance. It outperformed random transfer on aggregate error and complexity,
+but missed the prespecified advancement gate. The prototype and runnable demo
+are in `experiments/semantic_transfer_v1`; it remains experimental and changes
+no released defaults.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.
