@@ -1,0 +1,129 @@
+{
+  "dataset": "parkinsons",
+  "arm": "joint",
+  "fold": 2,
+  "seed": 4,
+  "status": "ok",
+  "fold_sha256": "c820085c642cd333b87cc21d0a1d1d6901faf8b2306ed1adf301c42b0c9e84ec",
+  "freeze_sha256": "ac4f2f626131f1bc818e1021e7ffb6f1756aac04f2fac147222d1f264d5cf390",
+  "config": {
+    "max_features": 192,
+    "generations": 10000,
+    "proposals_per_generation": 128,
+    "max_terms": 8,
+    "max_nodes": 13,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos"
+    ],
+    "complexity_weight": 0.0001,
+    "validation_fraction": 0.2,
+    "polish_max_nfev": 10,
+    "random_state": 4,
+    "interval_max_boxes": 32,
+    "head_ridge": 0.001,
+    "search_seconds": 20.0,
+    "candidate_quota": 0,
+    "prune_tolerance": 0.0
+  },
+  "diagnostics": [
+    {
+      "feature_attempts": 2984,
+      "feature_evaluations": 1881,
+      "domain_rejections": 186,
+      "head_fits": 5622,
+      "polish_residual_calls": 2579,
+      "prune_head_fits": 0,
+      "budget_exhausted": true,
+      "search_cpu_seconds": 20.0,
+      "budget_overshoot_seconds": 0.0,
+      "training_rows": 1200,
+      "validation_rows": 684,
+      "selected_train_loss": 0.9999999999999973,
+      "selected_validation_loss": 0.9445188431868352,
+      "shared_features": 0,
+      "domain_source": "training_box"
+    }
+  ],
+  "fit_cpu_seconds": 20.859375,
+  "search_cpu_seconds": 20.0,
+  "overshoot_seconds": 0.0,
+  "archive_counts": [
+    40
+  ],
+  "selection_cpu_seconds": 0.0,
+  "variants": {
+    "joint": {
+      "model": "joint.json",
+      "model_sha256": "56d76ecd3213a9f17c8ce2aa4cf0e6766c036d5031519c3432535df1a5da2171",
+      "indices": null,
+      "complexity": 2,
+      "shared_basis": 0,
+      "private_basis": 0,
+      "connections_per_output": [
+        0,
+        0
+      ],
+      "status": "ok",
+      "train": {
+        "rmse": [
+          7.060860050827611,
+          9.376040851366819
+        ],
+        "nrmse": [
+          0.9999999999999989,
+          0.9999999999999998
+        ],
+        "mean_nrmse": 0.9999999999999993,
+        "worst_nrmse": 0.9999999999999998,
+        "r2": [
+          2.220446049250313e-15,
+          2.220446049250313e-16
+        ]
+      },
+      "inner": {
+        "rmse": [
+          7.205143557852559,
+          8.632842103246958
+        ],
+        "nrmse": [
+          1.0204342680617255,
+          0.920734267277481
+        ],
+        "mean_nrmse": 0.9705842676696033,
+        "worst_nrmse": 1.0204342680617255,
+        "r2": [
+          -7.104554219594661e-05,
+          -0.055024391751837376
+        ]
+      },
+      "outer": {
+        "rmse": [
+          8.015804765262637,
+          11.285161876428692
+        ],
+        "nrmse": [
+          1.1352448154418648,
+          1.2036169696064798
+        ],
+        "mean_nrmse": 1.1694308925241723,
+        "worst_nrmse": 1.2036169696064798,
+        "r2": [
+          -0.0016619013096341728,
+          -0.01284058112820552
+        ]
+      }
+    }
+  },
+  "score_cpu_seconds": 0.0,
+  "archives_sha256": "045a9439ff1c58c97abec5f114491f443cf938e68f46852de6b264c107608116",
+  "choices_sha256": "d66176c55f61d8a800036f267cac022bdd5a84a24a9a629c4e880482430bb72e",
+  "total_cpu_seconds": 20.875,
+  "total_wall_seconds": 21.125
+}

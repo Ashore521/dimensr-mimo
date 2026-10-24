@@ -150,6 +150,13 @@ caps. Full inner-validation-selected curves, candidate archives and paired
 results are available; this diagnosis changes no algorithm defaults and makes
 no new blind-evaluation claim.
 
+The [shared/private prototype](docs/SHARED_PRIVATE_EXPERIMENT.md) then completed
+135 training runs and 225 development evaluations. Compared with independent
+search using the same validation selector, its primary variant had 2.20% higher
+NRMSE and 3.31% higher DAG complexity, so it did not advance. The experimental
+trainer, a runnable synthetic demonstration and portable JSON models are
+available in `experiments/shared_private_v1`; released defaults remain unchanged.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.

@@ -7,7 +7,6 @@ import pytest
 
 from dimensr_mimo import MIMOSymbolicRegressor, SearchConfig
 from dimensr_mimo.features import Feature, compose
-from dimensr_mimo.regressor import _serial_candidate
 from dimensr_mimo.search import make_candidate, predict_candidate
 from dimensr_mimo._vendor.expression import Node
 from dimensr_mimo._vendor.units import ZERO
@@ -102,8 +101,17 @@ def test_full_synthetic_pipeline_saves_choices_before_outer_scores(tmp_path,monk
     monkeypatch.setattr(study.v3,"prepare_split",lambda *args:split)
     monkeypatch.setattr(study,"SearchConfig",lambda **kw:SearchConfig(**dict(kw,search_seconds=.03)))
     out=tmp_path/"run";out.mkdir()
+    original_metrics=study.v3.metrics
+    outer_calls=[]
+    def checked_metrics(y,prediction,scales):
+        if y is split["Y_eval"]:
+            assert (out/"CHOICES.json").exists()
+            outer_calls.append(True)
+        return original_metrics(y,prediction,scales)
+    monkeypatch.setattr(study.v3,"metrics",checked_metrics)
     r=study.fit_job(("concrete_slump",arm,0,0),out)
     assert r["status"]=="ok"
     assert len(r["variants"])==(1 if arm=="joint" else 2)
     assert (out/"CHOICES.json").exists()
+    assert len(outer_calls)==len(r["variants"])
     assert all(v["outer"]["mean_nrmse"]>=0 for v in r["variants"].values())
