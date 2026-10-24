@@ -166,6 +166,15 @@ but missed the prespecified advancement gate. The prototype and runnable demo
 are in `experiments/semantic_transfer_v1`; it remains experimental and changes
 no released defaults.
 
+The [external evaluation on three new measured datasets](docs/EXTERNAL_TRANSFER_EVALUATION.md)
+then froze all 120 models before opening Tetouan power, water-treatment and
+video-transcoding holdouts. Semantic transfer reduced mean NRMSE by 0.71% and
+DAG complexity by 8.01% against equal-budget independent search, missing the
+adoption gate. Released joint search was the strongest symbolic reference on
+aggregate, and Extra Trees had the lowest overall error. Per-output failures,
+paired block intervals and domain audits are included; the prototype remains
+experimental.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.

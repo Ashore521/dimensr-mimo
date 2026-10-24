@@ -1,0 +1,6862 @@
+{
+  "models_freeze_sha256": "c0e89124ce8982253e146171e76d52b154497420d1a0bcec3f3648a769ee85f9",
+  "datasets": {
+    "tetouan": {
+      "test_rows": 10512,
+      "resampling_groups": 11,
+      "target_names": [
+        "Zone 1 Power Consumption",
+        "Zone 2 Power Consumption",
+        "Zone 3 Power Consumption"
+      ],
+      "outside_training_box_fraction": 0.024733637747336376
+    },
+    "water": {
+      "test_rows": 86,
+      "resampling_groups": 19,
+      "target_names": [
+        "DBO-S",
+        "DQO-S",
+        "SS-S"
+      ],
+      "outside_training_box_fraction": 0.08139534883720931
+    },
+    "video": {
+      "test_rows": 15340,
+      "resampling_groups": 220,
+      "target_names": [
+        "umem",
+        "utime"
+      ],
+      "outside_training_box_fraction": 0.11166883963494133
+    }
+  },
+  "group_error_sha256": {
+    "tetouan_group_errors.npz": "e3d10be2d036b4428e59cbe559285d4ba623587b12b753e8eac339afb847e468",
+    "water_group_errors.npz": "a7f90f35b6435b0b4572c868449151f4229f0c68e1acedef0afab7423da6008a",
+    "video_group_errors.npz": "628246e37a34915cc19994a7dc20775c766c08fcde0a7b6bcef10b82c018a274"
+  },
+  "rows": [
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 61,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          2602.467730105141,
+          2711.1548436404796,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35370870072257454,
+          0.5371741061490436,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6229030126947905,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8555383080413598,
+          0.6959996816405831,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e79a2472a07d3b87a2be99587c5925b56c122c6cb7c6c75ed8293ac20dfddce9",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3738.0241630271926,
+          4755.123127449046,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5080453658192031,
+          0.942155340779499,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9137347651040502,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6318777886829419,
+          0.2487350401655004,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 61,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          2602.467730105141,
+          2711.1548436404796,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35370870072257454,
+          0.5371741061490436,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6229030126947905,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8555383080413598,
+          0.6959996816405831,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "0cc55fd6b65edc3439e1073ca026032f8dd48fb062446f5862c525add4ae86e5",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3738.0241630271926,
+          4755.123127449046,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5080453658192031,
+          0.942155340779499,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9137347651040502,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6318777886829419,
+          0.2487350401655004,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 58,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2602.467730105141,
+          2666.3606844746087,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35370870072257454,
+          0.5282988246552303,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.619944585530186,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8555383080413598,
+          0.7059621844210981,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "2845487adb0909b18260e5048e9feeaffdb955c45df8aca4eab2a63d2608aef8",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3738.0241630271926,
+          4778.140352841344,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5080453658192031,
+          0.9467158539885256,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9152549361737257,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6318777886829419,
+          0.24144442514372177,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 57,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2602.467730105141,
+          2702.399813893485,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35370870072257454,
+          0.5354394301346205,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6223247873566494,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8555383080413598,
+          0.6979599049340268,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "a70bcb818d0f8dbb822bfc7944917216654be1df9168bbf8c9661ce77bbe2d1c",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3738.0241630271926,
+          4844.637150151823,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5080453658192031,
+          0.9598911832179939,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9196467125835484,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6318777886829419,
+          0.22018405739454538,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 38,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          2859.868982236206,
+          2680.123539477861,
+          6097.166528554848
+        ],
+        "nrmse": [
+          0.3886928280577345,
+          0.53102572509464,
+          0.9629418101150774
+        ],
+        "mean_nrmse": 0.6275534544224839,
+        "worst_nrmse": 0.9629418101150774,
+        "r2": [
+          0.8255486776183989,
+          0.7029189022776543,
+          0.14953279813589826
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "bf1bcc086e3f34876cb09ad4e75560a8c6aa2de91b169fd0394507764bff16dc",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3866.036635010768,
+          5073.3729467820685,
+          6717.602088724773
+        ],
+        "nrmse": [
+          0.5254439005321642,
+          1.0052117031386316,
+          1.0609288568148492
+        ],
+        "mean_nrmse": 0.8638614868285485,
+        "worst_nrmse": 1.0609288568148492,
+        "r2": [
+          0.6062326130265736,
+          0.14480889141602427,
+          -3.1569293949005717
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          7142.699927719719,
+          5209.722302245949,
+          6897.191748332812
+        ],
+        "nrmse": [
+          0.9707844142923915,
+          1.032227254580525,
+          1.089291931874553
+        ],
+        "mean_nrmse": 1.0307678669158233,
+        "worst_nrmse": 1.089291931874553,
+        "r2": [
+          -0.08819518920248859,
+          -0.1225211756245721,
+          -0.08829355191028831
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6b8ec2f498f1108c130c435a3c0416e834d8c1935f848e6409365cbd392481b4",
+      "test": {
+        "rmse": [
+          6855.259193209114,
+          6389.945574077747,
+          8389.365087662165
+        ],
+        "nrmse": [
+          0.9317175365123619,
+          1.2660705492893007,
+          1.3249548565543938
+        ],
+        "mean_nrmse": 1.1742476474520187,
+        "worst_nrmse": 1.3249548565543938,
+        "r2": [
+          -0.23809957098295098,
+          -0.356637812277699,
+          -5.483392084980742
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4138.490801236844,
+          3351.5825539256653,
+          7383.955196805888
+        ],
+        "nrmse": [
+          0.5624739117125082,
+          0.6640651185279526,
+          1.1661677846129264
+        ],
+        "mean_nrmse": 0.7975689382844623,
+        "worst_nrmse": 1.1661677846129264,
+        "r2": [
+          0.6346862832513448,
+          0.535414944162709,
+          -0.2473248131104986
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a6542e0e935429b2dc4449eb4ef771c8a2be39a5ad7660ce79035e3db0242d77",
+      "test": {
+        "rmse": [
+          4184.121288958741,
+          4982.164444634273,
+          7565.662828155921
+        ],
+        "nrmse": [
+          0.5686756794957335,
+          0.987140125364547,
+          1.1948653566120622
+        ],
+        "mean_nrmse": 0.9168937204907809,
+        "worst_nrmse": 1.1948653566120622,
+        "r2": [
+          0.5387712781211073,
+          0.17528154034955834,
+          -4.27276071447885
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 0,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.53125,
+      "validation": {
+        "rmse": [
+          3250.222597030623,
+          2646.5054333393446,
+          6115.703196245414
+        ],
+        "nrmse": [
+          0.4417468845265597,
+          0.5243648085639071,
+          0.9658693555996659
+        ],
+        "mean_nrmse": 0.6439936828967109,
+        "worst_nrmse": 0.9658693555996659,
+        "r2": [
+          0.7746756111974858,
+          0.7103250280770484,
+          0.14435373929805984
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c7f2ba1e2b7fd364f8ee2e41f8859cf88c4d656ce3301513e6f4cd69ccd29bbe",
+      "test": {
+        "rmse": [
+          3694.7266571529904,
+          4618.486216617669,
+          6815.970757407229
+        ],
+        "nrmse": [
+          0.5021606801533126,
+          0.9150828146141347,
+          1.0764644836402077
+        ],
+        "mean_nrmse": 0.8312359928025517,
+        "worst_nrmse": 1.0764644836402077,
+        "r2": [
+          0.6403563129343505,
+          0.2912894413771232,
+          -3.2795640901882406
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 97,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          2526.909196355717,
+          2769.951769088796,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.3434393281221574,
+          0.5488238228541215,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.623363127396344,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8638049690037222,
+          0.682670967303112,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "09c1d6586775b2e1e71ba2b2ac759438eff9db08eae8272af7f8cd9eaed9ab7f",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3646.6916052405018,
+          4541.677486269881,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49563210129542173,
+          0.89986433265771,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.8955000075555266,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6496469617813843,
+          0.31466615307234935,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 94,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          2449.0118386445747,
+          2769.951769088796,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.3328520793862752,
+          0.5488238228541215,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6198340444843833,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8720725450298814,
+          0.682670967303112,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "844e37e3ce188dc6da76ed3c7a643bc90f64ec355a913655ee0cbfa97f85d91e",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3700.0434326899053,
+          4541.677486269881,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5028832980537927,
+          0.89986433265771,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.8979170731416503,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6393205012277527,
+          0.31466615307234935,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 67,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2526.909196355717,
+          2736.8035596007494,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.3434393281221574,
+          0.5422560091993791,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6211738561780966,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8638049690037222,
+          0.6902205204916508,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "bc540d2ebbb6e0732d40995d2ad8164db7db4e2f4f72dfaf81fd6dd6834c94bc",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3646.6916052405018,
+          4685.686883340983,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49563210129542173,
+          0.9283976048646404,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9050110982911702,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6496469617813843,
+          0.2705154014064115,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 66,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2526.909196355717,
+          2736.7912235757653,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.3434393281221574,
+          0.5422535650036114,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6211730414461741,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8638049690037222,
+          0.6902233131208645,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "69c510ccb42e5ec4685cfe1ef166e70fa2fbc63f8681ef4c079ad691f50cac27",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3646.6916052405018,
+          4681.499819691364,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49563210129542173,
+          0.9275680018714182,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.904734563960096,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6496469617813843,
+          0.271818533193948,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 38,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          2846.2830455708563,
+          2675.0105010835223,
+          6098.197683675319
+        ],
+        "nrmse": [
+          0.38684632523642726,
+          0.5300126542862251,
+          0.9631046631999597
+        ],
+        "mean_nrmse": 0.626654547574204,
+        "worst_nrmse": 0.9631046631999597,
+        "r2": [
+          0.8272022184167938,
+          0.7040513412145039,
+          0.14924511113830785
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c63bef665596c10596ce1fe4cb4a2a93462eeb54f6886c3dc599f952c6873590",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3859.3535461814736,
+          5070.451416297418,
+          6715.946389365416
+        ],
+        "nrmse": [
+          0.5245355831535169,
+          1.0046328462982115,
+          1.0606673677886533
+        ],
+        "mean_nrmse": 0.8632785990801272,
+        "worst_nrmse": 1.0606673677886533,
+        "r2": [
+          0.6075928214824095,
+          0.14579354109267506,
+          -3.154880515833705
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          7142.699927719719,
+          5209.722302245949,
+          6897.191748332812
+        ],
+        "nrmse": [
+          0.9707844142923915,
+          1.032227254580525,
+          1.089291931874553
+        ],
+        "mean_nrmse": 1.0307678669158233,
+        "worst_nrmse": 1.089291931874553,
+        "r2": [
+          -0.08819518920248859,
+          -0.1225211756245721,
+          -0.08829355191028831
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6b8ec2f498f1108c130c435a3c0416e834d8c1935f848e6409365cbd392481b4",
+      "test": {
+        "rmse": [
+          6855.259193209114,
+          6389.945574077747,
+          8389.365087662165
+        ],
+        "nrmse": [
+          0.9317175365123619,
+          1.2660705492893007,
+          1.3249548565543938
+        ],
+        "mean_nrmse": 1.1742476474520187,
+        "worst_nrmse": 1.3249548565543938,
+        "r2": [
+          -0.23809957098295098,
+          -0.356637812277699,
+          -5.483392084980742
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4138.490801236844,
+          3351.5825539256653,
+          7383.955196805888
+        ],
+        "nrmse": [
+          0.5624739117125082,
+          0.6640651185279526,
+          1.1661677846129264
+        ],
+        "mean_nrmse": 0.7975689382844623,
+        "worst_nrmse": 1.1661677846129264,
+        "r2": [
+          0.6346862832513448,
+          0.535414944162709,
+          -0.2473248131104986
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a6542e0e935429b2dc4449eb4ef771c8a2be39a5ad7660ce79035e3db0242d77",
+      "test": {
+        "rmse": [
+          4184.121288958741,
+          4982.164444634273,
+          7565.662828155921
+        ],
+        "nrmse": [
+          0.5686756794957335,
+          0.987140125364547,
+          1.1948653566120622
+        ],
+        "mean_nrmse": 0.9168937204907809,
+        "worst_nrmse": 1.1948653566120622,
+        "r2": [
+          0.5387712781211073,
+          0.17528154034955834,
+          -4.27276071447885
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 1,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.421875,
+      "validation": {
+        "rmse": [
+          3225.8778467951042,
+          2629.0744488374276,
+          6110.991460032889
+        ],
+        "nrmse": [
+          0.43843812112649516,
+          0.520911124042317,
+          0.9651252185031927
+        ],
+        "mean_nrmse": 0.6414914878906682,
+        "worst_nrmse": 0.9651252185031927,
+        "r2": [
+          0.7780384100472363,
+          0.7141283011957152,
+          0.14567166670967935
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "1a563cc0c74b0b80b61f77dc6b16ee8cf54395034e2148ce2d04bf3dabc63b43",
+      "test": {
+        "rmse": [
+          3693.1563042260855,
+          4611.713055897084,
+          6799.2601147675
+        ],
+        "nrmse": [
+          0.5019472490751763,
+          0.9137408158107765,
+          1.0738253271736218
+        ],
+        "mean_nrmse": 0.8298377973531915,
+        "worst_nrmse": 1.0738253271736218,
+        "r2": [
+          0.6406619634188019,
+          0.2933666114541933,
+          -3.2586054906501154
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 68,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          2478.9864316448043,
+          2715.248408692353,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.33692601053329885,
+          0.5379851838168725,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6175791418543083,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8689218538837424,
+          0.6950809701372742,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c6e616dbe1e37c0ce13a65e72a6e2a2c780699fc777a6254df498bc65e5631f9",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3799.3965024313443,
+          4698.273431466757,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.516386652890636,
+          0.9308914379833294,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9127605598624712,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6196906081205873,
+          0.26659109957962546,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 68,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          2478.9864316448043,
+          2715.248408692353,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.33692601053329885,
+          0.5379851838168725,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6175791418543083,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8689218538837424,
+          0.6950809701372742,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "4819e7009414bea8b787e9fcb10f8f343408aa487f99c3b6967857a06b78e514",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3799.3965024313443,
+          4698.273431466757,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.516386652890636,
+          0.9308914379833294,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9127605598624712,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6196906081205873,
+          0.26659109957962546,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 60,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2449.012790981368,
+          2679.066070994795,
+          6169.989826071864
+        ],
+        "nrmse": [
+          0.3328522088210444,
+          0.5308162037947023,
+          0.9744429881788829
+        ],
+        "mean_nrmse": 0.6127038002648765,
+        "worst_nrmse": 0.9744429881788829,
+        "r2": [
+          0.8720724455366539,
+          0.703153288429569,
+          0.12909586626256409
+        ]
+      },
+      "selected_transfer_heads": 3,
+      "model_sha256": "6f8a980a33378a0d3b05c2f8e2c5b765bb9758b61f8db935a0ca7da7f7faab1e",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3757.066164918159,
+          4630.404419261215,
+          8281.46438137596
+        ],
+        "nrmse": [
+          0.5106334177939104,
+          0.9174442252384548,
+          1.3079138095471767
+        ],
+        "mean_nrmse": 0.9119971508598473,
+        "worst_nrmse": 1.3079138095471767,
+        "r2": [
+          0.6281177069220141,
+          0.287627005675251,
+          -5.317690907656366
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 55,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2475.6583189259136,
+          2680.755549604649,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.3364736773834812,
+          0.5311509482908475,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6151502856290274,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8692735702184685,
+          0.7027787741100778,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 2,
+      "model_sha256": "d2f9b5ecaefadd5dbac0bf54c7ae3c14e70195bd25a2d99bee6b50cb95a3e059",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3794.880723318865,
+          4651.81786153766,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5157729006645668,
+          0.9216869732103774,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9094878208627973,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6205941056111677,
+          0.28102299068050396,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 28,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          2705.911556883042,
+          2748.2733794621463,
+          6115.163239589603
+        ],
+        "nrmse": [
+          0.3677680418410537,
+          0.5445285795935744,
+          0.9657840788014852
+        ],
+        "mean_nrmse": 0.6260269000787044,
+        "worst_nrmse": 0.9657840788014852,
+        "r2": [
+          0.8438258374026419,
+          0.6876185359349243,
+          0.14450482298642697
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "475e9e26ee82f4eccf8a860a78103667e5f4a2fd2687790e692747132899f23b",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3620.8511388013894,
+          4972.262433863804,
+          6800.587578557012
+        ],
+        "nrmse": [
+          0.4921200509039748,
+          0.9851781925014418,
+          1.0740349770787618
+        ],
+        "mean_nrmse": 0.8504444068280593,
+        "worst_nrmse": 1.0740349770787618,
+        "r2": [
+          0.6545945751791604,
+          0.178556524892171,
+          -3.2602685234911366
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          7142.699927719719,
+          5209.722302245949,
+          6897.191748332812
+        ],
+        "nrmse": [
+          0.9707844142923915,
+          1.032227254580525,
+          1.089291931874553
+        ],
+        "mean_nrmse": 1.0307678669158233,
+        "worst_nrmse": 1.089291931874553,
+        "r2": [
+          -0.08819518920248859,
+          -0.1225211756245721,
+          -0.08829355191028831
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6b8ec2f498f1108c130c435a3c0416e834d8c1935f848e6409365cbd392481b4",
+      "test": {
+        "rmse": [
+          6855.259193209114,
+          6389.945574077747,
+          8389.365087662165
+        ],
+        "nrmse": [
+          0.9317175365123619,
+          1.2660705492893007,
+          1.3249548565543938
+        ],
+        "mean_nrmse": 1.1742476474520187,
+        "worst_nrmse": 1.3249548565543938,
+        "r2": [
+          -0.23809957098295098,
+          -0.356637812277699,
+          -5.483392084980742
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4138.490801236844,
+          3351.5825539256653,
+          7383.955196805888
+        ],
+        "nrmse": [
+          0.5624739117125082,
+          0.6640651185279526,
+          1.1661677846129264
+        ],
+        "mean_nrmse": 0.7975689382844623,
+        "worst_nrmse": 1.1661677846129264,
+        "r2": [
+          0.6346862832513448,
+          0.535414944162709,
+          -0.2473248131104986
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a6542e0e935429b2dc4449eb4ef771c8a2be39a5ad7660ce79035e3db0242d77",
+      "test": {
+        "rmse": [
+          4184.121288958741,
+          4982.164444634273,
+          7565.662828155921
+        ],
+        "nrmse": [
+          0.5686756794957335,
+          0.987140125364547,
+          1.1948653566120622
+        ],
+        "mean_nrmse": 0.9168937204907809,
+        "worst_nrmse": 1.1948653566120622,
+        "r2": [
+          0.5387712781211073,
+          0.17528154034955834,
+          -4.27276071447885
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 2,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.421875,
+      "validation": {
+        "rmse": [
+          3216.97455909717,
+          2636.35014848654,
+          6151.223880024139
+        ],
+        "nrmse": [
+          0.4372280502820554,
+          0.5223526932927007,
+          0.9714792321503919
+        ],
+        "mean_nrmse": 0.6436866585750494,
+        "worst_nrmse": 0.9714792321503919,
+        "r2": [
+          0.779261928660818,
+          0.7125438693818198,
+          0.13438549766083085
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6a227612e57d2e6b20e8d76160e7bd3281863c669d07ae42f973f31724a47b4e",
+      "test": {
+        "rmse": [
+          3674.3130237458217,
+          4613.2887340110165,
+          6816.5635175719635
+        ],
+        "nrmse": [
+          0.4993862058856971,
+          0.9140530124691179,
+          1.0765580998377184
+        ],
+        "mean_nrmse": 0.8299991060641778,
+        "worst_nrmse": 1.0765580998377184,
+        "r2": [
+          0.6443194493352042,
+          0.29288365990757337,
+          -3.2803084787754466
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 52,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          2590.3917018961756,
+          2701.126412862279,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35206741380159906,
+          0.5351871250837629,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6216935900327051,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8568758662050386,
+          0.6982444872140828,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "44f2165203e2b3e1745e252779e7a956512382da3f2c8a3483d93632dfff3dc9",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3717.8264061671034,
+          4505.944257270709,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5053002319395972,
+          0.8927843366949288,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.8963627191159914,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6358452084111971,
+          0.3254079341641033,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 52,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          2590.3917018961756,
+          2701.126412862279,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35206741380159906,
+          0.5351871250837629,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6216935900327051,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8568758662050386,
+          0.6982444872140828,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e930a6fa65419e5d353206eed73c4a8a33262dd7305045025930194dc11e1ded",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3717.8264061671034,
+          4505.944257270709,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5053002319395972,
+          0.8927843366949288,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.8963627191159914,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6358452084111971,
+          0.3254079341641033,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 52,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2590.3917018961756,
+          2701.126412862279,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35206741380159906,
+          0.5351871250837629,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6216935900327051,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8568758662050386,
+          0.6982444872140828,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e930a6fa65419e5d353206eed73c4a8a33262dd7305045025930194dc11e1ded",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3717.8264061671034,
+          4505.944257270709,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5053002319395972,
+          0.8927843366949288,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.8963627191159914,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6358452084111971,
+          0.3254079341641033,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 49,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2590.3917018961756,
+          2611.6832034559866,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35206741380159906,
+          0.5174653132231718,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.615786319412508,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8568758662050386,
+          0.7178978567971559,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "d6e61f0fe7438b96ba4b95a3133efa84db822e5a3e1fc20dd7bd4414c0f03f74",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3717.8264061671034,
+          4694.182642754916,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.5053002319395972,
+          0.9300809104050606,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.908794910352702,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6358452084111971,
+          0.26786770246277003,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 33,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          2938.867413273074,
+          2737.315759579058,
+          6093.480970782553
+        ],
+        "nrmse": [
+          0.3994297267627353,
+          0.5423574938365119,
+          0.9623597401230711
+        ],
+        "mean_nrmse": 0.6347156535741062,
+        "worst_nrmse": 0.9623597401230711,
+        "r2": [
+          0.8157777943796922,
+          0.690104557553944,
+          0.1505606521894306
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "06f14e79417318883da7c59e268197998c11c588b5eca71488752602b0e91139",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3942.617886065043,
+          5254.629877987041,
+          6722.682065324685
+        ],
+        "nrmse": [
+          0.535852273514765,
+          1.0411250078440937,
+          1.0617311511001624
+        ],
+        "mean_nrmse": 0.8795694774863403,
+        "worst_nrmse": 1.0617311511001624,
+        "r2": [
+          0.5904780457547921,
+          0.08261029703184708,
+          -3.163218867944523
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          7142.699927719719,
+          5209.722302245949,
+          6897.191748332812
+        ],
+        "nrmse": [
+          0.9707844142923915,
+          1.032227254580525,
+          1.089291931874553
+        ],
+        "mean_nrmse": 1.0307678669158233,
+        "worst_nrmse": 1.089291931874553,
+        "r2": [
+          -0.08819518920248859,
+          -0.1225211756245721,
+          -0.08829355191028831
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6b8ec2f498f1108c130c435a3c0416e834d8c1935f848e6409365cbd392481b4",
+      "test": {
+        "rmse": [
+          6855.259193209114,
+          6389.945574077747,
+          8389.365087662165
+        ],
+        "nrmse": [
+          0.9317175365123619,
+          1.2660705492893007,
+          1.3249548565543938
+        ],
+        "mean_nrmse": 1.1742476474520187,
+        "worst_nrmse": 1.3249548565543938,
+        "r2": [
+          -0.23809957098295098,
+          -0.356637812277699,
+          -5.483392084980742
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4138.490801236844,
+          3351.5825539256653,
+          7383.955196805888
+        ],
+        "nrmse": [
+          0.5624739117125082,
+          0.6640651185279526,
+          1.1661677846129264
+        ],
+        "mean_nrmse": 0.7975689382844623,
+        "worst_nrmse": 1.1661677846129264,
+        "r2": [
+          0.6346862832513448,
+          0.535414944162709,
+          -0.2473248131104986
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a6542e0e935429b2dc4449eb4ef771c8a2be39a5ad7660ce79035e3db0242d77",
+      "test": {
+        "rmse": [
+          4184.121288958741,
+          4982.164444634273,
+          7565.662828155921
+        ],
+        "nrmse": [
+          0.5686756794957335,
+          0.987140125364547,
+          1.1948653566120622
+        ],
+        "mean_nrmse": 0.9168937204907809,
+        "worst_nrmse": 1.1948653566120622,
+        "r2": [
+          0.5387712781211073,
+          0.17528154034955834,
+          -4.27276071447885
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 3,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.40625,
+      "validation": {
+        "rmse": [
+          3237.74921155249,
+          2637.109035166757,
+          6130.8943733713095
+        ],
+        "nrmse": [
+          0.4400515916627731,
+          0.5225030551486716,
+          0.9682685388154892
+        ],
+        "mean_nrmse": 0.6436077285423113,
+        "worst_nrmse": 0.9682685388154892,
+        "r2": [
+          0.7764017483056909,
+          0.7123783541704951,
+          0.14009767352835356
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "d8d8897bc1ce724c23b79622a0ea38cd383e509346c4bfbd32806d412f363868",
+      "test": {
+        "rmse": [
+          3719.3899929403783,
+          4612.818532853776,
+          6829.236961825766
+        ],
+        "nrmse": [
+          0.5055127434107844,
+          0.9139598492597409,
+          1.0785596507701058
+        ],
+        "mean_nrmse": 0.8326774144802105,
+        "worst_nrmse": 1.0785596507701058,
+        "r2": [
+          0.63553884265577,
+          0.2930277956842473,
+          -3.2962392856769815
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 71,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          2585.6296283505394,
+          2724.563466924158,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35142018700716565,
+          0.5398308209597061,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6230257463932084,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8574016099891126,
+          0.6929852424615617,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "9825c5d236f1601f1e523e67133f603992a5e7631e970d0f551f4ff426695994",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3647.988298010038,
+          4620.2779766347,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49580833845273337,
+          0.9154378246158098,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9007499172606638,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6493977600002592,
+          0.2907394405748688,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 71,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          2585.6296283505394,
+          2724.563466924158,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35142018700716565,
+          0.5398308209597061,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6230257463932084,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8574016099891126,
+          0.6929852424615617,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2da2c7088b9edcdc5152b58d71cc09179fa20a0d8c544e3cbb96b9b9fd72ae07",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3647.988298010038,
+          4620.2779766347,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49580833845273337,
+          0.9154378246158098,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9007499172606638,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6493977600002592,
+          0.2907394405748688,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 65,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2585.6296283505394,
+          2718.8739523473364,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35142018700716565,
+          0.5387035301616925,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6226499827938704,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8574016099891126,
+          0.6942661383821109,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "24733f4b667f387ce0742b5bb8e18153b6624b08e8980c48f141f9da54c1e4e2",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3647.988298010038,
+          4651.264243649077,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49580833845273337,
+          0.921577282244129,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9027964031367702,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6493977600002592,
+          0.28119411296438845,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 65,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          2585.6296283505394,
+          2682.924255750528,
+          6191.411884982793
+        ],
+        "nrmse": [
+          0.35142018700716565,
+          0.5315806444360697,
+          0.9778262312127534
+        ],
+        "mean_nrmse": 0.6202756875519962,
+        "worst_nrmse": 0.9778262312127534,
+        "r2": [
+          0.8574016099891126,
+          0.7022976812098423,
+          0.12303785068953632
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "b15479bf842e00111e0decf47f02187e1f0f3a24eaaac4a36a15ba7f34cca146",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3647.988298010038,
+          4628.9820861060025,
+          8174.392041827675
+        ],
+        "nrmse": [
+          0.49580833845273337,
+          0.9171624115519037,
+          1.2910035887134481
+        ],
+        "mean_nrmse": 0.9013247795726951,
+        "worst_nrmse": 1.2910035887134481,
+        "r2": [
+          0.6493977600002592,
+          0.28806458132458435,
+          -5.15538217773746
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 32,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          2595.8285715589136,
+          2729.316446455401,
+          6134.898766454469
+        ],
+        "nrmse": [
+          0.3528063540321192,
+          0.5407725515794931,
+          0.9689009633205199
+        ],
+        "mean_nrmse": 0.6208266229773775,
+        "worst_nrmse": 0.9689009633205199,
+        "r2": [
+          0.856274440658805,
+          0.6919131384801608,
+          0.13897401644262686
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "7cc74415f79fa1c002b1aa1f677034130a6afcf068ef99e8e40f91ce10725f05",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          3366.3870824362693,
+          4990.33607781685,
+          6802.0944432907545
+        ],
+        "nrmse": [
+          0.45753512609729285,
+          0.9887592102209228,
+          1.0742729602546375
+        ],
+        "mean_nrmse": 0.8401890988576177,
+        "worst_nrmse": 1.0742729602546375,
+        "r2": [
+          0.7014370475778968,
+          0.17257395266272868,
+          -3.262156701401807
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          7142.699927719719,
+          5209.722302245949,
+          6897.191748332812
+        ],
+        "nrmse": [
+          0.9707844142923915,
+          1.032227254580525,
+          1.089291931874553
+        ],
+        "mean_nrmse": 1.0307678669158233,
+        "worst_nrmse": 1.089291931874553,
+        "r2": [
+          -0.08819518920248859,
+          -0.1225211756245721,
+          -0.08829355191028831
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6b8ec2f498f1108c130c435a3c0416e834d8c1935f848e6409365cbd392481b4",
+      "test": {
+        "rmse": [
+          6855.259193209114,
+          6389.945574077747,
+          8389.365087662165
+        ],
+        "nrmse": [
+          0.9317175365123619,
+          1.2660705492893007,
+          1.3249548565543938
+        ],
+        "mean_nrmse": 1.1742476474520187,
+        "worst_nrmse": 1.3249548565543938,
+        "r2": [
+          -0.23809957098295098,
+          -0.356637812277699,
+          -5.483392084980742
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4138.490801236844,
+          3351.5825539256653,
+          7383.955196805888
+        ],
+        "nrmse": [
+          0.5624739117125082,
+          0.6640651185279526,
+          1.1661677846129264
+        ],
+        "mean_nrmse": 0.7975689382844623,
+        "worst_nrmse": 1.1661677846129264,
+        "r2": [
+          0.6346862832513448,
+          0.535414944162709,
+          -0.2473248131104986
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a6542e0e935429b2dc4449eb4ef771c8a2be39a5ad7660ce79035e3db0242d77",
+      "test": {
+        "rmse": [
+          4184.121288958741,
+          4982.164444634273,
+          7565.662828155921
+        ],
+        "nrmse": [
+          0.5686756794957335,
+          0.987140125364547,
+          1.1948653566120622
+        ],
+        "mean_nrmse": 0.9168937204907809,
+        "worst_nrmse": 1.1948653566120622,
+        "r2": [
+          0.5387712781211073,
+          0.17528154034955834,
+          -4.27276071447885
+        ]
+      }
+    },
+    {
+      "dataset": "tetouan",
+      "seed": 4,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.375,
+      "validation": {
+        "rmse": [
+          3243.143951183366,
+          2637.292455512851,
+          6118.508506936836
+        ],
+        "nrmse": [
+          0.44078480588230023,
+          0.5225393971011401,
+          0.9663124058169238
+        ],
+        "mean_nrmse": 0.6432122029334547,
+        "worst_nrmse": 0.9663124058169238,
+        "r2": [
+          0.7756560084711452,
+          0.7123383425549032,
+          0.1435685788497304
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "ef13a82afb2dde3a40a392761b202afe3afeb7d2df0960d2bfb1952838b087df",
+      "test": {
+        "rmse": [
+          3681.1283881089853,
+          4615.902351334903,
+          6801.157224582459
+        ],
+        "nrmse": [
+          0.5003125012037751,
+          0.9145708609988938,
+          1.0741249427984614
+        ],
+        "mean_nrmse": 0.8296694350003767,
+        "worst_nrmse": 1.0741249427984614,
+        "r2": [
+          0.6429987449099601,
+          0.2920822121143749,
+          -3.2609822696623674
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "dac0f8865fe561acb539b4fc18ad0cea58403b9ecd2ea858c93fb1776953854f",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "33af8c6f93097a3997efb8f538b915cb3b08e987b101dce6589c86d1030a1701",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "33af8c6f93097a3997efb8f538b915cb3b08e987b101dce6589c86d1030a1701",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "33af8c6f93097a3997efb8f538b915cb3b08e987b101dce6589c86d1030a1701",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "4f1aa147ba8e97ef2f75829ce56fb9c11d2c5769230f370a03262fa453749c7f",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4.960359261182602,
+          27.105711575238164,
+          9.159892794132471
+        ],
+        "nrmse": [
+          0.22136452089971684,
+          0.6741528847793558,
+          0.46603502486118126
+        ],
+        "mean_nrmse": 0.4538508101800846,
+        "worst_nrmse": 0.6741528847793558,
+        "r2": [
+          -0.08933410994818769,
+          -0.022805797850462328,
+          -0.6076621421193651
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2a6a5e7c2e24f7696e07e1068e316676077a58de567f7ba76c1d36a73e0aadbc",
+      "test": {
+        "rmse": [
+          7.084606883777985,
+          30.12105606722067,
+          7.753017189126028
+        ],
+        "nrmse": [
+          0.31616270637148464,
+          0.7491482665545597,
+          0.39445631512172263
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545597,
+        "r2": [
+          -0.5621264376777924,
+          -0.4657038548010872,
+          -1.0410170090305138
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          6.042973660162958,
+          30.339883836309202,
+          10.056039519736867
+        ],
+        "nrmse": [
+          0.26967804117733596,
+          0.7545907863493777,
+          0.5116289822286556
+        ],
+        "mean_nrmse": 0.5119659365851231,
+        "worst_nrmse": 0.7545907863493777,
+        "r2": [
+          -0.6167253246598903,
+          -0.28144326507560447,
+          -0.9376170449352934
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c2ecb0b23efc7dc080cf6525c827f5bc6a5b30675f4dec94c209b3bc3a414c9f",
+      "test": {
+        "rmse": [
+          6.908715930220674,
+          28.296600204595666,
+          8.938114637448093
+        ],
+        "nrmse": [
+          0.3083132715594735,
+          0.7037717716587437,
+          0.4547514442465394
+        ],
+        "mean_nrmse": 0.4889454958215856,
+        "worst_nrmse": 0.7037717716587437,
+        "r2": [
+          -0.4855228649277479,
+          -0.29352360585265513,
+          -1.712670042471082
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 0,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.140625,
+      "validation": {
+        "rmse": [
+          6.645649697188077,
+          31.401447997086496,
+          11.768876454282106
+        ],
+        "nrmse": [
+          0.2965734907141904,
+          0.7809932122506466,
+          0.5987743256638176
+        ],
+        "mean_nrmse": 0.5587803428762183,
+        "worst_nrmse": 0.7809932122506466,
+        "r2": [
+          -0.9552834714235039,
+          -0.3726850551388001,
+          -1.6538966788180076
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "ee2bd335dae8291ce06b302300b0333d710b544811746bf7415af61f04ef3df7",
+      "test": {
+        "rmse": [
+          7.190623510211113,
+          29.199886870406008,
+          8.991361867243093
+        ],
+        "nrmse": [
+          0.3208938797567322,
+          0.7262376386716232,
+          0.4574605451737028
+        ],
+        "mean_nrmse": 0.5015306878673528,
+        "worst_nrmse": 0.7262376386716232,
+        "r2": [
+          -0.6092287009526474,
+          -0.377425690454396,
+          -1.745086813849087
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "275e4e7b54140471b0da75ec13e1e0243afa4052549952f292478b1f8f798d13",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "7a70afbd04f9157adc94dc29aa51d201c23f443ba7419d62d5dc16be97f1b45c",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "7a70afbd04f9157adc94dc29aa51d201c23f443ba7419d62d5dc16be97f1b45c",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "7a70afbd04f9157adc94dc29aa51d201c23f443ba7419d62d5dc16be97f1b45c",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "9f29cc909e2366ccf9a5fe03cf233d0a3629fd003b25098e0fd50ac318071dca",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4.960359261182602,
+          27.105711575238164,
+          9.159892794132471
+        ],
+        "nrmse": [
+          0.22136452089971684,
+          0.6741528847793558,
+          0.46603502486118126
+        ],
+        "mean_nrmse": 0.4538508101800846,
+        "worst_nrmse": 0.6741528847793558,
+        "r2": [
+          -0.08933410994818769,
+          -0.022805797850462328,
+          -0.6076621421193651
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2a6a5e7c2e24f7696e07e1068e316676077a58de567f7ba76c1d36a73e0aadbc",
+      "test": {
+        "rmse": [
+          7.084606883777985,
+          30.12105606722067,
+          7.753017189126028
+        ],
+        "nrmse": [
+          0.31616270637148464,
+          0.7491482665545597,
+          0.39445631512172263
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545597,
+        "r2": [
+          -0.5621264376777924,
+          -0.4657038548010872,
+          -1.0410170090305138
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          6.042973660162958,
+          30.339883836309202,
+          10.056039519736867
+        ],
+        "nrmse": [
+          0.26967804117733596,
+          0.7545907863493777,
+          0.5116289822286556
+        ],
+        "mean_nrmse": 0.5119659365851231,
+        "worst_nrmse": 0.7545907863493777,
+        "r2": [
+          -0.6167253246598903,
+          -0.28144326507560447,
+          -0.9376170449352934
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c2ecb0b23efc7dc080cf6525c827f5bc6a5b30675f4dec94c209b3bc3a414c9f",
+      "test": {
+        "rmse": [
+          6.908715930220674,
+          28.296600204595666,
+          8.938114637448093
+        ],
+        "nrmse": [
+          0.3083132715594735,
+          0.7037717716587437,
+          0.4547514442465394
+        ],
+        "mean_nrmse": 0.4889454958215856,
+        "worst_nrmse": 0.7037717716587437,
+        "r2": [
+          -0.4855228649277479,
+          -0.29352360585265513,
+          -1.712670042471082
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 1,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.125,
+      "validation": {
+        "rmse": [
+          6.674702597866461,
+          31.81848879746262,
+          12.061844530427978
+        ],
+        "nrmse": [
+          0.29787002612640257,
+          0.7913655375763943,
+          0.6136798914514033
+        ],
+        "mean_nrmse": 0.5676384850514,
+        "worst_nrmse": 0.7913655375763943,
+        "r2": [
+          -0.9724167331524005,
+          -0.4093882744130337,
+          -1.7876706083492597
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "ff571a738d5b9e5f3ac6641d63eff2c0278320ef134e8f6f1aad315eb5b20212",
+      "test": {
+        "rmse": [
+          7.23146440741951,
+          28.71426223497876,
+          8.937207530283564
+        ],
+        "nrmse": [
+          0.3227164746873857,
+          0.7141595477502884,
+          0.4547052926463543
+        ],
+        "mean_nrmse": 0.4971937716946761,
+        "worst_nrmse": 0.7141595477502884,
+        "r2": [
+          -0.6275606263816649,
+          -0.3319906173572198,
+          -1.7121194660540087
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2388c773d18675813694bf05e9225e80cd83cc2b12f093faa67774d0eed82e77",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "3aec2f2c861fe51f68a24e57304b2de224dd105a595c837993eb75c84b62796e",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "3aec2f2c861fe51f68a24e57304b2de224dd105a595c837993eb75c84b62796e",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 10,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.035813738303096
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4597221577602436
+        ],
+        "mean_nrmse": 0.4517465211464387,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.5644026509143738
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "5cfebb43972d4c335c439a8dd6a3228be2bb5786c97bb1c46a5588df5943b896",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.796823001955762
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.39668505769873685
+        ],
+        "mean_nrmse": 0.48733201020826034,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0641463257717274
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "9cac70fe2331e59b9e9583758d9a4fddfd13893d9f8a7bf65f01ae45cdf27808",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4.960359261182602,
+          27.105711575238164,
+          9.159892794132471
+        ],
+        "nrmse": [
+          0.22136452089971684,
+          0.6741528847793558,
+          0.46603502486118126
+        ],
+        "mean_nrmse": 0.4538508101800846,
+        "worst_nrmse": 0.6741528847793558,
+        "r2": [
+          -0.08933410994818769,
+          -0.022805797850462328,
+          -0.6076621421193651
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2a6a5e7c2e24f7696e07e1068e316676077a58de567f7ba76c1d36a73e0aadbc",
+      "test": {
+        "rmse": [
+          7.084606883777985,
+          30.12105606722067,
+          7.753017189126028
+        ],
+        "nrmse": [
+          0.31616270637148464,
+          0.7491482665545597,
+          0.39445631512172263
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545597,
+        "r2": [
+          -0.5621264376777924,
+          -0.4657038548010872,
+          -1.0410170090305138
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          6.042973660162958,
+          30.339883836309202,
+          10.056039519736867
+        ],
+        "nrmse": [
+          0.26967804117733596,
+          0.7545907863493777,
+          0.5116289822286556
+        ],
+        "mean_nrmse": 0.5119659365851231,
+        "worst_nrmse": 0.7545907863493777,
+        "r2": [
+          -0.6167253246598903,
+          -0.28144326507560447,
+          -0.9376170449352934
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c2ecb0b23efc7dc080cf6525c827f5bc6a5b30675f4dec94c209b3bc3a414c9f",
+      "test": {
+        "rmse": [
+          6.908715930220674,
+          28.296600204595666,
+          8.938114637448093
+        ],
+        "nrmse": [
+          0.3083132715594735,
+          0.7037717716587437,
+          0.4547514442465394
+        ],
+        "mean_nrmse": 0.4889454958215856,
+        "worst_nrmse": 0.7037717716587437,
+        "r2": [
+          -0.4855228649277479,
+          -0.29352360585265513,
+          -1.712670042471082
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 2,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.171875,
+      "validation": {
+        "rmse": [
+          6.938433407736794,
+          31.742334937476343,
+          12.077559526030853
+        ],
+        "nrmse": [
+          0.3096394648503876,
+          0.7894714960104929,
+          0.6144794355651915
+        ],
+        "mean_nrmse": 0.5711967988086907,
+        "worst_nrmse": 0.7894714960104929,
+        "r2": [
+          -1.131364302347328,
+          -0.402649933279251,
+          -1.7949392759931113
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "1a7d06059f980aeba6acc289b994707fc24bcd1c29b5630e8c09bc68be21c9a6",
+      "test": {
+        "rmse": [
+          6.96343015406312,
+          27.91514071408935,
+          8.69022397995858
+        ],
+        "nrmse": [
+          0.31075498743317326,
+          0.694284397928027,
+          0.4421393175194687
+        ],
+        "mean_nrmse": 0.482392900960223,
+        "worst_nrmse": 0.694284397928027,
+        "r2": [
+          -0.5091455122109985,
+          -0.2588833332253879,
+          -1.5642895959010605
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "141ff029efcda948f8b8e3737f8e377466b57a754212c9230e8292330018dd48",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6588ec85800a75c384cafca26b7d79c40915b8ff6d609c8f404260a56480177b",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "6588ec85800a75c384cafca26b7d79c40915b8ff6d609c8f404260a56480177b",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 10,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.912812779611822,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.21924267779134615,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.4531435291439611,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.06855102904772692,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "b62105a2e179656eb3294d48f9eb2a1261f6251db22a2835fbed52815e79b13e",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          6.984634852314469,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31170128338112313,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4851019550191351,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5183506592147122,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "8a253bce8dd3805362ee0ed901e052b3384a1a37f44a3c7dd4a2267e00ddfb99",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4.960359261182602,
+          27.105711575238164,
+          9.159892794132471
+        ],
+        "nrmse": [
+          0.22136452089971684,
+          0.6741528847793558,
+          0.46603502486118126
+        ],
+        "mean_nrmse": 0.4538508101800846,
+        "worst_nrmse": 0.6741528847793558,
+        "r2": [
+          -0.08933410994818769,
+          -0.022805797850462328,
+          -0.6076621421193651
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2a6a5e7c2e24f7696e07e1068e316676077a58de567f7ba76c1d36a73e0aadbc",
+      "test": {
+        "rmse": [
+          7.084606883777985,
+          30.12105606722067,
+          7.753017189126028
+        ],
+        "nrmse": [
+          0.31616270637148464,
+          0.7491482665545597,
+          0.39445631512172263
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545597,
+        "r2": [
+          -0.5621264376777924,
+          -0.4657038548010872,
+          -1.0410170090305138
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          6.042973660162958,
+          30.339883836309202,
+          10.056039519736867
+        ],
+        "nrmse": [
+          0.26967804117733596,
+          0.7545907863493777,
+          0.5116289822286556
+        ],
+        "mean_nrmse": 0.5119659365851231,
+        "worst_nrmse": 0.7545907863493777,
+        "r2": [
+          -0.6167253246598903,
+          -0.28144326507560447,
+          -0.9376170449352934
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c2ecb0b23efc7dc080cf6525c827f5bc6a5b30675f4dec94c209b3bc3a414c9f",
+      "test": {
+        "rmse": [
+          6.908715930220674,
+          28.296600204595666,
+          8.938114637448093
+        ],
+        "nrmse": [
+          0.3083132715594735,
+          0.7037717716587437,
+          0.4547514442465394
+        ],
+        "mean_nrmse": 0.4889454958215856,
+        "worst_nrmse": 0.7037717716587437,
+        "r2": [
+          -0.4855228649277479,
+          -0.29352360585265513,
+          -1.712670042471082
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 3,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.140625,
+      "validation": {
+        "rmse": [
+          6.744407472703107,
+          31.994014543558695,
+          11.864419405955472
+        ],
+        "nrmse": [
+          0.30098072545484394,
+          0.7957310820025297,
+          0.6036353390904081
+        ],
+        "mean_nrmse": 0.5667823821825939,
+        "worst_nrmse": 0.7957310820025297,
+        "r2": [
+          -1.0138283040852691,
+          -0.42498086103914323,
+          -1.6971617028535904
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "0329cbe7a1e96db59a95a865a142f94cff27baea9ad4db8634fb36dc0df5aab2",
+      "test": {
+        "rmse": [
+          6.950010599555548,
+          27.978251376174377,
+          8.547334679447085
+        ],
+        "nrmse": [
+          0.3101561168478302,
+          0.6958540388794132,
+          0.43486942689815844
+        ],
+        "mean_nrmse": 0.48029319420846733,
+        "worst_nrmse": 0.6958540388794132,
+        "r2": [
+          -0.5033344261045432,
+          -0.26458194465111906,
+          -1.4806560332106913
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 20.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "fd19d1b85d2da36d9280cf46c4fa805de6a9e98fa2a061b385b07ba3214bd5bb",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.03125,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "d2b4ea3501ce01d86598a93a49754eba7ff6ef26a7333697a1168c0ab87a69e3",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 10,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.029448434728764
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4593983052353087
+        ],
+        "mean_nrmse": 0.45163857030479376,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.5621993318465477
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "527692fc3f12c269ee54bc83151e2621c2939a6b346c719d933a5fd3ae3333b8",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.7306975049314826
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.39332073910437426
+        ],
+        "mean_nrmse": 0.4862105706768061,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0292824077952014
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 10,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.023199751612168
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4590803861005501
+        ],
+        "mean_nrmse": 0.4515325972598742,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.5600378906574881
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "1ae55bcd39abec05dd2c533627c8ae478a927dc9b578c0ea999b19a40b5b6ec5",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.626901028549104
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3880398046503869
+        ],
+        "mean_nrmse": 0.48445025919214374,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -0.975155769923834
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 3,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          4.960359261182601,
+          27.105711575238157,
+          9.159892794132475
+        ],
+        "nrmse": [
+          0.2213645208997168,
+          0.6741528847793556,
+          0.4660350248611815
+        ],
+        "mean_nrmse": 0.45385081018008466,
+        "worst_nrmse": 0.6741528847793556,
+        "r2": [
+          -0.08933410994818747,
+          -0.022805797850461884,
+          -0.6076621421193669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "33286bf0dca2656bc6a40de0b1c71abc93f40f48959af5465d13d6f263aabff3",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [],
+        "outputs": [
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          7.084606883777988,
+          30.12105606722066,
+          7.753017189126034
+        ],
+        "nrmse": [
+          0.31616270637148475,
+          0.7491482665545594,
+          0.3944563151217229
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545594,
+        "r2": [
+          -0.5621264376777932,
+          -0.4657038548010859,
+          -1.0410170090305169
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          4.960359261182602,
+          27.105711575238164,
+          9.159892794132471
+        ],
+        "nrmse": [
+          0.22136452089971684,
+          0.6741528847793558,
+          0.46603502486118126
+        ],
+        "mean_nrmse": 0.4538508101800846,
+        "worst_nrmse": 0.6741528847793558,
+        "r2": [
+          -0.08933410994818769,
+          -0.022805797850462328,
+          -0.6076621421193651
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2a6a5e7c2e24f7696e07e1068e316676077a58de567f7ba76c1d36a73e0aadbc",
+      "test": {
+        "rmse": [
+          7.084606883777985,
+          30.12105606722067,
+          7.753017189126028
+        ],
+        "nrmse": [
+          0.31616270637148464,
+          0.7491482665545597,
+          0.39445631512172263
+        ],
+        "mean_nrmse": 0.4865890960159223,
+        "worst_nrmse": 0.7491482665545597,
+        "r2": [
+          -0.5621264376777924,
+          -0.4657038548010872,
+          -1.0410170090305138
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          6.042973660162958,
+          30.339883836309202,
+          10.056039519736867
+        ],
+        "nrmse": [
+          0.26967804117733596,
+          0.7545907863493777,
+          0.5116289822286556
+        ],
+        "mean_nrmse": 0.5119659365851231,
+        "worst_nrmse": 0.7545907863493777,
+        "r2": [
+          -0.6167253246598903,
+          -0.28144326507560447,
+          -0.9376170449352934
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c2ecb0b23efc7dc080cf6525c827f5bc6a5b30675f4dec94c209b3bc3a414c9f",
+      "test": {
+        "rmse": [
+          6.908715930220674,
+          28.296600204595666,
+          8.938114637448093
+        ],
+        "nrmse": [
+          0.3083132715594735,
+          0.7037717716587437,
+          0.4547514442465394
+        ],
+        "mean_nrmse": 0.4889454958215856,
+        "worst_nrmse": 0.7037717716587437,
+        "r2": [
+          -0.4855228649277479,
+          -0.29352360585265513,
+          -1.712670042471082
+        ]
+      }
+    },
+    {
+      "dataset": "water",
+      "seed": 4,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.125,
+      "validation": {
+        "rmse": [
+          6.6825730698477335,
+          31.932130252271044,
+          12.023078089296412
+        ],
+        "nrmse": [
+          0.2982212594076334,
+          0.7941919424238364,
+          0.6117075409269407
+        ],
+        "mean_nrmse": 0.5680402475861368,
+        "worst_nrmse": 0.7941919424238364,
+        "r2": [
+          -0.9770710238495468,
+          -0.41947366556912913,
+          -1.769780408497955
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "4b6b7cf069402ac8f17e2e3e9a11528d3c1292aa78498d4f9ec93cc9066947a2",
+      "test": {
+        "rmse": [
+          7.081543638639765,
+          28.50937166332355,
+          8.811401187305012
+        ],
+        "nrmse": [
+          0.31602600381493257,
+          0.7090636634543883,
+          0.44830454500711775
+        ],
+        "mean_nrmse": 0.4911314040921462,
+        "worst_nrmse": 0.7090636634543883,
+        "r2": [
+          -0.5607758640226022,
+          -0.3130496023243974,
+          -1.636301525479658
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 51,
+      "training_cpu_seconds": 20.0,
+      "validation": {
+        "rmse": [
+          42548.904173759074,
+          10.411917374585437
+        ],
+        "nrmse": [
+          0.4686148768543998,
+          0.7539467833845742
+        ],
+        "mean_nrmse": 0.611280830119487,
+        "worst_nrmse": 0.7539467833845742,
+        "r2": [
+          0.8163451891518569,
+          0.5421504079168815
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "76adc97ceb83e7f0afd70351d8b5562912d42dd20d630f84f0a4c6b2d61f38b6",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30779.59006186508,
+          12.195737202489006
+        ],
+        "nrmse": [
+          0.3389928386302672,
+          0.8831165772851977
+        ],
+        "mean_nrmse": 0.6110547079577324,
+        "worst_nrmse": 0.8831165772851977,
+        "r2": [
+          0.8980775277281362,
+          0.5205862760929891
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 51,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42463.67438364266,
+          10.411917374585437
+        ],
+        "nrmse": [
+          0.46767619351166023,
+          0.7539467833845742
+        ],
+        "mean_nrmse": 0.6108114884481173,
+        "worst_nrmse": 0.7539467833845742,
+        "r2": [
+          0.817080210847407,
+          0.5421504079168815
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "57f32cdbd4f02f808f595020d569d488ab75ae02eb611c3895ea54e7197c7afe",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30660.928847206455,
+          12.195737202489006
+        ],
+        "nrmse": [
+          0.3376859563127447,
+          0.8831165772851977
+        ],
+        "mean_nrmse": 0.6104012667989711,
+        "worst_nrmse": 0.8831165772851977,
+        "r2": [
+          0.8988618742072392,
+          0.5205862760929891
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 56,
+      "training_cpu_seconds": 25.015625,
+      "validation": {
+        "rmse": [
+          42548.904173759074,
+          8.44724432348885
+        ],
+        "nrmse": [
+          0.4686148768543998,
+          0.6116810628658683
+        ],
+        "mean_nrmse": 0.540147969860134,
+        "worst_nrmse": 0.6116810628658683,
+        "r2": [
+          0.8163451891518569,
+          0.6986358992295947
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "d99d6bd74cb3d3b6bd04a475cb72ad70373121315759eca947fb75d9fea71d15",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30779.59006186508,
+          10.069598584832391
+        ],
+        "nrmse": [
+          0.3389928386302672,
+          0.7291588273202682
+        ],
+        "mean_nrmse": 0.5340758329752677,
+        "worst_nrmse": 0.7291588273202682,
+        "r2": [
+          0.8980775277281362,
+          0.6731724461095625
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 48,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42137.379514663684,
+          8.446963874764835
+        ],
+        "nrmse": [
+          0.4640825256413815,
+          0.6116607550391955
+        ],
+        "mean_nrmse": 0.5378716403402886,
+        "worst_nrmse": 0.6116607550391955,
+        "r2": [
+          0.8198805560314089,
+          0.6986559094888702
+        ]
+      },
+      "selected_transfer_heads": 2,
+      "model_sha256": "aadf2119bb604da075874f337710f60a5bb8fefcc61b62b18eb42cfc25944631",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30192.306227084053,
+          10.068505525353148
+        ],
+        "nrmse": [
+          0.33252475332328485,
+          0.7290796767998812
+        ],
+        "mean_nrmse": 0.530802215061583,
+        "worst_nrmse": 0.7290796767998812,
+        "r2": [
+          0.9019298448939084,
+          0.6732433968159806
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 59,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          41739.89296428123,
+          8.5779479469192
+        ],
+        "nrmse": [
+          0.45970478397033676,
+          0.6211455613743331
+        ],
+        "mean_nrmse": 0.5404251726723349,
+        "worst_nrmse": 0.6211455613743331,
+        "r2": [
+          0.8232627015386538,
+          0.6892377776672329
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "69f9ae0fdc3a3d419cd35c06425094889ffc8d8355a57ea208ddbac0efa92e43",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30325.856287813986,
+          10.202643452140796
+        ],
+        "nrmse": [
+          0.3339956148290778,
+          0.738792859760618
+        ],
+        "mean_nrmse": 0.5363942372948479,
+        "worst_nrmse": 0.738792859760618,
+        "r2": [
+          0.9010603358372669,
+          0.6644789541921108
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          99322.07870835412,
+          15.389892329620569
+        ],
+        "nrmse": [
+          1.0938895980203185,
+          1.1144114384613384
+        ],
+        "mean_nrmse": 1.1041505182408284,
+        "worst_nrmse": 1.1144114384613384,
+        "r2": [
+          -0.0007305333625011734,
+          -0.00030529661354705695
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e16f6be752f0ddb45728f3e77992278d6360c4914c0d2f2c7a6a28d6ee152294",
+      "test": {
+        "rmse": [
+          96454.6900791784,
+          17.732793724991485
+        ],
+        "nrmse": [
+          1.0623094434793803,
+          1.2840653943349045
+        ],
+        "mean_nrmse": 1.1731874189071423,
+        "worst_nrmse": 1.2840653943349045,
+        "r2": [
+          -0.0009006853608084509,
+          -0.013558153466674217
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.015625,
+      "validation": {
+        "rmse": [
+          93458.435343394,
+          10.637319878779408
+        ],
+        "nrmse": [
+          1.0293100144388563,
+          0.7702686083558984
+        ],
+        "mean_nrmse": 0.8997893113973774,
+        "worst_nrmse": 1.0293100144388563,
+        "r2": [
+          0.11394116168306656,
+          0.5221123094939206
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "cdddcf4c0435a739cbf85f7c0c5d88243d485a7bda269db8474db4c5a35005d0",
+      "test": {
+        "rmse": [
+          101510.63684640345,
+          12.776661937749072
+        ],
+        "nrmse": [
+          1.1179934127310904,
+          0.9251824446735566
+        ],
+        "mean_nrmse": 1.0215879287023235,
+        "worst_nrmse": 1.1179934127310904,
+        "r2": [
+          -0.1085808996018871,
+          0.4738262781147149
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 0,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.59375,
+      "validation": {
+        "rmse": [
+          52217.07543332002,
+          5.786702933608082
+        ],
+        "nrmse": [
+          0.575095853795765,
+          0.41902618953212795
+        ],
+        "mean_nrmse": 0.4970610216639465,
+        "worst_nrmse": 0.575095853795765,
+        "r2": [
+          0.723400978965024,
+          0.8585757834755815
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "2453bf35ae95b9c55cfaca6e3ff4ab8c2399adf0e53b27bb9e39e2db32c136c8",
+      "test": {
+        "rmse": [
+          36677.507246257526,
+          7.152049789073325
+        ],
+        "nrmse": [
+          0.40394989895254096,
+          0.517893557841728
+        ],
+        "mean_nrmse": 0.46092172839713447,
+        "worst_nrmse": 0.517893557841728,
+        "r2": [
+          0.8552748828077364,
+          0.8351247733751703
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 54,
+      "training_cpu_seconds": 20.0,
+      "validation": {
+        "rmse": [
+          42142.02289675528,
+          8.451402992017426
+        ],
+        "nrmse": [
+          0.46413366580513654,
+          0.6119821999809146
+        ],
+        "mean_nrmse": 0.5380579328930256,
+        "worst_nrmse": 0.6119821999809146,
+        "r2": [
+          0.8198408568620646,
+          0.6983390966621665
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c81610c6d5f52df03545a6a02c2f56945ca3e71e2906f8732e18b066a46f220a",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30156.659592382548,
+          10.145945289772516
+        ],
+        "nrmse": [
+          0.33213215700017623,
+          0.7346872377504278
+        ],
+        "mean_nrmse": 0.533409697375302,
+        "worst_nrmse": 0.7346872377504278,
+        "r2": [
+          0.902161281821101,
+          0.6681977096888918
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 66,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42142.02289675528,
+          8.419146850612687
+        ],
+        "nrmse": [
+          0.46413366580513654,
+          0.6096464712979477
+        ],
+        "mean_nrmse": 0.5368900685515421,
+        "worst_nrmse": 0.6096464712979477,
+        "r2": [
+          0.8198408568620646,
+          0.7006373772936199
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "497a5dadceb45b1d6737f5bc0d7fa38c68cf54edbfa7b47db591cdc5e4380f5c",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30156.659592382548,
+          10.186863287871734
+        ],
+        "nrmse": [
+          0.33213215700017623,
+          0.7376501879871193
+        ],
+        "mean_nrmse": 0.5348911724936478,
+        "worst_nrmse": 0.7376501879871193,
+        "r2": [
+          0.902161281821101,
+          0.665516034974301
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 54,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42142.02289675528,
+          8.451402992017426
+        ],
+        "nrmse": [
+          0.46413366580513654,
+          0.6119821999809146
+        ],
+        "mean_nrmse": 0.5380579328930256,
+        "worst_nrmse": 0.6119821999809146,
+        "r2": [
+          0.8198408568620646,
+          0.6983390966621665
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a548ac386381d52c4deed18930fc31edf325661319a744d1012e06921c4b4135",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30156.659592382548,
+          10.145945289772516
+        ],
+        "nrmse": [
+          0.33213215700017623,
+          0.7346872377504278
+        ],
+        "mean_nrmse": 0.533409697375302,
+        "worst_nrmse": 0.7346872377504278,
+        "r2": [
+          0.902161281821101,
+          0.6681977096888918
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 54,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42142.02289675528,
+          8.451402992017426
+        ],
+        "nrmse": [
+          0.46413366580513654,
+          0.6119821999809146
+        ],
+        "mean_nrmse": 0.5380579328930256,
+        "worst_nrmse": 0.6119821999809146,
+        "r2": [
+          0.8198408568620646,
+          0.6983390966621665
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a548ac386381d52c4deed18930fc31edf325661319a744d1012e06921c4b4135",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30156.659592382548,
+          10.145945289772516
+        ],
+        "nrmse": [
+          0.33213215700017623,
+          0.7346872377504278
+        ],
+        "mean_nrmse": 0.533409697375302,
+        "worst_nrmse": 0.7346872377504278,
+        "r2": [
+          0.902161281821101,
+          0.6681977096888918
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 45,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42683.95915847409,
+          7.514786809050039
+        ],
+        "nrmse": [
+          0.4701023129296591,
+          0.5441600368759836
+        ],
+        "mean_nrmse": 0.5071311749028213,
+        "worst_nrmse": 0.5441600368759836,
+        "r2": [
+          0.8151774569766863,
+          0.7614965122856938
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "79518e03efe9ba85a3a0f6f9f4643764e9ebfd042ea9e60087977ecf8b2ba4ed",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          31107.141525677285,
+          9.207369239453216
+        ],
+        "nrmse": [
+          0.3426003460821865,
+          0.6667231569148161
+        ],
+        "mean_nrmse": 0.5046617514985012,
+        "worst_nrmse": 0.6667231569148161,
+        "r2": [
+          0.8958966999095507,
+          0.7267466676649368
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          99322.07870835412,
+          15.389892329620569
+        ],
+        "nrmse": [
+          1.0938895980203185,
+          1.1144114384613384
+        ],
+        "mean_nrmse": 1.1041505182408284,
+        "worst_nrmse": 1.1144114384613384,
+        "r2": [
+          -0.0007305333625011734,
+          -0.00030529661354705695
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e16f6be752f0ddb45728f3e77992278d6360c4914c0d2f2c7a6a28d6ee152294",
+      "test": {
+        "rmse": [
+          96454.6900791784,
+          17.732793724991485
+        ],
+        "nrmse": [
+          1.0623094434793803,
+          1.2840653943349045
+        ],
+        "mean_nrmse": 1.1731874189071423,
+        "worst_nrmse": 1.2840653943349045,
+        "r2": [
+          -0.0009006853608084509,
+          -0.013558153466674217
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          93458.435343394,
+          10.637319878779408
+        ],
+        "nrmse": [
+          1.0293100144388563,
+          0.7702686083558984
+        ],
+        "mean_nrmse": 0.8997893113973774,
+        "worst_nrmse": 1.0293100144388563,
+        "r2": [
+          0.11394116168306656,
+          0.5221123094939206
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "cdddcf4c0435a739cbf85f7c0c5d88243d485a7bda269db8474db4c5a35005d0",
+      "test": {
+        "rmse": [
+          101510.63684640345,
+          12.776661937749072
+        ],
+        "nrmse": [
+          1.1179934127310904,
+          0.9251824446735566
+        ],
+        "mean_nrmse": 1.0215879287023235,
+        "worst_nrmse": 1.1179934127310904,
+        "r2": [
+          -0.1085808996018871,
+          0.4738262781147149
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 1,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.671875,
+      "validation": {
+        "rmse": [
+          51995.337618064856,
+          5.863410730474703
+        ],
+        "nrmse": [
+          0.5726537312309765,
+          0.4245807473169671
+        ],
+        "mean_nrmse": 0.49861723927397184,
+        "worst_nrmse": 0.5726537312309765,
+        "r2": [
+          0.7257451255545764,
+          0.8548015298788663
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "ae783a654f3587afd9c09ef88bd44b16f45bcabf5a326801c742d2f483bbc2b8",
+      "test": {
+        "rmse": [
+          36912.54017104737,
+          7.133556917695421
+        ],
+        "nrmse": [
+          0.4065384479938356,
+          0.5165544537757518
+        ],
+        "mean_nrmse": 0.46154645088479374,
+        "worst_nrmse": 0.5165544537757518,
+        "r2": [
+          0.8534141154684657,
+          0.8359762983414527
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 75,
+      "training_cpu_seconds": 20.0,
+      "validation": {
+        "rmse": [
+          42737.86687983839,
+          8.73860735821469
+        ],
+        "nrmse": [
+          0.47069602881257505,
+          0.6327792155812285
+        ],
+        "mean_nrmse": 0.5517376221969018,
+        "worst_nrmse": 0.6327792155812285,
+        "r2": [
+          0.8147103187840923,
+          0.6774880153620493
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "c015aa8c9093572d26fa4af577f36440de12fc1ce73772515dcdbdce9cda57c3",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          31181.400362427677,
+          11.895035553079225
+        ],
+        "nrmse": [
+          0.3434182001800741,
+          0.8613421976801187
+        ],
+        "mean_nrmse": 0.6023801989300963,
+        "worst_nrmse": 0.8613421976801187,
+        "r2": [
+          0.8953990767398968,
+          0.5439359536978858
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 75,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42737.85631061089,
+          8.73860735821469
+        ],
+        "nrmse": [
+          0.4706959124077619,
+          0.6327792155812285
+        ],
+        "mean_nrmse": 0.5517375639944953,
+        "worst_nrmse": 0.6327792155812285,
+        "r2": [
+          0.8147104104296842,
+          0.6774880153620493
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "ea3d216c07ffd13c0881bd6df7822a738b32d5b3d563ed8f85d0f555fe52ea02",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          31181.39472581551,
+          11.895035553079225
+        ],
+        "nrmse": [
+          0.34341813810091204,
+          0.8613421976801187
+        ],
+        "mean_nrmse": 0.6023801678905154,
+        "worst_nrmse": 0.8613421976801187,
+        "r2": [
+          0.8953991145569786,
+          0.5439359536978858
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 67,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          41923.56944477211,
+          8.546733896806659
+        ],
+        "nrmse": [
+          0.4617277157698205,
+          0.6188852925081779
+        ],
+        "mean_nrmse": 0.5403065041389992,
+        "worst_nrmse": 0.6188852925081779,
+        "r2": [
+          0.8217038134698752,
+          0.6914953103185663
+        ]
+      },
+      "selected_transfer_heads": 2,
+      "model_sha256": "347ab46df52734925c63e7b7c92ec2c01a1b54d6591bb138986865454ce95538",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          29821.765315524946,
+          10.514058191145498
+        ],
+        "nrmse": [
+          0.32844377904176913,
+          0.7613429946036243
+        ],
+        "mean_nrmse": 0.5448933868226967,
+        "worst_nrmse": 0.7613429946036243,
+        "r2": [
+          0.9043222435182614,
+          0.6436841841441789
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 73,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          41923.56944477211,
+          8.73860735821469
+        ],
+        "nrmse": [
+          0.4617277157698205,
+          0.6327792155812285
+        ],
+        "mean_nrmse": 0.5472534656755246,
+        "worst_nrmse": 0.6327792155812285,
+        "r2": [
+          0.8217038134698752,
+          0.6774880153620493
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "fa3f9164cfa659a8277114c25cef2006046dd109ab060de6b27d21fa2c7ff2f7",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          29821.765315524946,
+          11.895035553079225
+        ],
+        "nrmse": [
+          0.32844377904176913,
+          0.8613421976801187
+        ],
+        "mean_nrmse": 0.594892988360944,
+        "worst_nrmse": 0.8613421976801187,
+        "r2": [
+          0.9043222435182614,
+          0.5439359536978858
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 62,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          43731.65723128698,
+          8.330200399154391
+        ],
+        "nrmse": [
+          0.48164119772365566,
+          0.6032056892058669
+        ],
+        "mean_nrmse": 0.5424234434647612,
+        "worst_nrmse": 0.6032056892058669,
+        "r2": [
+          0.8059929906282549,
+          0.7069293657693339
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "11759857531e55fec977b5f85623d33e4cc115b8904ec3ae86c32a380e86fecf",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          32314.71728674104,
+          10.060089507951577
+        ],
+        "nrmse": [
+          0.3559000532674128,
+          0.7284702569379535
+        ],
+        "mean_nrmse": 0.5421851551026832,
+        "worst_nrmse": 0.7284702569379535,
+        "r2": [
+          0.8876572609561244,
+          0.6737894242134304
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          99322.07870835412,
+          15.389892329620569
+        ],
+        "nrmse": [
+          1.0938895980203185,
+          1.1144114384613384
+        ],
+        "mean_nrmse": 1.1041505182408284,
+        "worst_nrmse": 1.1144114384613384,
+        "r2": [
+          -0.0007305333625011734,
+          -0.00030529661354705695
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e16f6be752f0ddb45728f3e77992278d6360c4914c0d2f2c7a6a28d6ee152294",
+      "test": {
+        "rmse": [
+          96454.6900791784,
+          17.732793724991485
+        ],
+        "nrmse": [
+          1.0623094434793803,
+          1.2840653943349045
+        ],
+        "mean_nrmse": 1.1731874189071423,
+        "worst_nrmse": 1.2840653943349045,
+        "r2": [
+          -0.0009006853608084509,
+          -0.013558153466674217
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          93458.435343394,
+          10.637319878779408
+        ],
+        "nrmse": [
+          1.0293100144388563,
+          0.7702686083558984
+        ],
+        "mean_nrmse": 0.8997893113973774,
+        "worst_nrmse": 1.0293100144388563,
+        "r2": [
+          0.11394116168306656,
+          0.5221123094939206
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "cdddcf4c0435a739cbf85f7c0c5d88243d485a7bda269db8474db4c5a35005d0",
+      "test": {
+        "rmse": [
+          101510.63684640345,
+          12.776661937749072
+        ],
+        "nrmse": [
+          1.1179934127310904,
+          0.9251824446735566
+        ],
+        "mean_nrmse": 1.0215879287023235,
+        "worst_nrmse": 1.1179934127310904,
+        "r2": [
+          -0.1085808996018871,
+          0.4738262781147149
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 2,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.59375,
+      "validation": {
+        "rmse": [
+          51864.842657934685,
+          5.911871352935536
+        ],
+        "nrmse": [
+          0.5712165172566332,
+          0.4280898733607774
+        ],
+        "mean_nrmse": 0.49965319530870533,
+        "worst_nrmse": 0.5712165172566332,
+        "r2": [
+          0.7271200168464028,
+          0.8523915039591669
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "7cff98c38d6786ec22123b44a6f1a4efc45f1213804c8308253e59046d7a9ea8",
+      "test": {
+        "rmse": [
+          36846.47290036031,
+          7.202647988911956
+        ],
+        "nrmse": [
+          0.4058108121940818,
+          0.5215574699379287
+        ],
+        "mean_nrmse": 0.4636841410660053,
+        "worst_nrmse": 0.5215574699379287,
+        "r2": [
+          0.853938374293455,
+          0.8327836544996221
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 97,
+      "training_cpu_seconds": 20.0,
+      "validation": {
+        "rmse": [
+          42610.856951509784,
+          8.638070676656424
+        ],
+        "nrmse": [
+          0.4692971974424431,
+          0.6254991628353209
+        ],
+        "mean_nrmse": 0.547398180138882,
+        "worst_nrmse": 0.6254991628353209,
+        "r2": [
+          0.8158099834049324,
+          0.6848662541424498
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "f0f559a0fc30afcf236beb901ba5ca4d89e1bb178b1d9d2d232892ad7a1fee0f",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30789.52972172688,
+          10.175704998181866
+        ],
+        "nrmse": [
+          0.3391023096630132,
+          0.7368421949617152
+        ],
+        "mean_nrmse": 0.5379722523123642,
+        "worst_nrmse": 0.7368421949617152,
+        "r2": [
+          0.8980116894059987,
+          0.666248394834757
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 97,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42610.856951509784,
+          8.638070676656424
+        ],
+        "nrmse": [
+          0.4692971974424431,
+          0.6254991628353209
+        ],
+        "mean_nrmse": 0.547398180138882,
+        "worst_nrmse": 0.6254991628353209,
+        "r2": [
+          0.8158099834049324,
+          0.6848662541424498
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "568ae2120d4d6a82f4a6629807e461aa5b1afaec858893142c68f253897644c1",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30789.52972172688,
+          10.175704998181866
+        ],
+        "nrmse": [
+          0.3391023096630132,
+          0.7368421949617152
+        ],
+        "mean_nrmse": 0.5379722523123642,
+        "worst_nrmse": 0.7368421949617152,
+        "r2": [
+          0.8980116894059987,
+          0.666248394834757
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 97,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42610.856951509784,
+          8.638070676656424
+        ],
+        "nrmse": [
+          0.4692971974424431,
+          0.6254991628353209
+        ],
+        "mean_nrmse": 0.547398180138882,
+        "worst_nrmse": 0.6254991628353209,
+        "r2": [
+          0.8158099834049324,
+          0.6848662541424498
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "568ae2120d4d6a82f4a6629807e461aa5b1afaec858893142c68f253897644c1",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30789.52972172688,
+          10.175704998181866
+        ],
+        "nrmse": [
+          0.3391023096630132,
+          0.7368421949617152
+        ],
+        "mean_nrmse": 0.5379722523123642,
+        "worst_nrmse": 0.7368421949617152,
+        "r2": [
+          0.8980116894059987,
+          0.666248394834757
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 97,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42610.856951509784,
+          8.638070676656424
+        ],
+        "nrmse": [
+          0.4692971974424431,
+          0.6254991628353209
+        ],
+        "mean_nrmse": 0.547398180138882,
+        "worst_nrmse": 0.6254991628353209,
+        "r2": [
+          0.8158099834049324,
+          0.6848662541424498
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "568ae2120d4d6a82f4a6629807e461aa5b1afaec858893142c68f253897644c1",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30789.52972172688,
+          10.175704998181866
+        ],
+        "nrmse": [
+          0.3391023096630132,
+          0.7368421949617152
+        ],
+        "mean_nrmse": 0.5379722523123642,
+        "worst_nrmse": 0.7368421949617152,
+        "r2": [
+          0.8980116894059987,
+          0.666248394834757
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 62,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          43783.434940085004,
+          9.167497325831599
+        ],
+        "nrmse": [
+          0.482211454586984,
+          0.6638359556491027
+        ],
+        "mean_nrmse": 0.5730237051180433,
+        "worst_nrmse": 0.6638359556491027,
+        "r2": [
+          0.8055333151534303,
+          0.6450534253784398
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "b9de5cb3d7554df28fc09ff567bdd59cc1b5b089e07fe71b3c89fba235acc0a3",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          32073.666760158543,
+          10.669618775506455
+        ],
+        "nrmse": [
+          0.3532452290122723,
+          0.7726074330332501
+        ],
+        "mean_nrmse": 0.5629263310227612,
+        "worst_nrmse": 0.7726074330332501,
+        "r2": [
+          0.8893270434250707,
+          0.6330624541280525
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          99322.07870835412,
+          15.389892329620569
+        ],
+        "nrmse": [
+          1.0938895980203185,
+          1.1144114384613384
+        ],
+        "mean_nrmse": 1.1041505182408284,
+        "worst_nrmse": 1.1144114384613384,
+        "r2": [
+          -0.0007305333625011734,
+          -0.00030529661354705695
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e16f6be752f0ddb45728f3e77992278d6360c4914c0d2f2c7a6a28d6ee152294",
+      "test": {
+        "rmse": [
+          96454.6900791784,
+          17.732793724991485
+        ],
+        "nrmse": [
+          1.0623094434793803,
+          1.2840653943349045
+        ],
+        "mean_nrmse": 1.1731874189071423,
+        "worst_nrmse": 1.2840653943349045,
+        "r2": [
+          -0.0009006853608084509,
+          -0.013558153466674217
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          93458.435343394,
+          10.637319878779408
+        ],
+        "nrmse": [
+          1.0293100144388563,
+          0.7702686083558984
+        ],
+        "mean_nrmse": 0.8997893113973774,
+        "worst_nrmse": 1.0293100144388563,
+        "r2": [
+          0.11394116168306656,
+          0.5221123094939206
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "cdddcf4c0435a739cbf85f7c0c5d88243d485a7bda269db8474db4c5a35005d0",
+      "test": {
+        "rmse": [
+          101510.63684640345,
+          12.776661937749072
+        ],
+        "nrmse": [
+          1.1179934127310904,
+          0.9251824446735566
+        ],
+        "mean_nrmse": 1.0215879287023235,
+        "worst_nrmse": 1.1179934127310904,
+        "r2": [
+          -0.1085808996018871,
+          0.4738262781147149
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 3,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.609375,
+      "validation": {
+        "rmse": [
+          51971.386766928255,
+          5.899127597221178
+        ],
+        "nrmse": [
+          0.5723899471130566,
+          0.42716707371846263
+        ],
+        "mean_nrmse": 0.4997785104157596,
+        "worst_nrmse": 0.5723899471130566,
+        "r2": [
+          0.7259977299264799,
+          0.8530271940977228
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "bd109b16fb78525381ba7c7ad443800627a80728316ddb55bc43c0153a908ad9",
+      "test": {
+        "rmse": [
+          36892.424545379254,
+          7.199796619824476
+        ],
+        "nrmse": [
+          0.40631690335882414,
+          0.5213509968672727
+        ],
+        "mean_nrmse": 0.4638339501130484,
+        "worst_nrmse": 0.5213509968672727,
+        "r2": [
+          0.8535738369790611,
+          0.8329160228016169
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "independent20",
+      "status": "ok",
+      "complexity": 64,
+      "training_cpu_seconds": 20.0,
+      "validation": {
+        "rmse": [
+          43087.658184041036,
+          8.719097942472299
+        ],
+        "nrmse": [
+          0.47454847606419565,
+          0.6313665016001715
+        ],
+        "mean_nrmse": 0.5529574888321835,
+        "worst_nrmse": 0.6313665016001715,
+        "r2": [
+          0.8116648719099018,
+          0.6789264589249353
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "a560ec0ccd878c8d83436fb37fc30da9d69f7babffc5cfdc52c2cf62843e9885",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30892.700607327803,
+          10.44777976075959
+        ],
+        "nrmse": [
+          0.34023858832376075,
+          0.7565436471252043
+        ],
+        "mean_nrmse": 0.5483911177244825,
+        "worst_nrmse": 0.7565436471252043,
+        "r2": [
+          0.8973270505965087,
+          0.6481623061465196
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "independent25",
+      "status": "ok",
+      "complexity": 62,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          43848.882376732385,
+          8.554787494386805
+        ],
+        "nrmse": [
+          0.48293226380782084,
+          0.6194684688600232
+        ],
+        "mean_nrmse": 0.551200366333922,
+        "worst_nrmse": 0.6194684688600232,
+        "r2": [
+          0.8049515034035625,
+          0.6909136277108772
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "efa66445c4e48a6a5172fb631f4d308c6a3833657a3dba76af6c8d4c3791e89f",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          31790.420867969857,
+          10.031376395047271
+        ],
+        "nrmse": [
+          0.35012568359823604,
+          0.7263910857021155
+        ],
+        "mean_nrmse": 0.5382583846501758,
+        "worst_nrmse": 0.7263910857021155,
+        "r2": [
+          0.8912731410342234,
+          0.6756488816878747
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "random25",
+      "status": "ok",
+      "complexity": 55,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          43087.658184041036,
+          8.675461338183576
+        ],
+        "nrmse": [
+          0.47454847606419565,
+          0.6282066919073273
+        ],
+        "mean_nrmse": 0.5513775839857614,
+        "worst_nrmse": 0.6282066919073273,
+        "r2": [
+          0.8116648719099018,
+          0.6821321803701814
+        ]
+      },
+      "selected_transfer_heads": 1,
+      "model_sha256": "c1362960a78d7f1220c5b253303567c8d3aacb61b71b7e43f9bb1a5348f6381e",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30892.700607327803,
+          10.366543747795257
+        ],
+        "nrmse": [
+          0.34023858832376075,
+          0.7506611925814384
+        ],
+        "mean_nrmse": 0.5454498904525995,
+        "worst_nrmse": 0.7506611925814384,
+        "r2": [
+          0.8973270505965087,
+          0.6536124158958012
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "semantic25",
+      "status": "ok",
+      "complexity": 55,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42375.48226939923,
+          8.542035658326034
+        ],
+        "nrmse": [
+          0.46670488443665,
+          0.6185450841044225
+        ],
+        "mean_nrmse": 0.5426249842705363,
+        "worst_nrmse": 0.6185450841044225,
+        "r2": [
+          0.8178392280990218,
+          0.6918343942863545
+        ]
+      },
+      "selected_transfer_heads": 2,
+      "model_sha256": "09f257f6949930cec42dd38878824f68465a7ef3d5b3ac3fa1bf8fb476544b74",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30308.949469677147,
+          10.23351472946586
+        ],
+        "nrmse": [
+          0.33380941058591235,
+          0.7410283077958683
+        ],
+        "mean_nrmse": 0.5374188591908903,
+        "worst_nrmse": 0.7410283077958683,
+        "r2": [
+          0.9011706238111985,
+          0.6624454353447481
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "joint25",
+      "status": "ok",
+      "complexity": 54,
+      "training_cpu_seconds": 25.0,
+      "validation": {
+        "rmse": [
+          42201.41417302163,
+          8.412483447594864
+        ],
+        "nrmse": [
+          0.46478777514483,
+          0.6091639615842281
+        ],
+        "mean_nrmse": 0.536975868364529,
+        "worst_nrmse": 0.6091639615842281,
+        "r2": [
+          0.8193326980009606,
+          0.7011110557907121
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "01d082f88421a89bc6144437f815f5a0b073a69efa9ba3a9c74815ee3b2dfb91",
+      "expanded_domain": {
+        "status": "enclosed",
+        "features": [
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed",
+          "enclosed"
+        ],
+        "outputs": [
+          "enclosed",
+          "enclosed"
+        ]
+      },
+      "test": {
+        "rmse": [
+          30256.61840998406,
+          10.142671276312484
+        ],
+        "nrmse": [
+          0.3332330593597188,
+          0.7344501601951473
+        ],
+        "mean_nrmse": 0.533841609777433,
+        "worst_nrmse": 0.7344501601951473,
+        "r2": [
+          0.9015116043633008,
+          0.6684118149022377
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "mean",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          99322.07870835412,
+          15.389892329620569
+        ],
+        "nrmse": [
+          1.0938895980203185,
+          1.1144114384613384
+        ],
+        "mean_nrmse": 1.1041505182408284,
+        "worst_nrmse": 1.1144114384613384,
+        "r2": [
+          -0.0007305333625011734,
+          -0.00030529661354705695
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "e16f6be752f0ddb45728f3e77992278d6360c4914c0d2f2c7a6a28d6ee152294",
+      "test": {
+        "rmse": [
+          96454.6900791784,
+          17.732793724991485
+        ],
+        "nrmse": [
+          1.0623094434793803,
+          1.2840653943349045
+        ],
+        "mean_nrmse": 1.1731874189071423,
+        "worst_nrmse": 1.2840653943349045,
+        "r2": [
+          -0.0009006853608084509,
+          -0.013558153466674217
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "ridge",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.0,
+      "validation": {
+        "rmse": [
+          93458.435343394,
+          10.637319878779408
+        ],
+        "nrmse": [
+          1.0293100144388563,
+          0.7702686083558984
+        ],
+        "mean_nrmse": 0.8997893113973774,
+        "worst_nrmse": 1.0293100144388563,
+        "r2": [
+          0.11394116168306656,
+          0.5221123094939206
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "cdddcf4c0435a739cbf85f7c0c5d88243d485a7bda269db8474db4c5a35005d0",
+      "test": {
+        "rmse": [
+          101510.63684640345,
+          12.776661937749072
+        ],
+        "nrmse": [
+          1.1179934127310904,
+          0.9251824446735566
+        ],
+        "mean_nrmse": 1.0215879287023235,
+        "worst_nrmse": 1.1179934127310904,
+        "r2": [
+          -0.1085808996018871,
+          0.4738262781147149
+        ]
+      }
+    },
+    {
+      "dataset": "video",
+      "seed": 4,
+      "method": "extra_trees",
+      "status": "ok",
+      "complexity": null,
+      "training_cpu_seconds": 0.53125,
+      "validation": {
+        "rmse": [
+          51851.897091082225,
+          5.942534087923608
+        ],
+        "nrmse": [
+          0.5710739404891658,
+          0.4303102204479009
+        ],
+        "mean_nrmse": 0.5006920804685333,
+        "worst_nrmse": 0.5710739404891658,
+        "r2": [
+          0.7272562226078929,
+          0.8508563495235136
+        ]
+      },
+      "selected_transfer_heads": 0,
+      "model_sha256": "ee47c84fabc7cd0889334a8a706b941ee423d3d488d524d8bb794cee9d79b94e",
+      "test": {
+        "rmse": [
+          36792.31812828974,
+          7.221433914168216
+        ],
+        "nrmse": [
+          0.4052143754035762,
+          0.5229177945938305
+        ],
+        "mean_nrmse": 0.46406608499870333,
+        "worst_nrmse": 0.5229177945938305,
+        "r2": [
+          0.8543674043008895,
+          0.8319102506193566
+        ]
+      }
+    }
+  ]
+}
