@@ -1,0 +1,758 @@
+{
+  "dataset": "air_quality",
+  "fold": 2,
+  "seed": 4,
+  "status": "ok",
+  "config": {
+    "max_features": 192,
+    "generations": 10000,
+    "proposals_per_generation": 128,
+    "max_terms": 8,
+    "max_nodes": 13,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos"
+    ],
+    "complexity_weight": 0.0001,
+    "validation_fraction": 0.2,
+    "polish_max_nfev": 10,
+    "random_state": 4,
+    "interval_max_boxes": 32,
+    "head_ridge": 0.001,
+    "search_seconds": 20.0,
+    "candidate_quota": 0,
+    "prune_tolerance": 0.0
+  },
+  "fold_sha256": "4fcee3119f34c1a845e853207f575335409818ca51188639982e83e6a8c2d522",
+  "freeze_sha256": "6ee75a1791e1d7854f0e1ee07eb4e578408797b5a05592aaf5797ac470b22907",
+  "unique_search_cpu_seconds": 85.046875,
+  "fitting_cpu_seconds": 85.078125,
+  "variants": {
+    "independent20": {
+      "indices": [
+        16,
+        21,
+        25
+      ],
+      "model": "independent20.json",
+      "model_sha256": "119a7a23559d6da2f2b76bf1780c7b67bf972114565a5430ae78cdc81a9780fc",
+      "complexity": 84,
+      "shared_basis": 0,
+      "private_basis": 19,
+      "origins": [
+        "independent",
+        "independent",
+        "independent"
+      ],
+      "selected_transfer_heads": 0,
+      "selected_internal_heads": 0,
+      "training_cpu_seconds": 20.015625,
+      "selection_cpu_seconds": 0.8125,
+      "status": "ok",
+      "train": {
+        "rmse": [
+          0.29224968578507793,
+          42.40846860811381,
+          15.37835341530463
+        ],
+        "nrmse": [
+          0.2354009512289573,
+          0.4328196696717832,
+          0.4146703278268251
+        ],
+        "mean_nrmse": 0.36096364957585525,
+        "worst_nrmse": 0.4328196696717832,
+        "r2": [
+          0.9445863921605021,
+          0.8126671335452085,
+          0.8280485192199935
+        ]
+      },
+      "inner": {
+        "rmse": [
+          0.3691274846510313,
+          105.32027124835912,
+          29.225782299266545
+        ],
+        "nrmse": [
+          0.2973243949884233,
+          1.0748958051915107,
+          0.7880599697345565
+        ],
+        "mean_nrmse": 0.7200933899714969,
+        "worst_nrmse": 1.0748958051915107,
+        "r2": [
+          0.9496458441072102,
+          0.7273279773226893,
+          0.5183377643945482
+        ]
+      },
+      "outer": {
+        "rmse": [
+          0.7117515730677704,
+          170.0562936769327,
+          33.52356237967316
+        ],
+        "nrmse": [
+          0.5733008639129037,
+          1.7355898779324355,
+          0.9039476611369527
+        ],
+        "mean_nrmse": 1.0709461343274307,
+        "worst_nrmse": 1.7355898779324355,
+        "r2": [
+          0.827963956037314,
+          0.5774203403809787,
+          0.41746043523981624
+        ]
+      },
+      "training_domain": "enclosed",
+      "observed_domain": "enclosed",
+      "constant_outputs": [
+        false,
+        false,
+        false
+      ]
+    },
+    "independent25": {
+      "indices": [
+        16,
+        24,
+        25
+      ],
+      "model": "independent25.json",
+      "model_sha256": "9731a71c4f1ea139a33495742dbfec54e08c90fbf8b00b74d9a0524ca548f0bf",
+      "complexity": 88,
+      "shared_basis": 0,
+      "private_basis": 20,
+      "origins": [
+        "independent",
+        "independent",
+        "independent"
+      ],
+      "selected_transfer_heads": 0,
+      "selected_internal_heads": 0,
+      "training_cpu_seconds": 25.03125,
+      "selection_cpu_seconds": 0.390625,
+      "status": "ok",
+      "train": {
+        "rmse": [
+          0.29224968578507793,
+          42.20178145156226,
+          15.37835341530463
+        ],
+        "nrmse": [
+          0.2354009512289573,
+          0.43071022621013166,
+          0.4146703278268251
+        ],
+        "mean_nrmse": 0.36026050175530466,
+        "worst_nrmse": 0.43071022621013166,
+        "r2": [
+          0.9445863921605021,
+          0.8144887010380172,
+          0.8280485192199935
+        ]
+      },
+      "inner": {
+        "rmse": [
+          0.3691274846510313,
+          102.27031067991665,
+          29.225782299266545
+        ],
+        "nrmse": [
+          0.2973243949884233,
+          1.043767991123434,
+          0.7880599697345565
+        ],
+        "mean_nrmse": 0.7097174519488046,
+        "worst_nrmse": 1.043767991123434,
+        "r2": [
+          0.9496458441072102,
+          0.7428918802267925,
+          0.5183377643945482
+        ]
+      },
+      "outer": {
+        "rmse": [
+          0.7117515730677704,
+          162.17038754898704,
+          33.52356237967316
+        ],
+        "nrmse": [
+          0.5733008639129037,
+          1.6551065358693102,
+          0.9039476611369527
+        ],
+        "mean_nrmse": 1.0441183536397223,
+        "worst_nrmse": 1.6551065358693102,
+        "r2": [
+          0.827963956037314,
+          0.615703632807489,
+          0.41746043523981624
+        ]
+      },
+      "training_domain": "enclosed",
+      "observed_domain": "enclosed",
+      "constant_outputs": [
+        false,
+        false,
+        false
+      ]
+    },
+    "semantic25": {
+      "indices": [
+        16,
+        39,
+        32
+      ],
+      "model": "semantic25.json",
+      "model_sha256": "51c803b1a4e557933d8b79ec20a4324dde52fdef18f05d84668126e792517a3b",
+      "complexity": 52,
+      "shared_basis": 1,
+      "private_basis": 12,
+      "origins": [
+        "independent",
+        "semantic",
+        "semantic"
+      ],
+      "selected_transfer_heads": 2,
+      "selected_internal_heads": 0,
+      "training_cpu_seconds": 25.015625,
+      "selection_cpu_seconds": 0.59375,
+      "status": "ok",
+      "train": {
+        "rmse": [
+          0.29224968578507793,
+          43.63562686944364,
+          17.38131012817729
+        ],
+        "nrmse": [
+          0.2354009512289573,
+          0.4453440132931456,
+          0.468679147517707
+        ],
+        "mean_nrmse": 0.38314137067993664,
+        "worst_nrmse": 0.468679147517707,
+        "r2": [
+          0.9445863921605021,
+          0.8016687098239546,
+          0.7803398566820755
+        ]
+      },
+      "inner": {
+        "rmse": [
+          0.3691274846510313,
+          104.17513631643335,
+          26.82871741180679
+        ],
+        "nrmse": [
+          0.2973243949884233,
+          1.0632085894246366,
+          0.7234242017910338
+        ],
+        "mean_nrmse": 0.6946523954013646,
+        "worst_nrmse": 1.0632085894246366,
+        "r2": [
+          0.9496458441072102,
+          0.7332252038681809,
+          0.5941083385907342
+        ]
+      },
+      "outer": {
+        "rmse": [
+          0.7117515730677704,
+          156.33505182642128,
+          44.55337409052478
+        ],
+        "nrmse": [
+          0.5733008639129037,
+          1.5955512592286052,
+          1.201361533382546
+        ],
+        "mean_nrmse": 1.123404552174685,
+        "worst_nrmse": 1.5955512592286052,
+        "r2": [
+          0.827963956037314,
+          0.6428621385010652,
+          -0.02893111449500907
+        ]
+      },
+      "training_domain": "enclosed",
+      "observed_domain": "enclosed",
+      "constant_outputs": [
+        false,
+        false,
+        false
+      ]
+    },
+    "whole25": {
+      "indices": [
+        45,
+        47,
+        34
+      ],
+      "model": "whole25.json",
+      "model_sha256": "1ba369e9ae1866d934a8533bb41fa7b124ce7afab838a00ba9e026ba66761236",
+      "complexity": 57,
+      "shared_basis": 1,
+      "private_basis": 13,
+      "origins": [
+        "whole",
+        "whole",
+        "whole"
+      ],
+      "selected_transfer_heads": 3,
+      "selected_internal_heads": 0,
+      "training_cpu_seconds": 25.015625,
+      "selection_cpu_seconds": 0.578125,
+      "status": "ok",
+      "train": {
+        "rmse": [
+          0.2922485003279376,
+          42.31708231892718,
+          17.102712556656382
+        ],
+        "nrmse": [
+          0.23539999636826092,
+          0.4318869837060674,
+          0.4611668903082089
+        ],
+        "mean_nrmse": 0.37615129012751236,
+        "worst_nrmse": 0.4611668903082089,
+        "r2": [
+          0.9445868417098228,
+          0.8134736333052751,
+          0.7873250992834564
+        ]
+      },
+      "inner": {
+        "rmse": [
+          0.36892150056760314,
+          104.98790458089694,
+          28.043154394349475
+        ],
+        "nrmse": [
+          0.2971584791584481,
+          1.071503680082014,
+          0.7561709444413113
+        ],
+        "mean_nrmse": 0.7082777012272577,
+        "worst_nrmse": 1.071503680082014,
+        "r2": [
+          0.9497020266516948,
+          0.7290462427854945,
+          0.5565302170698483
+        ]
+      },
+      "outer": {
+        "rmse": [
+          0.7118477633399797,
+          169.16648441790173,
+          29.936218239867895
+        ],
+        "nrmse": [
+          0.5733783431461704,
+          1.7265085089935204,
+          0.8072165527856351
+        ],
+        "mean_nrmse": 1.0357011349751086,
+        "worst_nrmse": 1.7265085089935204,
+        "r2": [
+          0.8279174529799702,
+          0.5818310157764083,
+          0.5354644299065423
+        ]
+      },
+      "training_domain": "enclosed",
+      "observed_domain": "enclosed",
+      "constant_outputs": [
+        false,
+        false,
+        false
+      ]
+    },
+    "context25": {
+      "indices": [
+        44,
+        21,
+        34
+      ],
+      "model": "context25.json",
+      "model_sha256": "79545ac00d0b0505dd7fbf7a12182717f9834f3e52642d5c73fabae0546c4c49",
+      "complexity": 71,
+      "shared_basis": 0,
+      "private_basis": 16,
+      "origins": [
+        "internal",
+        "independent",
+        "internal"
+      ],
+      "selected_transfer_heads": 2,
+      "selected_internal_heads": 2,
+      "training_cpu_seconds": 25.015625,
+      "selection_cpu_seconds": 0.546875,
+      "status": "ok",
+      "train": {
+        "rmse": [
+          0.28951935703440723,
+          42.40846860811381,
+          16.541670799090717
+        ],
+        "nrmse": [
+          0.23320172906949083,
+          0.4328196696717832,
+          0.4460386536724999
+        ],
+        "mean_nrmse": 0.3706866841379246,
+        "worst_nrmse": 0.4460386536724999,
+        "r2": [
+          0.9456169535589998,
+          0.8126671335452085,
+          0.8010495194300238
+        ]
+      },
+      "inner": {
+        "rmse": [
+          0.35174344220246495,
+          105.32027124835912,
+          27.353008487042782
+        ],
+        "nrmse": [
+          0.28332191584938143,
+          1.0748958051915107,
+          0.7375614729392195
+        ],
+        "mean_nrmse": 0.6985930646600371,
+        "worst_nrmse": 1.0748958051915107,
+        "r2": [
+          0.9542770153289899,
+          0.7273279773226893,
+          0.5780893310035359
+        ]
+      },
+      "outer": {
+        "rmse": [
+          0.7186675800409027,
+          170.0562936769327,
+          23.737100317860627
+        ],
+        "nrmse": [
+          0.5788715615025625,
+          1.7355898779324355,
+          0.640060148485703
+        ],
+        "mean_nrmse": 0.9848405293069002,
+        "worst_nrmse": 1.7355898779324355,
+        "r2": [
+          0.824604404444208,
+          0.5774203403809787,
+          0.7079343838477972
+        ]
+      },
+      "training_domain": "enclosed",
+      "observed_domain": "enclosed",
+      "constant_outputs": [
+        false,
+        false,
+        false
+      ]
+    },
+    "joint25": {
+      "indices": [
+        32
+      ],
+      "model": "joint25.json",
+      "model_sha256": "9e47808b330bd69b723659f7228f559265ca0f51c0e63f4dd496ed15ebb0522a",
+      "complexity": 71,
+      "shared_basis": 8,
+      "private_basis": 0,
+      "origins": [
+        "joint",
+        "joint",
+        "joint"
+      ],
+      "selected_transfer_heads": 0,
+      "selected_internal_heads": 0,
+      "training_cpu_seconds": 25.0,
+      "selection_cpu_seconds": 0.609375,
+      "status": "ok",
+      "train": {
+        "rmse": [
+          0.3090960977360611,
+          43.60635005078459,
+          15.548203630456994
+        ],
+        "nrmse": [
+          0.24897038035393054,
+          0.4450452148833717,
+          0.41925026187415904
+        ],
+        "mean_nrmse": 0.3710886190371537,
+        "worst_nrmse": 0.4450452148833717,
+        "r2": [
+          0.9380137497064192,
+          0.8019347567094135,
+          0.8242292179184492
+        ]
+      },
+      "inner": {
+        "rmse": [
+          0.3637531696336045,
+          114.52189256170803,
+          29.18310086843999
+        ],
+        "nrmse": [
+          0.2929954977172155,
+          1.1688073004188233,
+          0.7869090843026122
+        ],
+        "mean_nrmse": 0.7495706274795504,
+        "worst_nrmse": 1.1688073004188233,
+        "r2": [
+          0.9511014336623734,
+          0.677601008384048,
+          0.5197435794156708
+        ]
+      },
+      "outer": {
+        "rmse": [
+          0.7434858560607102,
+          185.0830482498601,
+          39.3378767532799
+        ],
+        "nrmse": [
+          0.5988621588140063,
+          1.8889525237424998,
+          1.0607280122109672
+        ],
+        "mean_nrmse": 1.182847564922491,
+        "worst_nrmse": 1.8889525237424998,
+        "r2": [
+          0.8122811012017763,
+          0.49943963689214466,
+          0.19786598680451306
+        ]
+      },
+      "training_domain": "enclosed",
+      "observed_domain": "enclosed",
+      "constant_outputs": [
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "diagnostics": {
+    "independent20": {
+      "search_cpu_seconds": 20.015625,
+      "budget_overshoot_seconds": 0.015624999999999112,
+      "stages": [
+        {
+          "feature_attempts": 2193,
+          "feature_evaluations": 1690,
+          "domain_rejections": 177,
+          "head_fits": 4153,
+          "polish_residual_calls": 1617,
+          "prune_head_fits": 0,
+          "budget_exhausted": true,
+          "search_cpu_seconds": 6.671875,
+          "budget_overshoot_seconds": 0.005208333333333037
+        },
+        {
+          "feature_attempts": 2229,
+          "feature_evaluations": 1651,
+          "domain_rejections": 173,
+          "head_fits": 4158,
+          "polish_residual_calls": 1875,
+          "prune_head_fits": 0,
+          "budget_exhausted": true,
+          "search_cpu_seconds": 6.671875,
+          "budget_overshoot_seconds": 0.005208333333333037
+        },
+        {
+          "feature_attempts": 2068,
+          "feature_evaluations": 1538,
+          "domain_rejections": 171,
+          "head_fits": 3849,
+          "polish_residual_calls": 1744,
+          "prune_head_fits": 0,
+          "budget_exhausted": true,
+          "search_cpu_seconds": 6.671875,
+          "budget_overshoot_seconds": 0.005208333333333037
+        }
+      ]
+    },
+    "independent25": {
+      "search_cpu_seconds": 25.03125,
+      "budget_overshoot_seconds": 0.031249999999998224,
+      "stages": [
+        {
+          "feature_attempts": 2817,
+          "feature_evaluations": 2099,
+          "domain_rejections": 201,
+          "head_fits": 5340,
+          "polish_residual_calls": 2191,
+          "prune_head_fits": 0,
+          "budget_exhausted": true,
+          "search_cpu_seconds": 8.34375,
+          "budget_overshoot_seconds": 0.010416666666666075
+        },
+        {
+          "feature_attempts": 2695,
+          "feature_evaluations": 1943,
+          "domain_rejections": 202,
+          "head_fits": 5147,
+          "polish_residual_calls": 2337,
+          "prune_head_fits": 0,
+          "budget_exhausted": true,
+          "search_cpu_seconds": 8.34375,
+          "budget_overshoot_seconds": 0.010416666666666075
+        },
+        {
+          "feature_attempts": 2531,
+          "feature_evaluations": 1835,
+          "domain_rejections": 188,
+          "head_fits": 4773,
+          "polish_residual_calls": 2082,
+          "prune_head_fits": 0,
+          "budget_exhausted": true,
+          "search_cpu_seconds": 8.34375,
+          "budget_overshoot_seconds": 0.010416666666666075
+        }
+      ]
+    },
+    "semantic25": {
+      "rule": "semantic",
+      "head_fits": 1613,
+      "accepted": 907,
+      "domain_rejections": 0,
+      "rounds": 3,
+      "attempted_per_output": [
+        515,
+        551,
+        547
+      ],
+      "accepted_per_output": [
+        253,
+        330,
+        324
+      ],
+      "original_counts": [
+        30,
+        26,
+        29
+      ],
+      "donor_counts": [
+        171,
+        234,
+        211
+      ],
+      "search_cpu_seconds": 5.0,
+      "budget_overshoot_seconds": 0.0,
+      "unused_seconds": 0.0,
+      "archive_counts": [
+        52,
+        48,
+        51
+      ]
+    },
+    "whole25": {
+      "internal": false,
+      "head_fits": 3089,
+      "accepted": 1187,
+      "internal_attempts": 0,
+      "internal_accepted": 0,
+      "domain_rejections": 0,
+      "size_rejections": 0,
+      "rounds": 4,
+      "attempted_per_output": [
+        1062,
+        974,
+        1053
+      ],
+      "accepted_per_output": [
+        329,
+        461,
+        397
+      ],
+      "original_counts": [
+        30,
+        26,
+        29
+      ],
+      "donor_counts": [
+        171,
+        234,
+        211
+      ],
+      "search_cpu_seconds": 5.0,
+      "budget_overshoot_seconds": 0.0,
+      "unused_seconds": 0.0,
+      "archive_counts": [
+        51,
+        49,
+        51
+      ]
+    },
+    "context25": {
+      "internal": true,
+      "head_fits": 3934,
+      "accepted": 840,
+      "internal_attempts": 2949,
+      "internal_accepted": 170,
+      "domain_rejections": 175,
+      "size_rejections": 441,
+      "rounds": 2,
+      "attempted_per_output": [
+        1608,
+        1415,
+        1542
+      ],
+      "accepted_per_output": [
+        256,
+        305,
+        279
+      ],
+      "original_counts": [
+        30,
+        26,
+        29
+      ],
+      "donor_counts": [
+        171,
+        234,
+        211
+      ],
+      "search_cpu_seconds": 5.0,
+      "budget_overshoot_seconds": 0.0,
+      "unused_seconds": 0.0,
+      "archive_counts": [
+        50,
+        48,
+        50
+      ]
+    },
+    "joint25": {
+      "feature_attempts": 3841,
+      "feature_evaluations": 2656,
+      "domain_rejections": 223,
+      "head_fits": 7743,
+      "polish_residual_calls": 3995,
+      "prune_head_fits": 0,
+      "budget_exhausted": true,
+      "search_cpu_seconds": 25.0,
+      "budget_overshoot_seconds": 0.0
+    }
+  },
+  "archives_sha256": "48157f0a307a9b7e6334dd0ee42778e7ff846714496f5a8bf77287b3b06b9ad5",
+  "choices_sha256": "546b090f4a7ea4e47846ed256ffff46ac98cb8493bd1047e5d94eda6d043beb5",
+  "total_cpu_seconds": 88.96875,
+  "total_wall_seconds": 89.29699999999866
+}

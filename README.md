@@ -175,6 +175,12 @@ aggregate, and Extra Trees had the lowest overall error. Per-output failures,
 paired block intervals and domain audits are included; the prototype remains
 experimental.
 
+The [contextual subtree-transfer experiment](docs/CONTEXTUAL_TRANSFER_EXPERIMENT.md)
+adds optional donor substitution inside nonlinear basis functions. Its controlled
+whole-basis ablation separates this move from other transfer changes. The report
+contains development results, advancement gates and a runnable seeded example;
+the released estimator and its defaults remain unchanged.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.
