@@ -181,6 +181,15 @@ whole-basis ablation separates this move from other transfer changes. The report
 contains development results, advancement gates and a runnable seeded example;
 the released estimator and its defaults remain unchanged.
 
+The [retrospective candidate-library diagnosis](docs/CANDIDATE_LIBRARY_DIAGNOSIS.md)
+then scores all 27,420 retained candidates and enumerates 12.95 million systems
+without refitting. At the original selected-system complexity, contextual
+transfer's hindsight NRMSE is 5.99% below its selected score, almost entirely
+outside the current inner-validation eligibility band. Minimizing the same
+single validation score does not recover this gap. The report motivates more
+stable validation-based selection; hindsight minima are not achieved performance
+or new blind-test evidence, and no released algorithm changes are made.
+
 ### Domain behavior
 
 `input_bounds` is one finite `[lower, upper]` pair per input. Declare the intended operating range, including endpoints. Candidates must receive `enclosed` from the numerical interval audit on their original expression trees; both `invalid` and `unresolved` are rejected. Algebraic cancellation does not erase an illegal intermediate such as division by zero.
