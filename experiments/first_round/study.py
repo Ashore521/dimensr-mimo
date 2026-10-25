@@ -128,9 +128,11 @@ def mechanism(folder):
             neural_valid=sum(e.get('neural_valid', 0) for e in rows), nsga_generations=len(nsga),
             nsga_new_evaluations=sum(e.get('new_evaluations', 0) for e in nsga),
             gp_new_evaluations=sum(e.get('new_evaluations', 0) for e in rows if e['phase'] == 'gp')))
+        if method == 'independent' and output < len(result.get('diagnostics', [])):
+            evidence[-1]['gp_new_evaluations'] = result['diagnostics'][output]['instrumentation'].get('evaluation_gp_new', 0)
     required = method in ('full', 'independent', 'no_sharing')
     passed = result.get('status') == 'complete' and (not required or all(
-        e['policy_delta'] > 0 and e['neural_valid'] > 0 and e['nsga_generations'] >= 2 and e['nsga_new_evaluations'] > 0 for e in evidence))
+        e['policy_delta'] > 0 and e['neural_valid'] > 0 and e['gp_new_evaluations'] > 0 and e['nsga_generations'] >= 2 and e['nsga_new_evaluations'] > 0 for e in evidence))
     return dict(full_mechanism_pass=passed, outputs=evidence)
 
 
