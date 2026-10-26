@@ -20,6 +20,8 @@
 
 [结构优先交付](docs/PRECISION_DELIVERY.zh-CN.md)在同一48个冻结池上完成48/48派生模型核验，无新增搜索；96/96输出保护，达标数保持，但平均共享图规模未进一步下降。它补齐了绝对精度/结构验收及明确的not_met状态，不构成额外性能或压缩收益。
 
+1.1.0 提供[原生可选配置与物理坐标交付](docs/NATIVE_API.zh-CN.md)：`initialization='dimensional'`、`final_selection='precision'`、`AffineCoordinates` 和 `PhysicalModel`。可直接在安装后的包中调用，默认仍为 legacy/weighted；物理图计入固定缩放参数，并单独复算和验收原物理坐标中的误差。
+
 ## 安装
 
 Python 3.10+，建议独立环境。Windows PowerShell：

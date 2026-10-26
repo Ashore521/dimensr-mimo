@@ -18,6 +18,9 @@ class SearchConfig(SingleConfig):
     degradation_absolute: float = 0.02
     wall_seconds: float | None = None
     initialization_fraction: float = 0.15
+    initialization: str = 'legacy'
+    final_selection: str = 'weighted'
+    acceptance: dict | None = None
 
     def validate(self):
         super().validate()
@@ -33,3 +36,14 @@ class SearchConfig(SingleConfig):
             raise ValueError('wall_seconds must be positive or None.')
         if not 0 < self.initialization_fraction < 0.3:
             raise ValueError('initialization_fraction must lie in (0, 0.3).')
+        if self.initialization not in ('legacy','dimensional'):
+            raise ValueError('initialization must be legacy or dimensional.')
+        if self.final_selection not in ('weighted','guarded','precision'):
+            raise ValueError('final_selection must be weighted, guarded or precision.')
+        if self.final_selection=='precision':
+            from .acceptance import validate_limits
+            validate_limits(self.acceptance)
+            if not self.use_units or not self.use_constraints:
+                raise ValueError('Precision acceptance requires units and per-output constraints.')
+        elif self.acceptance is not None:
+            raise ValueError('Acceptance limits require precision final selection.')

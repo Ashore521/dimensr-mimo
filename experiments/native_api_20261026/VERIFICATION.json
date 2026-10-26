@@ -1,0 +1,200 @@
+{
+  "status": "passed",
+  "expected_systems": 6,
+  "verified_systems": 6,
+  "rows": [
+    {
+      "case": "products",
+      "method": "legacy",
+      "mechanism": {
+        "neural_valid": 9,
+        "policy_parameter_delta": 0.7904162108898163,
+        "gp_new_evaluations": 171,
+        "nsga2_new_evaluations": 82,
+        "nsga2_generations": 4,
+        "rademacher_systems": 256
+      },
+      "verified": true,
+      "search_and_pool_identical": true,
+      "candidates_recomputed": 130,
+      "final_choice_identical": true,
+      "acceptance": "legacy_weighted"
+    },
+    {
+      "case": "dimensional_frequency",
+      "method": "legacy",
+      "mechanism": {
+        "neural_valid": 39,
+        "policy_parameter_delta": 0.786921814084053,
+        "gp_new_evaluations": 177,
+        "nsga2_new_evaluations": 88,
+        "nsga2_generations": 4,
+        "rademacher_systems": 279
+      },
+      "verified": true,
+      "search_and_pool_identical": true,
+      "candidates_recomputed": 139,
+      "final_choice_identical": true,
+      "acceptance": "legacy_weighted"
+    },
+    {
+      "case": "dimensional_frequency",
+      "method": "normalized",
+      "mechanism": {
+        "neural_valid": 37,
+        "policy_parameter_delta": 0.7764672785997391,
+        "gp_new_evaluations": 174,
+        "nsga2_new_evaluations": 85,
+        "nsga2_generations": 4,
+        "rademacher_systems": 288
+      },
+      "verified": true,
+      "search_and_pool_identical": true,
+      "candidates_recomputed": 139,
+      "final_choice_identical": true,
+      "acceptance": "accepted"
+    },
+    {
+      "case": "partial",
+      "method": "normalized",
+      "mechanism": {
+        "neural_valid": 43,
+        "policy_parameter_delta": 0.7799485772848129,
+        "gp_new_evaluations": 179,
+        "nsga2_new_evaluations": 89,
+        "nsga2_generations": 4,
+        "rademacher_systems": 310
+      },
+      "verified": true,
+      "search_and_pool_identical": true,
+      "candidates_recomputed": 151,
+      "final_choice_identical": true,
+      "acceptance": "accepted"
+    },
+    {
+      "case": "high_dimensional",
+      "method": "normalized",
+      "mechanism": {
+        "neural_valid": 23,
+        "policy_parameter_delta": 0.7669280767440796,
+        "gp_new_evaluations": 185,
+        "nsga2_new_evaluations": 92,
+        "nsga2_generations": 4,
+        "rademacher_systems": 357
+      },
+      "verified": true,
+      "search_and_pool_identical": true,
+      "candidates_recomputed": 161,
+      "final_choice_identical": true,
+      "acceptance": "accepted"
+    },
+    {
+      "case": "affine_lengths",
+      "method": "physical",
+      "mechanism": {
+        "neural_valid": 26,
+        "policy_parameter_delta": 0.7774833738803864,
+        "gp_new_evaluations": 181,
+        "nsga2_new_evaluations": 92,
+        "nsga2_generations": 4,
+        "rademacher_systems": 282
+      },
+      "verified": true,
+      "search_acceptance": "accepted",
+      "physical_acceptance": {
+        "status": "accepted",
+        "accuracy_pass": true,
+        "structure_pass": true,
+        "relative_constraints_pass": true,
+        "limits": {
+          "nrmse": [
+            0.0001,
+            0.0001
+          ],
+          "shared_graph_size": 48,
+          "independent_parameters": 14,
+          "expanded_total_nodes": 64,
+          "maximum_output_depth": 10
+        },
+        "metric": "NRMSE using the stored physical training normalization",
+        "metric_source": "physical_arrays_recomputed",
+        "scope": "Training and validation acceptance; not a test or engineering-use guarantee."
+      },
+      "accuracy": {
+        "train_nrmse": [
+          5.3027337191710265e-15,
+          4.466192307190861e-15
+        ],
+        "train_rows": 96,
+        "train_sha256": "21b9291f0413a5ae7ca967cba0809c0bc8cdaaa5a33997109c28b45eadf1b45f",
+        "validation_nrmse": [
+          5.3027337191710265e-15,
+          4.466192307190861e-15
+        ],
+        "validation_rows": 48,
+        "validation_sha256": "12bc8aacca10a229a7e4b5b9c2f4e830f555b2f729496709feafd6f05cda420c"
+      },
+      "source_structure": {
+        "shared_dag_vertices": 18,
+        "shared_graph_size": 17,
+        "shared_dag_operations": 8,
+        "maximum_output_depth": 4,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 18,
+        "expanded_total_operations": 8,
+        "outputs": [
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 3
+          },
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "physical_structure": {
+        "shared_dag_vertices": 32,
+        "shared_graph_size": 31,
+        "shared_dag_operations": 16,
+        "maximum_output_depth": 8,
+        "independent_parameters": 13,
+        "expanded_total_nodes": 42,
+        "expanded_total_operations": 20,
+        "outputs": [
+          {
+            "expanded_nodes": 21,
+            "expanded_operations": 10,
+            "depth": 8,
+            "unique_dag_nodes": 21,
+            "independent_parameters": 9
+          },
+          {
+            "expanded_nodes": 21,
+            "expanded_operations": 10,
+            "depth": 8,
+            "unique_dag_nodes": 21,
+            "independent_parameters": 9
+          }
+        ]
+      },
+      "fitted_parameters": 5,
+      "fixed_coordinate_parameters": 8,
+      "formulas": [
+        "1.999999999999998*length0 + 3.000000000000001*length1 + 4.999999999999815",
+        "0.999999999999999*length0 - 1.0*length1 + 2.000000000000069"
+      ]
+    }
+  ],
+  "verified_unix": 1793027881.4151504,
+  "freeze_sha256": "1cbfe2e4df8fb9f122ac9265ed836eb31b421bf60d493ac2d703f807b852b9f6",
+  "models_sha256": "0ffb0003678e356d0f9ed037d85fbb79c31352bc94a17de1d9c815f49a3177c8",
+  "test_scores_computed": false,
+  "claim_scope": "API integration on known development tasks; not new benchmark evidence."
+}

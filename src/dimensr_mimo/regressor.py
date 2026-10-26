@@ -1,5 +1,6 @@
 """Joint neural/GP exploration and constrained NSGA-II, adapted from DimenSR."""
 from dataclasses import asdict, replace
+from copy import deepcopy
 from collections import Counter
 import hashlib
 import json
@@ -42,11 +43,15 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                 delattr(self, name)
         start, cpu_start = time.monotonic(), time.process_time()
         cfg = replace(self.config) if self.config is not None else SearchConfig()
+        cfg.acceptance = deepcopy(cfg.acceptance)
         cfg.validate()
         X, Y = arrays(X, Y)
         if len(X) < 5:
             raise ValueError('At least five rows are required.')
         p, q = X.shape[1], Y.shape[1]
+        if cfg.final_selection=='precision':
+            from .acceptance import validate_limits
+            validate_limits(cfg.acceptance,q)
         features = tuple(unit(u) for u in self.feature_units) if self.feature_units is not None else (ZERO,) * p
         targets = tuple(unit(u) for u in self.target_units) if self.target_units is not None else (ZERO,) * q
         constants = tuple(unit(u) for u in self.constant_units) if self.constant_units is not None else (ZERO,)
@@ -127,11 +132,16 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             return survivors, children, len(merged)
 
         # Training-only typed/structured seeds, combined as complete systems.
+        typed_generator,structure_generator=typed_seeds,structured_seeds
+        if cfg.initialization=='dimensional':
+            from .seeds import generator
+            from .structure import structured_seeds as dimensioned_structures
+            typed_generator,structure_generator=generator(cfg,q),dimensioned_structures
         seed_lists, seed_stats = [], []
         for j, g in enumerate(grammar.plain):
-            seeds = [(t, np.ones(t.n_constants)) for t in typed_seeds(g, rng)] if cfg.linear_seeds else []
+            seeds = [(t, np.ones(t.n_constants)) for t in typed_generator(g, rng)] if cfg.linear_seeds else []
             if cfg.structured_seeds:
-                ss, stats = structured_seeds(g, X, Y[:, j], max(1, cfg.population_size // q))
+                ss, stats = structure_generator(g, X, Y[:, j], max(1, cfg.population_size // q))
                 seeds.extend(ss)
                 seed_stats.append(stats)
             if not seeds:
@@ -272,6 +282,17 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                             for vi, sc, _, c, e in scored]
         self.search_fingerprint_ = hashlib.sha256(json.dumps(
             [c.to_dict() for c in evaluator.cache.values() if c is not None], sort_keys=True).encode()).hexdigest()
+        if cfg.final_selection!='weighted':
+            from .selection import derive
+            from .acceptance import select
+            source=self.to_dict()
+            selected=select(source,cfg.acceptance) if cfg.final_selection=='precision' else derive(source,'guarded')
+            best=selected['best']
+            self.best_=Candidate(System.from_dict(best['system']),np.asarray(best['constants']),np.asarray(best['errors']),
+                best['complexity'],best['rademacher'],best['rademacher_complexity'])
+            self.validation_nrmse_=np.asarray(selected['validation_nrmse'])
+            self.diagnostics_=selected['diagnostics'];self.post_selection_=selected['post_selection']
+            self.formulas_=self.best_.system.formulas(self.best_.constants,names)
         return self
 
     def predict(self, X):
@@ -297,9 +318,9 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
         status = 'invalid' if any(a['status'] == 'invalid' for a in audits) else 'unresolved' if any(a['status'] == 'unresolved' for a in audits) else 'enclosed'
         return dict(status=status, outputs=audits, guarantee='numerical screening, not a formal proof')
 
-    def save(self, path):
+    def to_dict(self):
         check_is_fitted(self, 'best_')
-        data = dict(format='dimensr-mimo-dag', schema_version=1, package_version='1.0.0',
+        data = dict(format='dimensr-mimo-dag', schema_version=1, package_version='1.1.0',
                     config=asdict(self.config_), n_features=self.n_features_in_, n_outputs=self.n_outputs_,
                     feature_names=self.feature_names_, feature_units=[encode(u) for u in self.feature_units_],
                     target_units=[encode(u) for u in self.target_units_], constant_units=[encode(u) for u in self.constant_units_],
@@ -307,7 +328,11 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                     reference_train=self.reference_train_.tolist(), reference_validation=self.reference_validation_.tolist(),
                     history=self.history_, diagnostics=self.diagnostics_, candidates=self.candidates_,
                     search_fingerprint=self.search_fingerprint_)
-        Path(path).write_text(json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+        if hasattr(self,'post_selection_'):data['post_selection']=self.post_selection_
+        return deepcopy(data)
+
+    def save(self, path):
+        Path(path).write_text(json.dumps(self.to_dict(), ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
 
     @classmethod
     def load(cls, path):
@@ -344,4 +369,18 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
         model.history_, model.diagnostics_, model.candidates_ = d['history'], d['diagnostics'], d['candidates']
         model.search_fingerprint_ = d['search_fingerprint']
         model.formulas_ = system.formulas(constants, model.feature_names_)
+        if 'post_selection' in d:model.post_selection_=d['post_selection']
+        if cfg.final_selection!='weighted':
+            from .selection import choose,derive,FIELDS
+            from .acceptance import select
+            original=deepcopy(d);original.pop('post_selection',None)
+            original['diagnostics'].pop('application_acceptance',None)
+            anchor=original['candidates'][choose(original['candidates'],'original')['candidate_index']]
+            original['best']={k:anchor[k] for k in FIELDS}
+            original['validation_nrmse']=anchor['validation_errors']
+            original['diagnostics'].update(validation_feasible=anchor['violation']==0,validation_violation=anchor['violation'],
+                selected_score=anchor['score'],sharing=System.from_dict(anchor['system']).sharing)
+            expected=select(original,cfg.acceptance) if cfg.final_selection=='precision' else derive(original,'guarded')
+            if expected['best']!=d['best'] or expected['post_selection']!=d.get('post_selection') or expected['diagnostics']!=d['diagnostics']:
+                raise ValueError('Saved selection or acceptance record does not match the frozen pool.')
         return model

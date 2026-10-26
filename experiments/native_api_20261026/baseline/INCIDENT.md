@@ -1,0 +1,5 @@
+# 基线捕获器的调度遗漏
+
+本目录最初三个标记normalized的单元只应用了量纲结构干预，遗漏原正式worker中由Observation安装的balanced typed调度，因此不是第七轮normalized方法的完整复现。它们的结果保留，但不得用于证明新接口等价。
+
+两个legacy单元不受影响，可以继续作为默认行为基线。三个normalized单元将在baseline_corrected目录重新捕获，使用本目录source/src中的原始9a30c4d生产源码副本，以及原实验Observation和intervention的完整调用路径。捕获器错误不修改任何既有正式实验结果，也没有读取新测试标签。
