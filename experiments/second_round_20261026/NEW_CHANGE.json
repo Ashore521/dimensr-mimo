@@ -1,0 +1,17 @@
+{
+  "name": "validation_accuracy_first",
+  "config_overrides": {"selection_complexity_weight": 0.0},
+  "baseline_selection_complexity_weight": 0.01,
+  "decision_basis": [
+    "Frozen training/validation audit found substantive selection loss in scales_s1 and both shared_parameter seeds.",
+    "Known shared nonlinear structure recovered a=1.7 with the original single start and five function evaluations on both seeds.",
+    "Instrumented original searches matched both archived fingerprints; the best validation candidates remained in the final pool."
+  ],
+  "effect": "Keep validation constraint violation first; within the best violation tier minimize mean validation NRMSE, then use complexity to break exact ties.",
+  "unchanged": "Training generation, neural updates, GP, NSGA-II, shared representation, fitting budget, candidate freeze, domain screening, per-output constraints and all default settings.",
+  "scope": "Experimental configuration using an existing public control. No production source change is needed.",
+  "hypothesis": "Removing the final additive complexity penalty recovers candidate accuracy on new development splits without unacceptable per-output or complexity regression.",
+  "known_risk": "Near-zero numerical differences may prefer unnecessarily complex candidates. Report complexity and apply the predeclared recommendation gate.",
+  "evidence": ["diagnostics/SELECTION_AUDIT.json", "diagnostics/FIT_TRACE.json"],
+  "test_data_used_for_decision": false
+}

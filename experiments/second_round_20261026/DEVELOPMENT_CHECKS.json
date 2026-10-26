@@ -1,0 +1,35 @@
+{
+  "scope": "Engineering checks completed before the formal performance freeze; no test-set scoring.",
+  "unit_tests": {
+    "command": ".venv\\Scripts\\python.exe -m pytest -q --basetemp outputs\\pytest-second-round-final",
+    "passed": 39,
+    "failed": 0,
+    "seconds": 17.52
+  },
+  "report_self_test": {
+    "command": ".venv\\Scripts\\python.exe -B experiments\\second_round_20261026\\verify_report.py self-test",
+    "status": "passed",
+    "input": "Synthetic in-memory rows only; budget and search-isolation gates tested separately."
+  },
+  "build": {
+    "command": "python -m build --no-isolation",
+    "status": "passed",
+    "artifacts": ["sdist", "wheel"],
+    "environment_note": "The sandbox default temporary directory rejected writes; the successful build used a repository-local temporary directory."
+  },
+  "sdist_runner_tests": {
+    "passed": 11,
+    "failed": 0,
+    "seconds": 1.52,
+    "scope": "Second-round supervisor tests run from the extracted source distribution."
+  },
+  "archived_selection_smoke": {
+    "joint_models": 14,
+    "independent_models": 28,
+    "passed": 42,
+    "maximum_metric_difference": 2.84e-14,
+    "scope": "Independent selection-check implementation on archived training/validation inputs only."
+  },
+  "algorithm_source_changed": false,
+  "default_configuration_changed": false
+}

@@ -1,0 +1,3211 @@
+{
+  "schema_version": 1,
+  "material_passport": {
+    "type": "known-task synthetic development replication",
+    "systems": 60,
+    "main_pairs": 20,
+    "main_outputs": 40,
+    "strata": [
+      "shared_parameter",
+      "scales",
+      "partial",
+      "boundary"
+    ],
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105
+    ],
+    "unique_change": {
+      "selection_complexity_weight": 0.0
+    },
+    "independent_full_algorithm_reference": true,
+    "blind_unseen_task_evidence": false,
+    "neural_gp_causal_benefit_evidence": false
+  },
+  "methods": {
+    "original": {
+      "expected": 20,
+      "statuses": {
+        "complete": 20
+      },
+      "verified": 20,
+      "complete": true,
+      "mean_nrmse": 0.0001857465546931005,
+      "median_nrmse": 4.1882144855027107e-16,
+      "worst_output_nrmse": 0.0025000542064962834,
+      "mean_complexity": 23.39420126550044,
+      "mean_nodes": 17.75,
+      "mean_parameters": 4.4,
+      "wall_seconds": 655.344999999943,
+      "sampled_cpu_seconds": 622.5,
+      "peak_rss_bytes": 375414784
+    },
+    "proposed": {
+      "expected": 20,
+      "statuses": {
+        "complete": 20
+      },
+      "verified": 20,
+      "complete": true,
+      "mean_nrmse": 4.8816599818664174e-05,
+      "median_nrmse": 1.0459235805644626e-17,
+      "worst_output_nrmse": 0.0004461557318748683,
+      "mean_complexity": 32.05941164378595,
+      "mean_nodes": 25.45,
+      "mean_parameters": 6.35,
+      "wall_seconds": 654.3910000000033,
+      "sampled_cpu_seconds": 621.53125,
+      "peak_rss_bytes": 375918592
+    },
+    "independent": {
+      "expected": 20,
+      "statuses": {
+        "complete": 20
+      },
+      "verified": 20,
+      "complete": true,
+      "mean_nrmse": 0.00017497871813042693,
+      "median_nrmse": 0.0,
+      "worst_output_nrmse": 0.0022291613599472802,
+      "mean_complexity": 18.038906051163377,
+      "mean_nodes": 12.65,
+      "mean_parameters": 2.1,
+      "wall_seconds": 762.4689999999537,
+      "sampled_cpu_seconds": 730.640625,
+      "peak_rss_bytes": 373481472
+    }
+  },
+  "comparisons": {
+    "proposed_minus_original": {
+      "method": "proposed",
+      "baseline": "original",
+      "difference_direction": "method minus baseline",
+      "tolerance": 1e-08,
+      "overall": {
+        "expected_pairs": 20,
+        "available_pairs": 20,
+        "complete": true,
+        "wins": 5,
+        "ties": 15,
+        "losses": 0,
+        "unavailable": 0,
+        "expected_outputs": 40,
+        "available_outputs": 40,
+        "output_wins": 7,
+        "output_ties": 31,
+        "output_losses": 2,
+        "outputs_within_degradation_threshold": 38,
+        "mean_difference": -0.00013692995487443635,
+        "median_difference": -3.8858766111511336e-16,
+        "method_mean_nrmse": 4.8816599818664174e-05,
+        "baseline_mean_nrmse": 0.0001857465546931005,
+        "relative_mean_reduction": 0.7371870509290397,
+        "mean_per_output_differences": [
+          -0.0002796540614935717,
+          5.79415174469907e-06
+        ],
+        "median_per_output_differences": [
+          -3.4542660023373776e-16,
+          -2.7724500981241117e-16
+        ],
+        "method_mean_complexity": 32.05941164378595,
+        "baseline_mean_complexity": 23.39420126550044,
+        "ratio_of_mean_complexity": 1.3703999243207394,
+        "median_complexity_ratio": 1.2709167423792445
+      },
+      "strata": {
+        "shared_parameter": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 5,
+          "ties": 0,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 7,
+          "output_ties": 1,
+          "output_losses": 2,
+          "outputs_within_degradation_threshold": 8,
+          "mean_difference": -0.0005477198194965135,
+          "median_difference": -0.00029400220461027346,
+          "method_mean_nrmse": 0.00019526639927460053,
+          "baseline_mean_nrmse": 0.000742986218771114,
+          "relative_mean_reduction": 0.7371870509286597,
+          "mean_per_output_differences": [
+            -0.0011186162459732199,
+            2.3176606980193002e-05
+          ],
+          "median_per_output_differences": [
+            -0.0007447401809715261,
+            -7.551410194307946e-14
+          ],
+          "method_mean_complexity": 34.739679939739,
+          "baseline_mean_complexity": 31.18419291074163,
+          "ratio_of_mean_complexity": 1.1140156822135567,
+          "median_complexity_ratio": 1.09316889053744
+        },
+        "scales": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": -2.735795492102737e-16,
+          "median_difference": -3.003467844216328e-16,
+          "method_mean_nrmse": 4.928445169676702e-17,
+          "baseline_mean_nrmse": 3.228640009070407e-16,
+          "relative_mean_reduction": 0.8473522859212879,
+          "mean_per_output_differences": [
+            -3.458443646389051e-16,
+            -2.0131473378164227e-16
+          ],
+          "median_per_output_differences": [
+            -3.769456558606299e-16,
+            -2.237479129826356e-16
+          ],
+          "method_mean_complexity": 32.23290787032798,
+          "baseline_mean_complexity": 20.061415397601188,
+          "ratio_of_mean_complexity": 1.6067115520763393,
+          "median_complexity_ratio": 1.6082297926018356
+        },
+        "partial": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": -2.596191670520977e-16,
+          "median_difference": -2.2842877259830343e-16,
+          "method_mean_nrmse": 6.475433412963753e-18,
+          "baseline_mean_nrmse": 2.660946004650614e-16,
+          "relative_mean_reduction": 0.9756649199132698,
+          "mean_per_output_differences": [
+            -8.297310232830797e-17,
+            -4.3626523177588742e-16
+          ],
+          "median_per_output_differences": [
+            -6.52101136117577e-17,
+            -2.7713600993744874e-16
+          ],
+          "method_mean_complexity": 27.554460490894805,
+          "baseline_mean_complexity": 21.844730389029735,
+          "ratio_of_mean_complexity": 1.2613779158717588,
+          "median_complexity_ratio": 1.2413791862122152
+        },
+        "boundary": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": -6.986663625142454e-16,
+          "median_difference": -7.507117676338555e-16,
+          "method_mean_nrmse": 4.03137094008513e-19,
+          "baseline_mean_nrmse": 6.990694996082539e-16,
+          "relative_mean_reduction": 0.9994233232972768,
+          "mean_per_output_differences": [
+            -6.38190300322943e-16,
+            -7.591424247055479e-16
+          ],
+          "median_per_output_differences": [
+            -2.9101183946446756e-16,
+            -9.955921261698532e-16
+          ],
+          "method_mean_complexity": 33.71059827418201,
+          "baseline_mean_complexity": 20.48646636462921,
+          "ratio_of_mean_complexity": 1.6455057536122897,
+          "median_complexity_ratio": 1.6971490003872178
+        }
+      },
+      "pairs": [
+        {
+          "case": "shared_parameter",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00021329096700217144,
+          "baseline_mean_nrmse": 0.00041878110252392567,
+          "difference": -0.00020549013552175423,
+          "outcome": "win",
+          "method_nrmse": [
+            0.00039662306908439524,
+            2.9958864919947648e-05
+          ],
+          "baseline_nrmse": [
+            0.0007102042486335044,
+            0.00012735795641434698
+          ],
+          "per_output_differences": [
+            -0.00031358117954910915,
+            -9.739909149439933e-05
+          ],
+          "per_output_outcomes": [
+            "win",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            0.000781234673496855,
+            0.00014010375205578167
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.46752695983941,
+          "baseline_complexity": 32.47171811644803,
+          "complexity_ratio": 1.061462988691702
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0001522357941106953,
+          "baseline_mean_nrmse": 0.0011438379676967196,
+          "difference": -0.0009916021735860243,
+          "outcome": "win",
+          "method_nrmse": [
+            2.0947880708006663e-05,
+            0.0002835237075133839
+          ],
+          "baseline_nrmse": [
+            0.0021556487313830835,
+            0.0001320272040103556
+          ],
+          "per_output_differences": [
+            -0.0021347008506750766,
+            0.00015149650350302832
+          ],
+          "per_output_outcomes": [
+            "win",
+            "loss"
+          ],
+          "per_output_degradation_thresholds": [
+            0.002371223604521392,
+            0.00014523992441139115
+          ],
+          "per_output_within_threshold": [
+            true,
+            false
+          ],
+          "method_complexity": 34.13516782054666,
+          "baseline_complexity": 29.01921728914215,
+          "complexity_ratio": 1.1762952625644627
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00014044511180085503,
+          "baseline_mean_nrmse": 0.0004344473164111285,
+          "difference": -0.00029400220461027346,
+          "outcome": "win",
+          "method_nrmse": [
+            2.5625241451812903e-16,
+            0.0002808902236014538
+          ],
+          "baseline_nrmse": [
+            0.0007447401809717824,
+            0.00012415445185047456
+          ],
+          "per_output_differences": [
+            -0.0007447401809715261,
+            0.00015673577175097925
+          ],
+          "per_output_outcomes": [
+            "win",
+            "loss"
+          ],
+          "per_output_degradation_thresholds": [
+            0.0008192241990689608,
+            0.00013657989703552202
+          ],
+          "per_output_within_threshold": [
+            true,
+            false
+          ],
+          "method_complexity": 34.808209926513484,
+          "baseline_complexity": 32.12214874331183,
+          "complexity_ratio": 1.0836202211958474
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00023795203758585618,
+          "baseline_mean_nrmse": 0.0012649012749343209,
+          "difference": -0.0010269492373484648,
+          "outcome": "win",
+          "method_nrmse": [
+            0.0004461557318748683,
+            2.974834329684404e-05
+          ],
+          "baseline_nrmse": [
+            0.0025000542064962834,
+            2.9748343372358142e-05
+          ],
+          "per_output_differences": [
+            -0.0020538984746214153,
+            -7.551410194307946e-14
+          ],
+          "per_output_outcomes": [
+            "win",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            0.002750069627145912,
+            3.273317770959396e-05
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 35.133238336944615,
+          "baseline_complexity": 30.149760137069848,
+          "complexity_ratio": 1.165290807529426
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00023240808587342475,
+          "baseline_mean_nrmse": 0.00045296343228947534,
+          "difference": -0.0002205553464160506,
+          "outcome": "win",
+          "method_nrmse": [
+            0.00043646192353991633,
+            2.835424820693316e-05
+          ],
+          "baseline_nrmse": [
+            0.0007826224675888884,
+            0.0001233043969900623
+          ],
+          "per_output_differences": [
+            -0.00034616054404897203,
+            -9.495014878312913e-05
+          ],
+          "per_output_outcomes": [
+            "win",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            0.0008608947143477773,
+            0.00013564483668906854
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 35.154256654850826,
+          "baseline_complexity": 32.15812026773628,
+          "complexity_ratio": 1.09316889053744
+        },
+        {
+          "case": "scales",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.440890716642691e-17,
+          "baseline_mean_nrmse": 2.8002311225927386e-16,
+          "difference": -2.0561420509284694e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.1229641314067867e-18,
+            1.4769485020144703e-16
+          ],
+          "baseline_nrmse": [
+            3.620394482173976e-16,
+            1.9800677630115016e-16
+          ],
+          "per_output_differences": [
+            -3.6091648408599085e-16,
+            -5.0311926099703135e-17
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000398243393e-08,
+            1.0000000217807454e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 32.08891085189699,
+          "baseline_complexity": 19.952938939144214,
+          "complexity_ratio": 1.6082297926018356
+        },
+        {
+          "case": "scales",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 2.4883617577517825e-18,
+          "baseline_mean_nrmse": 4.212121854780236e-16,
+          "difference": -4.1872382372027186e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            4.112660085887199e-18,
+            8.640634296163665e-19
+          ],
+          "baseline_nrmse": [
+            5.46934836778237e-16,
+            2.954895341778103e-16
+          ],
+          "per_output_differences": [
+            -5.428221766923497e-16,
+            -2.9462547074819394e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.000000060162832e-08,
+            1.0000000325038488e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.44471884897437,
+          "baseline_complexity": 19.184517158240716,
+          "complexity_ratio": 1.7954436155396607
+        },
+        {
+          "case": "scales",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.943900181691477e-17,
+          "baseline_mean_nrmse": 3.5978578623854756e-16,
+          "difference": -3.003467844216328e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            8.5923543711808545e-19,
+            1.1801876819671147e-16
+          ],
+          "baseline_nrmse": [
+            3.77804891297748e-16,
+            3.417666811793471e-16
+          ],
+          "per_output_differences": [
+            -3.769456558606299e-16,
+            -2.237479129826356e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.000000041558538e-08,
+            1.000000037594335e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 36.307880836833846,
+          "baseline_complexity": 19.56644622817773,
+          "complexity_ratio": 1.8556195853566244
+        },
+        {
+          "case": "scales",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.210677463017801e-17,
+          "baseline_mean_nrmse": 1.368682089368399e-16,
+          "difference": -8.476143430666189e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            5.6062893826380675e-18,
+            9.860725987771796e-17
+          ],
+          "baseline_nrmse": [
+            1.45948086056568e-17,
+            2.5914160926802303e-16
+          ],
+          "per_output_differences": [
+            -8.98851922301873e-18,
+            -1.6053434939030506e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.000000001605429e-08,
+            1.000000028505577e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 26.548780701520958,
+          "baseline_complexity": 20.923003650200137,
+          "complexity_ratio": 1.2688799918680418
+        },
+        {
+          "case": "scales",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.797921311256363e-17,
+          "baseline_mean_nrmse": 4.1643071162251857e-16,
+          "difference": -3.584514985099549e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.716011853341826e-18,
+            1.1324241437178544e-16
+          ],
+          "baseline_nrmse": [
+            4.422649991858781e-16,
+            3.9059642405915906e-16
+          ],
+          "per_output_differences": [
+            -4.3954898733253627e-16,
+            -2.773540096873736e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000486491499e-08,
+            1.0000000429656066e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 31.774248112413723,
+          "baseline_complexity": 20.680171012243136,
+          "complexity_ratio": 1.5364596401839539
+        },
+        {
+          "case": "partial",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.687304509205115e-18,
+          "baseline_mean_nrmse": 1.3388750247437915e-16,
+          "difference": -1.2620019796517404e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            0.0,
+            1.537460901841023e-17
+          ],
+          "baseline_nrmse": [
+            6.078573112321997e-17,
+            2.0698927382553833e-16
+          ],
+          "per_output_differences": [
+            -6.078573112321997e-17,
+            -1.9161466480712811e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000066864305e-08,
+            1.0000000227688202e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 25.50208693933621,
+          "baseline_complexity": 20.543349866490026,
+          "complexity_ratio": 1.2413791862122152
+        },
+        {
+          "case": "partial",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 6.471036991890386e-19,
+          "baseline_mean_nrmse": 6.143714477832426e-16,
+          "difference": -6.137243440840536e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            0.0,
+            1.2942073983780771e-18
+          ],
+          "baseline_nrmse": [
+            6.52101136117577e-17,
+            1.1635327819547274e-15
+          ],
+          "per_output_differences": [
+            -6.52101136117577e-17,
+            -1.1622385745563493e-15
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000071731126e-08,
+            1.000000127988606e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 24.976157958178213,
+          "baseline_complexity": 23.128930101297048,
+          "complexity_ratio": 1.0798665501945364
+        },
+        {
+          "case": "partial",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 1.3231167102084136e-17,
+          "baseline_mean_nrmse": 2.4165993970038755e-16,
+          "difference": -2.2842877259830343e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.547642303975151e-17,
+            9.859111644167637e-19
+          ],
+          "baseline_nrmse": [
+            2.0519795829890965e-16,
+            2.781219211018655e-16
+          ],
+          "per_output_differences": [
+            -1.7972153525915815e-16,
+            -2.7713600993744874e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000225717754e-08,
+            1.0000000305934113e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 31.921411460858582,
+          "baseline_complexity": 19.656055170513316,
+          "complexity_ratio": 1.6239988738302344
+        },
+        {
+          "case": "partial",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 6.351932207799827e-18,
+          "baseline_mean_nrmse": 5.186769122607572e-17,
+          "difference": -4.551575901827589e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            4.062565233734322e-18,
+            8.641299181865331e-18
+          ],
+          "baseline_nrmse": [
+            3.6005627992029626e-18,
+            1.0013481965294848e-16
+          ],
+          "per_output_differences": [
+            4.620024345313594e-19,
+            -9.149352047108315e-17
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000003960619e-08,
+            1.0000000110148302e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 27.86124152627242,
+          "baseline_complexity": 23.878092362402086,
+          "complexity_ratio": 1.1668118668534053
+        },
+        {
+          "case": "partial",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 4.4596595465406494e-18,
+          "baseline_mean_nrmse": 2.886864211412222e-16,
+          "difference": -2.8422676159468156e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            8.682831459006041e-18,
+            2.3648763407525815e-19
+          ],
+          "baseline_nrmse": [
+            1.1829296554094143e-16,
+            4.59079876741503e-16
+          ],
+          "per_output_differences": [
+            -1.0961013408193538e-16,
+            -4.588433891074278e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000130122262e-08,
+            1.0000000504987865e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 27.511404569828596,
+          "baseline_complexity": 22.017224444446196,
+          "complexity_ratio": 1.2495400879999794
+        },
+        {
+          "case": "boundary",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 4.193904899379408e-19,
+          "baseline_mean_nrmse": 5.393211861955683e-17,
+          "difference": -5.3512728129618887e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            8.387809798758816e-19,
+            0.0
+          ],
+          "baseline_nrmse": [
+            1.0786423723911366e-16,
+            0.0
+          ],
+          "per_output_differences": [
+            -1.0702545625923777e-16,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000118650662e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 35.48101020528572,
+          "baseline_complexity": 18.20007097571102,
+          "complexity_ratio": 1.949498452650929
+        },
+        {
+          "case": "boundary",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0,
+          "baseline_mean_nrmse": 2.2810410141195605e-16,
+          "difference": -2.2810410141195605e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            0.0,
+            0.0
+          ],
+          "baseline_nrmse": [
+            2.6419970301468425e-16,
+            1.9200849980922786e-16
+          ],
+          "per_output_differences": [
+            -2.6419970301468425e-16,
+            -1.9200849980922786e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000290619673e-08,
+            1.000000021120935e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.01797823586435,
+          "baseline_complexity": 20.044190715195235,
+          "complexity_ratio": 1.6971490003872178
+        },
+        {
+          "case": "boundary",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 9.879407022569943e-19,
+          "baseline_mean_nrmse": 8.648061997657068e-16,
+          "difference": -8.638182590634498e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.9758814045139886e-18,
+            0.0
+          ],
+          "baseline_nrmse": [
+            2.9298772086898153e-16,
+            1.4366246786624321e-15
+          ],
+          "per_output_differences": [
+            -2.9101183946446756e-16,
+            -1.4366246786624321e-15
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000322286493e-08,
+            1.0000001580287147e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 27.981766697462945,
+          "baseline_complexity": 21.981766697482254,
+          "complexity_ratio": 1.2729534928904471
+        },
+        {
+          "case": "boundary",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.249315069436974e-20,
+          "baseline_mean_nrmse": 7.507842607845498e-16,
+          "difference": -7.507117676338555e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.4498630138873949e-19,
+            0.0
+          ],
+          "baseline_nrmse": [
+            3.300817026828734e-16,
+            1.1714868188862262e-15
+          ],
+          "per_output_differences": [
+            -3.2993671638148467e-16,
+            -1.1714868188862262e-15
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000363089873e-08,
+            1.00000012886355e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.93447037360973,
+          "baseline_complexity": 21.754450256254188,
+          "complexity_ratio": 1.605853972961988
+        },
+        {
+          "case": "boundary",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "original",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.358611271532601e-19,
+          "baseline_mean_nrmse": 1.5977208174595e-15,
+          "difference": -1.5971849563323468e-15,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.0717222543065201e-18,
+            0.0
+          ],
+          "baseline_nrmse": [
+            2.1998495087491468e-15,
+            9.955921261698532e-16
+          ],
+          "per_output_differences": [
+            -2.1987777864948403e-15,
+            -9.955921261698532e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.000000241983446e-08,
+            1.0000001095151339e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 36.1377658586873,
+          "baseline_complexity": 20.451853178503345,
+          "complexity_ratio": 1.7669677922718123
+        }
+      ]
+    },
+    "original_minus_independent": {
+      "method": "original",
+      "baseline": "independent",
+      "difference_direction": "method minus baseline",
+      "tolerance": 1e-08,
+      "overall": {
+        "expected_pairs": 20,
+        "available_pairs": 20,
+        "complete": true,
+        "wins": 2,
+        "ties": 15,
+        "losses": 3,
+        "unavailable": 0,
+        "expected_outputs": 40,
+        "available_outputs": 40,
+        "output_wins": 4,
+        "output_ties": 31,
+        "output_losses": 5,
+        "outputs_within_degradation_threshold": 36,
+        "mean_difference": 1.076783656267358e-05,
+        "median_difference": 2.651731804208049e-16,
+        "method_mean_nrmse": 0.0001857465546931005,
+        "baseline_mean_nrmse": 0.00017497871813042693,
+        "relative_mean_reduction": -0.061537978319439836,
+        "mean_per_output_differences": [
+          0.00012208638189879618,
+          -0.00010055070877344905
+        ],
+        "median_per_output_differences": [
+          2.7859371194183287e-16,
+          1.6270920482456017e-16
+        ],
+        "method_mean_complexity": 23.39420126550044,
+        "baseline_mean_complexity": 18.038906051163377,
+        "ratio_of_mean_complexity": 1.2968747217346743,
+        "median_complexity_ratio": 1.26365360817174
+      },
+      "strata": {
+        "shared_parameter": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 2,
+          "ties": 0,
+          "losses": 3,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 4,
+          "output_ties": 1,
+          "output_losses": 5,
+          "outputs_within_degradation_threshold": 6,
+          "mean_difference": 4.3071346249540936e-05,
+          "median_difference": 6.612515180345457e-05,
+          "method_mean_nrmse": 0.000742986218771114,
+          "baseline_mean_nrmse": 0.000699914872521573,
+          "relative_mean_reduction": -0.0615379783178038,
+          "mean_per_output_differences": [
+            0.0004883455275941578,
+            -0.00040220283509507593
+          ],
+          "median_per_output_differences": [
+            0.0007156672622197468,
+            -0.00016457106785293225
+          ],
+          "method_mean_complexity": 31.18419291074163,
+          "baseline_mean_complexity": 26.079037981083854,
+          "ratio_of_mean_complexity": 1.1957570265191815,
+          "median_complexity_ratio": 1.2066020281552645
+        },
+        "scales": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": 1.8822451484933223e-16,
+          "median_difference": 2.1930958423284897e-16,
+          "method_mean_nrmse": 3.228640009070407e-16,
+          "baseline_mean_nrmse": 1.3463948605770847e-16,
+          "relative_mean_reduction": -1.3979889582217837,
+          "mean_per_output_differences": [
+            2.9740624032476316e-16,
+            7.904278937390128e-17
+          ],
+          "median_per_output_differences": [
+            3.77804891297748e-16,
+            7.655161913139587e-17
+          ],
+          "method_mean_complexity": 20.061415397601188,
+          "baseline_mean_complexity": 19.277007102447424,
+          "ratio_of_mean_complexity": 1.0406913942078786,
+          "median_complexity_ratio": 1.0465707412088614
+        },
+        "partial": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": 2.660946004650614e-16,
+          "median_difference": 2.4165993970038755e-16,
+          "method_mean_nrmse": 2.660946004650614e-16,
+          "baseline_mean_nrmse": 0.0,
+          "relative_mean_reduction": null,
+          "mean_per_output_differences": [
+            9.061746627480634e-17,
+            4.415717346553165e-16
+          ],
+          "median_per_output_differences": [
+            6.52101136117577e-17,
+            2.781219211018655e-16
+          ],
+          "method_mean_complexity": 21.844730389029735,
+          "baseline_mean_complexity": 16.799579121122235,
+          "ratio_of_mean_complexity": 1.3003141466540786,
+          "median_complexity_ratio": 1.2828158298806238
+        },
+        "boundary": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": 6.990694996082539e-16,
+          "median_difference": 7.507842607845498e-16,
+          "method_mean_nrmse": 6.990694996082539e-16,
+          "baseline_mean_nrmse": 0.0,
+          "relative_mean_reduction": null,
+          "mean_per_output_differences": [
+            6.389965745109599e-16,
+            7.591424247055479e-16
+          ],
+          "median_per_output_differences": [
+            2.9298772086898153e-16,
+            9.955921261698532e-16
+          ],
+          "method_mean_complexity": 20.48646636462921,
+          "baseline_mean_complexity": 10.0,
+          "ratio_of_mean_complexity": 2.048646636462921,
+          "median_complexity_ratio": 2.0451853178503345
+        }
+      },
+      "pairs": [
+        {
+          "case": "shared_parameter",
+          "seed": 101,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00041878110252392567,
+          "baseline_mean_nrmse": 0.0012605451921072798,
+          "difference": -0.0008417640895833541,
+          "outcome": "win",
+          "method_nrmse": [
+            0.0007102042486335044,
+            0.00012735795641434698
+          ],
+          "baseline_nrmse": [
+            0.0022291613599472802,
+            0.00029192902426727923
+          ],
+          "per_output_differences": [
+            -0.001518957111313776,
+            -0.00016457106785293225
+          ],
+          "per_output_outcomes": [
+            "win",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            0.0024520874959420083,
+            0.0003211319266940072
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 32.47171811644803,
+          "baseline_complexity": 27.551463882361062,
+          "complexity_ratio": 1.1785841309592628
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 102,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0011438379676967196,
+          "baseline_mean_nrmse": 0.001077712815893265,
+          "difference": 6.612515180345457e-05,
+          "outcome": "loss",
+          "method_nrmse": [
+            0.0021556487313830835,
+            0.0001320272040103556
+          ],
+          "baseline_nrmse": [
+            0.0021554256317863315,
+            1.9868469723306073e-16
+          ],
+          "per_output_differences": [
+            2.230995967520029e-07,
+            0.00013202720401015691
+          ],
+          "per_output_outcomes": [
+            "loss",
+            "loss"
+          ],
+          "per_output_degradation_thresholds": [
+            0.002370978194964965,
+            1.0000000218553167e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            false
+          ],
+          "method_complexity": 29.01921728914215,
+          "baseline_complexity": 24.050363427209476,
+          "complexity_ratio": 1.2066020281552645
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 103,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0004344473164111285,
+          "baseline_mean_nrmse": 6.207722592523728e-05,
+          "difference": 0.0003723700904858912,
+          "outcome": "loss",
+          "method_nrmse": [
+            0.0007447401809717824,
+            0.00012415445185047456
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.00012415445185047456
+          ],
+          "per_output_differences": [
+            0.0007447401809717824,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "loss",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            0.00013657989703552202
+          ],
+          "per_output_within_threshold": [
+            false,
+            true
+          ],
+          "method_complexity": 32.12214874331183,
+          "baseline_complexity": 24.38569199551278,
+          "complexity_ratio": 1.3172539351855441
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 104,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0012649012749343209,
+          "baseline_mean_nrmse": 0.00014723520299005715,
+          "difference": 0.0011176660719442637,
+          "outcome": "loss",
+          "method_nrmse": [
+            0.0025000542064962834,
+            2.9748343372358142e-05
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0002944704059801143
+          ],
+          "per_output_differences": [
+            0.0025000542064962834,
+            -0.00026472206260775617
+          ],
+          "per_output_outcomes": [
+            "loss",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            0.0003239274465781257
+          ],
+          "per_output_within_threshold": [
+            false,
+            true
+          ],
+          "method_complexity": 30.149760137069848,
+          "baseline_complexity": 21.207799332835258,
+          "complexity_ratio": 1.4216354872044683
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 105,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00045296343228947534,
+          "baseline_mean_nrmse": 0.0009520039256920261,
+          "difference": -0.0004990404934025507,
+          "outcome": "win",
+          "method_nrmse": [
+            0.0007826224675888884,
+            0.0001233043969900623
+          ],
+          "baseline_nrmse": [
+            6.695520536914157e-05,
+            0.0018370526460149104
+          ],
+          "per_output_differences": [
+            0.0007156672622197468,
+            -0.0017137482490248482
+          ],
+          "per_output_outcomes": [
+            "loss",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            7.366072590605573e-05,
+            0.0020207679106164014
+          ],
+          "per_output_within_threshold": [
+            false,
+            true
+          ],
+          "method_complexity": 32.15812026773628,
+          "baseline_complexity": 33.19987126750069,
+          "complexity_ratio": 0.9686218361700644
+        },
+        {
+          "case": "scales",
+          "seed": 101,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 2.8002311225927386e-16,
+          "baseline_mean_nrmse": 1.8903146981542792e-16,
+          "difference": 9.099164244384595e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            3.620394482173976e-16,
+            1.9800677630115016e-16
+          ],
+          "baseline_nrmse": [
+            2.5660778246110156e-16,
+            1.214551571697543e-16
+          ],
+          "per_output_differences": [
+            1.0543166575629605e-16,
+            7.655161913139587e-17
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000282268562e-08,
+            1.0000000133600672e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 19.952938939144214,
+          "baseline_complexity": 20.004701670870816,
+          "complexity_ratio": 0.9974124716989919
+        },
+        {
+          "case": "scales",
+          "seed": 102,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 4.212121854780236e-16,
+          "baseline_mean_nrmse": 8.103981216895891e-17,
+          "difference": 3.401723733090647e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            5.46934836778237e-16,
+            2.954895341778103e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            1.6207962433791782e-16
+          ],
+          "per_output_differences": [
+            5.46934836778237e-16,
+            1.3340990983989247e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1.0000000178287586e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 19.184517158240716,
+          "baseline_complexity": 17.97687766639597,
+          "complexity_ratio": 1.0671773771983872
+        },
+        {
+          "case": "scales",
+          "seed": 103,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 3.5978578623854756e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 3.5978578623854756e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            3.77804891297748e-16,
+            3.417666811793471e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            3.77804891297748e-16,
+            3.417666811793471e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 19.56644622817773,
+          "baseline_complexity": 18.601246593006547,
+          "complexity_ratio": 1.0518889758460632
+        },
+        {
+          "case": "scales",
+          "seed": 104,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 1.368682089368399e-16,
+          "baseline_mean_nrmse": 2.0600502091448597e-16,
+          "difference": -6.913681197764607e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.45948086056568e-17,
+            2.5914160926802303e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            4.1201004182897194e-16
+          ],
+          "per_output_differences": [
+            1.45948086056568e-17,
+            -1.5286843256094892e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1.0000000453211047e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 20.923003650200137,
+          "baseline_complexity": 20.042273441998603,
+          "complexity_ratio": 1.0439436279896253
+        },
+        {
+          "case": "scales",
+          "seed": 105,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 4.1643071162251857e-16,
+          "baseline_mean_nrmse": 1.971211273896696e-16,
+          "difference": 2.1930958423284897e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            4.422649991858781e-16,
+            3.9059642405915906e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            3.942422547793392e-16
+          ],
+          "per_output_differences": [
+            4.422649991858781e-16,
+            -3.645830720180142e-18
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1.0000000433666481e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 20.680171012243136,
+          "baseline_complexity": 19.75993613996519,
+          "complexity_ratio": 1.0465707412088614
+        },
+        {
+          "case": "partial",
+          "seed": 101,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 1.3388750247437915e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 1.3388750247437915e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            6.078573112321997e-17,
+            2.0698927382553833e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            6.078573112321997e-17,
+            2.0698927382553833e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 20.543349866490026,
+          "baseline_complexity": 19.929449846509733,
+          "complexity_ratio": 1.0308036611501248
+        },
+        {
+          "case": "partial",
+          "seed": 102,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 6.143714477832426e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 6.143714477832426e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            6.52101136117577e-17,
+            1.1635327819547274e-15
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            6.52101136117577e-17,
+            1.1635327819547274e-15
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 23.128930101297048,
+          "baseline_complexity": 15.242728275917443,
+          "complexity_ratio": 1.5173746905820862
+        },
+        {
+          "case": "partial",
+          "seed": 103,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 2.4165993970038755e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 2.4165993970038755e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.0519795829890965e-16,
+            2.781219211018655e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            2.0519795829890965e-16,
+            2.781219211018655e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 19.656055170513316,
+          "baseline_complexity": 15.794448546872271,
+          "complexity_ratio": 1.2444913864628562
+        },
+        {
+          "case": "partial",
+          "seed": 104,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.186769122607572e-17,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 5.186769122607572e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            3.6005627992029626e-18,
+            1.0013481965294848e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            3.6005627992029626e-18,
+            1.0013481965294848e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 23.878092362402086,
+          "baseline_complexity": 15.868069097645035,
+          "complexity_ratio": 1.5047887815125414
+        },
+        {
+          "case": "partial",
+          "seed": 105,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 2.886864211412222e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 2.886864211412222e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.1829296554094143e-16,
+            4.59079876741503e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            1.1829296554094143e-16,
+            4.59079876741503e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 22.017224444446196,
+          "baseline_complexity": 17.16319983866669,
+          "complexity_ratio": 1.2828158298806238
+        },
+        {
+          "case": "boundary",
+          "seed": 101,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.393211861955683e-17,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 5.393211861955683e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.0786423723911366e-16,
+            0.0
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            1.0786423723911366e-16,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 18.20007097571102,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 1.8200070975711022
+        },
+        {
+          "case": "boundary",
+          "seed": 102,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 2.2810410141195605e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 2.2810410141195605e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.6419970301468425e-16,
+            1.9200849980922786e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            2.6419970301468425e-16,
+            1.9200849980922786e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 20.044190715195235,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 2.0044190715195236
+        },
+        {
+          "case": "boundary",
+          "seed": 103,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 8.648061997657068e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 8.648061997657068e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.9298772086898153e-16,
+            1.4366246786624321e-15
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            2.9298772086898153e-16,
+            1.4366246786624321e-15
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 21.981766697482254,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 2.1981766697482255
+        },
+        {
+          "case": "boundary",
+          "seed": 104,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.507842607845498e-16,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 7.507842607845498e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            3.300817026828734e-16,
+            1.1714868188862262e-15
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            3.300817026828734e-16,
+            1.1714868188862262e-15
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 21.754450256254188,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 2.175445025625419
+        },
+        {
+          "case": "boundary",
+          "seed": 105,
+          "method": "original",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 1.5977208174595e-15,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 1.5977208174595e-15,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.1998495087491468e-15,
+            9.955921261698532e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            2.1998495087491468e-15,
+            9.955921261698532e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 20.451853178503345,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 2.0451853178503345
+        }
+      ]
+    },
+    "proposed_minus_independent": {
+      "method": "proposed",
+      "baseline": "independent",
+      "difference_direction": "method minus baseline",
+      "tolerance": 1e-08,
+      "overall": {
+        "expected_pairs": 20,
+        "available_pairs": 20,
+        "complete": true,
+        "wins": 3,
+        "ties": 15,
+        "losses": 2,
+        "unavailable": 0,
+        "expected_outputs": 40,
+        "available_outputs": 40,
+        "output_wins": 5,
+        "output_ties": 31,
+        "output_losses": 4,
+        "outputs_within_degradation_threshold": 36,
+        "mean_difference": -0.00012616211831176276,
+        "median_difference": 4.776258085456004e-19,
+        "method_mean_nrmse": 4.8816599818664174e-05,
+        "baseline_mean_nrmse": 0.00017497871813042693,
+        "relative_mean_reduction": 0.7210140733670429,
+        "mean_per_output_differences": [
+          -0.0001575676795947755,
+          -9.475655702874997e-05
+        ],
+        "median_per_output_differences": [
+          1.5238018294102544e-18,
+          0.0
+        ],
+        "method_mean_complexity": 32.05941164378595,
+        "baseline_mean_complexity": 18.038906051163377,
+        "ratio_of_mean_complexity": 1.777237020518678,
+        "median_complexity_ratio": 1.6475904686841816
+      },
+      "strata": {
+        "shared_parameter": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 3,
+          "ties": 0,
+          "losses": 2,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 5,
+          "output_ties": 1,
+          "output_losses": 4,
+          "outputs_within_degradation_threshold": 6,
+          "mean_difference": -0.0005046484732469725,
+          "median_difference": -0.0007195958398186013,
+          "method_mean_nrmse": 0.00019526639927460053,
+          "baseline_mean_nrmse": 0.000699914872521573,
+          "relative_mean_reduction": 0.7210140733670695,
+          "mean_per_output_differences": [
+            -0.000630270718379062,
+            -0.00037902622811488297
+          ],
+          "median_per_output_differences": [
+            2.5625241451812903e-16,
+            -0.0002619701593473316
+          ],
+          "method_mean_complexity": 34.739679939739,
+          "baseline_mean_complexity": 26.079037981083854,
+          "ratio_of_mean_complexity": 1.3320920796594202,
+          "median_complexity_ratio": 1.4193202495197101
+        },
+        "scales": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": -8.535503436094145e-17,
+          "median_difference": -1.14622562649001e-16,
+          "method_mean_nrmse": 4.928445169676702e-17,
+          "baseline_mean_nrmse": 1.3463948605770847e-16,
+          "relative_mean_reduction": 0.6339524671414523,
+          "mean_per_output_differences": [
+            -4.8438124314141923e-17,
+            -1.22271944407741e-16
+          ],
+          "median_per_output_differences": [
+            2.716011853341826e-18,
+            -1.6121556090830147e-16
+          ],
+          "method_mean_complexity": 32.23290787032798,
+          "baseline_mean_complexity": 19.277007102447424,
+          "ratio_of_mean_complexity": 1.67209088522023,
+          "median_complexity_ratio": 1.608013704464821
+        },
+        "partial": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": 6.475433412963753e-18,
+          "median_difference": 6.351932207799827e-18,
+          "method_mean_nrmse": 6.475433412963753e-18,
+          "baseline_mean_nrmse": 0.0,
+          "relative_mean_reduction": null,
+          "mean_per_output_differences": [
+            7.644363946498375e-18,
+            5.306502879429132e-18
+          ],
+          "median_per_output_differences": [
+            4.062565233734322e-18,
+            1.2942073983780771e-18
+          ],
+          "method_mean_complexity": 27.554460490894805,
+          "baseline_mean_complexity": 16.799579121122235,
+          "ratio_of_mean_complexity": 1.6401875482850863,
+          "median_complexity_ratio": 1.6385621724713797
+        },
+        "boundary": {
+          "expected_pairs": 5,
+          "available_pairs": 5,
+          "complete": true,
+          "wins": 0,
+          "ties": 5,
+          "losses": 0,
+          "unavailable": 0,
+          "expected_outputs": 10,
+          "available_outputs": 10,
+          "output_wins": 0,
+          "output_ties": 10,
+          "output_losses": 0,
+          "outputs_within_degradation_threshold": 10,
+          "mean_difference": 4.03137094008513e-19,
+          "median_difference": 4.193904899379408e-19,
+          "method_mean_nrmse": 4.03137094008513e-19,
+          "baseline_mean_nrmse": 0.0,
+          "relative_mean_reduction": null,
+          "mean_per_output_differences": [
+            8.06274188017026e-19,
+            0.0
+          ],
+          "median_per_output_differences": [
+            8.387809798758816e-19,
+            0.0
+          ],
+          "method_mean_complexity": 33.71059827418201,
+          "baseline_mean_complexity": 10.0,
+          "ratio_of_mean_complexity": 3.3710598274182013,
+          "median_complexity_ratio": 3.4934470373609727
+        }
+      },
+      "pairs": [
+        {
+          "case": "shared_parameter",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00021329096700217144,
+          "baseline_mean_nrmse": 0.0012605451921072798,
+          "difference": -0.0010472542251051084,
+          "outcome": "win",
+          "method_nrmse": [
+            0.00039662306908439524,
+            2.9958864919947648e-05
+          ],
+          "baseline_nrmse": [
+            0.0022291613599472802,
+            0.00029192902426727923
+          ],
+          "per_output_differences": [
+            -0.0018325382908628849,
+            -0.0002619701593473316
+          ],
+          "per_output_outcomes": [
+            "win",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            0.0024520874959420083,
+            0.0003211319266940072
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.46752695983941,
+          "baseline_complexity": 27.551463882361062,
+          "complexity_ratio": 1.2510234340726314
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0001522357941106953,
+          "baseline_mean_nrmse": 0.001077712815893265,
+          "difference": -0.0009254770217825697,
+          "outcome": "win",
+          "method_nrmse": [
+            2.0947880708006663e-05,
+            0.0002835237075133839
+          ],
+          "baseline_nrmse": [
+            0.0021554256317863315,
+            1.9868469723306073e-16
+          ],
+          "per_output_differences": [
+            -0.0021344777510783246,
+            0.00028352370751318523
+          ],
+          "per_output_outcomes": [
+            "win",
+            "loss"
+          ],
+          "per_output_degradation_thresholds": [
+            0.002370978194964965,
+            1.0000000218553167e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            false
+          ],
+          "method_complexity": 34.13516782054666,
+          "baseline_complexity": 24.050363427209476,
+          "complexity_ratio": 1.4193202495197101
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00014044511180085503,
+          "baseline_mean_nrmse": 6.207722592523728e-05,
+          "difference": 7.836788587561775e-05,
+          "outcome": "loss",
+          "method_nrmse": [
+            2.5625241451812903e-16,
+            0.0002808902236014538
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.00012415445185047456
+          ],
+          "per_output_differences": [
+            2.5625241451812903e-16,
+            0.00015673577175097925
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "loss"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            0.00013657989703552202
+          ],
+          "per_output_within_threshold": [
+            true,
+            false
+          ],
+          "method_complexity": 34.808209926513484,
+          "baseline_complexity": 24.38569199551278,
+          "complexity_ratio": 1.4274030006168599
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00023795203758585618,
+          "baseline_mean_nrmse": 0.00014723520299005715,
+          "difference": 9.071683459579904e-05,
+          "outcome": "loss",
+          "method_nrmse": [
+            0.0004461557318748683,
+            2.974834329684404e-05
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0002944704059801143
+          ],
+          "per_output_differences": [
+            0.0004461557318748683,
+            -0.00026472206268327025
+          ],
+          "per_output_outcomes": [
+            "loss",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            0.0003239274465781257
+          ],
+          "per_output_within_threshold": [
+            false,
+            true
+          ],
+          "method_complexity": 35.133238336944615,
+          "baseline_complexity": 21.207799332835258,
+          "complexity_ratio": 1.6566187648969835
+        },
+        {
+          "case": "shared_parameter",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.00023240808587342475,
+          "baseline_mean_nrmse": 0.0009520039256920261,
+          "difference": -0.0007195958398186013,
+          "outcome": "win",
+          "method_nrmse": [
+            0.00043646192353991633,
+            2.835424820693316e-05
+          ],
+          "baseline_nrmse": [
+            6.695520536914157e-05,
+            0.0018370526460149104
+          ],
+          "per_output_differences": [
+            0.00036950671817077477,
+            -0.0018086983978079774
+          ],
+          "per_output_outcomes": [
+            "loss",
+            "win"
+          ],
+          "per_output_degradation_thresholds": [
+            7.366072590605573e-05,
+            0.0020207679106164014
+          ],
+          "per_output_within_threshold": [
+            false,
+            true
+          ],
+          "method_complexity": 35.154256654850826,
+          "baseline_complexity": 33.19987126750069,
+          "complexity_ratio": 1.058867257996367
+        },
+        {
+          "case": "scales",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.440890716642691e-17,
+          "baseline_mean_nrmse": 1.8903146981542792e-16,
+          "difference": -1.14622562649001e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.1229641314067867e-18,
+            1.4769485020144703e-16
+          ],
+          "baseline_nrmse": [
+            2.5660778246110156e-16,
+            1.214551571697543e-16
+          ],
+          "per_output_differences": [
+            -2.554848183296948e-16,
+            2.6239693031692733e-17
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1.0000000282268562e-08,
+            1.0000000133600672e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 32.08891085189699,
+          "baseline_complexity": 20.004701670870816,
+          "complexity_ratio": 1.6040684524989541
+        },
+        {
+          "case": "scales",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 2.4883617577517825e-18,
+          "baseline_mean_nrmse": 8.103981216895891e-17,
+          "difference": -7.855145041120713e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            4.112660085887199e-18,
+            8.640634296163665e-19
+          ],
+          "baseline_nrmse": [
+            0.0,
+            1.6207962433791782e-16
+          ],
+          "per_output_differences": [
+            4.112660085887199e-18,
+            -1.6121556090830147e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1.0000000178287586e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.44471884897437,
+          "baseline_complexity": 17.97687766639597,
+          "complexity_ratio": 1.9160568085392045
+        },
+        {
+          "case": "scales",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.943900181691477e-17,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 5.943900181691477e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            8.5923543711808545e-19,
+            1.1801876819671147e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            8.5923543711808545e-19,
+            1.1801876819671147e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 36.307880836833846,
+          "baseline_complexity": 18.601246593006547,
+          "complexity_ratio": 1.9519057852006763
+        },
+        {
+          "case": "scales",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.210677463017801e-17,
+          "baseline_mean_nrmse": 2.0600502091448597e-16,
+          "difference": -1.5389824628430797e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            5.6062893826380675e-18,
+            9.860725987771796e-17
+          ],
+          "baseline_nrmse": [
+            0.0,
+            4.1201004182897194e-16
+          ],
+          "per_output_differences": [
+            5.6062893826380675e-18,
+            -3.1340278195125397e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1.0000000453211047e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 26.548780701520958,
+          "baseline_complexity": 20.042273441998603,
+          "complexity_ratio": 1.3246391821941699
+        },
+        {
+          "case": "scales",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.797921311256363e-17,
+          "baseline_mean_nrmse": 1.971211273896696e-16,
+          "difference": -1.3914191427710597e-16,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.716011853341826e-18,
+            1.1324241437178544e-16
+          ],
+          "baseline_nrmse": [
+            0.0,
+            3.942422547793392e-16
+          ],
+          "per_output_differences": [
+            2.716011853341826e-18,
+            -2.8099984040755376e-16
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1.0000000433666481e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 31.774248112413723,
+          "baseline_complexity": 19.75993613996519,
+          "complexity_ratio": 1.608013704464821
+        },
+        {
+          "case": "partial",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.687304509205115e-18,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 7.687304509205115e-18,
+          "outcome": "tie",
+          "method_nrmse": [
+            0.0,
+            1.537460901841023e-17
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            0.0,
+            1.537460901841023e-17
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 25.50208693933621,
+          "baseline_complexity": 19.929449846509733,
+          "complexity_ratio": 1.279618210023114
+        },
+        {
+          "case": "partial",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 6.471036991890386e-19,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 6.471036991890386e-19,
+          "outcome": "tie",
+          "method_nrmse": [
+            0.0,
+            1.2942073983780771e-18
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            0.0,
+            1.2942073983780771e-18
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 24.976157958178213,
+          "baseline_complexity": 15.242728275917443,
+          "complexity_ratio": 1.6385621724713797
+        },
+        {
+          "case": "partial",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 1.3231167102084136e-17,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 1.3231167102084136e-17,
+          "outcome": "tie",
+          "method_nrmse": [
+            2.547642303975151e-17,
+            9.859111644167637e-19
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            2.547642303975151e-17,
+            9.859111644167637e-19
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 31.921411460858582,
+          "baseline_complexity": 15.794448546872271,
+          "complexity_ratio": 2.0210526101071054
+        },
+        {
+          "case": "partial",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 6.351932207799827e-18,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 6.351932207799827e-18,
+          "outcome": "tie",
+          "method_nrmse": [
+            4.062565233734322e-18,
+            8.641299181865331e-18
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            4.062565233734322e-18,
+            8.641299181865331e-18
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 27.86124152627242,
+          "baseline_complexity": 15.868069097645035,
+          "complexity_ratio": 1.7558054073767098
+        },
+        {
+          "case": "partial",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 4.4596595465406494e-18,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 4.4596595465406494e-18,
+          "outcome": "tie",
+          "method_nrmse": [
+            8.682831459006041e-18,
+            2.3648763407525815e-19
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            8.682831459006041e-18,
+            2.3648763407525815e-19
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 27.511404569828596,
+          "baseline_complexity": 17.16319983866669,
+          "complexity_ratio": 1.602929804956801
+        },
+        {
+          "case": "boundary",
+          "seed": 101,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 4.193904899379408e-19,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 4.193904899379408e-19,
+          "outcome": "tie",
+          "method_nrmse": [
+            8.387809798758816e-19,
+            0.0
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            8.387809798758816e-19,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 35.48101020528572,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 3.548101020528572
+        },
+        {
+          "case": "boundary",
+          "seed": 102,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 0.0,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 0.0,
+          "outcome": "tie",
+          "method_nrmse": [
+            0.0,
+            0.0
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            0.0,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.01797823586435,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 3.401797823586435
+        },
+        {
+          "case": "boundary",
+          "seed": 103,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 9.879407022569943e-19,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 9.879407022569943e-19,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.9758814045139886e-18,
+            0.0
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            1.9758814045139886e-18,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 27.981766697462945,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 2.7981766697462946
+        },
+        {
+          "case": "boundary",
+          "seed": 104,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 7.249315069436974e-20,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 7.249315069436974e-20,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.4498630138873949e-19,
+            0.0
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            1.4498630138873949e-19,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 34.93447037360973,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 3.4934470373609727
+        },
+        {
+          "case": "boundary",
+          "seed": 105,
+          "method": "proposed",
+          "baseline": "independent",
+          "available": true,
+          "method_status": "complete",
+          "baseline_status": "complete",
+          "method_mean_nrmse": 5.358611271532601e-19,
+          "baseline_mean_nrmse": 0.0,
+          "difference": 5.358611271532601e-19,
+          "outcome": "tie",
+          "method_nrmse": [
+            1.0717222543065201e-18,
+            0.0
+          ],
+          "baseline_nrmse": [
+            0.0,
+            0.0
+          ],
+          "per_output_differences": [
+            1.0717222543065201e-18,
+            0.0
+          ],
+          "per_output_outcomes": [
+            "tie",
+            "tie"
+          ],
+          "per_output_degradation_thresholds": [
+            1e-08,
+            1e-08
+          ],
+          "per_output_within_threshold": [
+            true,
+            true
+          ],
+          "method_complexity": 36.1377658586873,
+          "baseline_complexity": 10.0,
+          "complexity_ratio": 3.61377658586873
+        }
+      ]
+    }
+  },
+  "recommendation": {
+    "recommend": false,
+    "gates": {
+      "all_60_complete": true,
+      "all_60_independently_verified": true,
+      "all_60_full_mechanisms": true,
+      "all_60_domain_enclosed": true,
+      "frozen_hashes_and_order": true,
+      "all_20_search_and_pool_isolation": true,
+      "protocol_wall_budget": true,
+      "mean_relative_reduction_at_least_10_percent": true,
+      "mean_absolute_reduction_above_1e_8": true,
+      "all_40_outputs_within_degradation_bound": false,
+      "mean_complexity_ratio_at_most_1_5": true
+    },
+    "failed_gates": [
+      "all_40_outputs_within_degradation_bound"
+    ],
+    "scope": "Configuration recommendation for these four known development tasks only."
+  },
+  "diagnostics": {
+    "selection_audit": {
+      "all_full": {
+        "systems": 14,
+        "runs": [
+          "boundary_s0_full",
+          "boundary_s1_full",
+          "partial_s0_full",
+          "partial_s1_full",
+          "private_s0_full",
+          "private_s1_full",
+          "scales_s0_full",
+          "scales_s1_full",
+          "shared_parameter_s0_full",
+          "shared_parameter_s1_full",
+          "shared_s0_full",
+          "shared_s1_full",
+          "units_s0_full",
+          "units_s1_full"
+        ],
+        "feasible_systems": 14,
+        "changed_candidate_systems": 13,
+        "gap_above_1e_12_systems": 3,
+        "mean_validation_gap": 4.837441453862511e-05,
+        "maximum_validation_gap": 0.0003161703168893843,
+        "current_selected": {
+          "train_mean_nrmse": 6.572813918388052e-05,
+          "validation_mean_nrmse": 7.056444507893922e-05,
+          "complexity": 21.05925447388848,
+          "weighted_score": 0.007090315936375099,
+          "validation_nrmse_per_output": [
+            0.00011364565469544948,
+            2.748323546242896e-05
+          ]
+        },
+        "validation_min_same_constraint_tier": {
+          "train_mean_nrmse": 2.0681228491478848e-05,
+          "validation_mean_nrmse": 2.2190030540314116e-05,
+          "complexity": 27.161300643906216,
+          "weighted_score": 0.009075956911842386,
+          "validation_nrmse_per_output": [
+            4.022780499348143e-05,
+            4.152256087146796e-06
+          ]
+        }
+      },
+      "shared_parameter_full": {
+        "systems": 2,
+        "runs": [
+          "shared_parameter_s0_full",
+          "shared_parameter_s1_full"
+        ],
+        "feasible_systems": 2,
+        "changed_candidate_systems": 2,
+        "gap_above_1e_12_systems": 2,
+        "mean_validation_gap": 0.00030245253037731947,
+        "maximum_validation_gap": 0.0003161703168893843,
+        "current_selected": {
+          "train_mean_nrmse": 0.0004250597472880015,
+          "validation_mean_nrmse": 0.0004577827441594194,
+          "complexity": 32.302893557960374,
+          "weighted_score": 0.01122541393014621,
+          "validation_nrmse_per_output": [
+            0.0007955077411122241,
+            0.0001200577472066148
+          ]
+        },
+        "validation_min_same_constraint_tier": {
+          "train_mean_nrmse": 0.00014476859944022639,
+          "validation_mean_nrmse": 0.00015533021378209998,
+          "complexity": 33.79151432728057,
+          "weighted_score": 0.011419168322875619,
+          "validation_nrmse_per_output": [
+            0.00028159463495432314,
+            2.9065792609876807e-05
+          ]
+        }
+      },
+      "shared_parameter_no_gp": {
+        "systems": 2,
+        "runs": [
+          "shared_parameter_s0_no_gp",
+          "shared_parameter_s1_no_gp"
+        ],
+        "feasible_systems": 2,
+        "changed_candidate_systems": 2,
+        "gap_above_1e_12_systems": 2,
+        "mean_validation_gap": 0.0002198096845206071,
+        "maximum_validation_gap": 0.00022850214580911457,
+        "current_selected": {
+          "train_mean_nrmse": 0.0004250597472880015,
+          "validation_mean_nrmse": 0.0004577827441594194,
+          "complexity": 32.302893557960374,
+          "weighted_score": 0.01122541393014621,
+          "validation_nrmse_per_output": [
+            0.0007955077411122241,
+            0.0001200577472066148
+          ]
+        },
+        "validation_min_same_constraint_tier": {
+          "train_mean_nrmse": 0.00022033891271218062,
+          "validation_mean_nrmse": 0.00023797305963881236,
+          "complexity": 34.3055443446928,
+          "weighted_score": 0.011673154507869744,
+          "validation_nrmse_per_output": [
+            0.00044688032666777516,
+            2.9065792609849543e-05
+          ]
+        }
+      },
+      "shared_parameter_no_neural": {
+        "systems": 2,
+        "runs": [
+          "shared_parameter_s0_no_neural",
+          "shared_parameter_s1_no_neural"
+        ],
+        "feasible_systems": 2,
+        "changed_candidate_systems": 2,
+        "gap_above_1e_12_systems": 2,
+        "mean_validation_gap": 0.00025861844491934915,
+        "maximum_validation_gap": 0.0002887347438652546,
+        "current_selected": {
+          "train_mean_nrmse": 0.0004250597472880015,
+          "validation_mean_nrmse": 0.0004577827441594194,
+          "complexity": 32.302893557960374,
+          "weighted_score": 0.01122541393014621,
+          "validation_nrmse_per_output": [
+            0.0007955077411122241,
+            0.0001200577472066148
+          ]
+        },
+        "validation_min_same_constraint_tier": {
+          "train_mean_nrmse": 0.00018381006793053516,
+          "validation_mean_nrmse": 0.0001991642992400703,
+          "complexity": 34.523970058358145,
+          "weighted_score": 0.011707154318692785,
+          "validation_nrmse_per_output": [
+            0.00036926280607564187,
+            2.906579240449874e-05
+          ]
+        }
+      },
+      "shared_parameter_no_sharing": {
+        "systems": 2,
+        "runs": [
+          "shared_parameter_s0_no_sharing",
+          "shared_parameter_s1_no_sharing"
+        ],
+        "feasible_systems": 2,
+        "changed_candidate_systems": 2,
+        "gap_above_1e_12_systems": 2,
+        "mean_validation_gap": 0.0006367356134374467,
+        "maximum_validation_gap": 0.0012723859474931538,
+        "current_selected": {
+          "train_mean_nrmse": 0.0007532825390481119,
+          "validation_mean_nrmse": 0.0008308745863147163,
+          "complexity": 29.790358052032673,
+          "weighted_score": 0.010760993936992275,
+          "validation_nrmse_per_output": [
+            0.0015016298130697868,
+            0.00016011935955964566
+          ]
+        },
+        "validation_min_same_constraint_tier": {
+          "train_mean_nrmse": 0.00018129744422188722,
+          "validation_mean_nrmse": 0.00019413897287726953,
+          "complexity": 35.32308861403578,
+          "weighted_score": 0.011968501844222528,
+          "validation_nrmse_per_output": [
+            0.00035921215571618726,
+            2.906579003835176e-05
+          ]
+        }
+      }
+    },
+    "diagnostic_wall_seconds": 46.439777135849,
+    "fixed_structure_and_search": [
+      {
+        "seed": 0,
+        "status": "complete",
+        "original_structure_recovered": true,
+        "original_structure_nfev": 5,
+        "original_search_fingerprint_equal": true,
+        "direct_target_proposals": 0,
+        "best_validation_outcome": "final_pool"
+      },
+      {
+        "seed": 1,
+        "status": "complete",
+        "original_structure_recovered": true,
+        "original_structure_nfev": 5,
+        "original_search_fingerprint_equal": true,
+        "direct_target_proposals": 0,
+        "best_validation_outcome": "final_pool"
+      }
+    ],
+    "boundary": "Known-structure fitting and direct-pattern proposal checks; no algebraic-equivalence proof or general discovery guarantee."
+  }
+}
