@@ -1,0 +1,338 @@
+{
+  "system": {
+    "nodes": [
+      {
+        "token": "c0",
+        "children": [],
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": 0
+      },
+      {
+        "token": "x0",
+        "children": [],
+        "units": [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "square",
+        "children": [
+          1
+        ],
+        "units": [
+          "2",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "mul",
+        "children": [
+          0,
+          2
+        ],
+        "units": [
+          "2",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "c0",
+        "children": [],
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": 1
+      },
+      {
+        "token": "x1",
+        "children": [],
+        "units": [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "square",
+        "children": [
+          5
+        ],
+        "units": [
+          "0",
+          "0",
+          "2",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "mul",
+        "children": [
+          4,
+          6
+        ],
+        "units": [
+          "0",
+          "0",
+          "2",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      }
+    ],
+    "roots": [
+      3,
+      7
+    ]
+  },
+  "parameters": [
+    {
+      "index": 0,
+      "value": 0.001,
+      "units": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "index": 1,
+      "value": 1000.0000000000001,
+      "units": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "units": {
+    "status": "passed",
+    "output_units": [
+      [
+        "2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "2",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "parameter_units": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  },
+  "structure": {
+    "shared_dag_vertices": 8,
+    "shared_graph_size": 8,
+    "shared_dag_operations": 4,
+    "maximum_output_depth": 3,
+    "independent_parameters": 2,
+    "expanded_total_nodes": 8,
+    "expanded_total_operations": 4,
+    "outputs": [
+      {
+        "expanded_nodes": 4,
+        "expanded_operations": 2,
+        "depth": 3,
+        "unique_dag_nodes": 4,
+        "independent_parameters": 1
+      },
+      {
+        "expanded_nodes": 4,
+        "expanded_operations": 2,
+        "depth": 3,
+        "unique_dag_nodes": 4,
+        "independent_parameters": 1
+      }
+    ]
+  },
+  "train_nrmse": [
+    1.7104051572770547e-16,
+    2.900337722335209e-16
+  ],
+  "validation_nrmse": [
+    1.8879917671585913e-16,
+    2.854226891169171e-16
+  ],
+  "development_accepted": true,
+  "physical_variables": [
+    {
+      "symbol": "x0",
+      "name": "length",
+      "units": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "symbol": "x1",
+      "name": "time",
+      "units": [
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "physical_outputs": [
+    {
+      "name": "small_area",
+      "units": [
+        "2",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "large_time_squared",
+      "units": [
+        "0",
+        "0",
+        "2",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "input_bounds": [
+    [
+      0.2,
+      1.1
+    ],
+    [
+      0.3,
+      1.3
+    ]
+  ],
+  "input_transform": "identity in declared SI units",
+  "output_transform": "identity; normalization only in error metric",
+  "prediction_semantics": "Original unsimplified graph; SI values, no input/output rescaling.",
+  "acceptance": {
+    "nrmse": [
+      0.0001,
+      0.0001
+    ],
+    "shared_graph_size": 24,
+    "independent_parameters": 6,
+    "expanded_total_nodes": 30,
+    "maximum_output_depth": 6
+  },
+  "formulas": [
+    "0.001*x0**2",
+    "1000.0*x1**2"
+  ],
+  "domain_audits": [
+    {
+      "status": "enclosed",
+      "boxes_checked": 1,
+      "reason": null,
+      "witness": null
+    },
+    {
+      "status": "enclosed",
+      "boxes_checked": 1,
+      "reason": null,
+      "witness": null
+    }
+  ],
+  "sharing": {
+    "shared_nodes": 0,
+    "shared_parameters": 0,
+    "unique_parameters": 2,
+    "dag_size": 8
+  }
+}

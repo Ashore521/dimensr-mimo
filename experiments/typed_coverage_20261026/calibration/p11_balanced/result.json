@@ -1,0 +1,510 @@
+{
+  "status": "complete",
+  "inputs": 11,
+  "balanced": true,
+  "config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 991,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 55,
+    "initialization_fraction": 0.15
+  },
+  "observation": {
+    "unit_checks": {
+      "evaluator_proposals": 567,
+      "variation_proposals": 408,
+      "operator_unbind": 33,
+      "operator_mutation": 107,
+      "operator_crossover": 110,
+      "operator_unshare": 34,
+      "operator_add_term": 27,
+      "operator_bind": 28,
+      "operator_shared_mutation": 36,
+      "operator_share": 33
+    },
+    "coverage": {
+      "output0/typed/affine": {
+        "submitted": 28,
+        "new_evaluated": 28,
+        "valid_new": 28,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/affine": {
+        "submitted": 28,
+        "new_evaluated": 28,
+        "valid_new": 28,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output1/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output0/typed/cos": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/cos": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/log": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/log": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/ratio": {
+        "submitted": 29,
+        "new_evaluated": 29,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/ratio": {
+        "submitted": 29,
+        "new_evaluated": 29,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/sin": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/sin": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/sqrt": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/sqrt": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/square": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/square": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/structured/affine": {
+        "submitted": 12,
+        "new_evaluated": 12,
+        "valid_new": 12,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          9
+        ]
+      },
+      "output1/structured/affine": {
+        "submitted": 12,
+        "new_evaluated": 12,
+        "valid_new": 12,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10
+        ]
+      }
+    },
+    "generated_by_output": [
+      {
+        "typed": 168,
+        "structured": 12
+      },
+      {
+        "typed": 168,
+        "structured": 12
+      }
+    ],
+    "initialization_system_cap": 180,
+    "typed_cap": 168
+  },
+  "units": {
+    "status": "passed",
+    "output_units": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "parameter_units": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  },
+  "complexity": {
+    "shared_dag_vertices": 24,
+    "shared_graph_size": 24,
+    "shared_dag_operations": 11,
+    "maximum_output_depth": 6,
+    "independent_parameters": 6,
+    "expanded_total_nodes": 24,
+    "expanded_total_operations": 11,
+    "outputs": [
+      {
+        "expanded_nodes": 15,
+        "expanded_operations": 7,
+        "depth": 6,
+        "unique_dag_nodes": 15,
+        "independent_parameters": 3
+      },
+      {
+        "expanded_nodes": 9,
+        "expanded_operations": 4,
+        "depth": 4,
+        "unique_dag_nodes": 9,
+        "independent_parameters": 3
+      }
+    ]
+  },
+  "mechanism": {
+    "neural_parameter_change": 0.9158312082290649,
+    "valid_neural": 65,
+    "gp_evaluations": 191,
+    "nsga_generations": 4,
+    "nsga_evaluations": 96
+  },
+  "reload_equal": true,
+  "test_scores_computed": false
+}

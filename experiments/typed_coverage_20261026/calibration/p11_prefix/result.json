@@ -1,0 +1,379 @@
+{
+  "status": "complete",
+  "inputs": 11,
+  "balanced": false,
+  "config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 991,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 55,
+    "initialization_fraction": 0.15
+  },
+  "observation": {
+    "unit_checks": {
+      "evaluator_proposals": 566,
+      "variation_proposals": 392,
+      "operator_unbind": 31,
+      "operator_mutation": 108,
+      "operator_share": 30,
+      "operator_unshare": 32,
+      "operator_add_term": 30,
+      "operator_crossover": 101,
+      "operator_shared_mutation": 29,
+      "operator_bind": 31
+    },
+    "coverage": {
+      "output0/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output1/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output0/typed/affine": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/affine": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/square": {
+        "submitted": 16,
+        "new_evaluated": 16,
+        "valid_new": 16,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/square": {
+        "submitted": 16,
+        "new_evaluated": 16,
+        "valid_new": 16,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/sqrt": {
+        "submitted": 16,
+        "new_evaluated": 16,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/sqrt": {
+        "submitted": 16,
+        "new_evaluated": 16,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/log": {
+        "submitted": 15,
+        "new_evaluated": 15,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/log": {
+        "submitted": 15,
+        "new_evaluated": 15,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/ratio": {
+        "submitted": 110,
+        "new_evaluated": 110,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/ratio": {
+        "submitted": 110,
+        "new_evaluated": 110,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    },
+    "generated_by_output": [
+      {
+        "typed": 359,
+        "structured": 12
+      },
+      {
+        "typed": 359,
+        "structured": 12
+      }
+    ],
+    "initialization_system_cap": 180,
+    "typed_cap": null
+  },
+  "units": {
+    "status": "passed",
+    "output_units": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "parameter_units": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  },
+  "complexity": {
+    "shared_dag_vertices": 8,
+    "shared_graph_size": 8,
+    "shared_dag_operations": 3,
+    "maximum_output_depth": 3,
+    "independent_parameters": 3,
+    "expanded_total_nodes": 8,
+    "expanded_total_operations": 3,
+    "outputs": [
+      {
+        "expanded_nodes": 3,
+        "expanded_operations": 1,
+        "depth": 2,
+        "unique_dag_nodes": 3,
+        "independent_parameters": 1
+      },
+      {
+        "expanded_nodes": 5,
+        "expanded_operations": 2,
+        "depth": 3,
+        "unique_dag_nodes": 5,
+        "independent_parameters": 2
+      }
+    ]
+  },
+  "mechanism": {
+    "neural_parameter_change": 0.8598669320344925,
+    "valid_neural": 65,
+    "gp_evaluations": 191,
+    "nsga_generations": 4,
+    "nsga_evaluations": 95
+  },
+  "reload_equal": true,
+  "test_scores_computed": false
+}
