@@ -25,7 +25,7 @@ class Trace:
 class Grammar:
     def __init__(self, feature_units, target_units, constant_units, operators,
                  max_nodes=15, max_depth=6, extra_units=(), *, reference_units=(),
-                 max_references=12, output_context=()):
+                 max_references=12, output_context=(), reference_shapes=()):
         self.target = target_units
         self.max_nodes = max_nodes
         self.max_depth = max_depth
@@ -35,6 +35,11 @@ class Grammar:
         # Reference slots keep vocabulary stable; unavailable slots are masked.
         self.tokens = tuple(self.terminals) + tuple(f'r{i}' for i in range(max_references)) + tuple(operators)
         self.terminals.update({f'r{i}': u for i, u in enumerate(reference_units)})
+        if reference_shapes and (len(reference_shapes)!=len(reference_units) or
+                any(len(s)!=2 or any(type(v) is not int or v<1 for v in s) for s in reference_shapes)):
+            raise ValueError('Reference shapes must provide positive integer size/depth pairs.')
+        self.terminal_shapes={t:(1,1) for t in self.terminals}
+        self.terminal_shapes.update({f'r{i}':tuple(s) for i,s in enumerate(reference_shapes)})
         self.index = {t: i for i, t in enumerate(self.tokens)}
         self.bos = len(self.tokens)
         base = set(self.terminals.values()) | {ZERO, target_units} | set(extra_units)
@@ -78,9 +83,7 @@ class Grammar:
         impossible = max_nodes + 1
         self.cost = [{u: impossible for u in self.units}]
         for depth in range(1, max_depth + 1):
-            prev = self.cost[-1]
-            self.cost.append({u: min([impossible] + [1 + sum(prev[c] for c in p.children)
-                                                    for p in ps])
+            self.cost.append({u: min([impossible] + [self.production_cost(p,depth) for p in ps])
                               for u, ps in self.productions.items()})
         if self.cost[-1][target_units] > max_nodes:
             raise ValueError("Target units cannot be generated within the grammar bounds. "
@@ -88,13 +91,19 @@ class Grammar:
         self._options = {}
         self._production_features = {}
 
+    def production_cost(self,production,depth):
+        if not production.children:
+            size,height=self.terminal_shapes[production.token]
+            return size if height<=depth else self.max_nodes+1
+        return 1+sum(self.cost[depth-1][u] for u in production.children)
+
     def options(self, units, budget, depth):
         key = (units, budget, depth)
         if key not in self._options:
             by_token = {}
             if depth > 0:
                 for p in self.productions[units]:
-                    if 1 + sum(self.cost[depth - 1][c] for c in p.children) <= budget:
+                    if self.production_cost(p,depth) <= budget:
                         by_token.setdefault(self.index[p.token], []).append(p)
             self._options[key] = by_token
         return self._options[key]
@@ -129,16 +138,21 @@ class Grammar:
             trace.masks.append(mask)
             trace.production_features.append(features)
             trace.production_indices.append(choice)
+            if not p.children:
+                return Node(p.token,units=required),self.terminal_shapes[p.token][0]
             children = []
             remaining -= 1
+            used = 1
             for i, child_units in enumerate(p.children):
                 reserved = sum(self.cost[height - 1][u] for u in p.children[i + 1:])
-                child = visit(child_units, remaining - reserved, height - 1, token)
-                remaining -= child.size
+                child,size = visit(child_units, remaining - reserved, height - 1, token)
+                remaining -= size
+                used += size
                 children.append(child)
-            return Node(p.token, tuple(children), required)
+            return Node(p.token, tuple(children), required),used
 
-        return visit(units, budget, depth, self.bos), trace
+        tree,_=visit(units, budget, depth, self.bos)
+        return tree,trace
 
     def production_features(self, productions, depth):
         key = tuple(productions), depth
@@ -170,10 +184,15 @@ class Grammar:
             result.masks.append(mask)
             result.production_features.append(self.production_features(choices[token], depth))
             result.production_indices.append(choices[token].index(p))
+            if not node.children:
+                return self.terminal_shapes[node.token][0]
             remaining = budget - 1
+            used = 1
             for i, child in enumerate(node.children):
                 reserved = sum(self.cost[depth - 1][c.units] for c in node.children[i + 1:])
-                visit(child, remaining - reserved, depth - 1, token)
-                remaining -= child.size
+                size=visit(child, remaining - reserved, depth - 1, token)
+                remaining -= size
+                used += size
+            return used
         visit(tree, self.max_nodes, self.max_depth, self.bos)
         return result

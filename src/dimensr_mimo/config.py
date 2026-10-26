@@ -12,6 +12,7 @@ class SearchConfig(SingleConfig):
     selection_generations: int = 4
     max_evaluations: int = 2000
     max_references: int = 12
+    reference_budget: str = 'token'
     use_sharing: bool = True
     use_constraints: bool = True
     degradation_relative: float = 0.10
@@ -30,6 +31,8 @@ class SearchConfig(SingleConfig):
                 raise ValueError(key + ' must be boolean.')
         if type(self.max_references) is not int or self.max_references < 1:
             raise ValueError('max_references must be positive.')
+        if self.reference_budget not in ('token','expanded'):
+            raise ValueError('reference_budget must be token or expanded.')
         for k in ('degradation_relative', 'degradation_absolute'):
             if not math.isfinite(getattr(self, k)) or getattr(self, k) < 0:
                 raise ValueError(k + ' must be finite and nonnegative.')

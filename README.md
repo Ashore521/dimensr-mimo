@@ -30,6 +30,8 @@
 
 1.2.1的[精确语法提速](docs/GRAMMAR_COST.zh-CN.md)保持无墙钟搜索完全一致，训练侧工作负载耗时减少23.7%，同预算下六系统完整机制核验全部通过。但精度/结构验收仍0/6，输出保护14/18，平均测试误差上升7.3%；这属于机制覆盖修正，不能据此声称精度优势。
 
+1.3.0的[展开引用预算](docs/REFERENCE_BUDGET.zh-CN.md)在同预算下使110/110神经提案满足展开结构上限，六系统完整核验通过，18/18输出在预定保护界内，平均测试误差下降2.4%。完整精度/结构验收仍0/6，默认token保留，通用复合项发现继续推进。
+
 ## 安装
 
 Python 3.10+，建议独立环境。Windows PowerShell：
@@ -80,6 +82,7 @@ CSV 第一行为列名；配置 JSON 对应 `SearchConfig` 字段。metadata 可
 ## 运行边界
 
 - `use_rnn/use_gp/use_sharing/use_units/use_rademacher/use_size_diversity/use_constraints/interval_checks` 用于明确消融。默认全部启用。
+- 1.3.0 可选 `reference_budget='expanded'`，让生成掩码、剩余节点预算及策略回放按共享引用的实际展开大小/深度计费；默认 `token` 保留原行为，最终展开图上限仍始终检查。
 - `wall_seconds` 为单次 fit 的协作式时间限制；数值库的一次调用和最终选择可能少量超时。严格实验上限由外部进程监督。
 - 1.2.0 可显式设置 `time_allocation='phased'` 并提供 `wall_seconds`，按 `selection_budget_fraction` 为 NSGA-II 预留墙钟时间，同时分配神经/GP/策略更新窗口；默认 `global` 保持原全局截止。初始化或单次原子操作仍可能超出窗口，是否完整执行应查看实际事件。旧原生模型经过核验后可迁移元数据并重新保存，预测与验收状态保留。
 - `max_evaluations` 限制唯一系统数，`population_size/epochs/gp_generations/selection_generations` 限制各阶段。日志中有实际新评价和参数更新证据；设置开关不代表阶段已执行。

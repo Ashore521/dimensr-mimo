@@ -32,14 +32,22 @@ class SystemGrammar:
                     len({v.parameter for v in nodes if v.parameter is not None}) /
                     (len(self.targets) * self.cfg.max_nodes)]
         ref_units = tuple(nodes[i].units for i in references)
-        key = (j, ref_units)
+        ref_shapes = ()
+        if self.cfg.reference_budget=='expanded':
+            sizes,depths=[],[]
+            for node in nodes:
+                sizes.append(min(self.cfg.max_nodes+1,1+sum(sizes[c] for c in node.children)))
+                depths.append(1+max((depths[c] for c in node.children),default=0))
+            ref_shapes=tuple((sizes[i],depths[i]) for i in references)
+        key = (j, ref_units, ref_shapes)
         if key in self._cache:
             self._cache[key].output_context = context
             return self._cache[key]
         g = Grammar(self.features, self.targets[j], self.constants, self.cfg.operators,
                        self.cfg.max_nodes, self.cfg.max_depth, self.extra,
                        reference_units=ref_units,
-                       max_references=self.cfg.max_references, output_context=context)
+                       max_references=self.cfg.max_references, output_context=context,
+                       **({'reference_shapes':ref_shapes} if self.cfg.reference_budget=='expanded' else {}))
         self._cache[key] = g
         return g
 
