@@ -1,0 +1,345 @@
+{
+  "system": {
+    "nodes": [
+      {
+        "token": "x0",
+        "children": [],
+        "units": [
+          "0",
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "x1",
+        "children": [],
+        "units": [
+          "1",
+          "0",
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "mul",
+        "children": [
+          0,
+          1
+        ],
+        "units": [
+          "1",
+          "1",
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "c0",
+        "children": [],
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": 0
+      },
+      {
+        "token": "square",
+        "children": [
+          1
+        ],
+        "units": [
+          "2",
+          "0",
+          "-2",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "mul",
+        "children": [
+          4,
+          0
+        ],
+        "units": [
+          "2",
+          "1",
+          "-2",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      },
+      {
+        "token": "mul",
+        "children": [
+          3,
+          5
+        ],
+        "units": [
+          "2",
+          "1",
+          "-2",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "parameter": null
+      }
+    ],
+    "roots": [
+      2,
+      6
+    ]
+  },
+  "parameters": [
+    {
+      "index": 0,
+      "value": 0.5000000000000001,
+      "units": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "units": {
+    "status": "passed",
+    "output_units": [
+      [
+        "1",
+        "1",
+        "-1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "2",
+        "1",
+        "-2",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "parameter_units": [
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ]
+  },
+  "structure": {
+    "shared_dag_vertices": 7,
+    "shared_graph_size": 7,
+    "shared_dag_operations": 4,
+    "maximum_output_depth": 4,
+    "independent_parameters": 1,
+    "expanded_total_nodes": 9,
+    "expanded_total_operations": 4,
+    "outputs": [
+      {
+        "expanded_nodes": 3,
+        "expanded_operations": 1,
+        "depth": 2,
+        "unique_dag_nodes": 3,
+        "independent_parameters": 0
+      },
+      {
+        "expanded_nodes": 6,
+        "expanded_operations": 3,
+        "depth": 4,
+        "unique_dag_nodes": 6,
+        "independent_parameters": 1
+      }
+    ]
+  },
+  "train_nrmse": [
+    0.0,
+    3.4598791751728183e-16
+  ],
+  "validation_nrmse": [
+    0.0,
+    3.874887449833403e-16
+  ],
+  "development_accepted": true,
+  "physical_variables": [
+    {
+      "symbol": "x0",
+      "name": "mass",
+      "units": [
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "symbol": "x1",
+      "name": "velocity",
+      "units": [
+        "1",
+        "0",
+        "-1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "physical_outputs": [
+    {
+      "name": "momentum",
+      "units": [
+        "1",
+        "1",
+        "-1",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "kinetic_energy",
+      "units": [
+        "2",
+        "1",
+        "-2",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "input_bounds": [
+    [
+      0.3,
+      1.4
+    ],
+    [
+      0.2,
+      1.3
+    ]
+  ],
+  "input_transform": "identity in declared SI units",
+  "output_transform": "identity; normalization only in error metric",
+  "prediction_semantics": "Original unsimplified graph; SI values, no input/output rescaling.",
+  "acceptance": {
+    "nrmse": [
+      0.0001,
+      0.0001
+    ],
+    "shared_graph_size": 24,
+    "independent_parameters": 6,
+    "expanded_total_nodes": 30,
+    "maximum_output_depth": 6
+  },
+  "formulas": [
+    "x0*x1",
+    "0.5000000000000001*x0*x1**2"
+  ],
+  "sharing": {
+    "shared_nodes": 2,
+    "shared_parameters": 0,
+    "unique_parameters": 1,
+    "dag_size": 7
+  },
+  "domain_audit": {
+    "status": "enclosed",
+    "outputs": [
+      {
+        "status": "enclosed",
+        "boxes_checked": 1,
+        "reason": null,
+        "witness": null
+      },
+      {
+        "status": "enclosed",
+        "boxes_checked": 1,
+        "reason": null,
+        "witness": null
+      }
+    ],
+    "guarantee": "numerical screening, not a formal proof"
+  },
+  "acceptance_decision": {
+    "method": "absolute_precision_then_structure",
+    "status": "accepted",
+    "limits": {
+      "nrmse": [
+        0.0001,
+        0.0001
+      ],
+      "shared_graph_size": 24,
+      "independent_parameters": 6,
+      "expanded_total_nodes": 30,
+      "maximum_output_depth": 6
+    },
+    "candidate_index": 91,
+    "feasible_count": 101,
+    "candidate_count": 126,
+    "individual_gate_counts": {
+      "absolute_accuracy": 108,
+      "structure": 116,
+      "relative_constraints": 108
+    },
+    "complexity_priority": [
+      "shared_graph_size",
+      "independent_parameters",
+      "expanded_total_nodes",
+      "maximum_output_depth"
+    ],
+    "validation_bounds": [
+      1e-08,
+      1.000000042623762e-08
+    ],
+    "relative_training_and_validation_constraints": true,
+    "source_model_sha256": "c90e3b41267a22c2e067a087a51a03841bb4eabd9ceadba021b564b02096f869",
+    "test_data_used": false,
+    "search_reused": true,
+    "fallback_method": null,
+    "reason": null
+  }
+}
