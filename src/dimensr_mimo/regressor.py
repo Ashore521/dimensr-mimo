@@ -23,6 +23,8 @@ from .genetics import offspring, clone_subgraph
 from .evaluation import Evaluator, Candidate
 from .pareto import ordered, diverse, violations
 
+PACKAGE_VERSION='1.2.0'
+
 
 def arrays(X, Y):
     X, Y = check_array(X, dtype=float), check_array(Y, dtype=float)
@@ -81,6 +83,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             self.training_indices_, self.validation_indices_ = np.arange(len(X)), None
         rng = np.random.default_rng(cfg.random_state)
         deadline = start + cfg.wall_seconds if cfg.wall_seconds is not None else None
+        exploration_deadline = (start + cfg.wall_seconds * (1 - cfg.selection_budget_fraction if cfg.use_gp else 1)
+                                if cfg.time_allocation=='phased' else None)
         grammar = SystemGrammar(features, targets, constants, cfg, extra)
         evaluator = Evaluator(X, Y, cfg, input_bounds=input_bounds, X_domain=X_domain, deadline=deadline)
         policy = Policy(grammar.n_tokens, cfg.hidden_size, cfg.learning_rate, cfg.random_state,
@@ -106,13 +110,18 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             if callback:
                 callback(entry.copy())
 
-        def evolve(population, multiobjective, limit):
+        def phase_expired(time_limit):
+            return evaluator.expired() or (time_limit is not None and time.monotonic()>=time_limit)
+
+        def evolve(population, multiobjective, limit, time_limit=None):
             ranked = ordered(population, cfg, reference) if multiobjective else sorted(population, key=lambda c: (violations(c.errors, reference, cfg), c.error))
             children = []
             for _ in range(cfg.population_size):
-                if evaluator.calls >= limit or evaluator.expired():
+                if evaluator.calls >= limit or phase_expired(time_limit):
                     break
                 for _ in range(cfg.variation_attempts):
+                    if time_limit is not None and phase_expired(time_limit):
+                        break
                     parent = ranked[int(rng.integers(len(ranked), size=3).min())]
                     donor = ranked[int(rng.integers(len(ranked), size=3).min())]
                     system, warm, op = offspring(parent, donor, grammar, rng)
@@ -185,10 +194,21 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
         record('initialization', 0, population, reference=reference.tolist())
 
         for epoch in range(cfg.epochs):
+            neural_deadline=gp_deadline=None
+            if exploration_deadline is not None:
+                epoch_start=time.monotonic()
+                if epoch_start>=exploration_deadline:
+                    break
+                window=(exploration_deadline-epoch_start)/(cfg.epochs-epoch)
+                neural_deadline=epoch_start+window*(.5 if cfg.use_gp else .85)
+                gp_deadline=epoch_start+window*.85
+                record('phase_budget',epoch,population,epoch_allowance_seconds=window,
+                       neural_until_seconds=neural_deadline-start,gp_until_seconds=gp_deadline-start,
+                       exploration_until_seconds=exploration_deadline-start)
             traces, rewards, sampled = [], [], []
             before = evaluator.calls
             for _ in range(cfg.population_size):
-                if evaluator.calls >= stage_limit or evaluator.expired():
+                if evaluator.calls >= stage_limit or phase_expired(neural_deadline):
                     break
                 system, warm, trace = grammar.generate(rng, policy)
                 candidate = evaluator(system, warm)
@@ -202,7 +222,7 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                    sampled_shared=sum(c.system.sharing['shared_nodes'] > 0 or c.system.sharing['shared_parameters'] > 0 for c in sampled))
             if cfg.use_gp:
                 for generation in range(cfg.gp_generations):
-                    population, children, merged = evolve(population, False, stage_limit)
+                    population, children, merged = evolve(population, False, stage_limit,gp_deadline)
                     record('gp', epoch * cfg.gp_generations + generation, population,
                            valid_offspring=len(children), merged_population=merged)
             if policy and traces:
@@ -219,7 +239,7 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                 delta = float(torch.linalg.vector_norm(torch.cat([p.detach().flatten() for p in policy.parameters()]) - before_params))
                 record('policy_update', epoch, population, parameter_delta=delta,
                        imitation_systems=len(elites), imitation_unrepresentable=skipped, **update)
-            if evaluator.calls >= stage_limit or evaluator.expired():
+            if evaluator.calls >= stage_limit or phase_expired(exploration_deadline):
                 break
 
         archive = [c for c in evaluator.cache.values() if c is not None]
@@ -320,7 +340,7 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
 
     def to_dict(self):
         check_is_fitted(self, 'best_')
-        data = dict(format='dimensr-mimo-dag', schema_version=1, package_version='1.1.0',
+        data = dict(format='dimensr-mimo-dag', schema_version=1, package_version=PACKAGE_VERSION,
                     config=asdict(self.config_), n_features=self.n_features_in_, n_outputs=self.n_outputs_,
                     feature_names=self.feature_names_, feature_units=[encode(u) for u in self.feature_units_],
                     target_units=[encode(u) for u in self.target_units_], constant_units=[encode(u) for u in self.constant_units_],
@@ -383,4 +403,10 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             expected=select(original,cfg.acceptance) if cfg.final_selection=='precision' else derive(original,'guarded')
             if expected['best']!=d['best'] or expected['post_selection']!=d.get('post_selection') or expected['diagnostics']!=d['diagnostics']:
                 raise ValueError('Saved selection or acceptance record does not match the frozen pool.')
+            # Verify the saved record first, then rebase provenance onto the new
+            # serialized defaults/version so old native models can be resaved.
+            if original['config']!=asdict(cfg) or original.get('package_version')!=PACKAGE_VERSION:
+                original.update(config=asdict(cfg),package_version=PACKAGE_VERSION)
+                migrated=select(original,cfg.acceptance) if cfg.final_selection=='precision' else derive(original,'guarded')
+                model.diagnostics_=migrated['diagnostics'];model.post_selection_=migrated['post_selection']
         return model

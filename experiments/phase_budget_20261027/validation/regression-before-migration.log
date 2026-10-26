@@ -1,0 +1,73 @@
+.F.                                                                      [100%]
+================================== FAILURES ===================================
+______ test_old_precision_model_resaves_with_new_optional_configuration _______
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/phase-budget-initial-tests/test_old_precision_model_resav0')
+
+    def test_old_precision_model_resaves_with_new_optional_configuration(tmp_path):
+        source=Path(__file__).resolve().parents[1]/'experiments/native_api_20261026/runs/dimensional_frequency_normalized/model.json'
+        old=DimenSRMIMORegressor.load(source);old.save(tmp_path/'new.json')
+>       new=DimenSRMIMORegressor.load(tmp_path/'new.json')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_phase_budget.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'dimensr_mimo.regressor.DimenSRMIMORegressor'>
+path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/phase-budget-initial-tests/test_old_precision_model_resav0/new.json')
+
+    @classmethod
+    def load(cls, path):
+        d = json.loads(Path(path).read_text(encoding='utf-8'))
+        if d.get('format') != 'dimensr-mimo-dag' or d.get('schema_version') != 1:
+            raise ValueError('Unsupported model schema.')
+        cfg = SearchConfig(**d['config'])
+        cfg.validate()
+        model = cls(cfg, d['feature_units'], d['target_units'], d['constant_units'], d['feature_names'])
+        model.config_ = cfg
+        model.n_features_in_, model.n_outputs_ = d['n_features'], d['n_outputs']
+        model.feature_units_, model.target_units_, model.constant_units_ = [tuple(unit(u) for u in d[k]) for k in ('feature_units', 'target_units', 'constant_units')]
+        model.feature_names_ = d['feature_names']
+        b = d['best']
+        system, constants = System.from_dict(b['system']), np.asarray(b['constants'], float)
+        if (constants.shape != (system.n_parameters,) or not np.isfinite(constants).all() or
+                len(system.roots) != model.n_outputs_ or len(model.feature_units_) != model.n_features_in_ or
+                len(model.feature_names_) != model.n_features_in_ or len(model.target_units_) != model.n_outputs_ or
+                not in_bounds(system, cfg)):
+            raise ValueError('Inconsistent model dimensions or parameters.')
+        for j, r in enumerate(system.roots):
+            if system.nodes[r].units != model.target_units_[j]:
+                raise ValueError('Output units mismatch.')
+        for v in system.nodes:
+            if not v.children:
+                units = model.feature_units_ if v.token.startswith('x') else model.constant_units_
+                i = int(v.token[1:])
+                if i >= len(units) or v.units != units[i]:
+                    raise ValueError('Terminal metadata mismatch.')
+        model.best_ = Candidate(system, constants, np.asarray(b['errors']), b['complexity'], b['rademacher'], b['rademacher_complexity'])
+        model.scales_, model.validation_nrmse_, model.reference_train_, model.reference_validation_ = [np.asarray(d[k], float) for k in ('scales', 'validation_nrmse', 'reference_train', 'reference_validation')]
+        if model.scales_.shape != (model.n_outputs_,) or not np.isfinite(model.scales_).all() or np.any(model.scales_ <= 0):
+            raise ValueError('Invalid output normalization.')
+        model.history_, model.diagnostics_, model.candidates_ = d['history'], d['diagnostics'], d['candidates']
+        model.search_fingerprint_ = d['search_fingerprint']
+        model.formulas_ = system.formulas(constants, model.feature_names_)
+        if 'post_selection' in d:model.post_selection_=d['post_selection']
+        if cfg.final_selection!='weighted':
+            from .selection import choose,derive,FIELDS
+            from .acceptance import select
+            original=deepcopy(d);original.pop('post_selection',None)
+            original['diagnostics'].pop('application_acceptance',None)
+            anchor=original['candidates'][choose(original['candidates'],'original')['candidate_index']]
+            original['best']={k:anchor[k] for k in FIELDS}
+            original['validation_nrmse']=anchor['validation_errors']
+            original['diagnostics'].update(validation_feasible=anchor['violation']==0,validation_violation=anchor['violation'],
+                selected_score=anchor['score'],sharing=System.from_dict(anchor['system']).sharing)
+            expected=select(original,cfg.acceptance) if cfg.final_selection=='precision' else derive(original,'guarded')
+            if expected['best']!=d['best'] or expected['post_selection']!=d.get('post_selection') or expected['diagnostics']!=d['diagnostics']:
+>               raise ValueError('Saved selection or acceptance record does not match the frozen pool.')
+E               ValueError: Saved selection or acceptance record does not match the frozen pool.
+
+src\dimensr_mimo\regressor.py:403: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_phase_budget.py::test_old_precision_model_resaves_with_new_optional_configuration
+1 failed, 2 passed in 4.21s

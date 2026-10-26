@@ -17,6 +17,7 @@ class SearchConfig(SingleConfig):
     degradation_relative: float = 0.10
     degradation_absolute: float = 0.02
     wall_seconds: float | None = None
+    time_allocation: str = 'global'
     initialization_fraction: float = 0.15
     initialization: str = 'legacy'
     final_selection: str = 'weighted'
@@ -34,6 +35,10 @@ class SearchConfig(SingleConfig):
                 raise ValueError(k + ' must be finite and nonnegative.')
         if self.wall_seconds is not None and (not math.isfinite(self.wall_seconds) or self.wall_seconds <= 0):
             raise ValueError('wall_seconds must be positive or None.')
+        if self.time_allocation not in ('global','phased'):
+            raise ValueError('time_allocation must be global or phased.')
+        if self.time_allocation=='phased' and self.wall_seconds is None:
+            raise ValueError('Phased time allocation requires wall_seconds.')
         if not 0 < self.initialization_fraction < 0.3:
             raise ValueError('initialization_fraction must lie in (0, 0.3).')
         if self.initialization not in ('legacy','dimensional'):

@@ -26,6 +26,8 @@
 
 [Concrete Slump物理单位历史回归](docs/SLUMP_PHYSICAL.zh-CN.md)完成9/9物理交付复算，但完整机制核验仅3/9通过，且0/9系统达到预定全部精度/结构门槛。六个联合模型耗尽墙钟预算，NSGA-II无新评价；该失败已保留，随后单独验证阶段时间预留。
 
+1.2.0的[阶段时间分配回归](docs/PHASE_BUDGET.zh-CN.md)在同总预算下使六系统均恢复四代NSGA-II新评价，但四系统无有效神经候选，完整机制仅2/6通过。物理交付复算6/6，完整精度/结构验收0/6，输出保护16/18；可选phased配置保留，默认global不变。
+
 ## 安装
 
 Python 3.10+，建议独立环境。Windows PowerShell：
@@ -77,6 +79,7 @@ CSV 第一行为列名；配置 JSON 对应 `SearchConfig` 字段。metadata 可
 
 - `use_rnn/use_gp/use_sharing/use_units/use_rademacher/use_size_diversity/use_constraints/interval_checks` 用于明确消融。默认全部启用。
 - `wall_seconds` 为单次 fit 的协作式时间限制；数值库的一次调用和最终选择可能少量超时。严格实验上限由外部进程监督。
+- 1.2.0 可显式设置 `time_allocation='phased'` 并提供 `wall_seconds`，按 `selection_budget_fraction` 为 NSGA-II 预留墙钟时间，同时分配神经/GP/策略更新窗口；默认 `global` 保持原全局截止。初始化或单次原子操作仍可能超出窗口，是否完整执行应查看实际事件。旧原生模型经过核验后可迁移元数据并重新保存，预测与验收状态保留。
 - `max_evaluations` 限制唯一系统数，`population_size/epochs/gp_generations/selection_generations` 限制各阶段。日志中有实际新评价和参数更新证据；设置开关不代表阶段已执行。
 - 参照是训练初始化的逐输出最佳公式；默认相对容差 10%、绝对 NRMSE 容差 0.02。验证不可行时明确记录最小违反量回退，不能宣称满足全部输出约束。
 - 区间检查的 `enclosed` 只是有限浮点区间筛查；`invalid/unresolved` 均被拒绝，可能保守排除合法式子。关闭区间为显式消融。
