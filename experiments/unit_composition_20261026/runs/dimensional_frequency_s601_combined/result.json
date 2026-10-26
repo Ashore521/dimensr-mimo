@@ -1,0 +1,440 @@
+{
+  "job": {
+    "case": "dimensional_frequency",
+    "seed": 601,
+    "method": "combined",
+    "seconds": 60
+  },
+  "status": "complete",
+  "models": [
+    "model.json"
+  ],
+  "diagnostics": [
+    {
+      "evaluations": 370,
+      "proposals": 413,
+      "constant_residual_calls": 24509,
+      "linear_fits": 16,
+      "interval_enclosed": 1112,
+      "interval_boxes": 1202,
+      "domain_repairs": 4,
+      "constant_fit_seconds": 4.3150000001478475,
+      "rademacher_systems": 299,
+      "evaluation_seconds": 4.889000000170199,
+      "constant_nfev": 4572,
+      "optimizer_status_2": 162,
+      "failed_systems": 74,
+      "point_rejections": 50,
+      "optimizer_status_0": 67,
+      "optimizer_status_1": 41,
+      "structure_bound_rejections": 33,
+      "cache_hits": 7,
+      "interval_unresolved": 26,
+      "optimizer_status_3": 49,
+      "optimizer_status_4": 2,
+      "refinements": 3,
+      "elapsed_seconds": 13.062999999994645,
+      "cpu_seconds": 12.78125,
+      "candidate_count": 64,
+      "candidate_minimum_met": true,
+      "valid_systems": 211,
+      "frozen_candidate_sha256": "cd161ee59a03bd89eaec47d743c80113c78484e0a74cdbbadf4828eebfa505cc",
+      "validation_feasible": true,
+      "validation_violation": 0.0,
+      "selected_score": 0.005430920909149914,
+      "operations": {
+        "mutation": 138,
+        "crossover": 135,
+        "add_term": 49,
+        "unbind": 48,
+        "share": 46,
+        "unshare": 44,
+        "bind": 38,
+        "shared_mutation": 42
+      },
+      "changed": {
+        "mutation": 113,
+        "crossover": 99,
+        "add_term": 49,
+        "unbind": 5,
+        "share": 35,
+        "unshare": 8,
+        "bind": 30,
+        "shared_mutation": 36
+      },
+      "novel": {
+        "mutation": 110,
+        "crossover": 61,
+        "share": 31,
+        "bind": 27,
+        "add_term": 6,
+        "shared_mutation": 34,
+        "unbind": 2,
+        "unshare": 4
+      },
+      "successful": {
+        "mutation": 89,
+        "crossover": 61,
+        "share": 31,
+        "bind": 27,
+        "add_term": 6,
+        "shared_mutation": 27,
+        "unbind": 2,
+        "unshare": 4
+      },
+      "deadline_reached": false,
+      "stage_one_limit": 900,
+      "domain": {
+        "source": "declared_box",
+        "automatic_boundaries": true,
+        "input_bounds": [
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ]
+        ],
+        "explicit_rows": 0,
+        "total_rows": 41,
+        "points_sha256": "453f00ca60064e2dc61c61a29e568acfa3030ee42cf99ffb7f969ae4fc3c5bab",
+        "guarantee": "finite probes only; no continuous-domain proof"
+      },
+      "interval_checks": true,
+      "initialization_diagnostics": [
+        {
+          "feature_evaluations": 141,
+          "linear_subproblems": 9188,
+          "proposed_structures": 631,
+          "numeric_duplicates": 24,
+          "pair_screened": 3465,
+          "residual_projections": 208,
+          "retained_features": 85
+        },
+        {
+          "feature_evaluations": 141,
+          "linear_subproblems": 5860,
+          "proposed_structures": 417,
+          "numeric_duplicates": 24,
+          "pair_screened": 903,
+          "residual_projections": 183,
+          "retained_features": 85
+        }
+      ],
+      "sharing": {
+        "shared_nodes": 0,
+        "shared_parameters": 1,
+        "unique_parameters": 3,
+        "dag_size": 11
+      },
+      "training_rows": 96,
+      "validation_rows": 48
+    }
+  ],
+  "prediction_hashes": [
+    {
+      "train": "fcd63f663ca16d6b01adf329ceb20df98fafe2b74cf9ffa3a35882d6402ec1a1",
+      "validation": "4539b6489c85b0c1febe0a7a8d083c5b3c60b9e0ae85186d9b57713fb51b17af"
+    }
+  ],
+  "audits": [
+    {
+      "status": "enclosed",
+      "outputs": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "guarantee": "numerical screening, not a formal proof"
+    }
+  ],
+  "observation": {
+    "unit_checks": {
+      "evaluator_proposals": 413,
+      "variation_proposals": 540,
+      "operator_mutation": 138,
+      "operator_crossover": 135,
+      "operator_add_term": 49,
+      "operator_unbind": 48,
+      "operator_share": 46,
+      "operator_unshare": 44,
+      "operator_bind": 38,
+      "operator_shared_mutation": 42
+    },
+    "coverage": {
+      "output0/typed/affine": {
+        "submitted": 5,
+        "new_evaluated": 5,
+        "valid_new": 5,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/constant": {
+        "submitted": 6,
+        "new_evaluated": 6,
+        "valid_new": 6,
+        "feature_support": []
+      },
+      "output0/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output0/typed/cos": {
+        "submitted": 2,
+        "new_evaluated": 2,
+        "valid_new": 2,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/cos": {
+        "submitted": 2,
+        "new_evaluated": 2,
+        "valid_new": 2,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/typed/log": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/log": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/typed/ratio": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/ratio": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/typed/sin": {
+        "submitted": 2,
+        "new_evaluated": 2,
+        "valid_new": 2,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/sin": {
+        "submitted": 2,
+        "new_evaluated": 2,
+        "valid_new": 2,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/typed/sqrt": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/sqrt": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/typed/square": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 4,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/typed/square": {
+        "submitted": 4,
+        "new_evaluated": 4,
+        "valid_new": 4,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/structured/sin": {
+        "submitted": 8,
+        "new_evaluated": 8,
+        "valid_new": 2,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/structured/composition": {
+        "submitted": 6,
+        "new_evaluated": 6,
+        "valid_new": 3,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output1/structured/cos": {
+        "submitted": 6,
+        "new_evaluated": 6,
+        "valid_new": 2,
+        "feature_support": [
+          0,
+          1
+        ]
+      },
+      "output0/structured/square": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": [
+          0
+        ]
+      },
+      "output0/structured/composition": {
+        "submitted": 3,
+        "new_evaluated": 3,
+        "valid_new": 2,
+        "feature_support": [
+          0
+        ]
+      }
+    },
+    "generated_by_output": [
+      {
+        "typed": 26,
+        "structured": 12
+      },
+      {
+        "typed": 26,
+        "structured": 12
+      }
+    ],
+    "initialization_system_cap": 180,
+    "typed_cap": 168
+  },
+  "effective_config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 601,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 52,
+    "initialization_fraction": 0.15
+  },
+  "search_fingerprint": "5c0637aa9733e4d628c1dfe67ff3c449dc8d3421660d0f1892e9f79b88d96fc5",
+  "reload_graph_predictions_equal": true,
+  "test_scores_computed": false,
+  "development_accepted": true,
+  "worker_wall_seconds": 13.344000000011874,
+  "worker_cpu_seconds": 13.015625,
+  "intervention": {
+    "alignment": true,
+    "normalization": true
+  }
+}

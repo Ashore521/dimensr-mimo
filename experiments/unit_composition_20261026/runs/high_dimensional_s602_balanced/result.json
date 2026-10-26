@@ -1,0 +1,622 @@
+{
+  "job": {
+    "case": "high_dimensional",
+    "seed": 602,
+    "method": "balanced",
+    "seconds": 60
+  },
+  "status": "complete",
+  "models": [
+    "model.json"
+  ],
+  "diagnostics": [
+    {
+      "evaluations": 514,
+      "proposals": 552,
+      "constant_residual_calls": 20537,
+      "linear_fits": 79,
+      "interval_enclosed": 1250,
+      "interval_boxes": 1284,
+      "domain_repairs": 7,
+      "constant_fit_seconds": 3.292999999888707,
+      "rademacher_systems": 334,
+      "evaluation_seconds": 3.609999999869615,
+      "constant_nfev": 4353,
+      "optimizer_status_2": 223,
+      "failed_systems": 183,
+      "point_rejections": 157,
+      "optimizer_status_0": 58,
+      "optimizer_status_1": 38,
+      "structure_bound_rejections": 34,
+      "interval_unresolved": 34,
+      "optimizer_status_3": 29,
+      "optimizer_status_4": 2,
+      "cache_hits": 1,
+      "refinements": 3,
+      "elapsed_seconds": 39.625,
+      "cpu_seconds": 39.234375,
+      "candidate_count": 78,
+      "candidate_minimum_met": true,
+      "valid_systems": 258,
+      "frozen_candidate_sha256": "8101358e3ba0458fa0a9d2019ef1bf18cab5a6cd4aa8d418b0f6c01e77001964",
+      "validation_feasible": true,
+      "validation_violation": 0.0,
+      "selected_score": 0.004156498328157859,
+      "operations": {
+        "mutation": 129,
+        "shared_mutation": 38,
+        "unshare": 43,
+        "unbind": 34,
+        "bind": 45,
+        "crossover": 137,
+        "add_term": 53,
+        "share": 48
+      },
+      "changed": {
+        "mutation": 114,
+        "shared_mutation": 35,
+        "unshare": 7,
+        "unbind": 3,
+        "bind": 32,
+        "crossover": 105,
+        "add_term": 53,
+        "share": 47
+      },
+      "novel": {
+        "mutation": 108,
+        "shared_mutation": 33,
+        "bind": 24,
+        "crossover": 63,
+        "share": 35,
+        "add_term": 9
+      },
+      "successful": {
+        "mutation": 64,
+        "shared_mutation": 19,
+        "bind": 24,
+        "crossover": 63,
+        "share": 35,
+        "add_term": 6
+      },
+      "deadline_reached": false,
+      "stage_one_limit": 900,
+      "domain": {
+        "source": "declared_box",
+        "automatic_boundaries": true,
+        "input_bounds": [
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ],
+          [
+            -0.8,
+            0.8
+          ]
+        ],
+        "explicit_rows": 0,
+        "total_rows": 311,
+        "points_sha256": "7899868360e2aa3decadd145e807fcf3ef4e943e1eed2afeb4ecec2ad67e1ebb",
+        "guarantee": "finite probes only; no continuous-domain proof"
+      },
+      "interval_checks": true,
+      "initialization_diagnostics": [
+        {
+          "feature_evaluations": 870,
+          "linear_subproblems": 48063,
+          "proposed_structures": 10283,
+          "numeric_duplicates": 18,
+          "pair_screened": 65703,
+          "residual_projections": 985,
+          "retained_features": 512
+        },
+        {
+          "feature_evaluations": 870,
+          "linear_subproblems": 48532,
+          "proposed_structures": 9991,
+          "numeric_duplicates": 18,
+          "pair_screened": 65703,
+          "residual_projections": 997,
+          "retained_features": 512
+        }
+      ],
+      "sharing": {
+        "shared_nodes": 0,
+        "shared_parameters": 0,
+        "unique_parameters": 2,
+        "dag_size": 8
+      },
+      "training_rows": 96,
+      "validation_rows": 48
+    }
+  ],
+  "prediction_hashes": [
+    {
+      "train": "aee02a059ef6a4c6ea9194aae55b032a39f7a44d058c6f67df161ef2312c3bc8",
+      "validation": "8200e2aa5dcfff3a72757ee0ada1f8a6d5ca4f624e899e334ce3a3c0e1970f45"
+    }
+  ],
+  "audits": [
+    {
+      "status": "enclosed",
+      "outputs": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "guarantee": "numerical screening, not a formal proof"
+    }
+  ],
+  "observation": {
+    "unit_checks": {
+      "evaluator_proposals": 552,
+      "variation_proposals": 527,
+      "operator_mutation": 129,
+      "operator_shared_mutation": 38,
+      "operator_unshare": 43,
+      "operator_unbind": 34,
+      "operator_bind": 45,
+      "operator_crossover": 137,
+      "operator_add_term": 53,
+      "operator_share": 48
+    },
+    "coverage": {
+      "output0/typed/affine": {
+        "submitted": 28,
+        "new_evaluated": 28,
+        "valid_new": 28,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/affine": {
+        "submitted": 28,
+        "new_evaluated": 28,
+        "valid_new": 28,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output1/typed/constant": {
+        "submitted": 1,
+        "new_evaluated": 1,
+        "valid_new": 1,
+        "feature_support": []
+      },
+      "output0/typed/cos": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/cos": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/log": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/log": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/ratio": {
+        "submitted": 29,
+        "new_evaluated": 29,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/ratio": {
+        "submitted": 29,
+        "new_evaluated": 29,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/sin": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/sin": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/sqrt": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/sqrt": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/typed/square": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output1/typed/square": {
+        "submitted": 22,
+        "new_evaluated": 22,
+        "valid_new": 22,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/structured/ratio": {
+        "submitted": 7,
+        "new_evaluated": 7,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          9,
+          10
+        ]
+      },
+      "output1/structured/composition": {
+        "submitted": 12,
+        "new_evaluated": 12,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "output0/structured/cos": {
+        "submitted": 2,
+        "new_evaluated": 2,
+        "valid_new": 0,
+        "feature_support": [
+          1,
+          5,
+          9,
+          10
+        ]
+      },
+      "output0/structured/sin": {
+        "submitted": 3,
+        "new_evaluated": 3,
+        "valid_new": 0,
+        "feature_support": [
+          0,
+          1,
+          2,
+          3,
+          8,
+          9,
+          10
+        ]
+      }
+    },
+    "generated_by_output": [
+      {
+        "typed": 168,
+        "structured": 12
+      },
+      {
+        "typed": 168,
+        "structured": 12
+      }
+    ],
+    "initialization_system_cap": 180,
+    "typed_cap": 168
+  },
+  "effective_config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 602,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 52,
+    "initialization_fraction": 0.15
+  },
+  "search_fingerprint": "3aeae10049ad2ffe6b166179ceb426aa5438b28d94328bcabcff5d4144bb535f",
+  "reload_graph_predictions_equal": true,
+  "test_scores_computed": false,
+  "development_accepted": true,
+  "worker_wall_seconds": 39.859000000025844,
+  "worker_cpu_seconds": 39.46875,
+  "intervention": {
+    "alignment": false,
+    "normalization": false
+  }
+}
