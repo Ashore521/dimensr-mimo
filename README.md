@@ -22,6 +22,8 @@
 
 1.1.0 提供[原生可选配置与物理坐标交付](docs/NATIVE_API.zh-CN.md)：`initialization='dimensional'`、`final_selection='precision'`、`AffineCoordinates` 和 `PhysicalModel`。可直接在安装后的包中调用，默认仍为 legacy/weighted；物理图计入固定缩放参数，并单独复算和验收原物理坐标中的误差。
 
+[含噪声与新公式族开发层](docs/NOISE_FAMILIES.zh-CN.md)完成36/36系统核验。新初始化平均干净测试NRMSE降低46.3%，但完整验收仍为3/12，23/24输出保护，性能推荐未通过。阻尼三角与有理分母的复合项发现仍需改进；保留全部失败，生产默认不变。
+
 ## 安装
 
 Python 3.10+，建议独立环境。Windows PowerShell：

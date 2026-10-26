@@ -1,0 +1,319 @@
+{
+  "job": {
+    "case": "polynomial_n0",
+    "seed": 701,
+    "method": "dimensional",
+    "seconds": 60
+  },
+  "status": "complete",
+  "models": [
+    "model.json"
+  ],
+  "diagnostics": [
+    {
+      "evaluations": 247,
+      "proposals": 335,
+      "constant_residual_calls": 7662,
+      "linear_fits": 97,
+      "interval_enclosed": 802,
+      "interval_boxes": 1030,
+      "domain_repairs": 1,
+      "constant_fit_seconds": 1.780000000144355,
+      "rademacher_systems": 246,
+      "evaluation_seconds": 2.1050000001268927,
+      "constant_nfev": 1721,
+      "optimizer_status_2": 95,
+      "optimizer_status_0": 15,
+      "structure_bound_rejections": 85,
+      "interval_unresolved": 10,
+      "optimizer_status_3": 36,
+      "failed_systems": 4,
+      "optimizer_status_4": 6,
+      "optimizer_status_1": 2,
+      "refinements": 3,
+      "elapsed_seconds": 14.453000000008615,
+      "cpu_seconds": 14.078125,
+      "candidate_count": 52,
+      "candidate_minimum_met": true,
+      "valid_systems": 171,
+      "frozen_candidate_sha256": "001b5234739c41d05357f88e989f712f2e957ae2484a5e6a82bdf6db4d55864e",
+      "validation_feasible": true,
+      "validation_violation": 0.0,
+      "selected_score": 0.009588452692762464,
+      "operations": {
+        "crossover": 205,
+        "mutation": 192,
+        "bind": 49,
+        "unshare": 57,
+        "add_term": 69,
+        "shared_mutation": 51,
+        "unbind": 55,
+        "share": 57
+      },
+      "changed": {
+        "crossover": 87,
+        "mutation": 106,
+        "bind": 49,
+        "unshare": 14,
+        "add_term": 69,
+        "shared_mutation": 22,
+        "unbind": 1,
+        "share": 44
+      },
+      "novel": {
+        "crossover": 35,
+        "mutation": 95,
+        "bind": 30,
+        "shared_mutation": 21,
+        "share": 39,
+        "unshare": 3
+      },
+      "successful": {
+        "crossover": 35,
+        "mutation": 92,
+        "bind": 30,
+        "shared_mutation": 21,
+        "share": 39,
+        "unshare": 3
+      },
+      "deadline_reached": false,
+      "stage_one_limit": 900,
+      "domain": {
+        "source": "declared_box",
+        "automatic_boundaries": true,
+        "input_bounds": [
+          [
+            0.3,
+            1.4
+          ],
+          [
+            0.2,
+            1.3
+          ]
+        ],
+        "explicit_rows": 0,
+        "total_rows": 41,
+        "points_sha256": "791798f05744d503de7f4ec60c0efc3c756a375f4dadb5a063de9daf5f772086",
+        "guarantee": "finite probes only; no continuous-domain proof"
+      },
+      "interval_checks": true,
+      "initialization_diagnostics": [
+        {
+          "feature_evaluations": 50,
+          "linear_subproblems": 25,
+          "proposed_structures": 19,
+          "numeric_duplicates": 23,
+          "pair_screened": 1,
+          "residual_projections": 19,
+          "retained_features": 25
+        },
+        {
+          "feature_evaluations": 49,
+          "linear_subproblems": 21,
+          "proposed_structures": 16,
+          "numeric_duplicates": 21,
+          "pair_screened": 1,
+          "residual_projections": 16,
+          "retained_features": 26
+        }
+      ],
+      "sharing": {
+        "shared_nodes": 2,
+        "shared_parameters": 0,
+        "unique_parameters": 3,
+        "dag_size": 24
+      },
+      "training_rows": 96,
+      "validation_rows": 48,
+      "application_acceptance": {
+        "method": "absolute_precision_then_structure",
+        "status": "accepted",
+        "limits": {
+          "nrmse": [
+            0.0001,
+            0.0001
+          ],
+          "shared_graph_size": 24,
+          "independent_parameters": 6,
+          "expanded_total_nodes": 30,
+          "maximum_output_depth": 6
+        },
+        "candidate_index": 103,
+        "feasible_count": 2,
+        "candidate_count": 124,
+        "individual_gate_counts": {
+          "absolute_accuracy": 66,
+          "structure": 13,
+          "relative_constraints": 66
+        },
+        "complexity_priority": [
+          "shared_graph_size",
+          "independent_parameters",
+          "expanded_total_nodes",
+          "maximum_output_depth"
+        ],
+        "validation_bounds": [
+          1.000000034455062e-08,
+          1.0000000222138884e-08
+        ],
+        "relative_training_and_validation_constraints": true,
+        "source_model_sha256": "08a61782f3a7b59eeff7314614c836f1f79ba566480c75619f1b0dd964e42190",
+        "test_data_used": false,
+        "search_reused": true,
+        "fallback_method": null,
+        "reason": null
+      }
+    }
+  ],
+  "prediction_hashes": [
+    {
+      "train": "3c94446ba3e1869b707b9394f717ad431058c42123ef2f565411c7e1f66a3cb1",
+      "validation": "d3e54d083a66900b0b37d4407e0ab0e3e4c039ee1b71680affe713499ca36591"
+    }
+  ],
+  "audits": [
+    {
+      "status": "enclosed",
+      "outputs": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "guarantee": "numerical screening, not a formal proof"
+    }
+  ],
+  "test_scores_computed": false,
+  "effective_config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log",
+      "exp"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 701,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 52,
+    "initialization_fraction": 0.15,
+    "initialization": "dimensional",
+    "final_selection": "precision",
+    "acceptance": {
+      "nrmse": [
+        0.0001,
+        0.0001
+      ],
+      "shared_graph_size": 24,
+      "independent_parameters": 6,
+      "expanded_total_nodes": 30,
+      "maximum_output_depth": 6
+    }
+  },
+  "search_fingerprint": "103839cf1acf7cc2897e6e435221ec6728d6b99b1226792ec99b9a6d83ac077d",
+  "application_acceptance": {
+    "method": "absolute_precision_then_structure",
+    "status": "accepted",
+    "limits": {
+      "nrmse": [
+        0.0001,
+        0.0001
+      ],
+      "shared_graph_size": 24,
+      "independent_parameters": 6,
+      "expanded_total_nodes": 30,
+      "maximum_output_depth": 6
+    },
+    "candidate_index": 103,
+    "feasible_count": 2,
+    "candidate_count": 124,
+    "individual_gate_counts": {
+      "absolute_accuracy": 66,
+      "structure": 13,
+      "relative_constraints": 66
+    },
+    "complexity_priority": [
+      "shared_graph_size",
+      "independent_parameters",
+      "expanded_total_nodes",
+      "maximum_output_depth"
+    ],
+    "validation_bounds": [
+      1.000000034455062e-08,
+      1.0000000222138884e-08
+    ],
+    "relative_training_and_validation_constraints": true,
+    "source_model_sha256": "08a61782f3a7b59eeff7314614c836f1f79ba566480c75619f1b0dd964e42190",
+    "test_data_used": false,
+    "search_reused": true,
+    "fallback_method": null,
+    "reason": null
+  },
+  "data_sha256": "7ef9df5429bb07bf68dc12d67337b24a831e1dda17960dcdc299686229af8841",
+  "development_accepted": true,
+  "worker_wall_seconds": 15.203000000008615,
+  "worker_cpu_seconds": 14.765625
+}
