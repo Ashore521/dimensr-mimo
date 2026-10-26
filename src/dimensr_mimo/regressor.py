@@ -23,7 +23,7 @@ from .genetics import offspring, clone_subgraph
 from .evaluation import Evaluator, Candidate
 from .pareto import ordered, diverse, violations
 
-PACKAGE_VERSION='1.2.0'
+PACKAGE_VERSION='1.2.1'
 
 
 def arrays(X, Y):

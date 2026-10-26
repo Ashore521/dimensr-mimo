@@ -1,10 +1,10 @@
 """Finite typed grammar with exact completion costs and explicit search bounds."""
 from dataclasses import dataclass, field
 from fractions import Fraction
+from math import lcm
 import numpy as np
 from .syntax import ARITY, Node
 from ._single.units import ZERO, add, sub, scale
-
 
 @dataclass(frozen=True)
 class Production:
@@ -46,20 +46,24 @@ class Grammar:
         if len(pool) > 256:
             raise ValueError("More than 256 unit types; reduce features or unit types for this bounded grammar.")
         self.units = tuple(sorted(pool))
+        # A common integer lattice preserves exact Fraction equality while the
+        # quadratic binary-production loop avoids repeated Fraction arithmetic.
+        denominator = lcm(*(v.denominator for u in self.units for v in u))
+        lattice = [tuple(int(v * denominator) for v in u) for u in self.units]
+        by_lattice = dict(zip(lattice, self.units))
         self.productions = {u: [] for u in self.units}
         for t, u in self.terminals.items():
             self.productions[u].append(Production(t))
         for t in operators:
-            for a in self.units:
+            for a, ia in zip(self.units, lattice):
                 if ARITY[t] == 2:
-                    for b in self.units:
-                        if t in ("add", "sub"):
-                            if a != b:
-                                continue
-                            out = a
-                        else:
-                            out = add(a, b) if t == "mul" else sub(a, b)
-                        if out in pool:
+                    if t in ("add", "sub"):
+                        self.productions[a].append(Production(t, (a, a)))
+                        continue
+                    for b, ib in zip(self.units, lattice):
+                        key = tuple(x + y for x, y in zip(ia, ib)) if t == "mul" else tuple(x - y for x, y in zip(ia, ib))
+                        out = by_lattice.get(key)
+                        if out is not None:
                             self.productions[out].append(Production(t, (a, b)))
                 else:
                     if t in ("sin", "cos", "log", "exp"):
@@ -82,6 +86,7 @@ class Grammar:
             raise ValueError("Target units cannot be generated within the grammar bounds. "
                              "Supply suitable constant_units/extra_units or increase max_nodes/max_depth.")
         self._options = {}
+        self._production_features = {}
 
     def options(self, units, budget, depth):
         key = (units, budget, depth)
@@ -136,12 +141,16 @@ class Grammar:
         return visit(units, budget, depth, self.bos), trace
 
     def production_features(self, productions, depth):
-        features = np.zeros((len(productions), 16), dtype=np.float32)
-        for i, production in enumerate(productions):
-            for j, dims in enumerate(production.children):
-                features[i, j * 7:(j + 1) * 7] = [float(u) for u in dims]
-                features[i, 14 + j] = self.cost[depth - 1][dims] / self.max_nodes
-        return features
+        key = tuple(productions), depth
+        if key not in self._production_features:
+            features = np.zeros((len(productions), 16), dtype=np.float32)
+            for i, production in enumerate(productions):
+                for j, dims in enumerate(production.children):
+                    features[i, j * 7:(j + 1) * 7] = [float(u) for u in dims]
+                    features[i, 14 + j] = self.cost[depth - 1][dims] / self.max_nodes
+            self._production_features[key] = features
+        # Traces remain writable without letting a caller corrupt cached values.
+        return self._production_features[key].copy()
 
     def trace(self, tree):
         result = Trace([], [], [], [])
