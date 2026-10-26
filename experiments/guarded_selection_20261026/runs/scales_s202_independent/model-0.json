@@ -1,0 +1,696 @@
+{
+  "format": "dimensr",
+  "schema_version": 1,
+  "package_version": "0.4.0",
+  "config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 600,
+    "random_state": 202,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true
+  },
+  "n_features": 2,
+  "feature_names": [
+    "x0",
+    "x1"
+  ],
+  "feature_units": [
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "target_units": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "constant_units": [
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "best": {
+    "tree": {
+      "token": "mul",
+      "units": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "children": [
+        {
+          "token": "add",
+          "units": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "children": [
+            {
+              "token": "x0",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": []
+            },
+            {
+              "token": "x1",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "token": "c0",
+          "units": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "children": []
+        }
+      ]
+    },
+    "constants": [
+      0.01
+    ],
+    "expression": "0.01*x0 + 0.01*x1",
+    "train_rmse": 0.0,
+    "train_nrmse": 0.0,
+    "complexity": 7.676665322726255,
+    "rademacher": 0.008556196896037937,
+    "nodes": 5,
+    "operator_types": 2,
+    "rademacher_complexity": 0.8383326613631277
+  },
+  "validation_rmse": 0.0,
+  "pareto_front": [
+    {
+      "tree": {
+        "token": "x0",
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "children": []
+      },
+      "constants": [],
+      "expression": "x0",
+      "train_rmse": 0.5326865790577658,
+      "train_nrmse": 63.87304678753846,
+      "complexity": 1.0,
+      "rademacher": 0.0,
+      "nodes": 1,
+      "operator_types": 0,
+      "rademacher_complexity": 0.0,
+      "validation_rmse": 0.5052779290024559,
+      "selection_score": 60.58721430781641
+    },
+    {
+      "tree": {
+        "token": "square",
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "children": [
+          {
+            "token": "x0",
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "children": []
+          }
+        ]
+      },
+      "constants": [],
+      "expression": "x0**2",
+      "train_rmse": 0.3799669432482426,
+      "train_nrmse": 45.56083689351053,
+      "complexity": 2.5,
+      "rademacher": 0.0,
+      "nodes": 2,
+      "operator_types": 1,
+      "rademacher_complexity": 0.0,
+      "validation_rmse": 0.36306211838003105,
+      "selection_score": 43.53549046806525
+    },
+    {
+      "tree": {
+        "token": "c0",
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "children": []
+      },
+      "constants": [
+        0.0008182229994162
+      ],
+      "expression": "0.0008182229994162000",
+      "train_rmse": 0.008339770933890885,
+      "train_nrmse": 1.0,
+      "complexity": 3.0412414523193156,
+      "rademacher": 0.010416666666666671,
+      "nodes": 1,
+      "operator_types": 0,
+      "rademacher_complexity": 1.0206207261596578,
+      "validation_rmse": 0.00691558050209461,
+      "selection_score": 0.8312565650894864
+    },
+    {
+      "tree": {
+        "token": "mul",
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "children": [
+          {
+            "token": "c0",
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "children": []
+          },
+          {
+            "token": "x1",
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "children": []
+          }
+        ]
+      },
+      "constants": [
+        0.011922558310052697
+      ],
+      "expression": "0.0119225583100527*x1",
+      "train_rmse": 0.005288221602280269,
+      "train_nrmse": 0.6340967448866215,
+      "complexity": 5.064281874877866,
+      "rademacher": 0.007982692515281194,
+      "nodes": 3,
+      "operator_types": 1,
+      "rademacher_complexity": 0.7821409374389332,
+      "validation_rmse": 0.005169040764460517,
+      "selection_score": 0.6231822719727721
+    },
+    {
+      "tree": {
+        "token": "mul",
+        "units": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "children": [
+          {
+            "token": "add",
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "children": [
+              {
+                "token": "x0",
+                "units": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "children": []
+              },
+              {
+                "token": "x1",
+                "units": [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "token": "c0",
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "children": []
+          }
+        ]
+      },
+      "constants": [
+        0.01
+      ],
+      "expression": "0.01*x0 + 0.01*x1",
+      "train_rmse": 0.0,
+      "train_nrmse": 0.0,
+      "complexity": 7.676665322726255,
+      "rademacher": 0.008556196896037937,
+      "nodes": 5,
+      "operator_types": 2,
+      "rademacher_complexity": 0.8383326613631277,
+      "validation_rmse": 0.0,
+      "selection_score": 0.005117776881817504
+    }
+  ],
+  "history": [
+    {
+      "phase": "initialization",
+      "step": 0,
+      "evaluations": 22,
+      "new_evaluations": 22,
+      "constant_nfev": 0,
+      "constant_residual_calls": 122,
+      "valid_candidates": 10,
+      "best_train_rmse": 5.913672124361258e-18,
+      "unique_sizes": 6,
+      "best_expression": "0.009999999999999997*x0 + 0.009999999999999993*x1 - 2.99488728587192e-18",
+      "elapsed_seconds": 0.0470000000204891
+    },
+    {
+      "phase": "structured_initialization",
+      "step": 0,
+      "evaluations": 69,
+      "new_evaluations": 47,
+      "constant_nfev": 36,
+      "constant_residual_calls": 582,
+      "valid_candidates": 40,
+      "best_train_rmse": 9.669787878987472e-20,
+      "unique_sizes": 10,
+      "best_expression": "0.01*x0 + 0.01*x1 - 2.569979128642194e-19*cos(sin(x0)) + 3.869838124289395e-19",
+      "elapsed_seconds": 4.937999999994645
+    },
+    {
+      "phase": "neural_gp",
+      "step": 0,
+      "evaluations": 139,
+      "new_evaluations": 70,
+      "constant_nfev": 873,
+      "constant_residual_calls": 3199,
+      "valid_candidates": 88,
+      "best_train_rmse": 1.5097832632428964e-20,
+      "unique_sizes": 9,
+      "best_expression": "0.01*x0 + 0.01*x1 - 3.41562420387315e-19*cos(x1)**2 + 2.827491392161478e-19",
+      "elapsed_seconds": 5.422000000020489,
+      "neural_proposals": 24,
+      "neural_unique": 22,
+      "neural_valid": 9,
+      "neural_best_nrmse": 1.0,
+      "policy_loss": 1.6000957489013672,
+      "policy_gradient": 1.4921395778656006,
+      "imitation_loss": 2.4331562519073486,
+      "gradient_norm": 0.4398789703845978,
+      "reward_threshold": 0.015414722263813019
+    },
+    {
+      "phase": "neural_gp",
+      "step": 1,
+      "evaluations": 201,
+      "new_evaluations": 62,
+      "constant_nfev": 1849,
+      "constant_residual_calls": 7063,
+      "valid_candidates": 133,
+      "best_train_rmse": 8.917343598603359e-21,
+      "unique_sizes": 9,
+      "best_expression": "0.01*x0 + 0.01*x1 + 1.662135356892232e-20",
+      "elapsed_seconds": 6.047000000020489,
+      "neural_proposals": 24,
+      "neural_unique": 14,
+      "neural_valid": 14,
+      "neural_best_nrmse": 28.941395986932445,
+      "policy_loss": 0.12876586616039276,
+      "policy_gradient": 0.02505687065422535,
+      "imitation_loss": 2.397831678390503,
+      "gradient_norm": 0.08557350188493729,
+      "reward_threshold": 0.015414722263813019
+    },
+    {
+      "phase": "neural_gp",
+      "step": 2,
+      "evaluations": 266,
+      "new_evaluations": 65,
+      "constant_nfev": 3016,
+      "constant_residual_calls": 11711,
+      "valid_candidates": 184,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 9,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 6.76600000000326,
+      "neural_proposals": 24,
+      "neural_unique": 17,
+      "neural_valid": 14,
+      "neural_best_nrmse": 1.0,
+      "policy_loss": 4.62911319732666,
+      "policy_gradient": 4.531912803649902,
+      "imitation_loss": 2.2899863719940186,
+      "gradient_norm": 1.07333242893219,
+      "reward_threshold": 0.07710544764995575
+    },
+    {
+      "phase": "neural_gp",
+      "step": 3,
+      "evaluations": 331,
+      "new_evaluations": 65,
+      "constant_nfev": 3915,
+      "constant_residual_calls": 15239,
+      "valid_candidates": 230,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 9,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 7.344000000011874,
+      "neural_proposals": 24,
+      "neural_unique": 17,
+      "neural_valid": 13,
+      "neural_best_nrmse": 1.0,
+      "policy_loss": 0.6646422147750854,
+      "policy_gradient": 0.5565670728683472,
+      "imitation_loss": 2.271723508834839,
+      "gradient_norm": 0.418599933385849,
+      "reward_threshold": 0.01524390559643507
+    },
+    {
+      "phase": "nsga2",
+      "step": 0,
+      "evaluations": 355,
+      "new_evaluations": 24,
+      "constant_nfev": 4196,
+      "constant_residual_calls": 16396,
+      "valid_candidates": 249,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 11,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 7.532000000006519
+    },
+    {
+      "phase": "nsga2",
+      "step": 1,
+      "evaluations": 376,
+      "new_evaluations": 21,
+      "constant_nfev": 4510,
+      "constant_residual_calls": 17430,
+      "valid_candidates": 265,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 10,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 7.687999999994645
+    },
+    {
+      "phase": "nsga2",
+      "step": 2,
+      "evaluations": 400,
+      "new_evaluations": 24,
+      "constant_nfev": 4678,
+      "constant_residual_calls": 18187,
+      "valid_candidates": 279,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 10,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 7.812999999994645
+    },
+    {
+      "phase": "nsga2",
+      "step": 3,
+      "evaluations": 423,
+      "new_evaluations": 23,
+      "constant_nfev": 4939,
+      "constant_residual_calls": 18999,
+      "valid_candidates": 292,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 11,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 7.937999999994645
+    },
+    {
+      "phase": "polish",
+      "step": 0,
+      "evaluations": 423,
+      "new_evaluations": 0,
+      "constant_nfev": 4946,
+      "constant_residual_calls": 19040,
+      "valid_candidates": 292,
+      "best_train_rmse": 0.0,
+      "unique_sizes": 15,
+      "best_expression": "0.01*x0 + 0.01*x1",
+      "elapsed_seconds": 7.953000000008615
+    }
+  ],
+  "diagnostics": {
+    "evaluations": 423,
+    "constant_nfev": 4946,
+    "constant_residual_calls": 19040,
+    "valid_candidates": 292,
+    "screened_candidates": 69,
+    "candidate_minimum_met": true,
+    "pareto_count": 5,
+    "validation_valid_pareto_count": 5,
+    "training_rows": 96,
+    "validation_rows": 48,
+    "budget_exhausted": false,
+    "stage_one_limit": 450,
+    "variation_attempts": {
+      "mutation": 191,
+      "crossover": 177,
+      "add_term": 33
+    },
+    "variation_novel": {
+      "mutation": 147,
+      "crossover": 110,
+      "add_term": 27
+    },
+    "output_bounds": null,
+    "structured_search": {
+      "feature_evaluations": 590,
+      "linear_subproblems": 27941,
+      "proposed_structures": 782,
+      "numeric_duplicates": 38,
+      "pair_screened": 130814,
+      "residual_projections": 586,
+      "retained_features": 512
+    },
+    "proposals": 453,
+    "cache_hits": 27,
+    "linear_fits": 133,
+    "domain_repairs": 3,
+    "warm_starts": 334,
+    "refinements": 3,
+    "failure_counts": {
+      "no_feasible_start": 82,
+      "numeric_or_physical_rejection": 49
+    },
+    "optimizer_status": {
+      "3": 78,
+      "4": 4,
+      "2": 195,
+      "1": 27,
+      "0": 41
+    },
+    "domain_probe_count": 41,
+    "rademacher_evaluations": 2087,
+    "domain_rejections": 89,
+    "domain_audit": {
+      "source": "declared_box",
+      "automatic_boundaries": true,
+      "input_bounds": [
+        [
+          -0.9,
+          0.9
+        ],
+        [
+          -0.9,
+          0.9
+        ]
+      ],
+      "explicit_rows": 0,
+      "total_rows": 41,
+      "points_sha256": "b353f709af8f3f8deb54089d6eabcab01ff2849545ef40a96ddd0bba0da89017",
+      "guarantee": "finite probes only; no continuous-domain proof"
+    },
+    "interval_bounds": [
+      [
+        -0.9,
+        0.9
+      ],
+      [
+        -0.9,
+        0.9
+      ]
+    ],
+    "interval_statuses": {
+      "enclosed": 513,
+      "unresolved": 45
+    },
+    "interval_boxes_checked": 1333,
+    "rademacher_family": "local coefficient-Jacobian output ball",
+    "rademacher_complexity_scale": 97.97958971132711,
+    "elapsed_seconds": 7.953000000008615
+  }
+}
