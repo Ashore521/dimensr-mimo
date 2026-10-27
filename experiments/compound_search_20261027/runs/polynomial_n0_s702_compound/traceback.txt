@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "D:\符号回归项目\dimensr-mimo\experiments\compound_search_20261027\worker.py", line 42, in run
+    m=DimenSRMIMORegressor(cfg,spec['features'],spec['targets'],spec['constants'],spec['feature_names']).fit(
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\符号回归项目\dimensr-mimo\src\dimensr_mimo\regressor.py", line 228, in fit
+    population, children, merged = evolve(population, False, stage_limit,gp_deadline)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\符号回归项目\dimensr-mimo\src\dimensr_mimo\regressor.py", line 127, in evolve
+    system, warm, op = offspring(parent, donor, grammar, rng)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\符号回归项目\dimensr-mimo\src\dimensr_mimo\genetics.py", line 44, in offspring
+    tree, _ = grammar.plain[j].generate(rng, units=v.units,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\符号回归项目\dimensr-mimo\src\dimensr_mimo\grammar.py", line 154, in generate
+    tree,_=visit(units, budget, depth, self.bos)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\符号回归项目\dimensr-mimo\src\dimensr_mimo\grammar.py", line 120, in visit
+    choices = self.options(required, remaining, height)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\符号回归项目\dimensr-mimo\src\dimensr_mimo\grammar.py", line 105, in options
+    for p in self.productions[units]:
+             ~~~~~~~~~~~~~~~~^^^^^^^
+KeyError: (Fraction(-3, 2), Fraction(-1, 1), Fraction(3, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))

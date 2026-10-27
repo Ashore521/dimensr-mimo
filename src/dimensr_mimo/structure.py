@@ -17,17 +17,54 @@ def operator(token, *children):
     return Node(token, tuple(children), out)
 
 
-def structured_seeds(grammar, X, y, limit):
+def _compound_products(features, variables, y, admit, grammar, counts):
+    """Rank bounded pair products, then extend those pairs with input variables."""
+    if "mul" not in grammar.tokens:
+        return
+    response = y - np.mean(y)
+
+    def ranked(pairs):
+        proposals = []
+        for (a, ca, va), (b, cb, vb) in pairs:
+            if a.size + b.size + 1 > min(11, grammar.max_nodes) or max(a.depth, b.depth) + 1 > grammar.max_depth:
+                continue
+            with np.errstate(all="ignore"):
+                values = va * vb
+                centered = values - values.mean()
+                norm = np.linalg.norm(centered)
+            counts["compound_products_screened"] += 1
+            if not np.isfinite(values).all() or not np.isfinite(norm) or norm < 1e-12:
+                continue
+            score = abs(float(centered @ response)) / norm
+            tree = operator("mul", a, b)
+            proposals.append((-score, tree.size, repr(tree), tree, np.r_[ca, cb]))
+        retained = []
+        for _, _, _, tree, c in sorted(proposals, key=lambda p: p[:3]):
+            feature = admit(tree, c)
+            if feature is not None:
+                retained.append(feature)
+                if len(retained) == 64:
+                    break
+        return retained
+
+    atoms = sorted((f for f in features if f[0].size <= 4), key=lambda f: (f[0].size, repr(f[0]), tuple(f[1])))[:64]
+    pairs = ranked((a, b) for i, a in enumerate(atoms) for b in atoms[i:])
+    ranked((a, b) for a in pairs for b in variables[:16])
+
+
+def structured_seeds(grammar, X, y, limit, *, compound=False):
     constants = {u: Node(t, units=u) for t, u in grammar.terminals.items() if t.startswith("c")}
     features, seen, numeric_seen = [], set(), set()
     feature_limit = 384  # Reserve the remaining 128 slots for small products.
     counts = dict(feature_evaluations=0, linear_subproblems=0, proposed_structures=0,
                   numeric_duplicates=0, pair_screened=0, residual_projections=0)
+    if compound:
+        counts["compound_products_screened"] = 0
     if limit <= 0:
         return [], counts
 
     def admit(tree, values=None):
-        if tree.size > min(9, grammar.max_nodes) or tree.depth > grammar.max_depth:
+        if tree.size > min(11 if compound else 9, grammar.max_nodes) or tree.depth > grammar.max_depth:
             return None
         tree, c = tree.canonical(values)
         key = tree, tuple(c)
@@ -49,7 +86,7 @@ def structured_seeds(grammar, X, y, limit):
             return None
         # Initialization heuristic only: equal training vectors need not denote
         # globally equivalent functions. Keep the first expression and its domain.
-        signature = tree.units, np.round(v / np.max(np.abs(v)), 12).tobytes()
+        signature = tree.units, tree.n_constants if compound else 0, np.round(v / np.max(np.abs(v)), 12).tobytes()
         if signature in numeric_seen:
             counts["numeric_duplicates"] += 1
             return None
@@ -86,7 +123,7 @@ def structured_seeds(grammar, X, y, limit):
     normalized_trees=set()
     for tree,c,_ in list(primitive):
         inverse=constants.get(sub(ZERO,tree.units))
-        if tree.units!=ZERO and inverse is not None and 'mul' in grammar.tokens:
+        if (tree.units!=ZERO or compound) and inverse is not None and 'mul' in grammar.tokens:
             feature=admit(operator('mul',inverse,tree),np.r_[1.,c])
             if feature is not None:
                 primitive.append(feature);normalized_trees.add(feature[0])
@@ -97,6 +134,10 @@ def structured_seeds(grammar, X, y, limit):
         for token in ("square", "sin", "cos", "log", "sqrt"):
             if token in grammar.tokens and (tree.units == ZERO or token in ("square", "sqrt")):
                 admit(operator(token, tree), c)
+        if compound and tree.units == ZERO and "exp" in grammar.tokens:
+            admit(operator("exp", tree), c)
+            if tree.n_constants:
+                admit(operator("exp", tree), -c)
         if tree.units == ZERO and ZERO in constants and "add" in grammar.tokens:
             for token in ("log", "sqrt"):
                 if token not in grammar.tokens:
@@ -115,14 +156,41 @@ def structured_seeds(grammar, X, y, limit):
                     if token in grammar.tokens:
                         for sign in (-1., 1.):
                             admit(operator(token, inner), np.r_[1., sign, c])
+    if compound and "add" in grammar.tokens:
+        for tree, c, _ in list(features):
+            if tree.size <= 5 and tree.units in constants:
+                admit(operator("add", constants[tree.units], tree), np.r_[1., c])
     feature_limit = 512
-    composable = sorted([f for f in features if f[0].size <= 3], key=lambda f: (f[0].size, repr(f[0])))
-    for i, (a, ca, _) in enumerate(composable):
-        for b, cb, _ in composable[i:]:
-            if "mul" in grammar.tokens and a.size + b.size <= 6:
-                admit(operator("mul", a, b), np.r_[ca, cb])
+    if compound:
+        _compound_products(features, variables, y, admit, grammar, counts)
+    else:
+        composable = sorted([f for f in features if f[0].size <= 3], key=lambda f: (f[0].size, repr(f[0])))
+        for i, (a, ca, _) in enumerate(composable):
+            for b, cb, _ in composable[i:]:
+                if "mul" in grammar.tokens and a.size + b.size <= 6:
+                    admit(operator("mul", a, b), np.r_[ca, cb])
 
     proposals = {}
+
+    if compound:
+        # A mandatory affine wrapper can exceed the depth budget of a useful atom.
+        # Rank compact one-feature proposals by a separate zero-intercept fit.
+        for tree, c, values in features:
+            if sub(grammar.target, tree.units) not in constants or "mul" not in grammar.tokens:
+                continue
+            weight = float(values @ y / (values @ values))
+            term = operator("mul", constants[sub(grammar.target, tree.units)], tree)
+            if term.size > grammar.max_nodes or term.depth > grammar.max_depth:
+                continue
+            term, coefficients = term.canonical(np.r_[weight, c])
+            try:
+                grammar.trace(term)
+            except (ValueError, KeyError):
+                continue
+            error = float(np.mean((weight * values - y)**2))
+            score = error / max(float(np.var(y)), 1e-12) + 1e-8 * term.size
+            if np.isfinite(score) and (term not in proposals or score < proposals[term][0]):
+                proposals[term] = score, coefficients
 
     def balanced(terms):
         if len(terms) == 1:
@@ -221,7 +289,7 @@ def structured_seeds(grammar, X, y, limit):
     fit_terms(y, grammar.target)
     if "div" in grammar.tokens:
         denominators = [f for f in features if f[0].size <= 3 or
-                        f[0].token in ("sqrt", "log") and f[0].size <= 9]
+                        f[0].token in (("sqrt", "log", "add") if compound else ("sqrt", "log")) and f[0].size <= 9]
         for denominator in denominators[:64]:
             if np.all(np.abs(denominator[2]) > 1e-12):
                 fit_terms(y * denominator[2], add(grammar.target, denominator[0].units), denominator)

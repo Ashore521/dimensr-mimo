@@ -19,12 +19,23 @@ class SystemGrammar:
         self.features, self.targets, self.constants = feature_units, target_units, constant_units
         self.cfg, self.extra = cfg, extra_units
         self._cache = {}
+        self._mutation_grammars = {}
         self.plain = [self.grammar(j) for j in range(len(target_units))]
         self.n_tokens = len(self.plain[0].tokens)
         self.context_size = 9 + len(target_units) + 2
 
     def bank(self, nodes):
         return list(range(max(0, len(nodes) - self.cfg.max_references), len(nodes))) if self.cfg.use_sharing else []
+
+    def mutation_grammar(self, j, units):
+        if units in self.plain[j].units:
+            return self.plain[j]
+        # Shared/reference grammars can introduce units absent from a plain root.
+        if units not in self._mutation_grammars:
+            self._mutation_grammars[units] = Grammar(self.features, units, self.constants,
+                self.cfg.operators, self.cfg.max_nodes, self.cfg.max_depth, self.extra,
+                max_references=self.cfg.max_references)
+        return self._mutation_grammars[units]
 
     def grammar(self, j, nodes=(), references=()):
         context = [float(i == j) for i in range(len(self.targets))]

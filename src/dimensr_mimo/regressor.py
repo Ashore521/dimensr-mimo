@@ -23,7 +23,7 @@ from .genetics import offspring, clone_subgraph
 from .evaluation import Evaluator, Candidate
 from .pareto import ordered, diverse, violations
 
-PACKAGE_VERSION='1.3.0'
+PACKAGE_VERSION='1.4.0'
 
 
 def arrays(X, Y):
@@ -142,10 +142,13 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
 
         # Training-only typed/structured seeds, combined as complete systems.
         typed_generator,structure_generator=typed_seeds,structured_seeds
-        if cfg.initialization=='dimensional':
+        if cfg.initialization in ('dimensional','compound'):
             from .seeds import generator
             from .structure import structured_seeds as dimensioned_structures
             typed_generator,structure_generator=generator(cfg,q),dimensioned_structures
+            if cfg.initialization=='compound':
+                from functools import partial
+                structure_generator=partial(dimensioned_structures,compound=True)
         seed_lists, seed_stats = [], []
         for j, g in enumerate(grammar.plain):
             seeds = [(t, np.ones(t.n_constants)) for t in typed_generator(g, rng)] if cfg.linear_seeds else []

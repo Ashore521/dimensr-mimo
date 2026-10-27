@@ -32,6 +32,8 @@
 
 1.3.0的[展开引用预算](docs/REFERENCE_BUDGET.zh-CN.md)在同预算下使110/110神经提案满足展开结构上限，六系统完整核验通过，18/18输出在预定保护界内，平均测试误差下降2.4%。完整精度/结构验收仍0/6，默认token保留，通用复合项发现继续推进。
 
+1.4.0提供[可选复合项初始化及中间量纲变异修正](docs/COMPOUND_DISCOVERY.zh-CN.md)。38系统开发回归中完整接受为候选7/17、对照5/17，但28/34输出保护且4个GP异常，推荐未通过；原失败完整保留。异常修正后另行冻结的8系统全部技术核验及绝对精度/结构达标，相对保护仍仅6/8，因此默认保持原样。
+
 ## 安装
 
 Python 3.10+，建议独立环境。Windows PowerShell：
@@ -82,6 +84,7 @@ CSV 第一行为列名；配置 JSON 对应 `SearchConfig` 字段。metadata 可
 ## 运行边界
 
 - `use_rnn/use_gp/use_sharing/use_units/use_rademacher/use_size_diversity/use_constraints/interval_checks` 用于明确消融。默认全部启用。
+- 1.4.0 可选 `initialization='compound'`，在固定512特征和初始化评价份额内增加通用指数、移位分母及受限乘积；默认 `legacy`，旧 `dimensional` 模式保留。详细界限与失败见上述报告。
 - 1.3.0 可选 `reference_budget='expanded'`，让生成掩码、剩余节点预算及策略回放按共享引用的实际展开大小/深度计费；默认 `token` 保留原行为，最终展开图上限仍始终检查。
 - `wall_seconds` 为单次 fit 的协作式时间限制；数值库的一次调用和最终选择可能少量超时。严格实验上限由外部进程监督。
 - 1.2.0 可显式设置 `time_allocation='phased'` 并提供 `wall_seconds`，按 `selection_budget_fraction` 为 NSGA-II 预留墙钟时间，同时分配神经/GP/策略更新窗口；默认 `global` 保持原全局截止。初始化或单次原子操作仍可能超出窗口，是否完整执行应查看实际事件。旧原生模型经过核验后可迁移元数据并重新保存，预测与验收状态保留。

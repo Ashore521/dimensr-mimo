@@ -1,0 +1,107 @@
+FFF                                                                      [100%]
+================================== FAILURES ===================================
+_ test_fractional_intermediate_unit_mutation_uses_a_capable_grammar[mutation] _
+
+op = 'mutation'
+
+    @pytest.mark.parametrize('op', ['mutation', 'shared_mutation'])
+    def test_fractional_intermediate_unit_mutation_uses_a_capable_grammar(op):
+        grammar, parent, location, required = setup()
+        changed = 0
+        for seed in range(5):
+>           child, constants, operation = offspring(parent, parent, grammar, TargetedRNG(location, seed), operator=op)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_mutation_units.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\dimensr_mimo\genetics.py:44: in offspring
+    tree, _ = grammar.plain[j].generate(rng, units=v.units,
+src\dimensr_mimo\grammar.py:154: in generate
+    tree,_=visit(units, budget, depth, self.bos)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\dimensr_mimo\grammar.py:120: in visit
+    choices = self.options(required, remaining, height)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <dimensr_mimo.grammar.Grammar object at 0x000002634A1E82C0>
+units = (Fraction(1, 2), Fraction(-1, 2), Fraction(-1, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), ...)
+budget = 11, depth = 4
+
+    def options(self, units, budget, depth):
+        key = (units, budget, depth)
+        if key not in self._options:
+            by_token = {}
+            if depth > 0:
+>               for p in self.productions[units]:
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+E               KeyError: (Fraction(1, 2), Fraction(-1, 2), Fraction(-1, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))
+
+src\dimensr_mimo\grammar.py:105: KeyError
+_ test_fractional_intermediate_unit_mutation_uses_a_capable_grammar[shared_mutation] _
+
+op = 'shared_mutation'
+
+    @pytest.mark.parametrize('op', ['mutation', 'shared_mutation'])
+    def test_fractional_intermediate_unit_mutation_uses_a_capable_grammar(op):
+        grammar, parent, location, required = setup()
+        changed = 0
+        for seed in range(5):
+>           child, constants, operation = offspring(parent, parent, grammar, TargetedRNG(location, seed), operator=op)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_mutation_units.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\dimensr_mimo\genetics.py:44: in offspring
+    tree, _ = grammar.plain[j].generate(rng, units=v.units,
+src\dimensr_mimo\grammar.py:154: in generate
+    tree,_=visit(units, budget, depth, self.bos)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\dimensr_mimo\grammar.py:120: in visit
+    choices = self.options(required, remaining, height)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <dimensr_mimo.grammar.Grammar object at 0x000002634A2441A0>
+units = (Fraction(1, 2), Fraction(-1, 2), Fraction(-1, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), ...)
+budget = 11, depth = 4
+
+    def options(self, units, budget, depth):
+        key = (units, budget, depth)
+        if key not in self._options:
+            by_token = {}
+            if depth > 0:
+>               for p in self.productions[units]:
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+E               KeyError: (Fraction(1, 2), Fraction(-1, 2), Fraction(-1, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))
+
+src\dimensr_mimo\grammar.py:105: KeyError
+_______ test_unavailable_unit_is_an_infeasible_production_not_key_error _______
+
+    def test_unavailable_unit_is_an_infeasible_production_not_key_error():
+        grammar, _, _, required = setup()
+>       assert grammar.plain[0].options(required, 15, 6) == {}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_mutation_units.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <dimensr_mimo.grammar.Grammar object at 0x000002634A2C2780>
+units = (Fraction(1, 2), Fraction(-1, 2), Fraction(-1, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), ...)
+budget = 15, depth = 6
+
+    def options(self, units, budget, depth):
+        key = (units, budget, depth)
+        if key not in self._options:
+            by_token = {}
+            if depth > 0:
+>               for p in self.productions[units]:
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+E               KeyError: (Fraction(1, 2), Fraction(-1, 2), Fraction(-1, 2), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))
+
+src\dimensr_mimo\grammar.py:105: KeyError
+=========================== short test summary info ===========================
+FAILED tests/test_mutation_units.py::test_fractional_intermediate_unit_mutation_uses_a_capable_grammar[mutation]
+FAILED tests/test_mutation_units.py::test_fractional_intermediate_unit_mutation_uses_a_capable_grammar[shared_mutation]
+FAILED tests/test_mutation_units.py::test_unavailable_unit_is_an_infeasible_production_not_key_error
+3 failed in 4.92s

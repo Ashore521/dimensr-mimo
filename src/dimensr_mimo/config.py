@@ -44,8 +44,8 @@ class SearchConfig(SingleConfig):
             raise ValueError('Phased time allocation requires wall_seconds.')
         if not 0 < self.initialization_fraction < 0.3:
             raise ValueError('initialization_fraction must lie in (0, 0.3).')
-        if self.initialization not in ('legacy','dimensional'):
-            raise ValueError('initialization must be legacy or dimensional.')
+        if self.initialization not in ('legacy','dimensional','compound'):
+            raise ValueError('initialization must be legacy, dimensional or compound.')
         if self.final_selection not in ('weighted','guarded','precision'):
             raise ValueError('final_selection must be weighted, guarded or precision.')
         if self.final_selection=='precision':

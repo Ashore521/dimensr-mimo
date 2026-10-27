@@ -102,7 +102,7 @@ class Grammar:
         if key not in self._options:
             by_token = {}
             if depth > 0:
-                for p in self.productions[units]:
+                for p in self.productions.get(units, ()):
                     if self.production_cost(p,depth) <= budget:
                         by_token.setdefault(self.index[p.token], []).append(p)
             self._options[key] = by_token

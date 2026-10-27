@@ -41,9 +41,13 @@ def offspring(parent, donor, grammar, rng, operator=None):
     if op in ('mutation', 'shared_mutation'):
         full, _ = system.expanded(system.roots[j], parent.constants)
         subtree, _ = system.expanded(old, parent.constants)
-        tree, _ = grammar.plain[j].generate(rng, units=v.units,
-                    budget=cfg.max_nodes - full.size + subtree.size,
-                    depth=cfg.max_depth - len(path))
+        try:
+            tree, _ = grammar.mutation_grammar(j, v.units).generate(rng, units=v.units,
+                        budget=cfg.max_nodes - full.size + subtree.size,
+                        depth=cfg.max_depth - len(path))
+        except ValueError:
+            # No legal replacement in this bounded grammar; consume the attempt.
+            return system, parent.constants.copy(), op
         replacement = b.tree(tree)
     elif op == 'crossover':
         options = [i for i, n in enumerate(donor.system.nodes) if n.units == v.units]
