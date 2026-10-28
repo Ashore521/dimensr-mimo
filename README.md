@@ -2,6 +2,8 @@
 
 静态多输入多输出符号回归：以整个多根公式系统为个体，联合运行输出条件 GRU、量纲 GP 和两目标 NSGA-II。每个输出保留完整公式，可发现共享子图与显式绑定参数，也可解除共享。
 
+1.6.0 增加可选的[结构匹配共享提案](docs/MATCHED_SHARING.zh-CN.md)：`sharing_strategy='matched'`。34/34 系统完成技术与机制核验，完整接受数从 9/17 增至 12/17，平均图规模下降 11.8%；逐输出保护为 31/34，平均干净测试误差略升，推荐失败，默认仍为 `random`。全部失败和原始图保存在实验目录中。
+
 新版从 DimenSR 0.4.0 的完整神经/GP/NSGA-II 流程重建。算法定义、来源映射及验收标准见 [中文架构](docs/ARCHITECTURE.zh-CN.md)。[首轮结果解读](docs/FIRST_ROUND.zh-CN.md)、[完整实验报告](experiments/first_round/REPORT.zh-CN.md)、[独立核验](experiments/first_round/VERIFICATION.json)和[安装复现说明](docs/REPRODUCING.zh-CN.md)均已提供。
 
 首轮七种合成任务、两个种子、五方法共 70 个系统全部完成，预检至评分 29.43 分钟。完整联合方法与完整逐输出独立 DimenSR 均实际执行神经更新、GP 和多代 NSGA-II。联合方法平均 NRMSE 为 7.17e-5，独立方法为 4.21e-6；本轮未显示精度优势。9/14 个联合最终模型采用了共享结构或参数，但共享非线性参数任务尚未自动选出真实共享参数结构。工程机制通过不能代替性能结论。

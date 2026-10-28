@@ -14,6 +14,7 @@ class SearchConfig(SingleConfig):
     max_references: int = 12
     reference_budget: str = 'token'
     use_sharing: bool = True
+    sharing_strategy: str = 'random'
     use_constraints: bool = True
     degradation_relative: float = 0.10
     degradation_absolute: float = 0.02
@@ -33,6 +34,8 @@ class SearchConfig(SingleConfig):
             raise ValueError('max_references must be positive.')
         if self.reference_budget not in ('token','expanded'):
             raise ValueError('reference_budget must be token or expanded.')
+        if self.sharing_strategy not in ('random','matched'):
+            raise ValueError('sharing_strategy must be random or matched.')
         for k in ('degradation_relative', 'degradation_absolute'):
             if not math.isfinite(getattr(self, k)) or getattr(self, k) < 0:
                 raise ValueError(k + ' must be finite and nonnegative.')

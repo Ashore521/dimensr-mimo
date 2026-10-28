@@ -33,6 +33,14 @@ def offspring(parent, donor, grammar, rng, operator=None):
         op = 'add_term'
     else:
         op = 'crossover' if rng.random() < cfg.crossover_rate else 'mutation'
+    if operator is None and op == 'share' and cfg.sharing_strategy == 'matched' and rng.random() < .5:
+        op = 'matched_share'
+    if op == 'matched_share':
+        from .sharing import matched_proposals
+        proposals = matched_proposals(system, parent.constants)
+        if not proposals:
+            return system, parent.constants.copy(), op
+        return (*proposals[int(rng.integers(len(proposals)))], op)
     j = int(rng.integers(len(system.roots)))
     locations = list(paths(system, system.roots[j]))
     path, old = locations[int(rng.integers(len(locations)))]

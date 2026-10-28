@@ -1,0 +1,327 @@
+{
+  "job": {
+    "case": "rational_variant",
+    "seed": 711,
+    "method": "random",
+    "seconds": 60
+  },
+  "status": "complete",
+  "models": [
+    "model.json"
+  ],
+  "diagnostics": [
+    {
+      "evaluations": 362,
+      "proposals": 365,
+      "domain_repairs": 5,
+      "constant_residual_calls": 20156,
+      "interval_enclosed": 1330,
+      "interval_boxes": 2081,
+      "constant_nfev": 4785,
+      "optimizer_status_2": 229,
+      "constant_fit_seconds": 4.518000000007305,
+      "rademacher_systems": 340,
+      "evaluation_seconds": 5.172000000009575,
+      "optimizer_status_3": 48,
+      "optimizer_status_0": 58,
+      "linear_fits": 6,
+      "optimizer_status_4": 9,
+      "interval_unresolved": 40,
+      "failed_systems": 25,
+      "optimizer_status_1": 2,
+      "refinements": 3,
+      "elapsed_seconds": 12.061999999999898,
+      "cpu_seconds": 11.78125,
+      "candidate_count": 76,
+      "candidate_minimum_met": true,
+      "valid_systems": 252,
+      "frozen_candidate_sha256": "c8366a41da2d8b0a798288e1e5994ae38220a2177b4c8856e2991bf41d8f17cc",
+      "validation_feasible": true,
+      "validation_violation": 0.0,
+      "selected_score": 0.023573960835374518,
+      "operations": {
+        "crossover": 153,
+        "share": 56,
+        "add_term": 56,
+        "unshare": 50,
+        "shared_mutation": 60,
+        "bind": 56,
+        "mutation": 146,
+        "unbind": 50
+      },
+      "changed": {
+        "crossover": 93,
+        "share": 39,
+        "add_term": 56,
+        "unshare": 10,
+        "shared_mutation": 40,
+        "bind": 51,
+        "mutation": 102,
+        "unbind": 3
+      },
+      "novel": {
+        "share": 31,
+        "shared_mutation": 37,
+        "bind": 40,
+        "mutation": 92,
+        "crossover": 48,
+        "unshare": 4
+      },
+      "successful": {
+        "share": 31,
+        "shared_mutation": 35,
+        "bind": 40,
+        "mutation": 85,
+        "crossover": 48,
+        "unshare": 4
+      },
+      "deadline_reached": false,
+      "stage_one_limit": 900,
+      "domain": {
+        "source": "declared_box",
+        "automatic_boundaries": true,
+        "input_bounds": [
+          [
+            0.15,
+            1.4
+          ],
+          [
+            0.3,
+            1.2
+          ]
+        ],
+        "explicit_rows": 0,
+        "total_rows": 41,
+        "points_sha256": "f56570f80a68a380122fa5d618540828def5bd5c613eb9ca97a05ba2fa5224f9",
+        "guarantee": "finite probes only; no continuous-domain proof"
+      },
+      "interval_checks": true,
+      "initialization_diagnostics": [
+        {
+          "feature_evaluations": 178,
+          "linear_subproblems": 4386,
+          "proposed_structures": 194,
+          "numeric_duplicates": 43,
+          "pair_screened": 456,
+          "residual_projections": 153,
+          "compound_products_screened": 281,
+          "retained_features": 131
+        },
+        {
+          "feature_evaluations": 187,
+          "linear_subproblems": 1641,
+          "proposed_structures": 113,
+          "numeric_duplicates": 47,
+          "pair_screened": 151,
+          "residual_projections": 100,
+          "compound_products_screened": 299,
+          "retained_features": 136
+        }
+      ],
+      "sharing": {
+        "shared_nodes": 0,
+        "shared_parameters": 0,
+        "unique_parameters": 6,
+        "dag_size": 28
+      },
+      "training_rows": 96,
+      "validation_rows": 48,
+      "data_sha256": {
+        "training": "7953e4394876a4e691fb909c238292a3653b69afe48cc1511880bd5f6bb134e5",
+        "validation": "e353482db82a4877b1d122d754ef084453402d7909c549a5e037f347190a8473"
+      },
+      "application_acceptance": {
+        "method": "absolute_precision_then_structure",
+        "status": "not_met",
+        "limits": {
+          "nrmse": [
+            0.03,
+            0.03
+          ],
+          "shared_graph_size": 24,
+          "independent_parameters": 6,
+          "expanded_total_nodes": 30,
+          "maximum_output_depth": 6
+        },
+        "candidate_index": 9,
+        "feasible_count": 0,
+        "candidate_count": 161,
+        "individual_gate_counts": {
+          "absolute_accuracy": 92,
+          "structure": 51,
+          "relative_constraints": 14
+        },
+        "complexity_priority": [
+          "shared_graph_size",
+          "independent_parameters",
+          "expanded_total_nodes",
+          "maximum_output_depth"
+        ],
+        "validation_bounds": [
+          0.013008724081415266,
+          0.014045040656834262
+        ],
+        "relative_training_and_validation_constraints": true,
+        "source_model_sha256": "ea410f48b18e128c7e214a543957dbf1dcf9d948e4852954c6400d18d8019011",
+        "test_data_used": false,
+        "search_reused": true,
+        "fallback_method": "guarded",
+        "reason": "No candidate satisfies every frozen gate."
+      }
+    }
+  ],
+  "prediction_hashes": [
+    {
+      "train": "5d2831dd9c1b97e1dd2da3c3593e00f88d3be5776c811918ba06c45575d1698b",
+      "validation": "1f8c2d02f1c1ae63dba8cd978746294b92ac1ba5761281e3491ae1475c5eced1"
+    }
+  ],
+  "audits": [
+    {
+      "status": "enclosed",
+      "outputs": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "guarantee": "numerical screening, not a formal proof"
+    }
+  ],
+  "test_scores_computed": false,
+  "effective_config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log",
+      "exp"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 711,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "reference_budget": "expanded",
+    "use_sharing": true,
+    "sharing_strategy": "random",
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 52,
+    "time_allocation": "phased",
+    "initialization_fraction": 0.15,
+    "initialization": "compound",
+    "final_selection": "precision",
+    "acceptance": {
+      "nrmse": [
+        0.03,
+        0.03
+      ],
+      "shared_graph_size": 24,
+      "independent_parameters": 6,
+      "expanded_total_nodes": 30,
+      "maximum_output_depth": 6
+    }
+  },
+  "search_fingerprint": "ab5c1b9eaa83da7878fa51fa32dbb2e7093c31923f9e72c3efcf3c84fb894c32",
+  "application_acceptance": {
+    "method": "absolute_precision_then_structure",
+    "status": "not_met",
+    "limits": {
+      "nrmse": [
+        0.03,
+        0.03
+      ],
+      "shared_graph_size": 24,
+      "independent_parameters": 6,
+      "expanded_total_nodes": 30,
+      "maximum_output_depth": 6
+    },
+    "candidate_index": 9,
+    "feasible_count": 0,
+    "candidate_count": 161,
+    "individual_gate_counts": {
+      "absolute_accuracy": 92,
+      "structure": 51,
+      "relative_constraints": 14
+    },
+    "complexity_priority": [
+      "shared_graph_size",
+      "independent_parameters",
+      "expanded_total_nodes",
+      "maximum_output_depth"
+    ],
+    "validation_bounds": [
+      0.013008724081415266,
+      0.014045040656834262
+    ],
+    "relative_training_and_validation_constraints": true,
+    "source_model_sha256": "ea410f48b18e128c7e214a543957dbf1dcf9d948e4852954c6400d18d8019011",
+    "test_data_used": false,
+    "search_reused": true,
+    "fallback_method": "guarded",
+    "reason": "No candidate satisfies every frozen gate."
+  },
+  "data_sha256": "218964452d323ee41e565921e1be537a70b0a49284a450723c05829b8a05e6b5",
+  "development_accepted": false,
+  "worker_wall_seconds": 13.093999999999141,
+  "worker_cpu_seconds": 12.765625
+}

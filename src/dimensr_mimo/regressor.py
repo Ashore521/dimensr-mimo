@@ -24,7 +24,7 @@ from .evaluation import Evaluator, Candidate
 from .pareto import ordered, diverse, violations
 from .audit import data_digest
 
-PACKAGE_VERSION='1.5.0'
+PACKAGE_VERSION='1.6.0'
 
 
 def arrays(X, Y):
