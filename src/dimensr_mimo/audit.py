@@ -1,6 +1,19 @@
 """Unit legality and directly interpretable complexity of an unsimplified DAG."""
 from .graph import System
 from ._single.units import unit,encode
+import hashlib
+import json
+import numpy as np
+
+
+def data_digest(X,Y):
+    """Hash paired array shapes and canonical float64 bytes in row order."""
+    digest=hashlib.sha256()
+    for values in (X,Y):
+        array=np.asarray(values,dtype='<f8',order='C')
+        digest.update(json.dumps(array.shape).encode())
+        digest.update(array.tobytes())
+    return digest.hexdigest()
 
 
 def units(system,feature_units,target_units,constant_units):

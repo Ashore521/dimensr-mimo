@@ -22,8 +22,9 @@ from .policy import Policy
 from .genetics import offspring, clone_subgraph
 from .evaluation import Evaluator, Candidate
 from .pareto import ordered, diverse, violations
+from .audit import data_digest
 
-PACKAGE_VERSION='1.4.0'
+PACKAGE_VERSION='1.5.0'
 
 
 def arrays(X, Y):
@@ -300,7 +301,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             deadline_reached=evaluator.expired(), stage_one_limit=stage_limit,
             domain=evaluator.domain, interval_checks=cfg.interval_checks,
             initialization_diagnostics=seed_stats, sharing=best.system.sharing,
-            training_rows=len(X), validation_rows=len(X_val))
+            training_rows=len(X), validation_rows=len(X_val),
+            data_sha256=dict(training=data_digest(X,Y),validation=data_digest(X_val,Y_val)))
         self.candidates_ = [dict(c.to_dict(), validation_errors=e.tolist(), violation=vi, score=sc)
                             for vi, sc, _, c, e in scored]
         self.search_fingerprint_ = hashlib.sha256(json.dumps(
