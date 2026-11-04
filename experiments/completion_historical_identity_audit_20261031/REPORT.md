@@ -1,0 +1,9 @@
+# 控制身份差异只读审计结果
+
+17/17对均只有model.history中的三类计时字段不同：epoch_allowance_seconds、neural_until_seconds、gp_until_seconds，每对四个epoch共12项。完整差异值保存在DIAGNOSIS.json。
+
+比较覆盖model.json、result.json、delivery.json、pool.json及原封存score，首先使用原冻结normalizer，再单独分类上述history路径。分类之外无字段差异；没有忽略数值、结构、参数、候选payload、缓存、选择或算法事件的新类别。原966输入/current及归档、374当期运行工件和旧374工件全部hash核对通过。
+
+该检查读取既有JSON，不生成数据、不调用初始化/拟合/搜索，也不重新评分。独立后审现已确认三字段的调度语义、17对完整差异及本次神经/GP截止裕量为正，其余归一保存轨迹相同；这不证明计时字段一般无影响，也不证明未保存的完整失败cache或RNG状态相同。见原历史POST_RUN_REVIEW.md及post_review_checks.json。
+
+原VERIFICATION=failed、technical_pass=false、adoption_pass=false均保留；此诊断没有development准入效力。不能修改冻结白名单后将本批改称原核验通过，亦不得重跑单元或据已见测试结果重选模型。

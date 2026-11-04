@@ -1,0 +1,204 @@
+...........................................FF.......                     [100%]
+================================== FAILURES ===================================
+_______ test_invalid_or_unaccepted_chain_fails_closed[correction_input] _______
+
+chain = namespace(root=WindowsPath('//?/D:/���Żع���Ŀ/dimensr-mimo/outputs/release_170_20261104/archive_io_05/test_invalid_or_unac...d_cha42/experiments/compositional_completion_20261031'), reseal=<function chain.<locals>.reseal at 0x000001989E17DA80>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001989E176E10>
+fault = 'correction_input'
+
+    @pytest.mark.parametrize('fault',['missing_acceptance','bad_acceptance','missing_key','extra_key','sha_drift','original_technical',
+        'original_adoption_type','original_verdict','original_execution','original_received','verify_budget_type','verify_input_type',
+        'verify_status','verify_count_float','verify_count_short','verify_row_short','verify_row_type','verify_row_wrong',
+        'summary_technical_type','summary_adoption_type','summary_full_type','summary_sealed_type','summary_original',
+        'summary_outputs','execution_code_bool','execution_training_type','execution_training_false','execution_termination',
+        'execution_wall_negative','execution_wall_inf','execution_wall_over','freeze_training_type','freeze_cap_float',
+        'deadline_original','deadline_own','verified_time_early','verified_time_late','verified_time_type',
+        'old_development_started','source_drift','plan_drift','config_drift','correction_input','correction_archive'])
+    def test_invalid_or_unaccepted_chain_fails_closed(chain,monkeypatch,fault):
+        c=chain;v=c.fixed/'VERIFICATION.json';summary=c.fixed/'SUMMARY.json';execution=c.fixed/'EXECUTION.json';freeze=c.fixed/'FREEZE.json'
+        reseal=True
+        if fault=='missing_acceptance':(c.fixed/'POST_REVIEW_ACCEPTANCE.json').unlink();reseal=False
+        elif fault=='bad_acceptance':update(c.fixed/'POST_REVIEW_ACCEPTANCE.json',status='accepted');reseal=False
+        elif fault in ('missing_key','extra_key'):
+            obj=harness.read(c.fixed/'POST_REVIEW_ACCEPTANCE.json')
+            if fault=='missing_key':obj['sha256'].pop('SUMMARY.json')
+            else:obj['sha256']['EXTRA.json']='0'*64
+            put(c.fixed/'POST_REVIEW_ACCEPTANCE.json',obj);reseal=False
+        elif fault=='sha_drift':update(summary,technical_pass=False);reseal=False
+        elif fault=='original_technical':update(c.old/'SUMMARY.json',technical_pass=True)
+        elif fault=='original_adoption_type':update(c.old/'SUMMARY.json',adoption_pass=0)
+        elif fault=='original_verdict':update(c.old/'VERIFICATION.json',status='passed')
+        elif fault=='original_execution':update(c.old/'EXECUTION.json',verification_passed=True)
+        elif fault=='original_received':update(c.old/'POST_REVIEW_RECEIVED.json',development_authorized=True)
+        elif fault=='verify_budget_type':update(v,budget_met=1)
+        elif fault=='verify_input_type':update(v,inputs_unchanged=1)
+        elif fault=='verify_status':update(v,status='failed')
+        elif fault=='verify_count_float':update(v,verified_systems=34.)
+        elif fault=='verify_count_short':update(v,verified_systems=33)
+        elif fault in ('verify_row_short','verify_row_type','verify_row_wrong'):
+            obj=harness.read(v)
+            if fault=='verify_row_short':obj['rows'].pop()
+            elif fault=='verify_row_type':obj['rows'][0]['verified']=1
+            else:obj['rows'][0]['job']['case']='different'
+            put(v,obj)
+        elif fault=='summary_technical_type':update(summary,technical_pass=1)
+        elif fault=='summary_adoption_type':update(summary,adoption_pass=1)
+        elif fault=='summary_full_type':update(summary,full_denominator=1)
+        elif fault=='summary_sealed_type':update(summary,verification_of_sealed_results=1)
+        elif fault=='summary_original':update(summary,original_verdict='passed')
+        elif fault=='summary_outputs':update(summary,protected_outputs=33)
+        elif fault=='execution_code_bool':update(execution,returncode=False)
+        elif fault=='execution_training_type':update(execution,no_training_performed=1)
+        elif fault=='execution_training_false':update(execution,no_training_performed=False)
+        elif fault=='execution_termination':update(execution,termination_reason='deadline')
+        elif fault=='execution_wall_negative':update(execution,wall_seconds=-1.)
+        elif fault=='execution_wall_inf':update(execution,wall_seconds=float('inf'))
+        elif fault=='execution_wall_over':update(execution,wall_seconds=601.)
+        elif fault=='freeze_training_type':update(freeze,no_fit_search_or_rescoring=1)
+        elif fault=='freeze_cap_float':update(freeze,verification_cap_seconds=600.)
+        elif fault=='deadline_original':update(freeze,deadline_unix=3881.)
+        elif fault=='deadline_own':update(freeze,deadline_unix=1801.)
+        elif fault=='verified_time_early':update(v,verified_unix=1199.)
+        elif fault=='verified_time_late':update(v,verified_unix=1801.)
+        elif fault=='verified_time_type':update(v,verified_unix=True)
+        elif fault=='old_development_started':put(c.prepared/'BUDGET.json',{})
+        elif fault=='source_drift':put(c.root/'src/stub.py',{'changed':True})
+        elif fault=='plan_drift':put(c.prepared/'PLAN.md',{'changed':True})
+        elif fault=='config_drift':monkeypatch.setattr(study,'configuration',lambda:{'different':True})
+        elif fault=='correction_input':put(c.fixed/'verify_sealed.py',{'changed':True});reseal=False
+        elif fault=='correction_archive':
+            p=next((c.fixed/'frozen_inputs').rglob('verify_sealed.py'));put(p,{'changed':True});reseal=False
+        if reseal:c.reseal()
+        with pytest.raises((ValueError,OSError,KeyError,TypeError)):
+>           study.check_stage_gate()
+
+experiments\completion_development_verified_20261031\test_stage.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+experiments\completion_development_verified_20261031\study.py:16: in check_stage_gate
+    def check_stage_gate(): return gate.check(sys.modules[__name__])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\completion_development_verified_20261031\gate.py:107: in check
+    corrected_archive = archive(s,correction,fixed)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\completion_development_verified_20261031\gate.py:34: in archive
+    s.verify_files(frozen['files'])
+experiments\completion_development_verified_20261031\study.py:19: in verify_files
+    def verify_files(files,root=None): return archive_io.verify_files(files,ROOT if root is None else root)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+files = {'experiments/completion_historical_20261031/FREEZE.json': '6b8208b013506c3109dca5d4eb44b7efe66c9e91c48d65d88f921bcbeb...letion_historical_20261031/VERIFICATION.json': 'ccd3aa1ca08a7cd06d9b261407492aee159e20bab2216e66cfc6d2656b8ed78e', ...}
+root = WindowsPath('//?/D:/���Żع���Ŀ/dimensr-mimo/outputs/release_170_20261104/archive_io_05/test_invalid_or_unaccepted_cha42')
+
+    def verify_files(files, root):
+        root = Path(root).resolve()
+        for name, expected in files.items():
+            path = (root/name).resolve()
+            if not path.is_relative_to(root) or sha(path) != expected:
+>               raise AssertionError('Frozen file drift: '+name)
+E               AssertionError: Frozen file drift: experiments/completion_verification_repair_20261031/verify_sealed.py
+
+experiments\completion_development_verified_20261031\archive_io.py:29: AssertionError
+______ test_invalid_or_unaccepted_chain_fails_closed[correction_archive] ______
+
+chain = namespace(root=WindowsPath('//?/D:/���Żع���Ŀ/dimensr-mimo/outputs/release_170_20261104/archive_io_05/test_invalid_or_unac...d_cha43/experiments/compositional_completion_20261031'), reseal=<function chain.<locals>.reseal at 0x000001989E17DBC0>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000198FEDF46E0>
+fault = 'correction_archive'
+
+    @pytest.mark.parametrize('fault',['missing_acceptance','bad_acceptance','missing_key','extra_key','sha_drift','original_technical',
+        'original_adoption_type','original_verdict','original_execution','original_received','verify_budget_type','verify_input_type',
+        'verify_status','verify_count_float','verify_count_short','verify_row_short','verify_row_type','verify_row_wrong',
+        'summary_technical_type','summary_adoption_type','summary_full_type','summary_sealed_type','summary_original',
+        'summary_outputs','execution_code_bool','execution_training_type','execution_training_false','execution_termination',
+        'execution_wall_negative','execution_wall_inf','execution_wall_over','freeze_training_type','freeze_cap_float',
+        'deadline_original','deadline_own','verified_time_early','verified_time_late','verified_time_type',
+        'old_development_started','source_drift','plan_drift','config_drift','correction_input','correction_archive'])
+    def test_invalid_or_unaccepted_chain_fails_closed(chain,monkeypatch,fault):
+        c=chain;v=c.fixed/'VERIFICATION.json';summary=c.fixed/'SUMMARY.json';execution=c.fixed/'EXECUTION.json';freeze=c.fixed/'FREEZE.json'
+        reseal=True
+        if fault=='missing_acceptance':(c.fixed/'POST_REVIEW_ACCEPTANCE.json').unlink();reseal=False
+        elif fault=='bad_acceptance':update(c.fixed/'POST_REVIEW_ACCEPTANCE.json',status='accepted');reseal=False
+        elif fault in ('missing_key','extra_key'):
+            obj=harness.read(c.fixed/'POST_REVIEW_ACCEPTANCE.json')
+            if fault=='missing_key':obj['sha256'].pop('SUMMARY.json')
+            else:obj['sha256']['EXTRA.json']='0'*64
+            put(c.fixed/'POST_REVIEW_ACCEPTANCE.json',obj);reseal=False
+        elif fault=='sha_drift':update(summary,technical_pass=False);reseal=False
+        elif fault=='original_technical':update(c.old/'SUMMARY.json',technical_pass=True)
+        elif fault=='original_adoption_type':update(c.old/'SUMMARY.json',adoption_pass=0)
+        elif fault=='original_verdict':update(c.old/'VERIFICATION.json',status='passed')
+        elif fault=='original_execution':update(c.old/'EXECUTION.json',verification_passed=True)
+        elif fault=='original_received':update(c.old/'POST_REVIEW_RECEIVED.json',development_authorized=True)
+        elif fault=='verify_budget_type':update(v,budget_met=1)
+        elif fault=='verify_input_type':update(v,inputs_unchanged=1)
+        elif fault=='verify_status':update(v,status='failed')
+        elif fault=='verify_count_float':update(v,verified_systems=34.)
+        elif fault=='verify_count_short':update(v,verified_systems=33)
+        elif fault in ('verify_row_short','verify_row_type','verify_row_wrong'):
+            obj=harness.read(v)
+            if fault=='verify_row_short':obj['rows'].pop()
+            elif fault=='verify_row_type':obj['rows'][0]['verified']=1
+            else:obj['rows'][0]['job']['case']='different'
+            put(v,obj)
+        elif fault=='summary_technical_type':update(summary,technical_pass=1)
+        elif fault=='summary_adoption_type':update(summary,adoption_pass=1)
+        elif fault=='summary_full_type':update(summary,full_denominator=1)
+        elif fault=='summary_sealed_type':update(summary,verification_of_sealed_results=1)
+        elif fault=='summary_original':update(summary,original_verdict='passed')
+        elif fault=='summary_outputs':update(summary,protected_outputs=33)
+        elif fault=='execution_code_bool':update(execution,returncode=False)
+        elif fault=='execution_training_type':update(execution,no_training_performed=1)
+        elif fault=='execution_training_false':update(execution,no_training_performed=False)
+        elif fault=='execution_termination':update(execution,termination_reason='deadline')
+        elif fault=='execution_wall_negative':update(execution,wall_seconds=-1.)
+        elif fault=='execution_wall_inf':update(execution,wall_seconds=float('inf'))
+        elif fault=='execution_wall_over':update(execution,wall_seconds=601.)
+        elif fault=='freeze_training_type':update(freeze,no_fit_search_or_rescoring=1)
+        elif fault=='freeze_cap_float':update(freeze,verification_cap_seconds=600.)
+        elif fault=='deadline_original':update(freeze,deadline_unix=3881.)
+        elif fault=='deadline_own':update(freeze,deadline_unix=1801.)
+        elif fault=='verified_time_early':update(v,verified_unix=1199.)
+        elif fault=='verified_time_late':update(v,verified_unix=1801.)
+        elif fault=='verified_time_type':update(v,verified_unix=True)
+        elif fault=='old_development_started':put(c.prepared/'BUDGET.json',{})
+        elif fault=='source_drift':put(c.root/'src/stub.py',{'changed':True})
+        elif fault=='plan_drift':put(c.prepared/'PLAN.md',{'changed':True})
+        elif fault=='config_drift':monkeypatch.setattr(study,'configuration',lambda:{'different':True})
+        elif fault=='correction_input':put(c.fixed/'verify_sealed.py',{'changed':True});reseal=False
+        elif fault=='correction_archive':
+            p=next((c.fixed/'frozen_inputs').rglob('verify_sealed.py'));put(p,{'changed':True});reseal=False
+        if reseal:c.reseal()
+        with pytest.raises((ValueError,OSError,KeyError,TypeError)):
+>           study.check_stage_gate()
+
+experiments\completion_development_verified_20261031\test_stage.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+experiments\completion_development_verified_20261031\study.py:16: in check_stage_gate
+    def check_stage_gate(): return gate.check(sys.modules[__name__])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\completion_development_verified_20261031\gate.py:107: in check
+    corrected_archive = archive(s,correction,fixed)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\completion_development_verified_20261031\gate.py:35: in archive
+    s.verify_files(frozen['files'],folder/'frozen_inputs')
+experiments\completion_development_verified_20261031\study.py:19: in verify_files
+    def verify_files(files,root=None): return archive_io.verify_files(files,ROOT if root is None else root)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+files = {'experiments/completion_historical_20261031/FREEZE.json': '6b8208b013506c3109dca5d4eb44b7efe66c9e91c48d65d88f921bcbeb...letion_historical_20261031/VERIFICATION.json': 'ccd3aa1ca08a7cd06d9b261407492aee159e20bab2216e66cfc6d2656b8ed78e', ...}
+root = WindowsPath('//?/D:/���Żع���Ŀ/dimensr-mimo/outputs/release_170_20261104/archive_io_05/test_invalid_or_unaccepted_cha43/experiments/completion_verification_repair_20261031/frozen_inputs')
+
+    def verify_files(files, root):
+        root = Path(root).resolve()
+        for name, expected in files.items():
+            path = (root/name).resolve()
+            if not path.is_relative_to(root) or sha(path) != expected:
+>               raise AssertionError('Frozen file drift: '+name)
+E               AssertionError: Frozen file drift: experiments/completion_verification_repair_20261031/verify_sealed.py
+
+experiments\completion_development_verified_20261031\archive_io.py:29: AssertionError
+=========================== short test summary info ===========================
+FAILED experiments/completion_development_verified_20261031/test_stage.py::test_invalid_or_unaccepted_chain_fails_closed[correction_input]
+FAILED experiments/completion_development_verified_20261031/test_stage.py::test_invalid_or_unaccepted_chain_fails_closed[correction_archive]
+2 failed, 50 passed in 7.62s

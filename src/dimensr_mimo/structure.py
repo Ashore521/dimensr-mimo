@@ -4,6 +4,7 @@ All ranking and coefficient initialization use training data only. These proposa
 still pass the ordinary evaluator's budget, coefficient fit and domain checks.
 """
 from fractions import Fraction
+import time
 import numpy as np
 from ._single.expression import Node
 from ._single.units import ZERO, add, sub, scale
@@ -17,7 +18,7 @@ def operator(token, *children):
     return Node(token, tuple(children), out)
 
 
-def _compound_products(features, variables, y, admit, grammar, counts):
+def _compound_products(features, variables, y, admit, grammar, counts, check_deadline):
     """Rank bounded pair products, then extend those pairs with input variables."""
     if "mul" not in grammar.tokens:
         return
@@ -26,6 +27,7 @@ def _compound_products(features, variables, y, admit, grammar, counts):
     def ranked(pairs):
         proposals = []
         for (a, ca, va), (b, cb, vb) in pairs:
+            check_deadline()
             if a.size + b.size + 1 > min(11, grammar.max_nodes) or max(a.depth, b.depth) + 1 > grammar.max_depth:
                 continue
             with np.errstate(all="ignore"):
@@ -52,7 +54,7 @@ def _compound_products(features, variables, y, admit, grammar, counts):
     ranked((a, b) for a in pairs for b in variables[:16])
 
 
-def structured_seeds(grammar, X, y, limit, *, compound=False):
+def structured_seeds(grammar, X, y, limit, *, compound=False, implicit=False, deadline=None):
     constants = {u: Node(t, units=u) for t, u in grammar.terminals.items() if t.startswith("c")}
     features, seen, numeric_seen = [], set(), set()
     feature_limit = 384  # Reserve the remaining 128 slots for small products.
@@ -60,10 +62,21 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
                   numeric_duplicates=0, pair_screened=0, residual_projections=0)
     if compound:
         counts["compound_products_screened"] = 0
+    if implicit:
+        counts.update(implicit_denominators=0, implicit_linear_subproblems=0,
+                      implicit_valid_proposals=0, implicit_denominator_rejections=0)
     if limit <= 0:
         return [], counts
 
+    def check_deadline():
+        # Cooperative checks cannot interrupt a running NumPy/BLAS operation.
+        if deadline is not None and time.monotonic() >= deadline:
+            error = TimeoutError('Structured initialization deadline reached.')
+            error.initialization_diagnostics = dict(counts)
+            raise error
+
     def admit(tree, values=None):
+        check_deadline()
         if tree.size > min(11 if compound else 9, grammar.max_nodes) or tree.depth > grammar.max_depth:
             return None
         tree, c = tree.canonical(values)
@@ -162,7 +175,7 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
                 admit(operator("add", constants[tree.units], tree), np.r_[1., c])
     feature_limit = 512
     if compound:
-        _compound_products(features, variables, y, admit, grammar, counts)
+        _compound_products(features, variables, y, admit, grammar, counts, check_deadline)
     else:
         composable = sorted([f for f in features if f[0].size <= 3], key=lambda f: (f[0].size, repr(f[0])))
         for i, (a, ca, _) in enumerate(composable):
@@ -171,11 +184,13 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
                     admit(operator("mul", a, b), np.r_[ca, cb])
 
     proposals = {}
+    implicit_proposals = set()
 
     if compound:
         # A mandatory affine wrapper can exceed the depth budget of a useful atom.
         # Rank compact one-feature proposals by a separate zero-intercept fit.
         for tree, c, values in features:
+            check_deadline()
             if sub(grammar.target, tree.units) not in constants or "mul" not in grammar.tokens:
                 continue
             weight = float(values @ y / (values @ values))
@@ -200,7 +215,8 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
         b, cb = balanced(terms[mid:])
         return operator("add", a, b), np.r_[ca, cb]
 
-    def fit_terms(target, target_units, denominator=None):
+    def fit_terms(target, target_units, denominator=None, fit_offset=False):
+        check_deadline()
         if not np.isfinite(target).all():
             return
         available = [f for f in features if sub(target_units, f[0].units) in constants]
@@ -209,6 +225,8 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
         intercept = constants.get(target_units) if "add" in grammar.tokens else None
         matrix = np.column_stack([f[2] for f in available])
         base = np.ones((len(y), 1)) if intercept is not None else np.empty((len(y), 0))
+        if fit_offset:
+            base = np.column_stack((base, -y))
         pairs = []
         if denominator is None and "add" in grammar.tokens:
             # Bounded two-term lookahead prevents greedy single-term ranking
@@ -232,6 +250,7 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
             fits = {}
             choices = set(pairs if depth == 1 else [])
             for selected in beam:
+                check_deadline()
                 # Conditional correlations are recomputed after each partial fit;
                 # a useful complementary term need not correlate strongly with y.
                 current = np.column_stack((base, matrix[:, selected]))
@@ -252,16 +271,28 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
                     if len(choice) == len(selected) + 1:
                         choices.add(choice)
             for choice in sorted(choices):
+                check_deadline()
                 design = np.column_stack((base, matrix[:, choice]))
                 norms = np.linalg.norm(design, axis=0)
                 norms[norms == 0] = 1.
                 counts["linear_subproblems"] += 1
+                if fit_offset:
+                    counts["implicit_linear_subproblems"] += 1
                 try:
                     coef = np.linalg.lstsq(design / norms, target, rcond=None)[0] / norms
                 except np.linalg.LinAlgError:
                     continue
                 estimate = design @ coef
-                prediction = estimate if denominator is None else estimate / denominator[2]
+                offset = coef[len(base.T)-1] if fit_offset else 0.
+                if fit_offset:
+                    divisor = denominator[2]+offset
+                    if not np.isfinite(divisor).all() or np.any(np.abs(divisor)<=1e-12):
+                        counts['implicit_denominator_rejections'] += 1
+                        continue
+                    estimate = matrix[:, choice] @ coef[len(base.T):]
+                    if intercept is not None:
+                        estimate = estimate+coef[0]
+                prediction = estimate if denominator is None else estimate / (divisor if fit_offset else denominator[2])
                 error = float(np.mean((prediction - y) ** 2))
                 terms = [(intercept, np.array([coef[0]]))] if intercept is not None else []
                 for index, weight in zip(choice, coef[len(base.T):]):
@@ -270,7 +301,10 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
                     terms.append((operator("mul", multiplier, term), np.r_[weight, c]))
                 tree, c = balanced(terms)
                 if denominator is not None:
-                    tree, c = operator("div", tree, denominator[0]), np.r_[c, denominator[1]]
+                    divisor, dc = denominator[0], denominator[1]
+                    if fit_offset:
+                        divisor, dc = operator("add", constants[divisor.units], divisor), np.r_[offset, dc]
+                    tree, c = operator("div", tree, divisor), np.r_[c, dc]
                 if tree.size > grammar.max_nodes or tree.depth > grammar.max_depth or not np.isfinite(error):
                     continue
                 tree, c = tree.canonical(c)
@@ -278,10 +312,17 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
                     grammar.trace(tree)
                 except (ValueError, KeyError):
                     continue
+                if fit_offset:
+                    error = float(np.mean((tree.evaluate(X, c)-y)**2))
+                    if not np.isfinite(error):
+                        continue
+                    counts["implicit_valid_proposals"] += 1
                 fits[choice] = error
                 score = error / max(float(np.var(y)), 1e-12) + 1e-8 * tree.size
                 if tree not in proposals or score < proposals[tree][0]:
                     proposals[tree] = score, c
+                    if fit_offset:
+                        implicit_proposals.add(tree)
             beam = sorted(fits, key=lambda k: (fits[k], k))[:8]
             if not beam:
                 break
@@ -293,7 +334,16 @@ def structured_seeds(grammar, X, y, limit, *, compound=False):
         for denominator in denominators[:64]:
             if np.all(np.abs(denominator[2]) > 1e-12):
                 fit_terms(y * denominator[2], add(grammar.target, denominator[0].units), denominator)
+        if implicit and "add" in grammar.tokens:
+            eligible = [f for f in features if f[0].size<=5 and f[0].units in constants
+                        and f[0].token not in ("add", "sub")]
+            for denominator in eligible[:64]:
+                counts["implicit_denominators"] += 1
+                fit_terms(y*denominator[2], add(grammar.target, denominator[0].units), denominator, True)
     counts["proposed_structures"] = len(proposals)
+    check_deadline()
     counts["retained_features"] = len(features)
     ranked = sorted(proposals, key=lambda tree: (proposals[tree][0], tree.size, repr(tree)))[:limit]
+    if implicit:
+        counts['implicit_retained_indices'] = [i for i,t in enumerate(ranked) if t in implicit_proposals]
     return [(tree, proposals[tree][1]) for tree in ranked], counts

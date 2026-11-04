@@ -1,0 +1,112 @@
+FFF...                                                                   [100%]
+================================== FAILURES ===================================
+_ test_new_truth_pairs_are_unit_legal_representable_and_safe[logarithmic_gain] _
+
+family = 'logarithmic_gain'
+
+    @pytest.mark.parametrize('family',cases.FAMILIES)
+    def test_new_truth_pairs_are_unit_legal_representable_and_safe(family):
+        name=family+'_n0';spec=cases.design(name);graph,constants=cases.truth_graph(name)
+        cfg=SearchConfig(max_nodes=15,max_depth=6,reference_budget='expanded')
+        audit.units(graph,spec['features'],spec['targets'],spec['constants'])
+        assert in_bounds(graph,cfg)
+        shape=audit.complexity(graph)
+        assert all(shape[k]<=spec['acceptance'][k] for k in ('shared_graph_size','independent_parameters','expanded_total_nodes','maximum_output_depth'))
+        grammar=SystemGrammar(*[tuple(unit(u) for u in spec[k]) for k in ('features','targets','constants')],cfg)
+        for j,r in enumerate(graph.roots):
+>           tree,_=graph.expanded(r,constants);grammar.plain[j].trace(tree)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_new_task_cases.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\dimensr_mimo\grammar.py:197: in trace
+    visit(tree, self.max_nodes, self.max_depth, self.bos)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+node = Node(token='log', children=(Node(token='add', children=(Node(token='c0', children=(), units=(Fraction(0, 1), Fraction(...units=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)))
+budget = 15, depth = 6, parent = 23
+
+    def visit(node, budget, depth, parent):
+        choices = self.options(node.units, budget, depth)
+>       token = self.index[node.token]
+                ^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'log'
+
+src\dimensr_mimo\grammar.py:174: KeyError
+__ test_new_truth_pairs_are_unit_legal_representable_and_safe[logistic_gain] __
+
+family = 'logistic_gain'
+
+    @pytest.mark.parametrize('family',cases.FAMILIES)
+    def test_new_truth_pairs_are_unit_legal_representable_and_safe(family):
+        name=family+'_n0';spec=cases.design(name);graph,constants=cases.truth_graph(name)
+        cfg=SearchConfig(max_nodes=15,max_depth=6,reference_budget='expanded')
+        audit.units(graph,spec['features'],spec['targets'],spec['constants'])
+        assert in_bounds(graph,cfg)
+        shape=audit.complexity(graph)
+        assert all(shape[k]<=spec['acceptance'][k] for k in ('shared_graph_size','independent_parameters','expanded_total_nodes','maximum_output_depth'))
+        grammar=SystemGrammar(*[tuple(unit(u) for u in spec[k]) for k in ('features','targets','constants')],cfg)
+        for j,r in enumerate(graph.roots):
+>           tree,_=graph.expanded(r,constants);grammar.plain[j].trace(tree)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_new_task_cases.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\dimensr_mimo\grammar.py:197: in trace
+    visit(tree, self.max_nodes, self.max_depth, self.bos)
+src\dimensr_mimo\grammar.py:193: in visit
+    size=visit(child, remaining - reserved, depth - 1, token)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\dimensr_mimo\grammar.py:193: in visit
+    size=visit(child, remaining - reserved, depth - 1, token)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+node = Node(token='exp', children=(Node(token='mul', children=(Node(token='c1', children=(), units=(Fraction(0, 1), Fraction(...units=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)))
+budget = 11, depth = 4, parent = 16
+
+    def visit(node, budget, depth, parent):
+        choices = self.options(node.units, budget, depth)
+>       token = self.index[node.token]
+                ^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'exp'
+
+src\dimensr_mimo\grammar.py:174: KeyError
+_ test_new_truth_pairs_are_unit_legal_representable_and_safe[algebraic_norm] __
+
+family = 'algebraic_norm'
+
+    @pytest.mark.parametrize('family',cases.FAMILIES)
+    def test_new_truth_pairs_are_unit_legal_representable_and_safe(family):
+        name=family+'_n0';spec=cases.design(name);graph,constants=cases.truth_graph(name)
+        cfg=SearchConfig(max_nodes=15,max_depth=6,reference_budget='expanded')
+        audit.units(graph,spec['features'],spec['targets'],spec['constants'])
+        assert in_bounds(graph,cfg)
+        shape=audit.complexity(graph)
+        assert all(shape[k]<=spec['acceptance'][k] for k in ('shared_graph_size','independent_parameters','expanded_total_nodes','maximum_output_depth'))
+        grammar=SystemGrammar(*[tuple(unit(u) for u in spec[k]) for k in ('features','targets','constants')],cfg)
+        for j,r in enumerate(graph.roots):
+>           tree,_=graph.expanded(r,constants);grammar.plain[j].trace(tree)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_new_task_cases.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\dimensr_mimo\grammar.py:197: in trace
+    visit(tree, self.max_nodes, self.max_depth, self.bos)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+node = Node(token='sqrt', children=(Node(token='add', children=(Node(token='square', children=(Node(token='x0', children=(), ...units=(Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)))
+budget = 15, depth = 6, parent = 22
+
+    def visit(node, budget, depth, parent):
+        choices = self.options(node.units, budget, depth)
+>       token = self.index[node.token]
+                ^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'sqrt'
+
+src\dimensr_mimo\grammar.py:174: KeyError
+=========================== short test summary info ===========================
+FAILED tests/test_new_task_cases.py::test_new_truth_pairs_are_unit_legal_representable_and_safe[logarithmic_gain]
+FAILED tests/test_new_task_cases.py::test_new_truth_pairs_are_unit_legal_representable_and_safe[logistic_gain]
+FAILED tests/test_new_task_cases.py::test_new_truth_pairs_are_unit_legal_representable_and_safe[algebraic_norm]
+3 failed, 3 passed in 1.70s

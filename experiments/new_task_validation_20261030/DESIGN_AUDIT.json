@@ -1,0 +1,1484 @@
+{
+  "status": "design_static_checks_completed_not_execution_approval",
+  "scope": "Only existing bytes plus four independently constructed static target graphs and five fixed points per graph; no formal data generation, initializer, search, fit, test scoring or pytest.",
+  "input_sha256": {
+    "PLAN.md": "374e3ad0063f02152670adad0d12712583990bbb130d3d0e705f77f31e943aeb",
+    "CANDIDATE_LOCK.json": "b9c16d7078e88e97b1b09247fbe9531c0da01c84fd316ea47aff29dfb306e656",
+    "NOVELTY_AUDIT.json": "36a0e828f802f97e9745d03b2be707e88790b9d13d9c5a4e8e22c946debc7b1a"
+  },
+  "algorithm_base_config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log",
+      "exp"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 0,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 52,
+    "initialization_fraction": 0.15,
+    "reference_budget": "expanded",
+    "time_allocation": "phased",
+    "initialization": "compound",
+    "sharing_strategy": "closure",
+    "precision_repair": false
+  },
+  "config_check_note": "FREEZE base config is completed by worker with precision selection and case acceptance; this static audit uses only operators/max_nodes/max_depth, not an effective fit configuration.",
+  "check_incidents": [
+    "Initial audit called validate on the historical base config before worker inserts precision selection/acceptance; expected closure validation error, no graph or artifact written. Resumed static checks without treating base config as effective fit config."
+  ],
+  "versions": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "numpy": "2.5.4"
+  },
+  "hash_checks": {
+    "candidate_source_count": 40,
+    "candidate_source_mismatches": [],
+    "candidate_prior_source_mismatches": [],
+    "source_summary_matches": true,
+    "novelty_file_count": 34,
+    "novelty_file_mismatches": [],
+    "novelty_query_hits": {
+      "logarithmic_gain": [],
+      "logistic_gain": [],
+      "algebraic_norm": [],
+      "bilinear_saturation": [],
+      "9131": [],
+      "9132": []
+    },
+    "prior_frozen_input_count": 230,
+    "prior_live_frozen_mismatches": [],
+    "prior_archive_manifest_matches": true,
+    "prior_archive_byte_mismatches": [],
+    "prior_archive_freeze_matches": true
+  },
+  "static_oracles": [
+    {
+      "family": "logarithmic_gain",
+      "features": [
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "targets": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "constant_catalog": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "system": {
+        "nodes": [
+          {
+            "token": "x0",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "x1",
+            "children": [],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "c0",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": 0
+          },
+          {
+            "token": "c1",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "-1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": 1
+          },
+          {
+            "token": "mul",
+            "children": [
+              3,
+              0
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "square",
+            "children": [
+              4
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "add",
+            "children": [
+              2,
+              5
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "log",
+            "children": [
+              6
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "mul",
+            "children": [
+              1,
+              7
+            ],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          }
+        ],
+        "roots": [
+          7,
+          8
+        ]
+      },
+      "constants": [
+        1.0,
+        0.9
+      ],
+      "grammar_replay": [
+        {
+          "nodes": 7,
+          "depth": 5,
+          "trace_tokens": 7,
+          "unit_pool_size": 16
+        },
+        {
+          "nodes": 9,
+          "depth": 6,
+          "trace_tokens": 9,
+          "unit_pool_size": 16
+        }
+      ],
+      "complexity": {
+        "shared_dag_vertices": 9,
+        "shared_graph_size": 9,
+        "shared_dag_operations": 5,
+        "maximum_output_depth": 6,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 16,
+        "expanded_total_operations": 9,
+        "outputs": [
+          {
+            "expanded_nodes": 7,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 7,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 5,
+            "depth": 6,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "units": {
+        "status": "passed",
+        "output_units": [
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "parameter_units": [
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "domain": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "fixed_points": [
+        [
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          1.4
+        ],
+        [
+          1.4,
+          0.2
+        ],
+        [
+          1.4,
+          1.4
+        ],
+        [
+          0.8,
+          0.8
+        ]
+      ],
+      "fixed_point_outputs": [
+        [
+          0.03188618886232173,
+          0.006377237772464347
+        ],
+        [
+          0.03188618886232173,
+          0.04464066440725042
+        ],
+        [
+          0.9507308051876934,
+          0.19014616103753867
+        ],
+        [
+          0.9507308051876934,
+          1.3310231272627706
+        ],
+        [
+          0.4176571488735265,
+          0.3341257190988212
+        ]
+      ],
+      "maximum_formula_difference": 0.0
+    },
+    {
+      "family": "logistic_gain",
+      "features": [
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "targets": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "2",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "constant_catalog": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "system": {
+        "nodes": [
+          {
+            "token": "x0",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "x1",
+            "children": [],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "c0",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": 0
+          },
+          {
+            "token": "c1",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "-1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": 1
+          },
+          {
+            "token": "mul",
+            "children": [
+              3,
+              0
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "exp",
+            "children": [
+              4
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "add",
+            "children": [
+              2,
+              5
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "div",
+            "children": [
+              1,
+              6
+            ],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "square",
+            "children": [
+              1
+            ],
+            "units": [
+              "2",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "div",
+            "children": [
+              8,
+              6
+            ],
+            "units": [
+              "2",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          }
+        ],
+        "roots": [
+          7,
+          9
+        ]
+      },
+      "constants": [
+        1.0,
+        -0.8
+      ],
+      "grammar_replay": [
+        {
+          "nodes": 8,
+          "depth": 5,
+          "trace_tokens": 8,
+          "unit_pool_size": 16
+        },
+        {
+          "nodes": 9,
+          "depth": 5,
+          "trace_tokens": 9,
+          "unit_pool_size": 23
+        }
+      ],
+      "complexity": {
+        "shared_dag_vertices": 10,
+        "shared_graph_size": 10,
+        "shared_dag_operations": 6,
+        "maximum_output_depth": 5,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 17,
+        "expanded_total_operations": 9,
+        "outputs": [
+          {
+            "expanded_nodes": 8,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 5,
+            "depth": 5,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "units": {
+        "status": "passed",
+        "output_units": [
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "2",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "parameter_units": [
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "-1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "domain": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "fixed_points": [
+        [
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          1.4
+        ],
+        [
+          1.4,
+          0.2
+        ],
+        [
+          1.4,
+          1.4
+        ],
+        [
+          0.8,
+          0.8
+        ]
+      ],
+      "fixed_point_outputs": [
+        [
+          0.10798297691111314,
+          0.02159659538222263
+        ],
+        [
+          0.7558808383777919,
+          1.0582331737289086
+        ],
+        [
+          0.15079774328978962,
+          0.030159548657957926
+        ],
+        [
+          1.0555842030285272,
+          1.4778178842399379
+        ],
+        [
+          0.5238027684850555,
+          0.4190422147880444
+        ]
+      ],
+      "maximum_formula_difference": 0.0
+    },
+    {
+      "family": "algebraic_norm",
+      "features": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "targets": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "constant_catalog": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "system": {
+        "nodes": [
+          {
+            "token": "x0",
+            "children": [],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "x1",
+            "children": [],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "square",
+            "children": [
+              0
+            ],
+            "units": [
+              "2",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "square",
+            "children": [
+              1
+            ],
+            "units": [
+              "2",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "add",
+            "children": [
+              2,
+              3
+            ],
+            "units": [
+              "2",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "sqrt",
+            "children": [
+              4
+            ],
+            "units": [
+              "1.0",
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "div",
+            "children": [
+              0,
+              5
+            ],
+            "units": [
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0",
+              "0.0"
+            ],
+            "parameter": null
+          }
+        ],
+        "roots": [
+          5,
+          6
+        ]
+      },
+      "constants": [],
+      "grammar_replay": [
+        {
+          "nodes": 6,
+          "depth": 4,
+          "trace_tokens": 6,
+          "unit_pool_size": 6
+        },
+        {
+          "nodes": 8,
+          "depth": 5,
+          "trace_tokens": 8,
+          "unit_pool_size": 6
+        }
+      ],
+      "complexity": {
+        "shared_dag_vertices": 7,
+        "shared_graph_size": 7,
+        "shared_dag_operations": 5,
+        "maximum_output_depth": 5,
+        "independent_parameters": 0,
+        "expanded_total_nodes": 14,
+        "expanded_total_operations": 9,
+        "outputs": [
+          {
+            "expanded_nodes": 6,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 6,
+            "independent_parameters": 0
+          },
+          {
+            "expanded_nodes": 8,
+            "expanded_operations": 5,
+            "depth": 5,
+            "unique_dag_nodes": 7,
+            "independent_parameters": 0
+          }
+        ]
+      },
+      "units": {
+        "status": "passed",
+        "output_units": [
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "parameter_units": []
+      },
+      "domain": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "fixed_points": [
+        [
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          1.4
+        ],
+        [
+          1.4,
+          0.2
+        ],
+        [
+          1.4,
+          1.4
+        ],
+        [
+          0.8,
+          0.8
+        ]
+      ],
+      "fixed_point_outputs": [
+        [
+          0.28284271247461906,
+          0.7071067811865475
+        ],
+        [
+          1.414213562373095,
+          0.14142135623730953
+        ],
+        [
+          1.414213562373095,
+          0.9899494936611666
+        ],
+        [
+          1.979898987322333,
+          0.7071067811865476
+        ],
+        [
+          1.1313708498984762,
+          0.7071067811865475
+        ]
+      ],
+      "maximum_formula_difference": 0.0
+    },
+    {
+      "family": "bilinear_saturation",
+      "features": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "targets": [
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "constant_catalog": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "system": {
+        "nodes": [
+          {
+            "token": "x0",
+            "children": [],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "x1",
+            "children": [],
+            "units": [
+              "-1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "c0",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": 0
+          },
+          {
+            "token": "c0",
+            "children": [],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": 1
+          },
+          {
+            "token": "mul",
+            "children": [
+              0,
+              1
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "mul",
+            "children": [
+              3,
+              4
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "add",
+            "children": [
+              2,
+              5
+            ],
+            "units": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "div",
+            "children": [
+              0,
+              6
+            ],
+            "units": [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          },
+          {
+            "token": "div",
+            "children": [
+              1,
+              6
+            ],
+            "units": [
+              "-1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "parameter": null
+          }
+        ],
+        "roots": [
+          7,
+          8
+        ]
+      },
+      "constants": [
+        1.0,
+        0.6
+      ],
+      "grammar_replay": [
+        {
+          "nodes": 9,
+          "depth": 5,
+          "trace_tokens": 9,
+          "unit_pool_size": 7
+        },
+        {
+          "nodes": 9,
+          "depth": 5,
+          "trace_tokens": 9,
+          "unit_pool_size": 7
+        }
+      ],
+      "complexity": {
+        "shared_dag_vertices": 9,
+        "shared_graph_size": 9,
+        "shared_dag_operations": 5,
+        "maximum_output_depth": 5,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 18,
+        "expanded_total_operations": 8,
+        "outputs": [
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "units": {
+        "status": "passed",
+        "output_units": [
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "-1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "parameter_units": [
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "domain": [
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        },
+        {
+          "status": "enclosed",
+          "boxes_checked": 1,
+          "reason": null,
+          "witness": null
+        }
+      ],
+      "fixed_points": [
+        [
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          1.4
+        ],
+        [
+          1.4,
+          0.2
+        ],
+        [
+          1.4,
+          1.4
+        ],
+        [
+          0.8,
+          0.8
+        ]
+      ],
+      "fixed_point_outputs": [
+        [
+          0.1953125,
+          0.1953125
+        ],
+        [
+          0.17123287671232879,
+          1.1986301369863013
+        ],
+        [
+          1.1986301369863013,
+          0.17123287671232879
+        ],
+        [
+          0.6433823529411765,
+          0.6433823529411765
+        ],
+        [
+          0.5780346820809248,
+          0.5780346820809248
+        ]
+      ],
+      "maximum_formula_difference": 1.1102230246251565e-16
+    }
+  ]
+}

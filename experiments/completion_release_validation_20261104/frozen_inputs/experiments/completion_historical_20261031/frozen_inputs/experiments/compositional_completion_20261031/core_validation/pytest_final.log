@@ -1,0 +1,17 @@
+................F....................................................... [ 97%]
+..                                                                       [100%]
+================================== FAILURES ===================================
+__ test_final_divisor_rejects_near_zero_even_when_inverse_labels_are_finite ___
+
+    def test_final_divisor_rejects_near_zero_even_when_inverse_labels_are_finite():
+        X=np.column_stack((np.zeros(10),np.linspace(.2,1.2,10)))
+        proposals,counts=new_proposals(grammar(),X,np.ones(10))
+>       assert not any(s['transform']=='log' and s['form']=='divide' and s['variable']=='x0'
+                       for _,_,s in proposals)
+E       assert not True
+E        +  where True = any(<generator object test_final_divisor_rejects_near_zero_even_when_inverse_labels_are_finite.<locals>.<genexpr> at 0x00000171E3B3B220>)
+
+tests\test_compositional_completion.py:219: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_compositional_completion.py::test_final_divisor_rejects_near_zero_even_when_inverse_labels_are_finite
+1 failed, 73 passed in 30.11s

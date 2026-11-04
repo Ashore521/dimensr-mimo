@@ -1,0 +1,40 @@
+..F                                                                      [100%]
+================================== FAILURES ===================================
+_______ test_initializer_evidence_crosschecks_runtime_event_and_counts ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001A48B8F6750>
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/pytest-implicit-study-tmp2/test_initializer_evidence_cros0')
+
+    def test_initializer_evidence_crosschecks_runtime_event_and_counts(monkeypatch,tmp_path):
+        monkeypatch.setattr(evaluate,'HERE',tmp_path)
+        job=dict(case='rational_n0',seed=702,method='implicit')
+        folder=tmp_path/'runs'/study.name(job);folder.mkdir(parents=True)
+        row=dict(phase='initialization',new_evaluations=4,implicit_seed_jobs=3,
+            implicit_seed_new_evaluations=2,implicit_seed_valid=1)
+        model=dict(history=[row],diagnostics=dict(initialization_diagnostics=[dict(implicit_denominators=2,
+            implicit_linear_subproblems=4,implicit_retained_indices=[0])]*2))
+        (folder/'model.json').write_text(json.dumps(model))
+        (folder/'events.jsonl').write_text(json.dumps(row)+'\n')
+        assert evaluate.initializer_evidence(job)['valid']==1
+        row['implicit_seed_valid']=3
+        (folder/'events.jsonl').write_text(json.dumps(row)+'\n')
+        with pytest.raises(AssertionError,match='event drift'):
+>           evaluate.initializer_evidence(job)
+
+tests\test_implicit_study.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+experiments\implicit_rational_20261028\evaluate.py:98: in initializer_evidence
+    require(all(event[k]==v for k,v in history.items()), 'Initialization event drift.')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'Initialization event drift.'
+
+    def require(condition,message):
+>       if not condition:raise ValueError(message)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Initialization event drift.
+
+experiments\native_api_20261026\verify.py:17: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_implicit_study.py::test_initializer_evidence_crosschecks_runtime_event_and_counts
+1 failed, 2 passed in 1.56s

@@ -1,0 +1,164 @@
+.......................FFFF..                                            [100%]
+================================== FAILURES ===================================
+_ test_control_comparison_keeps_all_non_timing_evidence[old_table_duplicate] __
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/completion-reverify-denominator-01/test_control_comparison_keeps_9')
+drift = 'old_table_duplicate'
+
+    @pytest.mark.parametrize('drift',[None,'errors','cache','history','config','result','delivery','pool','score',
+        'old_table_duplicate','old_table_missing','old_table_extra','old_table_incomplete'])
+    def test_control_comparison_keeps_all_non_timing_evidence(tmp_path,drift):
+        current=tmp_path/'current';prior=tmp_path/'prior';job=dict(case='fixture',seed=1,method='base',seconds=60)
+        name=lambda j:j['case']+'_s'+str(j['seed'])+'_'+j['method']
+        s=SimpleNamespace(HERE=current,PRIOR=prior,name=name,EXPECTED=2)
+        v=repair.SealedVerifier.__new__(repair.SealedVerifier);v.study=s
+        a=model();b=deepcopy(a);b['history'][0].update(epoch_allowance_seconds=7.,neural_until_seconds=6.,gp_until_seconds=9.)
+        score=dict(job=job,status='complete',clean_nrmse=[.01,.02],observed_nrmse=[.01,.02],mean_clean_nrmse=.015,
+            both_accepted=True,structure=dict(shared_graph_size=4,independent_parameters=2,expanded_total_nodes=5,maximum_output_depth=2))
+        old_score=deepcopy(score);old_score['job']['method']='repair'
+        if drift=='errors':a['best']['errors'][0]=.02
+        elif drift=='cache':a['diagnostics']['cache']='changed'
+        elif drift=='history':a['history'][1]['evaluations']=25
+        elif drift=='config':a['config']['new_algorithm_setting']=True
+        elif drift=='score':old_score['clean_nrmse'][0]=.015
+        for filename in ('model.json','result.json','delivery.json','pool.json'):
+            x,y=(a,b) if filename=='model.json' else ({'unchanged':True},{'unchanged':True})
+            if filename==str(drift)+'.json':x={'changed':True}
+            save(current/'runs'/name(job)/filename,x)
+            save(prior/'runs'/name(old_score['job'])/filename,y)
+        old_rows=[deepcopy(score),old_score]
+        if drift=='old_table_duplicate':old_rows.append(deepcopy(old_rows[0]))
+        elif drift=='old_table_missing':old_rows.pop(0)
+        elif drift=='old_table_extra':
+            extra=deepcopy(score);extra['job']['case']='extra';old_rows.append(extra)
+        elif drift=='old_table_incomplete':old_rows[0]['status']='scoring_failed'
+        save(prior/'SCORES.json',{'rows':old_rows})
+        if drift:
+>           with pytest.raises(ValueError):v.control_identity(job,score)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ValueError
+
+experiments\completion_verification_repair_20261031\test_verify.py:79: Failed
+__ test_control_comparison_keeps_all_non_timing_evidence[old_table_missing] ___
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/completion-reverify-denominator-01/test_control_comparison_keeps_10')
+drift = 'old_table_missing'
+
+    @pytest.mark.parametrize('drift',[None,'errors','cache','history','config','result','delivery','pool','score',
+        'old_table_duplicate','old_table_missing','old_table_extra','old_table_incomplete'])
+    def test_control_comparison_keeps_all_non_timing_evidence(tmp_path,drift):
+        current=tmp_path/'current';prior=tmp_path/'prior';job=dict(case='fixture',seed=1,method='base',seconds=60)
+        name=lambda j:j['case']+'_s'+str(j['seed'])+'_'+j['method']
+        s=SimpleNamespace(HERE=current,PRIOR=prior,name=name,EXPECTED=2)
+        v=repair.SealedVerifier.__new__(repair.SealedVerifier);v.study=s
+        a=model();b=deepcopy(a);b['history'][0].update(epoch_allowance_seconds=7.,neural_until_seconds=6.,gp_until_seconds=9.)
+        score=dict(job=job,status='complete',clean_nrmse=[.01,.02],observed_nrmse=[.01,.02],mean_clean_nrmse=.015,
+            both_accepted=True,structure=dict(shared_graph_size=4,independent_parameters=2,expanded_total_nodes=5,maximum_output_depth=2))
+        old_score=deepcopy(score);old_score['job']['method']='repair'
+        if drift=='errors':a['best']['errors'][0]=.02
+        elif drift=='cache':a['diagnostics']['cache']='changed'
+        elif drift=='history':a['history'][1]['evaluations']=25
+        elif drift=='config':a['config']['new_algorithm_setting']=True
+        elif drift=='score':old_score['clean_nrmse'][0]=.015
+        for filename in ('model.json','result.json','delivery.json','pool.json'):
+            x,y=(a,b) if filename=='model.json' else ({'unchanged':True},{'unchanged':True})
+            if filename==str(drift)+'.json':x={'changed':True}
+            save(current/'runs'/name(job)/filename,x)
+            save(prior/'runs'/name(old_score['job'])/filename,y)
+        old_rows=[deepcopy(score),old_score]
+        if drift=='old_table_duplicate':old_rows.append(deepcopy(old_rows[0]))
+        elif drift=='old_table_missing':old_rows.pop(0)
+        elif drift=='old_table_extra':
+            extra=deepcopy(score);extra['job']['case']='extra';old_rows.append(extra)
+        elif drift=='old_table_incomplete':old_rows[0]['status']='scoring_failed'
+        save(prior/'SCORES.json',{'rows':old_rows})
+        if drift:
+>           with pytest.raises(ValueError):v.control_identity(job,score)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ValueError
+
+experiments\completion_verification_repair_20261031\test_verify.py:79: Failed
+___ test_control_comparison_keeps_all_non_timing_evidence[old_table_extra] ____
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/completion-reverify-denominator-01/test_control_comparison_keeps_11')
+drift = 'old_table_extra'
+
+    @pytest.mark.parametrize('drift',[None,'errors','cache','history','config','result','delivery','pool','score',
+        'old_table_duplicate','old_table_missing','old_table_extra','old_table_incomplete'])
+    def test_control_comparison_keeps_all_non_timing_evidence(tmp_path,drift):
+        current=tmp_path/'current';prior=tmp_path/'prior';job=dict(case='fixture',seed=1,method='base',seconds=60)
+        name=lambda j:j['case']+'_s'+str(j['seed'])+'_'+j['method']
+        s=SimpleNamespace(HERE=current,PRIOR=prior,name=name,EXPECTED=2)
+        v=repair.SealedVerifier.__new__(repair.SealedVerifier);v.study=s
+        a=model();b=deepcopy(a);b['history'][0].update(epoch_allowance_seconds=7.,neural_until_seconds=6.,gp_until_seconds=9.)
+        score=dict(job=job,status='complete',clean_nrmse=[.01,.02],observed_nrmse=[.01,.02],mean_clean_nrmse=.015,
+            both_accepted=True,structure=dict(shared_graph_size=4,independent_parameters=2,expanded_total_nodes=5,maximum_output_depth=2))
+        old_score=deepcopy(score);old_score['job']['method']='repair'
+        if drift=='errors':a['best']['errors'][0]=.02
+        elif drift=='cache':a['diagnostics']['cache']='changed'
+        elif drift=='history':a['history'][1]['evaluations']=25
+        elif drift=='config':a['config']['new_algorithm_setting']=True
+        elif drift=='score':old_score['clean_nrmse'][0]=.015
+        for filename in ('model.json','result.json','delivery.json','pool.json'):
+            x,y=(a,b) if filename=='model.json' else ({'unchanged':True},{'unchanged':True})
+            if filename==str(drift)+'.json':x={'changed':True}
+            save(current/'runs'/name(job)/filename,x)
+            save(prior/'runs'/name(old_score['job'])/filename,y)
+        old_rows=[deepcopy(score),old_score]
+        if drift=='old_table_duplicate':old_rows.append(deepcopy(old_rows[0]))
+        elif drift=='old_table_missing':old_rows.pop(0)
+        elif drift=='old_table_extra':
+            extra=deepcopy(score);extra['job']['case']='extra';old_rows.append(extra)
+        elif drift=='old_table_incomplete':old_rows[0]['status']='scoring_failed'
+        save(prior/'SCORES.json',{'rows':old_rows})
+        if drift:
+>           with pytest.raises(ValueError):v.control_identity(job,score)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ValueError
+
+experiments\completion_verification_repair_20261031\test_verify.py:79: Failed
+_ test_control_comparison_keeps_all_non_timing_evidence[old_table_incomplete] _
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/completion-reverify-denominator-01/test_control_comparison_keeps_12')
+drift = 'old_table_incomplete'
+
+    @pytest.mark.parametrize('drift',[None,'errors','cache','history','config','result','delivery','pool','score',
+        'old_table_duplicate','old_table_missing','old_table_extra','old_table_incomplete'])
+    def test_control_comparison_keeps_all_non_timing_evidence(tmp_path,drift):
+        current=tmp_path/'current';prior=tmp_path/'prior';job=dict(case='fixture',seed=1,method='base',seconds=60)
+        name=lambda j:j['case']+'_s'+str(j['seed'])+'_'+j['method']
+        s=SimpleNamespace(HERE=current,PRIOR=prior,name=name,EXPECTED=2)
+        v=repair.SealedVerifier.__new__(repair.SealedVerifier);v.study=s
+        a=model();b=deepcopy(a);b['history'][0].update(epoch_allowance_seconds=7.,neural_until_seconds=6.,gp_until_seconds=9.)
+        score=dict(job=job,status='complete',clean_nrmse=[.01,.02],observed_nrmse=[.01,.02],mean_clean_nrmse=.015,
+            both_accepted=True,structure=dict(shared_graph_size=4,independent_parameters=2,expanded_total_nodes=5,maximum_output_depth=2))
+        old_score=deepcopy(score);old_score['job']['method']='repair'
+        if drift=='errors':a['best']['errors'][0]=.02
+        elif drift=='cache':a['diagnostics']['cache']='changed'
+        elif drift=='history':a['history'][1]['evaluations']=25
+        elif drift=='config':a['config']['new_algorithm_setting']=True
+        elif drift=='score':old_score['clean_nrmse'][0]=.015
+        for filename in ('model.json','result.json','delivery.json','pool.json'):
+            x,y=(a,b) if filename=='model.json' else ({'unchanged':True},{'unchanged':True})
+            if filename==str(drift)+'.json':x={'changed':True}
+            save(current/'runs'/name(job)/filename,x)
+            save(prior/'runs'/name(old_score['job'])/filename,y)
+        old_rows=[deepcopy(score),old_score]
+        if drift=='old_table_duplicate':old_rows.append(deepcopy(old_rows[0]))
+        elif drift=='old_table_missing':old_rows.pop(0)
+        elif drift=='old_table_extra':
+            extra=deepcopy(score);extra['job']['case']='extra';old_rows.append(extra)
+        elif drift=='old_table_incomplete':old_rows[0]['status']='scoring_failed'
+        save(prior/'SCORES.json',{'rows':old_rows})
+        if drift:
+>           with pytest.raises(ValueError):v.control_identity(job,score)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ValueError
+
+experiments\completion_verification_repair_20261031\test_verify.py:79: Failed
+=========================== short test summary info ===========================
+FAILED experiments/completion_verification_repair_20261031/test_verify.py::test_control_comparison_keeps_all_non_timing_evidence[old_table_duplicate]
+FAILED experiments/completion_verification_repair_20261031/test_verify.py::test_control_comparison_keeps_all_non_timing_evidence[old_table_missing]
+FAILED experiments/completion_verification_repair_20261031/test_verify.py::test_control_comparison_keeps_all_non_timing_evidence[old_table_extra]
+FAILED experiments/completion_verification_repair_20261031/test_verify.py::test_control_comparison_keeps_all_non_timing_evidence[old_table_incomplete]
+4 failed, 25 passed in 4.15s

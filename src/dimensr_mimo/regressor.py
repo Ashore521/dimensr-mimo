@@ -24,7 +24,7 @@ from .evaluation import Evaluator, Candidate
 from .pareto import ordered, diverse, violations
 from .audit import data_digest
 
-PACKAGE_VERSION='1.6.0'
+PACKAGE_VERSION='1.7.0'
 
 
 def arrays(X, Y):
@@ -143,25 +143,29 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
 
         # Training-only typed/structured seeds, combined as complete systems.
         typed_generator,structure_generator=typed_seeds,structured_seeds
-        if cfg.initialization in ('dimensional','compound'):
+        if cfg.initialization in ('dimensional','compound','implicit'):
             from .seeds import generator
             from .structure import structured_seeds as dimensioned_structures
             typed_generator,structure_generator=generator(cfg,q),dimensioned_structures
-            if cfg.initialization=='compound':
+            if cfg.initialization in ('compound','implicit'):
                 from functools import partial
-                structure_generator=partial(dimensioned_structures,compound=True)
-        seed_lists, seed_stats = [], []
+                structure_generator=partial(dimensioned_structures,compound=True,implicit=cfg.initialization=='implicit')
+        seed_lists, seed_stats, implicit_slots = [], [], []
         for j, g in enumerate(grammar.plain):
             seeds = [(t, np.ones(t.n_constants)) for t in typed_generator(g, rng)] if cfg.linear_seeds else []
+            slots = set()
             if cfg.structured_seeds:
                 ss, stats = structure_generator(g, X, Y[:, j], max(1, cfg.population_size // q))
+                slots = {len(seeds)+i for i in stats.get('implicit_retained_indices', ())}
                 seeds.extend(ss)
                 seed_stats.append(stats)
             if not seeds:
                 t, _ = g.generate(rng)
                 seeds = [(t, np.ones(t.n_constants))]
             seed_lists.append(seeds)
+            implicit_slots.append(slots)
         population = []
+        implicit_jobs = dict(implicit_seed_jobs=0, implicit_seed_new_evaluations=0, implicit_seed_valid=0)
         init_limit = max(1, int(cfg.max_evaluations * cfg.initialization_fraction))
         for k in range(min(init_limit, max(map(len, seed_lists)))):
             if evaluator.expired():
@@ -170,7 +174,12 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             for j in range(q):
                 t, c = seed_lists[j][k % len(seed_lists[j])]
                 b.roots.append(b.tree(t, c))
+            before = evaluator.calls
             candidate = evaluator(*b.finish())
+            if cfg.initialization=='implicit' and any(k%len(seed_lists[j]) in implicit_slots[j] for j in range(q)):
+                implicit_jobs['implicit_seed_jobs'] += 1
+                implicit_jobs['implicit_seed_new_evaluations'] += evaluator.calls-before
+                implicit_jobs['implicit_seed_valid'] += int(candidate is not None and evaluator.calls>before)
             if candidate is not None:
                 population.append(candidate)
         if not population:
@@ -195,7 +204,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
         if ref_candidate is not None:
             population.append(ref_candidate)
         population = diverse(population, cfg.population_size, cfg)
-        record('initialization', 0, population, reference=reference.tolist())
+        record('initialization', 0, population, reference=reference.tolist(),
+               **(implicit_jobs if cfg.initialization=='implicit' else {}))
 
         for epoch in range(cfg.epochs):
             neural_deadline=gp_deadline=None
@@ -269,6 +279,15 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             cfg.constant_max_nfev = old_max
         pool = list({c.system: evaluator.cache[c.system] for c in pool}.values())
         record('polish', 0, pool)
+        closure = None
+        if cfg.sharing_strategy=='closure':
+            from .sharing import protected_closure
+            pool, closure = protected_closure(pool, evaluator, **({'grammar':grammar} if cfg.precision_repair or cfg.compositional_completion else {}))
+            repair = closure.get('precision_repair', {})
+            completion = closure.get('compositional_completion', {})
+            record('sharing_closure', 0, pool, new_systems=closure['new_evaluations'], protected_systems=closure['protected'],
+                   **(dict(repair_new_systems=repair['new_evaluations'], repair_protected_systems=repair['protected']) if repair else {}),
+                   **(dict(completion_new_systems=completion['new_evaluations'], completion_protected_systems=completion['protected']) if completion else {}))
         # Validation may rank ONLY this frozen pool; it cannot affect later search.
         frozen_payload = [c.to_dict() for c in pool]
         frozen_hash = hashlib.sha256(json.dumps(frozen_payload, sort_keys=True).encode()).hexdigest()
@@ -276,13 +295,29 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
         if not np.isfinite(ref_val).all():
             raise RuntimeError('Frozen initialization reference is invalid on validation inputs.')
         scored = []
-        for c in pool:
+        for pool_index, c in enumerate(pool):
             pred = c.system.evaluate(X_val, c.constants)
-            if evaluator.admissible(pred):
-                err = np.sqrt(np.mean(((pred - Y_val) / evaluator.scales) ** 2, axis=0))
+            valid = evaluator.admissible(pred)
+            if valid:
+                with np.errstate(over='ignore', invalid='ignore'):
+                    err = np.sqrt(np.mean(((pred - Y_val) / evaluator.scales) ** 2, axis=0))
                 violation = violations(err, ref_val, cfg)
                 score = float(err.mean() + cfg.selection_complexity_weight * c.complexity / (q * cfg.max_nodes))
+                if closure is not None:
+                    valid = bool(np.isfinite(err).all() and np.isfinite(violation) and np.isfinite(score))
+            if valid:
                 scored.append((violation, score, c.complexity, c, err))
+            elif closure is not None:
+                if pool_index < closure['base_candidate_count']:
+                    raise RuntimeError('A base pool candidate is invalid on validation inputs.')
+                from .selection import digest
+                closure.setdefault('validation_rejections', []).append(dict(graph_sha256=digest(c.system.to_dict()),
+                    reason='Validation predictions or error metrics fail finite/output bounds.'))
+        if closure is not None:
+            # Validation may reject new hypotheses, never restart their search.
+            closure['full_training_pool_sha256'] = frozen_hash
+            closure['validation_retained_extensions'] = len(scored)-closure['base_candidate_count']
+            frozen_hash = hashlib.sha256(json.dumps([c.to_dict() for _, _, _, c, _ in scored], sort_keys=True).encode()).hexdigest()
         if not scored:
             raise RuntimeError('All frozen systems are invalid on validation inputs.')
         selected = min(range(len(scored)), key=lambda i: scored[i][:3])
@@ -303,6 +338,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             initialization_diagnostics=seed_stats, sharing=best.system.sharing,
             training_rows=len(X), validation_rows=len(X_val),
             data_sha256=dict(training=data_digest(X,Y),validation=data_digest(X_val,Y_val)))
+        if closure is not None:
+            self.diagnostics_['sharing_closure'] = closure
         self.candidates_ = [dict(c.to_dict(), validation_errors=e.tolist(), violation=vi, score=sc)
                             for vi, sc, _, c, e in scored]
         self.search_fingerprint_ = hashlib.sha256(json.dumps(

@@ -1,0 +1,122 @@
+............................F........F.................................. [ 77%]
+..................F..                                                    [100%]
+================================== FAILURES ===================================
+_____ test_no_scientific_gate_can_be_averaged_away[historical-protection] _____
+
+summary_fixture = (<module 'experiments.completion_historical_20261031.study' from 'D:\\���Żع���Ŀ\\dimensr-mimo\\experiments\\completion_hi...ndidate_count': 1, 'base_candidate_sha256': 'pool', 'base_evaluations': 3, 'base_search_fingerprint': 'cache'}}}, ...})
+gate = 'protection'
+
+    @pytest.mark.parametrize('gate',['protection','macro','graph','control','foundation','matching','target_graph','target_parameters','target_precision'])
+    def test_no_scientific_gate_can_be_averaged_away(summary_fixture,gate):
+        s,v,scores,rows,models=summary_fixture
+        target=next(r for r in scores if r['job']['method']=='completion')
+        if gate.startswith('target') and s is development:return
+        if gate=='protection':
+            target['clean_nrmse'][0]=2e-8
+            for r in scores:
+                if r is not target and r['job']['method']=='completion':r['clean_nrmse']=[0.,0.]
+        elif gate=='macro':target['clean_nrmse']=[2e-14]*2
+        elif gate=='graph':target['structure']['shared_graph_size']=13
+        elif gate=='control':next(r for r in rows if r['job']['method']=='base')['archived_control_identity']=False
+        elif gate=='foundation':models[s.name(target['job'])]['diagnostics']['sharing_closure']['base_evaluations']=4
+        elif gate=='matching':
+            for r in rows:
+                if r['job']['method']=='base':r['closure']['validation_retained']=0
+        elif gate=='target_graph':target['structure']['shared_graph_size']=21
+        elif gate=='target_parameters':target['structure']['independent_parameters']=5
+        else:models[s.name(target['job'])]['best']['errors'][0]=1e-8
+        result=v.summarize(scores,rows);assert not result['adoption_pass']
+>       if gate=='protection':assert result['macro_clean_error_nonincrease'] and result['protected_outputs']==s.EXPECTED-1
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (False)
+
+tests\test_completion_historical_study.py:128: AssertionError
+____ test_no_scientific_gate_can_be_averaged_away[development-protection] _____
+
+summary_fixture = (<module 'experiments.completion_development_20261031.study' from 'D:\\���Żع���Ŀ\\dimensr-mimo\\experiments\\completion_d...ndidate_count': 1, 'base_candidate_sha256': 'pool', 'base_evaluations': 3, 'base_search_fingerprint': 'cache'}}}, ...})
+gate = 'protection'
+
+    @pytest.mark.parametrize('gate',['protection','macro','graph','control','foundation','matching','target_graph','target_parameters','target_precision'])
+    def test_no_scientific_gate_can_be_averaged_away(summary_fixture,gate):
+        s,v,scores,rows,models=summary_fixture
+        target=next(r for r in scores if r['job']['method']=='completion')
+        if gate.startswith('target') and s is development:return
+        if gate=='protection':
+            target['clean_nrmse'][0]=2e-8
+            for r in scores:
+                if r is not target and r['job']['method']=='completion':r['clean_nrmse']=[0.,0.]
+        elif gate=='macro':target['clean_nrmse']=[2e-14]*2
+        elif gate=='graph':target['structure']['shared_graph_size']=13
+        elif gate=='control':next(r for r in rows if r['job']['method']=='base')['archived_control_identity']=False
+        elif gate=='foundation':models[s.name(target['job'])]['diagnostics']['sharing_closure']['base_evaluations']=4
+        elif gate=='matching':
+            for r in rows:
+                if r['job']['method']=='base':r['closure']['validation_retained']=0
+        elif gate=='target_graph':target['structure']['shared_graph_size']=21
+        elif gate=='target_parameters':target['structure']['independent_parameters']=5
+        else:models[s.name(target['job'])]['best']['errors'][0]=1e-8
+        result=v.summarize(scores,rows);assert not result['adoption_pass']
+>       if gate=='protection':assert result['macro_clean_error_nonincrease'] and result['protected_outputs']==s.EXPECTED-1
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert (False)
+
+tests\test_completion_historical_study.py:128: AssertionError
+_________ test_freeze_closure_contains_live_and_archived_dependencies _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F2E666AFC0>
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/completion-harness-01/test_freeze_closure_contains_l0')
+
+    def test_freeze_closure_contains_live_and_archived_dependencies(monkeypatch,tmp_path):
+        s=study;here=tmp_path/'experiments/development';prior=tmp_path/'experiments/old';shared=tmp_path/'experiments/shared'
+        monkeypatch.setattr(s,'ROOT',tmp_path);monkeypatch.setattr(s,'HERE',here);monkeypatch.setattr(s,'PRIOR',prior);monkeypatch.setattr(s,'SHARED',shared)
+        deps=['src/stub.py','experiments/precision_delivery_20261026/selector.py','experiments/guarded_selection_20261026/selector.py',
+              'experiments/native_api_20261026/runs/dimensional_frequency_normalized/model.json']
+        for dep in deps:save(tmp_path/dep,{});save(prior/'frozen_inputs'/dep,{'old':True})
+        save(prior/'FREEZE.json',dict(files={n:'old' for n in deps}))
+        save(prior/'ALL_MODELS_FROZEN.json',dict(files={'runs/source/model.json':'old'}));save(prior/'runs/source/model.json',{})
+        for n in ('FROZEN_INPUT_ARCHIVE.json','SCORES.json','VERIFICATION.json','SUMMARY.json','POST_RUN_REVIEW.md'):save(prior/n,{})
+        for n in ('PLAN.md','PROTOCOL.md','HARNESS_REVIEW.md','TEST_VALIDATION.json','PREFLIGHT.json','study.py','harness_validation/fixture.log'):save(here/n,{})
+        for n in ('PLAN.md','DESIGN_REVIEW.md','BASE_SOURCE_LOCK.json','CANDIDATE_LOCK.json','CORE_REVIEW.md','harness.py','verification.py'):save(shared/n,{})
+        gate=here.parent/'completion_historical_20261031'
+        for n in harness.GATE_FILES+('POST_REVIEW_ACCEPTANCE.json',):save(gate/n,{})
+        save(tmp_path/'tests/test_fixture.py',{});save(tmp_path/'pyproject.toml',{})
+        paths=s.freeze_inputs()
+        assert all(p.is_file() for p in paths)
+        assert tmp_path/deps[0] in paths and prior/'frozen_inputs'/deps[0] in paths
+        assert prior/'runs/source/model.json' in paths and shared/'verification.py' in paths
+        assert here/'harness_validation/fixture.log' in paths and gate/'POST_REVIEW_ACCEPTANCE.json' in paths
+        monkeypatch.setattr(s,'check_candidate_lock',lambda:None);monkeypatch.setattr(s,'check_stage_gate',lambda:None)
+        monkeypatch.setattr(s,'configuration',lambda:{})
+        monkeypatch.setattr(s.cases,'CASES',['fixture']);monkeypatch.setattr(s.cases,'seeds',lambda c:[1]);monkeypatch.setattr(s.cases,'design',lambda c:{})
+        monkeypatch.setattr(s.cases,'training_data',lambda *a:(np.ones((2,2)),np.ones((2,2))))
+        monkeypatch.setattr(harness.subprocess,'check_output',lambda *a,**k:b'fixture')
+        save(here/'PREFLIGHT.json',dict(status='passed'))
+>       s.freeze()
+
+tests\test_completion_development_study.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+experiments\completion_development_20261031\study.py:20: in freeze
+    def freeze(): return harness.freeze(sys.modules[__name__])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\compositional_completion_20261031\harness.py:149: in freeze
+    s.verify_files(read(s.PRIOR/'FREEZE.json')['files'],s.PRIOR/'frozen_inputs')
+experiments\completion_development_20261031\study.py:17: in verify_files
+    def verify_files(files,root=None): return harness.verify_files(sys.modules[__name__],files,root)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\compositional_completion_20261031\harness.py:61: in verify_files
+    require(path.is_relative_to(root.resolve()) and sha(path)==expected,'Frozen file drift: '+name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'Frozen file drift: src/stub.py'
+
+    def require(condition,message):
+>       if not condition:raise ValueError(message)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: Frozen file drift: src/stub.py
+
+experiments\native_api_20261026\verify.py:17: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_completion_historical_study.py::test_no_scientific_gate_can_be_averaged_away[historical-protection]
+FAILED tests/test_completion_historical_study.py::test_no_scientific_gate_can_be_averaged_away[development-protection]
+FAILED tests/test_completion_development_study.py::test_freeze_closure_contains_live_and_archived_dependencies
+3 failed, 90 passed in 3.66s

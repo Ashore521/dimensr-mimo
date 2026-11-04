@@ -1,0 +1,299 @@
+"""Bounded typed feature composition and sparse additive/rational starting trees.
+
+All ranking and coefficient initialization use training data only. These proposals
+still pass the ordinary evaluator's budget, coefficient fit and domain checks.
+"""
+from fractions import Fraction
+import numpy as np
+from ._single.expression import Node
+from ._single.units import ZERO, add, sub, scale
+
+
+def operator(token, *children):
+    units = [c.units for c in children]
+    out = (add(*units) if token == "mul" else sub(*units) if token == "div" else
+           scale(units[0], 2) if token == "square" else scale(units[0], Fraction(1, 2))
+           if token == "sqrt" else ZERO if token in ("sin", "cos", "exp", "log") else units[0])
+    return Node(token, tuple(children), out)
+
+
+def _compound_products(features, variables, y, admit, grammar, counts):
+    """Rank bounded pair products, then extend those pairs with input variables."""
+    if "mul" not in grammar.tokens:
+        return
+    response = y - np.mean(y)
+
+    def ranked(pairs):
+        proposals = []
+        for (a, ca, va), (b, cb, vb) in pairs:
+            if a.size + b.size + 1 > min(11, grammar.max_nodes) or max(a.depth, b.depth) + 1 > grammar.max_depth:
+                continue
+            with np.errstate(all="ignore"):
+                values = va * vb
+                centered = values - values.mean()
+                norm = np.linalg.norm(centered)
+            counts["compound_products_screened"] += 1
+            if not np.isfinite(values).all() or not np.isfinite(norm) or norm < 1e-12:
+                continue
+            score = abs(float(centered @ response)) / norm
+            tree = operator("mul", a, b)
+            proposals.append((-score, tree.size, repr(tree), tree, np.r_[ca, cb]))
+        retained = []
+        for _, _, _, tree, c in sorted(proposals, key=lambda p: p[:3]):
+            feature = admit(tree, c)
+            if feature is not None:
+                retained.append(feature)
+                if len(retained) == 64:
+                    break
+        return retained
+
+    atoms = sorted((f for f in features if f[0].size <= 4), key=lambda f: (f[0].size, repr(f[0]), tuple(f[1])))[:64]
+    pairs = ranked((a, b) for i, a in enumerate(atoms) for b in atoms[i:])
+    ranked((a, b) for a in pairs for b in variables[:16])
+
+
+def structured_seeds(grammar, X, y, limit, *, compound=False):
+    constants = {u: Node(t, units=u) for t, u in grammar.terminals.items() if t.startswith("c")}
+    features, seen, numeric_seen = [], set(), set()
+    feature_limit = 384  # Reserve the remaining 128 slots for small products.
+    counts = dict(feature_evaluations=0, linear_subproblems=0, proposed_structures=0,
+                  numeric_duplicates=0, pair_screened=0, residual_projections=0)
+    if compound:
+        counts["compound_products_screened"] = 0
+    if limit <= 0:
+        return [], counts
+
+    def admit(tree, values=None):
+        if tree.size > min(11 if compound else 9, grammar.max_nodes) or tree.depth > grammar.max_depth:
+            return None
+        tree, c = tree.canonical(values)
+        key = tree, tuple(c)
+        if key in seen or len(features) >= feature_limit:
+            return None
+        seen.add(key)
+        if tree.units not in grammar.units:
+            return None
+        # Intermediate terms need not have the target units, but must be replayable.
+        try:
+            grammar.trace(tree)
+        except (ValueError, KeyError):
+            return None
+        counts["feature_evaluations"] += 1
+        v = tree.evaluate(X, c)
+        with np.errstate(all="ignore"):
+            norm = np.linalg.norm(v)
+        if not np.isfinite(v).all() or not np.isfinite(norm) or norm < 1e-12:
+            return None
+        # Initialization heuristic only: equal training vectors need not denote
+        # globally equivalent functions. Keep the first expression and its domain.
+        signature = tree.units, tree.n_constants if compound else 0, np.round(v / np.max(np.abs(v)), 12).tobytes()
+        if signature in numeric_seen:
+            counts["numeric_duplicates"] += 1
+            return None
+        numeric_seen.add(signature)
+        feature = (tree, c, v)
+        features.append(feature)
+        return feature
+
+    variables = []
+    for token, units in grammar.terminals.items():
+        if token.startswith("x"):
+            feature = admit(Node(token, units=units))
+            if feature is not None:
+                variables.append(feature)
+    primitive = list(variables)
+    for tree, c, _ in variables:
+        for token in ("square", "sin", "cos", "log", "sqrt", "exp"):
+            if token not in grammar.tokens or token in ("sin", "cos", "log", "exp") and tree.units != ZERO:
+                continue
+            feature = admit(operator(token, tree), c)
+            if feature is not None:
+                primitive.append(feature)
+    for i, (a, ca, _) in enumerate(variables):
+        for j, (b, cb, _) in enumerate(variables):
+            for token in ("mul", "div", "add"):
+                if token not in grammar.tokens or token in ("mul", "add") and j < i:
+                    continue
+                if token == "add" and (a.units != b.units or i == j) or token == "div" and i == j:
+                    continue
+                feature = admit(operator(token, a, b), np.r_[ca, cb])
+                if feature is not None:
+                    primitive.append(feature)
+    # Normalize dimensioned primitives with legal fitted inverse-unit constants.
+    normalized_trees=set()
+    for tree,c,_ in list(primitive):
+        inverse=constants.get(sub(ZERO,tree.units))
+        if (tree.units!=ZERO or compound) and inverse is not None and 'mul' in grammar.tokens:
+            feature=admit(operator('mul',inverse,tree),np.r_[1.,c])
+            if feature is not None:
+                primitive.append(feature);normalized_trees.add(feature[0])
+    # Function compositions and products help preserve useful multi-node building blocks.
+    for tree, c, _ in primitive:
+        if tree.size > (6 if tree in normalized_trees else 4):
+            continue
+        for token in ("square", "sin", "cos", "log", "sqrt"):
+            if token in grammar.tokens and (tree.units == ZERO or token in ("square", "sqrt")):
+                admit(operator(token, tree), c)
+        if compound and tree.units == ZERO and "exp" in grammar.tokens:
+            admit(operator("exp", tree), c)
+            if tree.n_constants:
+                admit(operator("exp", tree), -c)
+        if tree.units == ZERO and ZERO in constants and "add" in grammar.tokens:
+            for token in ("log", "sqrt"):
+                if token not in grammar.tokens:
+                    continue
+                admit(operator(token, operator("add", constants[ZERO], tree)), np.r_[1., c])
+                if "mul" in grammar.tokens:
+                    inner = operator("add", constants[ZERO], operator("mul", constants[ZERO], tree))
+                    for sign in (-1., 1.):
+                        admit(operator(token, inner), np.r_[1., sign, c])
+    # Squared dimensionless ratios are useful inside many guarded unary functions.
+    for tree, c, _ in list(features):
+        if tree.token == "square" and tree.units == ZERO and tree.size <= 4 and ZERO in constants:
+            if "add" in grammar.tokens and "mul" in grammar.tokens:
+                inner = operator("add", constants[ZERO], operator("mul", constants[ZERO], tree))
+                for token in ("sqrt", "log"):
+                    if token in grammar.tokens:
+                        for sign in (-1., 1.):
+                            admit(operator(token, inner), np.r_[1., sign, c])
+    if compound and "add" in grammar.tokens:
+        for tree, c, _ in list(features):
+            if tree.size <= 5 and tree.units in constants:
+                admit(operator("add", constants[tree.units], tree), np.r_[1., c])
+    feature_limit = 512
+    if compound:
+        _compound_products(features, variables, y, admit, grammar, counts)
+    else:
+        composable = sorted([f for f in features if f[0].size <= 3], key=lambda f: (f[0].size, repr(f[0])))
+        for i, (a, ca, _) in enumerate(composable):
+            for b, cb, _ in composable[i:]:
+                if "mul" in grammar.tokens and a.size + b.size <= 6:
+                    admit(operator("mul", a, b), np.r_[ca, cb])
+
+    proposals = {}
+
+    if compound:
+        # A mandatory affine wrapper can exceed the depth budget of a useful atom.
+        # Rank compact one-feature proposals by a separate zero-intercept fit.
+        for tree, c, values in features:
+            if sub(grammar.target, tree.units) not in constants or "mul" not in grammar.tokens:
+                continue
+            weight = float(values @ y / (values @ values))
+            term = operator("mul", constants[sub(grammar.target, tree.units)], tree)
+            if term.size > grammar.max_nodes or term.depth > grammar.max_depth:
+                continue
+            term, coefficients = term.canonical(np.r_[weight, c])
+            try:
+                grammar.trace(term)
+            except (ValueError, KeyError):
+                continue
+            error = float(np.mean((weight * values - y)**2))
+            score = error / max(float(np.var(y)), 1e-12) + 1e-8 * term.size
+            if np.isfinite(score) and (term not in proposals or score < proposals[term][0]):
+                proposals[term] = score, coefficients
+
+    def balanced(terms):
+        if len(terms) == 1:
+            return terms[0]
+        mid = len(terms) // 2
+        a, ca = balanced(terms[:mid])
+        b, cb = balanced(terms[mid:])
+        return operator("add", a, b), np.r_[ca, cb]
+
+    def fit_terms(target, target_units, denominator=None):
+        if not np.isfinite(target).all():
+            return
+        available = [f for f in features if sub(target_units, f[0].units) in constants]
+        if not available or "mul" not in grammar.tokens:
+            return
+        intercept = constants.get(target_units) if "add" in grammar.tokens else None
+        matrix = np.column_stack([f[2] for f in available])
+        base = np.ones((len(y), 1)) if intercept is not None else np.empty((len(y), 0))
+        pairs = []
+        if denominator is None and "add" in grammar.tokens:
+            # Bounded two-term lookahead prevents greedy single-term ranking
+            # from excluding both members of a complementary pair.
+            centered = matrix - matrix.mean(axis=0) if intercept is not None else matrix
+            response = target - target.mean() if intercept is not None else target
+            norms = np.linalg.norm(centered, axis=0)
+            normalized = centered / np.maximum(norms, 1e-12)
+            gram, correlation = normalized.T @ normalized, normalized.T @ response
+            determinant = 1 - gram**2
+            valid = np.triu(np.ones_like(gram, dtype=bool), 1) & (determinant > 1e-10)
+            valid &= (norms[:, None] > 1e-10) & (norms[None, :] > 1e-10)
+            explained = (correlation[:, None]**2 + correlation[None, :]**2 -
+                         2*gram*correlation[:, None]*correlation[None, :]) / np.maximum(determinant, 1e-10)
+            explained[~valid] = -np.inf
+            counts["pair_screened"] += int(valid.sum())
+            pairs = [tuple(map(int, np.unravel_index(i, gram.shape))) for i in
+                     np.argsort(-explained, axis=None, kind="stable")[:96] if np.isfinite(explained.flat[i])]
+        beam = [()]
+        for depth in range(3 if "add" in grammar.tokens else 1):
+            fits = {}
+            choices = set(pairs if depth == 1 else [])
+            for selected in beam:
+                # Conditional correlations are recomputed after each partial fit;
+                # a useful complementary term need not correlate strongly with y.
+                current = np.column_stack((base, matrix[:, selected]))
+                if current.shape[1]:
+                    counts["residual_projections"] += 1
+                    u, singular, _ = np.linalg.svd(current, full_matrices=False)
+                    q = u[:, singular > max(singular[0], 1e-12)*1e-12]
+                    residual = target - q @ (q.T @ target)
+                    remaining = matrix - q @ (q.T @ matrix)
+                else:
+                    residual, remaining = target, matrix
+                norm = np.linalg.norm(remaining, axis=0)
+                correlation = np.abs(remaining.T @ residual) / np.maximum(norm, 1e-12)
+                correlation[norm < 1e-10] = -np.inf
+                indices = np.argsort(-correlation, kind="stable")[:48]
+                for j in indices:
+                    choice = tuple(sorted(set(selected) | {int(j)}))
+                    if len(choice) == len(selected) + 1:
+                        choices.add(choice)
+            for choice in sorted(choices):
+                design = np.column_stack((base, matrix[:, choice]))
+                norms = np.linalg.norm(design, axis=0)
+                norms[norms == 0] = 1.
+                counts["linear_subproblems"] += 1
+                try:
+                    coef = np.linalg.lstsq(design / norms, target, rcond=None)[0] / norms
+                except np.linalg.LinAlgError:
+                    continue
+                estimate = design @ coef
+                prediction = estimate if denominator is None else estimate / denominator[2]
+                error = float(np.mean((prediction - y) ** 2))
+                terms = [(intercept, np.array([coef[0]]))] if intercept is not None else []
+                for index, weight in zip(choice, coef[len(base.T):]):
+                    term, c, _ = available[index]
+                    multiplier = constants[sub(target_units, term.units)]
+                    terms.append((operator("mul", multiplier, term), np.r_[weight, c]))
+                tree, c = balanced(terms)
+                if denominator is not None:
+                    tree, c = operator("div", tree, denominator[0]), np.r_[c, denominator[1]]
+                if tree.size > grammar.max_nodes or tree.depth > grammar.max_depth or not np.isfinite(error):
+                    continue
+                tree, c = tree.canonical(c)
+                try:
+                    grammar.trace(tree)
+                except (ValueError, KeyError):
+                    continue
+                fits[choice] = error
+                score = error / max(float(np.var(y)), 1e-12) + 1e-8 * tree.size
+                if tree not in proposals or score < proposals[tree][0]:
+                    proposals[tree] = score, c
+            beam = sorted(fits, key=lambda k: (fits[k], k))[:8]
+            if not beam:
+                break
+
+    fit_terms(y, grammar.target)
+    if "div" in grammar.tokens:
+        denominators = [f for f in features if f[0].size <= 3 or
+                        f[0].token in (("sqrt", "log", "add") if compound else ("sqrt", "log")) and f[0].size <= 9]
+        for denominator in denominators[:64]:
+            if np.all(np.abs(denominator[2]) > 1e-12):
+                fit_terms(y * denominator[2], add(grammar.target, denominator[0].units), denominator)
+    counts["proposed_structures"] = len(proposals)
+    counts["retained_features"] = len(features)
+    ranked = sorted(proposals, key=lambda tree: (proposals[tree][0], tree.size, repr(tree)))[:limit]
+    return [(tree, proposals[tree][1]) for tree in ranked], counts

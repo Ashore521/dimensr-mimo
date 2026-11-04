@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\completion_development_verified_20261031\harness_review_validation\check_final.py", line 87, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\completion_development_verified_20261031\harness_review_validation\check_final.py", line 24, in main
+    started=time.monotonic();real=study.check_stage_gate();gate_seconds=time.monotonic()-started
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\completion_development_verified_20261031\study.py", line 15, in check_stage_gate
+    def check_stage_gate(): return gate.check(sys.modules[__name__])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\completion_development_verified_20261031\gate.py", line 103, in check
+    original_archive = archive(s,historical,original)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\completion_development_verified_20261031\gate.py", line 34, in archive
+    s.verify_files(frozen['files'])
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\completion_development_verified_20261031\study.py", line 18, in verify_files
+    def verify_files(files,root=None): return harness.verify_files(sys.modules[__name__],files,root)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\compositional_completion_20261031\harness.py", line 61, in verify_files
+    require(path.is_relative_to(root.resolve()) and sha(path)==expected,'Frozen file drift: '+name)
+  File "D:\���Żع���Ŀ\dimensr-mimo\experiments\native_api_20261026\verify.py", line 17, in require
+    if not condition:raise ValueError(message)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Frozen file drift: tests/conftest.py

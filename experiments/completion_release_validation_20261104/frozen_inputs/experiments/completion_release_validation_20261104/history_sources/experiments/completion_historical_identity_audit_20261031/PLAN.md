@@ -1,0 +1,7 @@
+# 历史控制身份失败的只读审计
+
+正式completion_historical_20261031已终态：34系统完成，原VERIFICATION仅17/34通过，全部control在model.json身份检查失败；technical_pass/adoption_pass均false。本目录保留该失败，不覆盖原结果或修改其冻结输入。
+
+目标是逐字段比较17个新control与precision_repair_20261028封存repair，判定差异的实际范围。首先严格复用原冻结normalizer，完整记录model/result/delivery/pool及score差异。然后仅在history条目中另列epoch_allowance_seconds、neural_until_seconds、gp_until_seconds三种运行时配额/截止字段；核除这些字段以外是否仍有候选、参数、误差、结构、cache、选择、事件或配置差异。完整保留所有三类字段的原数值，不将差异删除出证据。
+
+此为既有封存JSON和摘要的读取，不生成新数据，不调用initializer、fit/search或重新评分，不重跑失败。核原966输入归档/当前冻结文件和374运行文件hash后，输出DIAGNOSIS.json与REPORT.md并交独立后审。原核验false不可改称true；即使审计证明只有计时差异，也不能据此自动写接收通过或启动development。若需要修正正式核验/阶段接续，应在保留原失败的独立目录另行形成具体方案和对应执行边界。

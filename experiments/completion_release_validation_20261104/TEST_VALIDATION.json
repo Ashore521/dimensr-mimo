@@ -1,0 +1,29 @@
+{
+  "status": "507_tests_passed_pending_independent_harness_review_and_prior_acceptance",
+  "tested_unix": 1793798907.8898034,
+  "single_full_run_tests": 507,
+  "seconds": 90.83,
+  "root_tests": 398,
+  "development_stage_tests": 50,
+  "archive_io_tests": 2,
+  "release_case_tests": 6,
+  "release_stage_tests": 51,
+  "command": "python -m pytest --import-mode=importlib -o pythonpath=tests -q tests experiments/completion_development_verified_20261031/test_stage.py experiments/completion_development_verified_20261031/test_archive_io.py experiments/completion_release_validation_20261104/test_cases.py experiments/completion_release_validation_20261104/test_stage.py",
+  "sha256": {
+    "conftest.py": "cc7e982388720163d49885cc104585d1e6efeabf29af1ba24d142e584ac3167c",
+    "experiments/conftest.py": "de22f58c36bcdfdcd7f39e4c2355500679f13544d92141e606fe753821bd6aa3",
+    "experiments/completion_release_validation_20261104/gate.py": "b82adc201abffcbd53ab543421cff6bf2c910e793d324e8a070f7949febd0787",
+    "experiments/completion_release_validation_20261104/study.py": "3ae4a918cab3983ab21c8504a4480fd5b41517616c11f158b67e57cdc8853a46",
+    "experiments/completion_release_validation_20261104/evaluate.py": "be2ebec9d035f5b06e888747154bbb9635bb44d22560532acd406417ccc66d1e",
+    "experiments/completion_release_validation_20261104/test_stage.py": "805b82104440e8148bc2d1605075c9601e72001feb00197d9ec3aec8ab3b3b1d",
+    "experiments/completion_release_validation_20261104/harness_validation/main_ci_507.log": "5c9924c64c2c18861018a9bf82e02cf38d45d059c57a518119fbf2a33f7d8e82",
+    "experiments/release_170_20261104/validation/ci_preseal_05.log": "2a5b9b4b02efefc0f29a569ee26c00755f76ba8229bc523e09db4fbec0174735"
+  },
+  "parent_candidate_lock_sha256": "51103c4e7085da90695f7845df5a312ca6ff693dc686bbc651772bf63c74b452",
+  "local_candidate_lock_sha256": "9db2256f3de2b5081f35bb2f66b484fc45291e1d707cd3200f4836f0d2eda259",
+  "preserved_incidents": [
+    "CI importlib collection initially needed the historical tests import path; pythonpath=tests restored that documented import environment.",
+    "The completed development seal invalidated its frozen pre-seal test premise; a new experiments/conftest.py supplies isolated directories for the two stage guard tests, retaining original tests and guards. First full CI-mode run 506 passed / 1 failed; final 507 passed."
+  ],
+  "formal_release_validation_started": false
+}

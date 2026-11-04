@@ -1,0 +1,38 @@
+..............................................F.                         [100%]
+================================== FAILURES ===================================
+_______ test_local_long_archive_io_is_idempotent_and_keeps_logical_keys _______
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/experiments/completion_release_validation_20261104/harness_validation/p3/test_local_long_archive_io_is_0')
+
+    def test_local_long_archive_io_is_idempotent_and_keeps_logical_keys(tmp_path):
+        io=study.archive_io
+        source=tmp_path/('a'*110)/('b'*110)/'original.bin'
+        io.disk_path(source).parent.mkdir(parents=True,exist_ok=True);io.disk_path(source).write_bytes(b'original fixture bytes')
+        expected=io.sha(source)
+        assert io.disk_path(io.disk_path(source))==io.disk_path(source)
+        assert io.sha(io.disk_path(source))==expected and len(str(source))>260
+        logical=source.relative_to(tmp_path).as_posix();io.verify_files({logical:expected},tmp_path)
+        destination=tmp_path/'archive'/logical
+        io.copy_original(source,destination,expected);io.copy_original(source,destination,expected)
+        assert io.sha(destination)==expected and not logical.startswith('//?/')
+>       with pytest.raises(RuntimeError):io.verify_files({'../outside.bin':expected},tmp_path)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+experiments\completion_release_validation_20261104\test_stage.py:261: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+files = {'../outside.bin': '9af8e698a35d535a5d86525b1c7e4aa835658412dba5f622f50fa18f31b2250e'}
+root = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/experiments/completion_release_validation_20261104/harness_validation/p3/test_local_long_archive_io_is_0')
+
+    def verify_files(files, root):
+        root = Path(root).resolve()
+        for name, expected in files.items():
+            path = (root/name).resolve()
+            if not path.is_relative_to(root) or sha(path) != expected:
+>               raise ValueError('Frozen file drift: '+name)
+E               ValueError: Frozen file drift: ../outside.bin
+
+experiments\completion_development_verified_20261031\archive_io.py:29: ValueError
+=========================== short test summary info ===========================
+FAILED experiments/completion_release_validation_20261104/test_stage.py::test_local_long_archive_io_is_idempotent_and_keeps_logical_keys
+1 failed, 47 passed in 9.33s

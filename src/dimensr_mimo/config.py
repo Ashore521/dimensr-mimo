@@ -22,20 +22,24 @@ class SearchConfig(SingleConfig):
     time_allocation: str = 'global'
     initialization_fraction: float = 0.15
     initialization: str = 'legacy'
+    precision_repair: bool = False
+    compositional_completion: bool = False
     final_selection: str = 'weighted'
     acceptance: dict | None = None
 
     def validate(self):
         super().validate()
-        for key in ('use_sharing', 'use_constraints'):
+        for key in ('use_sharing', 'use_constraints', 'precision_repair', 'compositional_completion'):
             if type(getattr(self, key)) is not bool:
                 raise ValueError(key + ' must be boolean.')
         if type(self.max_references) is not int or self.max_references < 1:
             raise ValueError('max_references must be positive.')
         if self.reference_budget not in ('token','expanded'):
             raise ValueError('reference_budget must be token or expanded.')
-        if self.sharing_strategy not in ('random','matched'):
-            raise ValueError('sharing_strategy must be random or matched.')
+        if self.sharing_strategy not in ('random','matched','closure'):
+            raise ValueError('sharing_strategy must be random, matched or closure.')
+        if self.sharing_strategy=='closure' and (self.final_selection!='precision' or not self.use_sharing):
+            raise ValueError('Closure sharing requires precision selection and use_sharing.')
         for k in ('degradation_relative', 'degradation_absolute'):
             if not math.isfinite(getattr(self, k)) or getattr(self, k) < 0:
                 raise ValueError(k + ' must be finite and nonnegative.')
@@ -47,8 +51,14 @@ class SearchConfig(SingleConfig):
             raise ValueError('Phased time allocation requires wall_seconds.')
         if not 0 < self.initialization_fraction < 0.3:
             raise ValueError('initialization_fraction must lie in (0, 0.3).')
-        if self.initialization not in ('legacy','dimensional','compound'):
-            raise ValueError('initialization must be legacy, dimensional or compound.')
+        if self.initialization not in ('legacy','dimensional','compound','implicit'):
+            raise ValueError('initialization must be legacy, dimensional, compound or implicit.')
+        if self.precision_repair and (self.initialization!='compound' or self.sharing_strategy!='closure' or self.final_selection!='precision'):
+            raise ValueError('Precision repair requires compound initialization, closure sharing and precision selection.')
+        if self.precision_repair and self.compositional_completion:
+            raise ValueError('Precision repair and compositional completion are mutually exclusive.')
+        if self.compositional_completion and (self.initialization!='compound' or self.sharing_strategy!='closure' or self.final_selection!='precision'):
+            raise ValueError('Compositional completion requires compound initialization, closure sharing and precision selection.')
         if self.final_selection not in ('weighted','guarded','precision'):
             raise ValueError('final_selection must be weighted, guarded or precision.')
         if self.final_selection=='precision':

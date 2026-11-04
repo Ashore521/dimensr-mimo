@@ -1,0 +1,13 @@
+--- locked/src/dimensr_mimo/sharing.py
++++ src/dimensr_mimo/sharing.py
+@@ -75,6 +75,10 @@
+         from .repair import precision_repair
+         retained, report['precision_repair'] = precision_repair(base, evaluator, grammar)
+         extended.extend(retained)
++    elif evaluator.cfg.compositional_completion:
++        from .completion import compositional_completion
++        retained, report['compositional_completion'] = compositional_completion(base, evaluator, grammar)
++        extended.extend(retained)
+     identities = {}
+ 
+     def identity(system):

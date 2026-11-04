@@ -1,0 +1,30 @@
+........................................................................ [ 14%]
+........................................................................ [ 28%]
+........................................................................ [ 42%]
+........................................................................ [ 56%]
+........................................................................ [ 71%]
+........................................................................ [ 85%]
+...........F............................................................ [ 99%]
+...                                                                      [100%]
+================================== FAILURES ===================================
+_________________ test_new_thin_entries_and_isolated_bindings _________________
+
+    def test_new_thin_entries_and_isolated_bindings():
+        assert study.EXPECTED==32 and study.LIMIT==2880 and study.matrix()==prepared.matrix()
+        assert study.configuration()==prepared.configuration()
+        assert study.cases is not prepared.cases and study.cases.HERE==study.HERE and prepared.cases.HERE==prepared.HERE
+        assert study.supervisor.HERE==study.HERE and study.supervisor.budget is study.budget
+        assert isinstance(evaluate.verifier,SealedVerifier)
+        assert evaluate.verifier.legacy.HERE==evaluate.verifier.base.HERE==study.HERE
+        assert evaluate.verifier.legacy.cases is evaluate.verifier.base.cases is study.cases
+        assert evaluate.verifier.legacy.study is evaluate.verifier.base.study is study
+        assert evaluate.verifier.base.evaluate.__globals__['guards'].__self__ is evaluate.verifier
+        assert worker.worker_run is harness.worker_run and run_bounded.bounded is harness.bounded
+>       with pytest.raises(RuntimeError,match='seal'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+experiments\completion_development_verified_20261031\test_stage.py:184: Failed
+=========================== short test summary info ===========================
+FAILED experiments/completion_development_verified_20261031/test_stage.py::test_new_thin_entries_and_isolated_bindings
+1 failed, 506 passed in 91.24s (0:01:31)

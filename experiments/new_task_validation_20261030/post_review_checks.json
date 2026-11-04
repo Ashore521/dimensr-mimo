@@ -1,0 +1,4008 @@
+{
+  "status": "passed",
+  "findings": [],
+  "scope": "Independent data RNG/formulas, raw JSON interpreter, selected units/shape, all extension parent-child errors/protection, full summary; native load/domain calls reuse locked production implementation. No fit/search/refit or official scorer/verifier run.",
+  "versions": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "numpy": "2.5.4"
+  },
+  "key_sha256": {
+    "FREEZE.json": "728fb302de07cc262f43657e479e7afd0c543744c25b0655a20f2fdcaadc89a9",
+    "ALL_MODELS_FROZEN.json": "cc618d4e4f415ef59bdce6455d41a9a9a1634c1f9e33344ab9950c2a45c96593",
+    "SCORES.json": "e9cd27d925ae7e62c781260995d4b7085f70b6ae43b621bdb6780ea1320db2e3",
+    "VERIFICATION.json": "80a0c4c959d43ff330d4458be39b25165794b7c4e4c54f3f47af75b297365ec7",
+    "SUMMARY.json": "1788c2786973e5d9d2c8c5b2573f2d0a5ed70c6a0e78b8e4006d60f24a64bc21",
+    "FROZEN_INPUT_ARCHIVE.json": "8b871e7dff8b1bc4c8f7b49b35eccc828f5ba72b907d11cb90c16f327c0695c3",
+    "EXECUTION.json": "bc6ca0bafa1b3ac79637d8f3c80774b2696ac3779b9060aeacd0a4516d9c4406",
+    "PLAN.md": "340f145bf94b15917b2d5e49dbb548ee23525b3ecdc4ce4187d0ce69d2e96784",
+    "PROTOCOL.md": "cfabfccb8af78dcec8f9fb113e8ccc35376ce441c3b4583d5362bb7b402e990a",
+    "PRE_RUN_REVIEW.md": "eaa34f919efd1c1645f37c5ad84cb1fc8024958b7c226667cbe84f3f64125ada",
+    "HARNESS_REVIEW.md": "89532ea1d245a42cc18f0f49105f8531bf758b1828e45b2b842677466386e985",
+    "TEST_VALIDATION.json": "4bc681a73e9f5cbad2950d85912419f6cb02fbadafb91f40686986344b7ff520"
+  },
+  "integrity": {
+    "input_count": 715,
+    "live_input_mismatches": [],
+    "archive_mismatches": [],
+    "run_count": 352,
+    "run_mismatches": [],
+    "source_mismatches": [],
+    "test_log_mismatches": [],
+    "novelty_archive_mismatches": [],
+    "final_live_mismatches": [],
+    "final_archive_mismatches": [],
+    "final_run_mismatches": []
+  },
+  "timestamps": {
+    "freeze": 1793352965.693415,
+    "training": 1793352967.9549253,
+    "all_models": 1793353862.9523091,
+    "scores": 1793353889.6189206,
+    "verification": 1793353932.479808
+  },
+  "data_hashes": [
+    {
+      "case": "logarithmic_gain_n0",
+      "seed": 9131,
+      "sha256": "59077938d64a66bdbd0ee823de030aeb8b386caa8f6ca41259f34e712f4292b1"
+    },
+    {
+      "case": "logarithmic_gain_n0",
+      "seed": 9132,
+      "sha256": "b1c5432b8634a3e5ebf79efbb45bfdef628f5e574a396a816063c41cbf3361a7"
+    },
+    {
+      "case": "logarithmic_gain_n1",
+      "seed": 9131,
+      "sha256": "cebaac2df32fcb9ae0a24f82e7664ee8d95ac15ad0d25f00ea76aa15b23d1240"
+    },
+    {
+      "case": "logarithmic_gain_n1",
+      "seed": 9132,
+      "sha256": "0d6546ed03ad6b4656c3b372e6e8eb189dba55180ba8551ec68bf71704cc6478"
+    },
+    {
+      "case": "logistic_gain_n0",
+      "seed": 9131,
+      "sha256": "0de3125fe8f2984c0c414e70606b2cbe8de440df23a3288e581d02c23e174314"
+    },
+    {
+      "case": "logistic_gain_n0",
+      "seed": 9132,
+      "sha256": "b6ef84b37cfedc118e4a8206a92a67905b12bc7fedf61a073e30f24f39cbe5ea"
+    },
+    {
+      "case": "logistic_gain_n1",
+      "seed": 9131,
+      "sha256": "2f0d518184c4ee9d019b731f7e532ab309f4bb17517d3db03fd727e3dc7ac247"
+    },
+    {
+      "case": "logistic_gain_n1",
+      "seed": 9132,
+      "sha256": "705c667ee6a5636110e39f6b5d15a74f0f95a91ac66059e6e22a0b43b71c5d8a"
+    },
+    {
+      "case": "algebraic_norm_n0",
+      "seed": 9131,
+      "sha256": "8713ba0a9be0110dfdd7cc1c10bf58d461711136843a53343be7baed41543095"
+    },
+    {
+      "case": "algebraic_norm_n0",
+      "seed": 9132,
+      "sha256": "f920d28e73d82b35ad456803679266b636a34e9b10906dcc7d8257b6cbcccdb8"
+    },
+    {
+      "case": "algebraic_norm_n1",
+      "seed": 9131,
+      "sha256": "d5e732b497207bd1af2f94b111ccd65a0b467bf06f96b6117a033841fdd38ccf"
+    },
+    {
+      "case": "algebraic_norm_n1",
+      "seed": 9132,
+      "sha256": "86377759fb15e98a6c868b2b3f9b3bc3fff0b4ff45218ca872250262b6a3f799"
+    },
+    {
+      "case": "bilinear_saturation_n0",
+      "seed": 9131,
+      "sha256": "1a22e3350536f477206be06efed3bf6f02b93c02177739f6b812f8f63dba5463"
+    },
+    {
+      "case": "bilinear_saturation_n0",
+      "seed": 9132,
+      "sha256": "95016c0bfb68761c4164a0c2a17d4b259091bdab2598300b97a9cd3475bd3d28"
+    },
+    {
+      "case": "bilinear_saturation_n1",
+      "seed": 9131,
+      "sha256": "452159bab8a18243fdb5102ec96d0cf7d3b0ab57199cd99dc13ebf34bba77e7b"
+    },
+    {
+      "case": "bilinear_saturation_n1",
+      "seed": 9132,
+      "sha256": "6b8d6c0d705c5e233486256b915d41087d12bf902fd11596bb4de7f4d730cdf4"
+    }
+  ],
+  "maximum_absolute_differences": {
+    "scales": 1.1102230246251565e-16,
+    "selected_train": 5.551115123125783e-17,
+    "selected_validation": 2.7755575615628914e-17,
+    "selected_observed": 0,
+    "selected_clean": 0,
+    "event_parent": 2.7755575615628914e-17,
+    "event_child": 2.220446049250313e-16
+  },
+  "summary_differences": [],
+  "summary_reconstructed": {
+    "methods": {
+      "base": {
+        "expected": 16,
+        "complete": 16,
+        "failed_or_missing": 0,
+        "both_accepted": 5,
+        "mean_clean_nrmse": 0.018020825660018117,
+        "mean_shared_graph_size": 22.9375,
+        "statuses": {
+          "complete": 16
+        },
+        "strata": {
+          "logarithmic_gain": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 0,
+            "mean_clean_nrmse": 0.007889865642550299,
+            "mean_shared_graph_size": 26.75
+          },
+          "logistic_gain": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 4,
+            "mean_clean_nrmse": 0.0021235312041804214,
+            "mean_shared_graph_size": 16.0
+          },
+          "algebraic_norm": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 0,
+            "mean_clean_nrmse": 0.04528172008797532,
+            "mean_shared_graph_size": 27.25
+          },
+          "bilinear_saturation": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 1,
+            "mean_clean_nrmse": 0.01678818570536643,
+            "mean_shared_graph_size": 21.75
+          },
+          "noise0": {
+            "expected": 8,
+            "complete": 8,
+            "failed_or_missing": 0,
+            "both_accepted": 2,
+            "mean_clean_nrmse": 0.017178684933266766,
+            "mean_shared_graph_size": 21.75
+          },
+          "noise1": {
+            "expected": 8,
+            "complete": 8,
+            "failed_or_missing": 0,
+            "both_accepted": 3,
+            "mean_clean_nrmse": 0.018862966386769472,
+            "mean_shared_graph_size": 24.125
+          }
+        }
+      },
+      "repair": {
+        "expected": 16,
+        "complete": 16,
+        "failed_or_missing": 0,
+        "both_accepted": 7,
+        "mean_clean_nrmse": 0.01602532135442316,
+        "mean_shared_graph_size": 21.875,
+        "statuses": {
+          "complete": 16
+        },
+        "strata": {
+          "logarithmic_gain": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 0,
+            "mean_clean_nrmse": 0.007889865642550299,
+            "mean_shared_graph_size": 26.75
+          },
+          "logistic_gain": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 4,
+            "mean_clean_nrmse": 0.0021235312041804214,
+            "mean_shared_graph_size": 16.0
+          },
+          "algebraic_norm": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 0,
+            "mean_clean_nrmse": 0.04528172008797532,
+            "mean_shared_graph_size": 27.25
+          },
+          "bilinear_saturation": {
+            "expected": 4,
+            "complete": 4,
+            "failed_or_missing": 0,
+            "both_accepted": 3,
+            "mean_clean_nrmse": 0.008806168482986591,
+            "mean_shared_graph_size": 17.5
+          },
+          "noise0": {
+            "expected": 8,
+            "complete": 8,
+            "failed_or_missing": 0,
+            "both_accepted": 4,
+            "mean_clean_nrmse": 0.013187676322076847,
+            "mean_shared_graph_size": 19.625
+          },
+          "noise1": {
+            "expected": 8,
+            "complete": 8,
+            "failed_or_missing": 0,
+            "both_accepted": 3,
+            "mean_clean_nrmse": 0.018862966386769472,
+            "mean_shared_graph_size": 24.125
+          }
+        }
+      }
+    },
+    "pairs": [
+      {
+        "case": "logarithmic_gain_n0",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "logarithmic_gain_n0",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "logarithmic_gain_n1",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "logarithmic_gain_n1",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "logistic_gain_n0",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": true,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "logistic_gain_n0",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": true,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "logistic_gain_n1",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": true,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "logistic_gain_n1",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": true,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "algebraic_norm_n0",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "algebraic_norm_n0",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "algebraic_norm_n1",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "algebraic_norm_n1",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "bilinear_saturation_n0",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "bilinear_saturation_n0",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": false,
+        "skipped_pool_matches": null,
+        "skipped_choice_matches": null
+      },
+      {
+        "case": "bilinear_saturation_n1",
+        "seed": 9131,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": true,
+        "control_accepted": true,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      },
+      {
+        "case": "bilinear_saturation_n1",
+        "seed": 9132,
+        "available": true,
+        "protected": [
+          true,
+          true
+        ],
+        "candidate_accepted": false,
+        "control_accepted": false,
+        "base_prefix_matches": true,
+        "base_cache_matches": true,
+        "repair_skipped": true,
+        "skipped_pool_matches": true,
+        "skipped_choice_matches": true
+      }
+    ],
+    "expected_systems": 32,
+    "expected_pairs": 16,
+    "expected_outputs": 32,
+    "full_denominator": true,
+    "protected_outputs": 32,
+    "technical_pass": true,
+    "closure": {
+      "new_evaluations": 461,
+      "valid": 461,
+      "protected": 244,
+      "validation_retained": 244
+    },
+    "closure_by_method": {
+      "base": {
+        "new_evaluations": 222,
+        "valid": 222,
+        "protected": 113,
+        "validation_retained": 113
+      },
+      "repair": {
+        "new_evaluations": 239,
+        "valid": 239,
+        "protected": 131,
+        "validation_retained": 131
+      }
+    },
+    "closure_mechanism_pass": true,
+    "repair": {
+      "triggered": 8,
+      "new_evaluations": 69,
+      "valid": 69,
+      "protected": 10,
+      "validation_retained": 10,
+      "linear_subproblems": 52693,
+      "retained_roots": 89,
+      "implicit_new_systems": 69
+    },
+    "repair_discovery_evidence": {
+      "triggered": 8,
+      "new_evaluations": 69,
+      "valid": 69,
+      "protected": 10,
+      "validation_retained": 10,
+      "linear_subproblems": 52693,
+      "retained_roots": 89,
+      "implicit_new_systems": 69,
+      "acceptance_gains": 2,
+      "acceptance_losses": 0,
+      "net_acceptance_gain": 2,
+      "actual_implicit_evaluation": true,
+      "validation_retained_discovery": true,
+      "acceptance_gain_observed": true,
+      "by_family": {
+        "logarithmic_gain": {
+          "triggered": 2,
+          "new_evaluations": 21,
+          "valid": 21,
+          "protected": 2,
+          "validation_retained": 2,
+          "linear_subproblems": 8275,
+          "retained_roots": 32,
+          "implicit_new_systems": 21,
+          "expected_systems": 4,
+          "verified_systems": 4,
+          "acceptance_gains": 0
+        },
+        "logistic_gain": {
+          "triggered": 0,
+          "new_evaluations": 0,
+          "valid": 0,
+          "protected": 0,
+          "validation_retained": 0,
+          "linear_subproblems": 0,
+          "retained_roots": 0,
+          "implicit_new_systems": 0,
+          "expected_systems": 4,
+          "verified_systems": 4,
+          "acceptance_gains": 0
+        },
+        "algebraic_norm": {
+          "triggered": 4,
+          "new_evaluations": 37,
+          "valid": 37,
+          "protected": 4,
+          "validation_retained": 4,
+          "linear_subproblems": 36740,
+          "retained_roots": 38,
+          "implicit_new_systems": 37,
+          "expected_systems": 4,
+          "verified_systems": 4,
+          "acceptance_gains": 0
+        },
+        "bilinear_saturation": {
+          "triggered": 2,
+          "new_evaluations": 11,
+          "valid": 11,
+          "protected": 4,
+          "validation_retained": 4,
+          "linear_subproblems": 7678,
+          "retained_roots": 19,
+          "implicit_new_systems": 11,
+          "expected_systems": 4,
+          "verified_systems": 4,
+          "acceptance_gains": 2
+        }
+      },
+      "families_with_validation_retained": 3,
+      "families_with_acceptance_gain": 1,
+      "claim_scope": "Actual events on this fixed matrix; zero triggers or retained candidates do not establish repair discovery benefit across families."
+    },
+    "paired_base_identity_pass": true,
+    "untriggered_identity_pass": true,
+    "candidate_all_accepted": false,
+    "control_acceptance_preserved": true,
+    "macro_clean_error_nonincrease": true,
+    "mean_graph_nonincrease": true,
+    "adoption_pass": false,
+    "production_default_changed": false,
+    "claim_scope": "Descriptive validation of four fixed synthetic output-pair families; not statistical significance, public benchmark or real engineering acceptance."
+  },
+  "systems": [
+    {
+      "job": {
+        "case": "logarithmic_gain_n0",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.006582716857060624,
+      "clean_nrmse": [
+        0.0016808470440928126,
+        0.011484586670028435
+      ],
+      "observed_nrmse": [
+        0.0016808470440928126,
+        0.011484586670028435
+      ],
+      "train_nrmse": [
+        0.0016982735898533115,
+        0.012424988031101496
+      ],
+      "validation_nrmse": [
+        0.0019419635637396191,
+        0.012021290100065307
+      ],
+      "structure": {
+        "shared_dag_vertices": 28,
+        "shared_graph_size": 27,
+        "shared_dag_operations": 15,
+        "maximum_output_depth": 6,
+        "independent_parameters": 7,
+        "expanded_total_nodes": 29,
+        "expanded_total_operations": 15,
+        "outputs": [
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 5,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 5
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 44,
+        "valid": 44,
+        "protected": 11,
+        "validation_retained": 11,
+        "base_candidate_count": 160,
+        "base_evaluations": 377,
+        "base_search_fingerprint": "9e733361d920b1ff38d763e315f63053865569a462e0903cfc0dee7751761356",
+        "base_candidate_sha256": "570250a5def3501a2d95529f90ea0b4c1a3e4c5cdd086b3e9de81564169ccf5a"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.0016982735898533115,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.012424988031101496,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.0019419635637396191,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.012021290100065307,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.0016808470440928126,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.011484586670028435,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.0016808470440928126,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.011484586670028435,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 27,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 7,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7485036253929138,
+        "neural_valid": 61,
+        "gp_new_evaluations": 167,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 87
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 32.88999999999942,
+      "fit_seconds": 21.625,
+      "evaluations": 421,
+      "saved_candidate_count": 171
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n0",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.006582716857060624,
+      "clean_nrmse": [
+        0.0016808470440928126,
+        0.011484586670028435
+      ],
+      "observed_nrmse": [
+        0.0016808470440928126,
+        0.011484586670028435
+      ],
+      "train_nrmse": [
+        0.0016982735898533115,
+        0.012424988031101496
+      ],
+      "validation_nrmse": [
+        0.0019419635637396191,
+        0.012021290100065307
+      ],
+      "structure": {
+        "shared_dag_vertices": 28,
+        "shared_graph_size": 27,
+        "shared_dag_operations": 15,
+        "maximum_output_depth": 6,
+        "independent_parameters": 7,
+        "expanded_total_nodes": 29,
+        "expanded_total_operations": 15,
+        "outputs": [
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 5,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 5
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 46,
+        "valid": 46,
+        "protected": 15,
+        "validation_retained": 15,
+        "base_candidate_count": 160,
+        "base_evaluations": 377,
+        "base_search_fingerprint": "9e733361d920b1ff38d763e315f63053865569a462e0903cfc0dee7751761356",
+        "base_candidate_sha256": "570250a5def3501a2d95529f90ea0b4c1a3e4c5cdd086b3e9de81564169ccf5a"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 10,
+        "valid": 10,
+        "protected": 1,
+        "validation_retained": 1,
+        "linear_subproblems": 4172,
+        "retained_roots": 14,
+        "implicit_new_systems": 10
+      },
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.0016982735898533115,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.012424988031101496,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.0019419635637396191,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.012021290100065307,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.0016808470440928126,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.011484586670028435,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.0016808470440928126,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.011484586670028435,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 27,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 7,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7485036253929138,
+        "neural_valid": 61,
+        "gp_new_evaluations": 167,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 87
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 35.51600000000326,
+      "fit_seconds": 25.140999999988708,
+      "evaluations": 433,
+      "saved_candidate_count": 176
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n0",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.0079155949401203,
+      "clean_nrmse": [
+        0.001834023929162493,
+        0.013997165951078108
+      ],
+      "observed_nrmse": [
+        0.001834023929162493,
+        0.013997165951078108
+      ],
+      "train_nrmse": [
+        0.0015858700426018158,
+        0.012240577374701961
+      ],
+      "validation_nrmse": [
+        0.0017907540376178035,
+        0.017203571385190276
+      ],
+      "structure": {
+        "shared_dag_vertices": 26,
+        "shared_graph_size": 26,
+        "shared_dag_operations": 14,
+        "maximum_output_depth": 6,
+        "independent_parameters": 7,
+        "expanded_total_nodes": 28,
+        "expanded_total_operations": 14,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 5,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 5
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 41,
+        "valid": 41,
+        "protected": 15,
+        "validation_retained": 15,
+        "base_candidate_count": 162,
+        "base_evaluations": 379,
+        "base_search_fingerprint": "237460d71e274f564f192620280d2cd7d84b76053f0218ef2f306acebb64ab6a",
+        "base_candidate_sha256": "ba109c6bcf01344bc051572008574b6217508be2ccccc9a5d5b67a9107922193"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 11,
+        "valid": 11,
+        "protected": 1,
+        "validation_retained": 1,
+        "linear_subproblems": 4103,
+        "retained_roots": 18,
+        "implicit_new_systems": 11
+      },
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.0015858700426018158,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.012240577374701961,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.0017907540376178035,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.017203571385190276,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.001834023929162493,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.013997165951078108,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.001834023929162493,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.013997165951078108,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 26,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 7,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7407406866550446,
+        "neural_valid": 71,
+        "gp_new_evaluations": 165,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 90
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 38.73500000000058,
+      "fit_seconds": 28.781000000002678,
+      "evaluations": 431,
+      "saved_candidate_count": 178
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n0",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.0079155949401203,
+      "clean_nrmse": [
+        0.001834023929162493,
+        0.013997165951078108
+      ],
+      "observed_nrmse": [
+        0.001834023929162493,
+        0.013997165951078108
+      ],
+      "train_nrmse": [
+        0.0015858700426018158,
+        0.012240577374701961
+      ],
+      "validation_nrmse": [
+        0.0017907540376178035,
+        0.017203571385190276
+      ],
+      "structure": {
+        "shared_dag_vertices": 26,
+        "shared_graph_size": 26,
+        "shared_dag_operations": 14,
+        "maximum_output_depth": 6,
+        "independent_parameters": 7,
+        "expanded_total_nodes": 28,
+        "expanded_total_operations": 14,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 5,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 5
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 32,
+        "valid": 32,
+        "protected": 7,
+        "validation_retained": 7,
+        "base_candidate_count": 162,
+        "base_evaluations": 379,
+        "base_search_fingerprint": "237460d71e274f564f192620280d2cd7d84b76053f0218ef2f306acebb64ab6a",
+        "base_candidate_sha256": "ba109c6bcf01344bc051572008574b6217508be2ccccc9a5d5b67a9107922193"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.0015858700426018158,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.012240577374701961,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.0017907540376178035,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.017203571385190276,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.001834023929162493,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.013997165951078108,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.001834023929162493,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.013997165951078108,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 26,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 7,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7407406866550446,
+        "neural_valid": 71,
+        "gp_new_evaluations": 165,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 90
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 30.452999999994063,
+      "fit_seconds": 21.64100000000326,
+      "evaluations": 411,
+      "saved_candidate_count": 169
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n1",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.00798079602876451,
+      "clean_nrmse": [
+        0.0023943995568547673,
+        0.013567192500674254
+      ],
+      "observed_nrmse": [
+        0.010223999103820158,
+        0.017144883582896495
+      ],
+      "train_nrmse": [
+        0.008939183044373265,
+        0.016595984936563328
+      ],
+      "validation_nrmse": [
+        0.010062031965721644,
+        0.015033697456709962
+      ],
+      "structure": {
+        "shared_dag_vertices": 29,
+        "shared_graph_size": 29,
+        "shared_dag_operations": 15,
+        "maximum_output_depth": 6,
+        "independent_parameters": 8,
+        "expanded_total_nodes": 29,
+        "expanded_total_operations": 15,
+        "outputs": [
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 5
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 33,
+        "valid": 33,
+        "protected": 8,
+        "validation_retained": 8,
+        "base_candidate_count": 154,
+        "base_evaluations": 368,
+        "base_search_fingerprint": "d01e70570cefa03d8478839c4d833d382c53bf2776ee0b086468f8aa06131650",
+        "base_candidate_sha256": "937135dbde4347afe126be8e65b768fc261f596a9cd9271093e3403862996b26"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "shared_graph_size",
+          "value": 29,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 8,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7509529292583466,
+        "neural_valid": 62,
+        "gp_new_evaluations": 163,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 83
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 31.48399999999674,
+      "fit_seconds": 21.360000000000582,
+      "evaluations": 401,
+      "saved_candidate_count": 162
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n1",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.00798079602876451,
+      "clean_nrmse": [
+        0.0023943995568547673,
+        0.013567192500674254
+      ],
+      "observed_nrmse": [
+        0.010223999103820158,
+        0.017144883582896495
+      ],
+      "train_nrmse": [
+        0.008939183044373265,
+        0.016595984936563328
+      ],
+      "validation_nrmse": [
+        0.010062031965721644,
+        0.015033697456709962
+      ],
+      "structure": {
+        "shared_dag_vertices": 29,
+        "shared_graph_size": 29,
+        "shared_dag_operations": 15,
+        "maximum_output_depth": 6,
+        "independent_parameters": 8,
+        "expanded_total_nodes": 29,
+        "expanded_total_operations": 15,
+        "outputs": [
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 5
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 33,
+        "valid": 33,
+        "protected": 8,
+        "validation_retained": 8,
+        "base_candidate_count": 154,
+        "base_evaluations": 368,
+        "base_search_fingerprint": "d01e70570cefa03d8478839c4d833d382c53bf2776ee0b086468f8aa06131650",
+        "base_candidate_sha256": "937135dbde4347afe126be8e65b768fc261f596a9cd9271093e3403862996b26"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 86,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [
+        {
+          "gate": "shared_graph_size",
+          "value": 29,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 8,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7509529292583466,
+        "neural_valid": 62,
+        "gp_new_evaluations": 163,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 83
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 34.328000000008615,
+      "fit_seconds": 24.015999999988708,
+      "evaluations": 401,
+      "saved_candidate_count": 162
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n1",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.009080354744255762,
+      "clean_nrmse": [
+        0.002985216672109418,
+        0.015175492816402106
+      ],
+      "observed_nrmse": [
+        0.009007081173888043,
+        0.01925822491277379
+      ],
+      "train_nrmse": [
+        0.009108682703573135,
+        0.017474954945958028
+      ],
+      "validation_nrmse": [
+        0.009010048104081313,
+        0.01755121596448348
+      ],
+      "structure": {
+        "shared_dag_vertices": 25,
+        "shared_graph_size": 25,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 7,
+        "expanded_total_nodes": 26,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 4
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 24,
+        "valid": 24,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 159,
+        "base_evaluations": 377,
+        "base_search_fingerprint": "41c6326dec048fc3b9c02cfa13b5248ce19c654dd0e1286606a7b9e599e40951",
+        "base_candidate_sha256": "447674f5fadd91ff0174ea8760aedd48198f150ae5891090e10fd3c52a410c96"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 70,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [
+        {
+          "gate": "shared_graph_size",
+          "value": 25,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 7,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7629541456699371,
+        "neural_valid": 76,
+        "gp_new_evaluations": 167,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 86
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 34.312000000005355,
+      "fit_seconds": 23.125,
+      "evaluations": 401,
+      "saved_candidate_count": 159
+    },
+    {
+      "job": {
+        "case": "logarithmic_gain_n1",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.009080354744255762,
+      "clean_nrmse": [
+        0.002985216672109418,
+        0.015175492816402106
+      ],
+      "observed_nrmse": [
+        0.009007081173888043,
+        0.01925822491277379
+      ],
+      "train_nrmse": [
+        0.009108682703573135,
+        0.017474954945958028
+      ],
+      "validation_nrmse": [
+        0.009010048104081313,
+        0.01755121596448348
+      ],
+      "structure": {
+        "shared_dag_vertices": 25,
+        "shared_graph_size": 25,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 7,
+        "expanded_total_nodes": 26,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 4
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 24,
+        "valid": 24,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 159,
+        "base_evaluations": 377,
+        "base_search_fingerprint": "41c6326dec048fc3b9c02cfa13b5248ce19c654dd0e1286606a7b9e599e40951",
+        "base_candidate_sha256": "447674f5fadd91ff0174ea8760aedd48198f150ae5891090e10fd3c52a410c96"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "shared_graph_size",
+          "value": 25,
+          "limit": 24
+        },
+        {
+          "gate": "independent_parameters",
+          "value": 7,
+          "limit": 6
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7629541456699371,
+        "neural_valid": 76,
+        "gp_new_evaluations": 167,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 86
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 33.296999999991385,
+      "fit_seconds": 23.343999999997322,
+      "evaluations": 401,
+      "saved_candidate_count": 159
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n0",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 2.179406546970375e-16,
+      "clean_nrmse": [
+        2.6756905931967896e-16,
+        1.6831225007439605e-16
+      ],
+      "observed_nrmse": [
+        2.6756905931967896e-16,
+        1.6831225007439605e-16
+      ],
+      "train_nrmse": [
+        2.745558329665769e-16,
+        1.481214604712289e-16
+      ],
+      "validation_nrmse": [
+        3.1196709121700964e-16,
+        2.075195099343603e-16
+      ],
+      "structure": {
+        "shared_dag_vertices": 15,
+        "shared_graph_size": 13,
+        "shared_dag_operations": 8,
+        "maximum_output_depth": 5,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 21,
+        "expanded_total_operations": 11,
+        "outputs": [
+          {
+            "expanded_nodes": 10,
+            "expanded_operations": 5,
+            "depth": 5,
+            "unique_dag_nodes": 10,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 11,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 11,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 27,
+        "valid": 27,
+        "protected": 27,
+        "validation_retained": 27,
+        "base_candidate_count": 162,
+        "base_evaluations": 389,
+        "base_search_fingerprint": "0462b0b473054cca5e3dcb86f3e03d7ebfd465523bbb7e2d3e51a5bc40cc7801",
+        "base_candidate_sha256": "35265720028373c39e32afb9bb553917d5e2ee2b2efbd584aab546635f2688b8"
+      },
+      "repair": {},
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7384949177503586,
+        "neural_valid": 61,
+        "gp_new_evaluations": 186,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 93
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 25.422000000005937,
+      "fit_seconds": 16.218999999997322,
+      "evaluations": 416,
+      "saved_candidate_count": 189
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n0",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 2.179406546970375e-16,
+      "clean_nrmse": [
+        2.6756905931967896e-16,
+        1.6831225007439605e-16
+      ],
+      "observed_nrmse": [
+        2.6756905931967896e-16,
+        1.6831225007439605e-16
+      ],
+      "train_nrmse": [
+        2.745558329665769e-16,
+        1.481214604712289e-16
+      ],
+      "validation_nrmse": [
+        3.1196709121700964e-16,
+        2.075195099343603e-16
+      ],
+      "structure": {
+        "shared_dag_vertices": 15,
+        "shared_graph_size": 13,
+        "shared_dag_operations": 8,
+        "maximum_output_depth": 5,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 21,
+        "expanded_total_operations": 11,
+        "outputs": [
+          {
+            "expanded_nodes": 10,
+            "expanded_operations": 5,
+            "depth": 5,
+            "unique_dag_nodes": 10,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 11,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 11,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 27,
+        "valid": 27,
+        "protected": 27,
+        "validation_retained": 27,
+        "base_candidate_count": 162,
+        "base_evaluations": 389,
+        "base_search_fingerprint": "0462b0b473054cca5e3dcb86f3e03d7ebfd465523bbb7e2d3e51a5bc40cc7801",
+        "base_candidate_sha256": "35265720028373c39e32afb9bb553917d5e2ee2b2efbd584aab546635f2688b8"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 111,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7384949177503586,
+        "neural_valid": 61,
+        "gp_new_evaluations": 186,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 93
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 24.828999999997905,
+      "fit_seconds": 16.718999999997322,
+      "evaluations": 416,
+      "saved_candidate_count": 189
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n0",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.0,
+      "clean_nrmse": [
+        0.0,
+        0.0
+      ],
+      "observed_nrmse": [
+        0.0,
+        0.0
+      ],
+      "train_nrmse": [
+        0.0,
+        0.0
+      ],
+      "validation_nrmse": [
+        0.0,
+        0.0
+      ],
+      "structure": {
+        "shared_dag_vertices": 12,
+        "shared_graph_size": 11,
+        "shared_dag_operations": 7,
+        "maximum_output_depth": 5,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 19,
+        "expanded_total_operations": 10,
+        "outputs": [
+          {
+            "expanded_nodes": 8,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 11,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 11,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 18,
+        "valid": 18,
+        "protected": 18,
+        "validation_retained": 18,
+        "base_candidate_count": 161,
+        "base_evaluations": 382,
+        "base_search_fingerprint": "dfd3358c87c3d57f6cae8549af902b625375682de3ffaf983db5a55774ae922f",
+        "base_candidate_sha256": "587586baee3e95d590520944b50e1226f42577b7088142a804a6ca90a41d962f"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 112,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7388705760240555,
+        "neural_valid": 81,
+        "gp_new_evaluations": 179,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 93
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 23.60899999999674,
+      "fit_seconds": 15.922000000005937,
+      "evaluations": 400,
+      "saved_candidate_count": 179
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n0",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.0,
+      "clean_nrmse": [
+        0.0,
+        0.0
+      ],
+      "observed_nrmse": [
+        0.0,
+        0.0
+      ],
+      "train_nrmse": [
+        0.0,
+        0.0
+      ],
+      "validation_nrmse": [
+        0.0,
+        0.0
+      ],
+      "structure": {
+        "shared_dag_vertices": 12,
+        "shared_graph_size": 11,
+        "shared_dag_operations": 7,
+        "maximum_output_depth": 5,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 19,
+        "expanded_total_operations": 10,
+        "outputs": [
+          {
+            "expanded_nodes": 8,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 11,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 11,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 18,
+        "valid": 18,
+        "protected": 18,
+        "validation_retained": 18,
+        "base_candidate_count": 161,
+        "base_evaluations": 382,
+        "base_search_fingerprint": "dfd3358c87c3d57f6cae8549af902b625375682de3ffaf983db5a55774ae922f",
+        "base_candidate_sha256": "587586baee3e95d590520944b50e1226f42577b7088142a804a6ca90a41d962f"
+      },
+      "repair": {},
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7388705760240555,
+        "neural_valid": 81,
+        "gp_new_evaluations": 179,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 93
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 25.218999999997322,
+      "fit_seconds": 16.780999999988126,
+      "evaluations": 400,
+      "saved_candidate_count": 179
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n1",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.0011615327748333328,
+      "clean_nrmse": [
+        0.0011042056163723855,
+        0.0012188599332942798
+      ],
+      "observed_nrmse": [
+        0.010355159266422522,
+        0.009608583970959641
+      ],
+      "train_nrmse": [
+        0.009179456270147624,
+        0.011165755865063515
+      ],
+      "validation_nrmse": [
+        0.011194209149097686,
+        0.008799232970930338
+      ],
+      "structure": {
+        "shared_dag_vertices": 20,
+        "shared_graph_size": 20,
+        "shared_dag_operations": 12,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 22,
+        "expanded_total_operations": 12,
+        "outputs": [
+          {
+            "expanded_nodes": 8,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 30,
+        "valid": 30,
+        "protected": 29,
+        "validation_retained": 29,
+        "base_candidate_count": 163,
+        "base_evaluations": 376,
+        "base_search_fingerprint": "f0e651a76661a9ba940cc31ea2d4b497195ab0b6fe9ae4c27374f501ff0acf93",
+        "base_candidate_sha256": "7bf0f356ed0ef9fd8d8f8ead4ca0c207b342f81c6990f34ec9f868e6e70ff4ac"
+      },
+      "repair": {},
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7492061704397202,
+        "neural_valid": 71,
+        "gp_new_evaluations": 179,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 87
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 27.64100000000326,
+      "fit_seconds": 18.96799999999348,
+      "evaluations": 406,
+      "saved_candidate_count": 192
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n1",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.0011615327748333328,
+      "clean_nrmse": [
+        0.0011042056163723855,
+        0.0012188599332942798
+      ],
+      "observed_nrmse": [
+        0.010355159266422522,
+        0.009608583970959641
+      ],
+      "train_nrmse": [
+        0.009179456270147624,
+        0.011165755865063515
+      ],
+      "validation_nrmse": [
+        0.011194209149097686,
+        0.008799232970930338
+      ],
+      "structure": {
+        "shared_dag_vertices": 20,
+        "shared_graph_size": 20,
+        "shared_dag_operations": 12,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 22,
+        "expanded_total_operations": 12,
+        "outputs": [
+          {
+            "expanded_nodes": 8,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 8,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 30,
+        "valid": 30,
+        "protected": 29,
+        "validation_retained": 29,
+        "base_candidate_count": 163,
+        "base_evaluations": 376,
+        "base_search_fingerprint": "f0e651a76661a9ba940cc31ea2d4b497195ab0b6fe9ae4c27374f501ff0acf93",
+        "base_candidate_sha256": "7bf0f356ed0ef9fd8d8f8ead4ca0c207b342f81c6990f34ec9f868e6e70ff4ac"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 113,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7492061704397202,
+        "neural_valid": 71,
+        "gp_new_evaluations": 179,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 87
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 29.671999999991385,
+      "fit_seconds": 19.343000000008033,
+      "evaluations": 406,
+      "saved_candidate_count": 192
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n1",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.007332592041888134,
+      "clean_nrmse": [
+        0.008554186334995082,
+        0.006110997748781186
+      ],
+      "observed_nrmse": [
+        0.013787695800344467,
+        0.011211695699443119
+      ],
+      "train_nrmse": [
+        0.013249216798795158,
+        0.010877827845520487
+      ],
+      "validation_nrmse": [
+        0.011191282920757932,
+        0.010874251996517042
+      ],
+      "structure": {
+        "shared_dag_vertices": 22,
+        "shared_graph_size": 20,
+        "shared_dag_operations": 11,
+        "maximum_output_depth": 5,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 22,
+        "expanded_total_operations": 11,
+        "outputs": [
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 13,
+            "expanded_operations": 7,
+            "depth": 5,
+            "unique_dag_nodes": 13,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 14,
+        "valid": 14,
+        "protected": 13,
+        "validation_retained": 13,
+        "base_candidate_count": 158,
+        "base_evaluations": 366,
+        "base_search_fingerprint": "604feca526a435754f5b10a21be2d2c6b731e4d12f859495695cd3e2952ac80f",
+        "base_candidate_sha256": "f0aed38efe7ede3b7207ed3f264f20b45cc10d4c1eb413160d33cd1cb9435bf5"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 112,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7392388880252838,
+        "neural_valid": 81,
+        "gp_new_evaluations": 168,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 88
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 26.828000000008615,
+      "fit_seconds": 17.5,
+      "evaluations": 380,
+      "saved_candidate_count": 171
+    },
+    {
+      "job": {
+        "case": "logistic_gain_n1",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.007332592041888134,
+      "clean_nrmse": [
+        0.008554186334995082,
+        0.006110997748781186
+      ],
+      "observed_nrmse": [
+        0.013787695800344467,
+        0.011211695699443119
+      ],
+      "train_nrmse": [
+        0.013249216798795158,
+        0.010877827845520487
+      ],
+      "validation_nrmse": [
+        0.011191282920757932,
+        0.010874251996517042
+      ],
+      "structure": {
+        "shared_dag_vertices": 22,
+        "shared_graph_size": 20,
+        "shared_dag_operations": 11,
+        "maximum_output_depth": 5,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 22,
+        "expanded_total_operations": 11,
+        "outputs": [
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 13,
+            "expanded_operations": 7,
+            "depth": 5,
+            "unique_dag_nodes": 13,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 14,
+        "valid": 14,
+        "protected": 13,
+        "validation_retained": 13,
+        "base_candidate_count": 158,
+        "base_evaluations": 366,
+        "base_search_fingerprint": "604feca526a435754f5b10a21be2d2c6b731e4d12f859495695cd3e2952ac80f",
+        "base_candidate_sha256": "f0aed38efe7ede3b7207ed3f264f20b45cc10d4c1eb413160d33cd1cb9435bf5"
+      },
+      "repair": {},
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7392388880252838,
+        "neural_valid": 81,
+        "gp_new_evaluations": 168,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 88
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 28.25,
+      "fit_seconds": 18.85899999999674,
+      "evaluations": 380,
+      "saved_candidate_count": 171
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n0",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.038264101930270994,
+      "clean_nrmse": [
+        0.009254232245705443,
+        0.06727397161483654
+      ],
+      "observed_nrmse": [
+        0.009254232245705443,
+        0.06727397161483654
+      ],
+      "train_nrmse": [
+        0.009495515956602063,
+        0.07700336679024786
+      ],
+      "validation_nrmse": [
+        0.019904939212649974,
+        0.1015130352589765
+      ],
+      "structure": {
+        "shared_dag_vertices": 28,
+        "shared_graph_size": 28,
+        "shared_dag_operations": 15,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 28,
+        "expanded_total_operations": 15,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 165,
+        "base_evaluations": 390,
+        "base_search_fingerprint": "209518dba008c83837a8556093b5646873832b2f1ccbbeff1e5535b9f812eb46",
+        "base_candidate_sha256": "1e3b9f0cdb0d60cb057430ad98c3569ac91110c566837b3b53a1760cfaef0910"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.009495515956602063,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.07700336679024786,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.019904939212649974,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.1015130352589765,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.009254232245705443,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.06727397161483654,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.009254232245705443,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.06727397161483654,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 28,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7328774482011795,
+        "neural_valid": 68,
+        "gp_new_evaluations": 187,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 89
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 19.76600000000326,
+      "fit_seconds": 12.171999999991385,
+      "evaluations": 390,
+      "saved_candidate_count": 165
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n0",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.038264101930270994,
+      "clean_nrmse": [
+        0.009254232245705443,
+        0.06727397161483654
+      ],
+      "observed_nrmse": [
+        0.009254232245705443,
+        0.06727397161483654
+      ],
+      "train_nrmse": [
+        0.009495515956602063,
+        0.07700336679024786
+      ],
+      "validation_nrmse": [
+        0.019904939212649974,
+        0.1015130352589765
+      ],
+      "structure": {
+        "shared_dag_vertices": 28,
+        "shared_graph_size": 28,
+        "shared_dag_operations": 15,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 28,
+        "expanded_total_operations": 15,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 165,
+        "base_evaluations": 390,
+        "base_search_fingerprint": "209518dba008c83837a8556093b5646873832b2f1ccbbeff1e5535b9f812eb46",
+        "base_candidate_sha256": "1e3b9f0cdb0d60cb057430ad98c3569ac91110c566837b3b53a1760cfaef0910"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 9,
+        "valid": 9,
+        "protected": 1,
+        "validation_retained": 1,
+        "linear_subproblems": 9253,
+        "retained_roots": 9,
+        "implicit_new_systems": 9
+      },
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.009495515956602063,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.07700336679024786,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.019904939212649974,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.1015130352589765,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.009254232245705443,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.06727397161483654,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.009254232245705443,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.06727397161483654,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 28,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7328774482011795,
+        "neural_valid": 68,
+        "gp_new_evaluations": 187,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 89
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 27.827999999994063,
+      "fit_seconds": 21.202999999994063,
+      "evaluations": 399,
+      "saved_candidate_count": 166
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n0",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.052738996849162015,
+      "clean_nrmse": [
+        0.010496773972257383,
+        0.09498121972606664
+      ],
+      "observed_nrmse": [
+        0.010496773972257383,
+        0.09498121972606664
+      ],
+      "train_nrmse": [
+        0.011707163891608087,
+        0.047339551012322796
+      ],
+      "validation_nrmse": [
+        0.016948215523963514,
+        0.0630966013686917
+      ],
+      "structure": {
+        "shared_dag_vertices": 26,
+        "shared_graph_size": 26,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 26,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 163,
+        "base_evaluations": 382,
+        "base_search_fingerprint": "4cab19c5cc13864e98ac0bbb2d43b5e570ed30134cad132f94c97380089468f4",
+        "base_candidate_sha256": "869ad04e66a91099604b1dadf6ca6949c7b739c18e141de2823e03ee58936990"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 8,
+        "valid": 8,
+        "protected": 1,
+        "validation_retained": 1,
+        "linear_subproblems": 9388,
+        "retained_roots": 9,
+        "implicit_new_systems": 8
+      },
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.011707163891608087,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.047339551012322796,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.016948215523963514,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.0630966013686917,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.010496773972257383,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.09498121972606664,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.010496773972257383,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.09498121972606664,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 26,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7504593431949615,
+        "neural_valid": 52,
+        "gp_new_evaluations": 176,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 92
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 28.60899999999674,
+      "fit_seconds": 21.781000000002678,
+      "evaluations": 390,
+      "saved_candidate_count": 164
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n0",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.052738996849162015,
+      "clean_nrmse": [
+        0.010496773972257383,
+        0.09498121972606664
+      ],
+      "observed_nrmse": [
+        0.010496773972257383,
+        0.09498121972606664
+      ],
+      "train_nrmse": [
+        0.011707163891608087,
+        0.047339551012322796
+      ],
+      "validation_nrmse": [
+        0.016948215523963514,
+        0.0630966013686917
+      ],
+      "structure": {
+        "shared_dag_vertices": 26,
+        "shared_graph_size": 26,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 26,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 163,
+        "base_evaluations": 382,
+        "base_search_fingerprint": "4cab19c5cc13864e98ac0bbb2d43b5e570ed30134cad132f94c97380089468f4",
+        "base_candidate_sha256": "869ad04e66a91099604b1dadf6ca6949c7b739c18e141de2823e03ee58936990"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.011707163891608087,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.047339551012322796,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.016948215523963514,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.0630966013686917,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.010496773972257383,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.09498121972606664,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.010496773972257383,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.09498121972606664,
+          "limit": 0.0001
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 26,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7504593431949615,
+        "neural_valid": 52,
+        "gp_new_evaluations": 176,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 92
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 19.952999999994063,
+      "fit_seconds": 13.531000000002678,
+      "evaluations": 382,
+      "saved_candidate_count": 163
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n1",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.04202497094064574,
+      "clean_nrmse": [
+        0.015405665833058801,
+        0.06864427604823267
+      ],
+      "observed_nrmse": [
+        0.018596750815221146,
+        0.0699016277873211
+      ],
+      "train_nrmse": [
+        0.01910396907191119,
+        0.06255455049146819
+      ],
+      "validation_nrmse": [
+        0.018063998435923743,
+        0.050709052607002515
+      ],
+      "structure": {
+        "shared_dag_vertices": 26,
+        "shared_graph_size": 26,
+        "shared_dag_operations": 14,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 27,
+        "expanded_total_operations": 14,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 160,
+        "base_evaluations": 383,
+        "base_search_fingerprint": "4e0e699fda146363321a5e58b2589372b1213ce9b837aff35425b73790fac89d",
+        "base_candidate_sha256": "c9ff4b74c76482d1846c020ee7f744206f5b6c7169c568191b5f7acf88c86b64"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.06255455049146819,
+          "limit": 0.03
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.050709052607002515,
+          "limit": 0.03
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.0699016277873211,
+          "limit": 0.03
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.06864427604823267,
+          "limit": 0.02
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 26,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7396922707557678,
+        "neural_valid": 64,
+        "gp_new_evaluations": 183,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 87
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 18.14100000000326,
+      "fit_seconds": 11.89100000000326,
+      "evaluations": 383,
+      "saved_candidate_count": 160
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n1",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.04202497094064574,
+      "clean_nrmse": [
+        0.015405665833058801,
+        0.06864427604823267
+      ],
+      "observed_nrmse": [
+        0.018596750815221146,
+        0.0699016277873211
+      ],
+      "train_nrmse": [
+        0.01910396907191119,
+        0.06255455049146819
+      ],
+      "validation_nrmse": [
+        0.018063998435923743,
+        0.050709052607002515
+      ],
+      "structure": {
+        "shared_dag_vertices": 26,
+        "shared_graph_size": 26,
+        "shared_dag_operations": 14,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 27,
+        "expanded_total_operations": 14,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 160,
+        "base_evaluations": 383,
+        "base_search_fingerprint": "4e0e699fda146363321a5e58b2589372b1213ce9b837aff35425b73790fac89d",
+        "base_candidate_sha256": "c9ff4b74c76482d1846c020ee7f744206f5b6c7169c568191b5f7acf88c86b64"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 10,
+        "valid": 10,
+        "protected": 1,
+        "validation_retained": 1,
+        "linear_subproblems": 9140,
+        "retained_roots": 10,
+        "implicit_new_systems": 10
+      },
+      "failures": [
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.06255455049146819,
+          "limit": 0.03
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.050709052607002515,
+          "limit": 0.03
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.0699016277873211,
+          "limit": 0.03
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.06864427604823267,
+          "limit": 0.02
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 26,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7396922707557678,
+        "neural_valid": 64,
+        "gp_new_evaluations": 183,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 87
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 26.593999999997322,
+      "fit_seconds": 20.25,
+      "evaluations": 393,
+      "saved_candidate_count": 161
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n1",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.04809881063182254,
+      "clean_nrmse": [
+        0.013689934276199033,
+        0.08250768698744604
+      ],
+      "observed_nrmse": [
+        0.016558970826935453,
+        0.0836694929483903
+      ],
+      "train_nrmse": [
+        0.017491793404112516,
+        0.0946648711118084
+      ],
+      "validation_nrmse": [
+        0.015826767253770108,
+        0.0794444148383501
+      ],
+      "structure": {
+        "shared_dag_vertices": 29,
+        "shared_graph_size": 29,
+        "shared_dag_operations": 16,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 29,
+        "expanded_total_operations": 16,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 162,
+        "base_evaluations": 388,
+        "base_search_fingerprint": "0f1f111e43b44cc030173b4186f3d87ae5e9a4fe0abd5281cfab849e6cb2dd6f",
+        "base_candidate_sha256": "bc7e7e4a8534f3bf5773c81a25e95fc5a4fd6576aa3507d968836b02394cd157"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 10,
+        "valid": 10,
+        "protected": 1,
+        "validation_retained": 1,
+        "linear_subproblems": 8959,
+        "retained_roots": 10,
+        "implicit_new_systems": 10
+      },
+      "failures": [
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.0946648711118084,
+          "limit": 0.03
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.0794444148383501,
+          "limit": 0.03
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.0836694929483903,
+          "limit": 0.03
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.08250768698744604,
+          "limit": 0.02
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 29,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.773263156414032,
+        "neural_valid": 63,
+        "gp_new_evaluations": 181,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 93
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 33.67200000000594,
+      "fit_seconds": 26.375,
+      "evaluations": 398,
+      "saved_candidate_count": 163
+    },
+    {
+      "job": {
+        "case": "algebraic_norm_n1",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.04809881063182254,
+      "clean_nrmse": [
+        0.013689934276199033,
+        0.08250768698744604
+      ],
+      "observed_nrmse": [
+        0.016558970826935453,
+        0.0836694929483903
+      ],
+      "train_nrmse": [
+        0.017491793404112516,
+        0.0946648711118084
+      ],
+      "validation_nrmse": [
+        0.015826767253770108,
+        0.0794444148383501
+      ],
+      "structure": {
+        "shared_dag_vertices": 29,
+        "shared_graph_size": 29,
+        "shared_dag_operations": 16,
+        "maximum_output_depth": 6,
+        "independent_parameters": 5,
+        "expanded_total_nodes": 29,
+        "expanded_total_operations": 16,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 15,
+            "expanded_operations": 8,
+            "depth": 6,
+            "unique_dag_nodes": 15,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 162,
+        "base_evaluations": 388,
+        "base_search_fingerprint": "0f1f111e43b44cc030173b4186f3d87ae5e9a4fe0abd5281cfab849e6cb2dd6f",
+        "base_candidate_sha256": "bc7e7e4a8534f3bf5773c81a25e95fc5a4fd6576aa3507d968836b02394cd157"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.0946648711118084,
+          "limit": 0.03
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.0794444148383501,
+          "limit": 0.03
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.0836694929483903,
+          "limit": 0.03
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.08250768698744604,
+          "limit": 0.02
+        },
+        {
+          "gate": "shared_graph_size",
+          "value": 29,
+          "limit": 24
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.773263156414032,
+        "neural_valid": 63,
+        "gp_new_evaluations": 181,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 93
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 29.062999999994645,
+      "fit_seconds": 20.219000000011874,
+      "evaluations": 388,
+      "saved_candidate_count": 162
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n0",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.015758560995672043,
+      "clean_nrmse": [
+        0.015927853928930383,
+        0.015589268062413706
+      ],
+      "observed_nrmse": [
+        0.015927853928930383,
+        0.015589268062413706
+      ],
+      "train_nrmse": [
+        0.011774073707835911,
+        0.01210352488993139
+      ],
+      "validation_nrmse": [
+        0.014519402766573097,
+        0.014856386890935843
+      ],
+      "structure": {
+        "shared_dag_vertices": 23,
+        "shared_graph_size": 22,
+        "shared_dag_operations": 12,
+        "maximum_output_depth": 6,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 26,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 14,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 152,
+        "base_evaluations": 371,
+        "base_search_fingerprint": "0e2a03c6d904b90ceb5627b6ba7d12bcc4958c50cd51c25945be7e93f8a2f778",
+        "base_candidate_sha256": "85443a915f7b5b8f6d55c6928c9635538e0158537250fb5b46fe102f36e6bd3f"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.011774073707835911,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.01210352488993139,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.014519402766573097,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.014856386890935843,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.015927853928930383,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.015589268062413706,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.015927853928930383,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.015589268062413706,
+          "limit": 0.0001
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.71189234405756,
+        "neural_valid": 57,
+        "gp_new_evaluations": 179,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 83
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 21.593000000008033,
+      "fit_seconds": 13.03200000000652,
+      "evaluations": 371,
+      "saved_candidate_count": 152
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n0",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 2.948851212870685e-16,
+      "clean_nrmse": [
+        3.0403535331103086e-16,
+        2.857348892631061e-16
+      ],
+      "observed_nrmse": [
+        3.0403535331103086e-16,
+        2.857348892631061e-16
+      ],
+      "train_nrmse": [
+        3.0325610721127206e-16,
+        2.6125277606046423e-16
+      ],
+      "validation_nrmse": [
+        3.498695440562412e-16,
+        2.584822547413874e-16
+      ],
+      "structure": {
+        "shared_dag_vertices": 13,
+        "shared_graph_size": 13,
+        "shared_dag_operations": 6,
+        "maximum_output_depth": 4,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 18,
+        "expanded_total_operations": 8,
+        "outputs": [
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 3,
+        "valid": 3,
+        "protected": 3,
+        "validation_retained": 3,
+        "base_candidate_count": 152,
+        "base_evaluations": 371,
+        "base_search_fingerprint": "0e2a03c6d904b90ceb5627b6ba7d12bcc4958c50cd51c25945be7e93f8a2f778",
+        "base_candidate_sha256": "85443a915f7b5b8f6d55c6928c9635538e0158537250fb5b46fe102f36e6bd3f"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 5,
+        "valid": 5,
+        "protected": 2,
+        "validation_retained": 2,
+        "linear_subproblems": 3839,
+        "retained_roots": 8,
+        "implicit_new_systems": 5
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.71189234405756,
+        "neural_valid": 57,
+        "gp_new_evaluations": 179,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 83
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 26.843999999997322,
+      "fit_seconds": 18.328000000008615,
+      "evaluations": 379,
+      "saved_candidate_count": 157
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n0",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 3.271699613016003e-16,
+      "clean_nrmse": [
+        3.2574049833418974e-16,
+        3.2859942426901083e-16
+      ],
+      "observed_nrmse": [
+        3.2574049833418974e-16,
+        3.2859942426901083e-16
+      ],
+      "train_nrmse": [
+        3.3592425508231474e-16,
+        3.385039223784165e-16
+      ],
+      "validation_nrmse": [
+        2.7210177938545857e-16,
+        3.5773374188062213e-16
+      ],
+      "structure": {
+        "shared_dag_vertices": 13,
+        "shared_graph_size": 13,
+        "shared_dag_operations": 6,
+        "maximum_output_depth": 4,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 18,
+        "expanded_total_operations": 8,
+        "outputs": [
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 9,
+            "expanded_operations": 4,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 3,
+        "valid": 3,
+        "protected": 3,
+        "validation_retained": 3,
+        "base_candidate_count": 151,
+        "base_evaluations": 373,
+        "base_search_fingerprint": "ca211697c4faa69b7a73cd464d72cb2058c01116d55f7ee2c9280f71165d5b41",
+        "base_candidate_sha256": "844d1be6dc2981663b05d878aff84effc43a9a52518e0c15a0e0be4224e64248"
+      },
+      "repair": {
+        "triggered": 1,
+        "training_eligible": 0,
+        "new_evaluations": 6,
+        "valid": 6,
+        "protected": 2,
+        "validation_retained": 2,
+        "linear_subproblems": 3839,
+        "retained_roots": 11,
+        "implicit_new_systems": 6
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7296781688928604,
+        "neural_valid": 58,
+        "gp_new_evaluations": 180,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 84
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 28.23399999999674,
+      "fit_seconds": 18.531000000002678,
+      "evaluations": 382,
+      "saved_candidate_count": 156
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n0",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.01616950789384794,
+      "clean_nrmse": [
+        0.016434282092160565,
+        0.01590473369553531
+      ],
+      "observed_nrmse": [
+        0.016434282092160565,
+        0.01590473369553531
+      ],
+      "train_nrmse": [
+        0.01616315411738033,
+        0.017243819020768623
+      ],
+      "validation_nrmse": [
+        0.01868086812132496,
+        0.02022037800342063
+      ],
+      "structure": {
+        "shared_dag_vertices": 21,
+        "shared_graph_size": 21,
+        "shared_dag_operations": 11,
+        "maximum_output_depth": 6,
+        "independent_parameters": 4,
+        "expanded_total_nodes": 24,
+        "expanded_total_operations": 12,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 151,
+        "base_evaluations": 373,
+        "base_search_fingerprint": "ca211697c4faa69b7a73cd464d72cb2058c01116d55f7ee2c9280f71165d5b41",
+        "base_candidate_sha256": "844d1be6dc2981663b05d878aff84effc43a9a52518e0c15a0e0be4224e64248"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "train",
+          "output": 0,
+          "value": 0.01616315411738033,
+          "limit": 0.0001
+        },
+        {
+          "gate": "train",
+          "output": 1,
+          "value": 0.017243819020768623,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 0,
+          "value": 0.01868086812132496,
+          "limit": 0.0001
+        },
+        {
+          "gate": "validation",
+          "output": 1,
+          "value": 0.02022037800342063,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 0,
+          "value": 0.016434282092160565,
+          "limit": 0.0001
+        },
+        {
+          "gate": "test",
+          "output": 1,
+          "value": 0.01590473369553531,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.016434282092160565,
+          "limit": 0.0001
+        },
+        {
+          "gate": "clean",
+          "output": 1,
+          "value": 0.01590473369553531,
+          "limit": 0.0001
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7296781688928604,
+        "neural_valid": 58,
+        "gp_new_evaluations": 180,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 84
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 23.610000000000582,
+      "fit_seconds": 14.718999999997322,
+      "evaluations": 373,
+      "saved_candidate_count": 151
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n1",
+        "seed": 9131,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.015025785993240552,
+      "clean_nrmse": [
+        0.01516813944166309,
+        0.014883432544818012
+      ],
+      "observed_nrmse": [
+        0.018848449213058793,
+        0.018067711227802315
+      ],
+      "train_nrmse": [
+        0.016557429909555322,
+        0.01891305870926855
+      ],
+      "validation_nrmse": [
+        0.01397096145222876,
+        0.01446661375305606
+      ],
+      "structure": {
+        "shared_dag_vertices": 23,
+        "shared_graph_size": 22,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 25,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 13,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 13,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 159,
+        "base_evaluations": 375,
+        "base_search_fingerprint": "e0667547026a7fbbd89a921312dab5b82c302aee1fe59b6b0024fd1286e4d699",
+        "base_candidate_sha256": "3132d6301d0d6256ba4d65cb95a8226a2ebd359f020c69b02e3799dfa172dd12"
+      },
+      "repair": {},
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7281881123781204,
+        "neural_valid": 60,
+        "gp_new_evaluations": 181,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 86
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 20.781000000002678,
+      "fit_seconds": 12.171999999991385,
+      "evaluations": 375,
+      "saved_candidate_count": 159
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n1",
+        "seed": 9131,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": true,
+      "mean_clean_nrmse": 0.015025785993240552,
+      "clean_nrmse": [
+        0.01516813944166309,
+        0.014883432544818012
+      ],
+      "observed_nrmse": [
+        0.018848449213058793,
+        0.018067711227802315
+      ],
+      "train_nrmse": [
+        0.016557429909555322,
+        0.01891305870926855
+      ],
+      "validation_nrmse": [
+        0.01397096145222876,
+        0.01446661375305606
+      ],
+      "structure": {
+        "shared_dag_vertices": 23,
+        "shared_graph_size": 22,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 25,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 13,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 13,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 159,
+        "base_evaluations": 375,
+        "base_search_fingerprint": "e0667547026a7fbbd89a921312dab5b82c302aee1fe59b6b0024fd1286e4d699",
+        "base_candidate_sha256": "3132d6301d0d6256ba4d65cb95a8226a2ebd359f020c69b02e3799dfa172dd12"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 28,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [],
+      "mechanism": {
+        "policy_delta": 0.7281881123781204,
+        "neural_valid": 60,
+        "gp_new_evaluations": 181,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 86
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 21.98399999999674,
+      "fit_seconds": 13.156999999991967,
+      "evaluations": 375,
+      "saved_candidate_count": 159
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n1",
+        "seed": 9132,
+        "method": "repair",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.02019888793870519,
+      "clean_nrmse": [
+        0.021897967820013676,
+        0.0184998080573967
+      ],
+      "observed_nrmse": [
+        0.02430427538646335,
+        0.019238893947624156
+      ],
+      "train_nrmse": [
+        0.02653637293702674,
+        0.02206504183564015
+      ],
+      "validation_nrmse": [
+        0.024093633581843712,
+        0.017145757129806014
+      ],
+      "structure": {
+        "shared_dag_vertices": 24,
+        "shared_graph_size": 22,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 25,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 13,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 13,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 147,
+        "base_evaluations": 365,
+        "base_search_fingerprint": "7a2dc5064facb68693092bff1b1bed7b446c6222761ba9685507f6662109bb2e",
+        "base_candidate_sha256": "2151292ddf56f28e9a8e6158437851c7e811bc3778d2aacd51a4e7c546c0413e"
+      },
+      "repair": {
+        "triggered": 0,
+        "training_eligible": 45,
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "linear_subproblems": 0,
+        "retained_roots": 0,
+        "implicit_new_systems": 0
+      },
+      "failures": [
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.021897967820013676,
+          "limit": 0.02
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7306153178215027,
+        "neural_valid": 57,
+        "gp_new_evaluations": 174,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 82
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 20.39100000000326,
+      "fit_seconds": 13.297000000005937,
+      "evaluations": 365,
+      "saved_candidate_count": 147
+    },
+    {
+      "job": {
+        "case": "bilinear_saturation_n1",
+        "seed": 9132,
+        "method": "base",
+        "seconds": 60
+      },
+      "verified": true,
+      "status": "complete",
+      "both_accepted": false,
+      "mean_clean_nrmse": 0.02019888793870519,
+      "clean_nrmse": [
+        0.021897967820013676,
+        0.0184998080573967
+      ],
+      "observed_nrmse": [
+        0.02430427538646335,
+        0.019238893947624156
+      ],
+      "train_nrmse": [
+        0.02653637293702674,
+        0.02206504183564015
+      ],
+      "validation_nrmse": [
+        0.024093633581843712,
+        0.017145757129806014
+      ],
+      "structure": {
+        "shared_dag_vertices": 24,
+        "shared_graph_size": 22,
+        "shared_dag_operations": 13,
+        "maximum_output_depth": 6,
+        "independent_parameters": 2,
+        "expanded_total_nodes": 25,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 2
+          },
+          {
+            "expanded_nodes": 13,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 13,
+            "independent_parameters": 2
+          }
+        ]
+      },
+      "closure": {
+        "new_evaluations": 0,
+        "valid": 0,
+        "protected": 0,
+        "validation_retained": 0,
+        "base_candidate_count": 147,
+        "base_evaluations": 365,
+        "base_search_fingerprint": "7a2dc5064facb68693092bff1b1bed7b446c6222761ba9685507f6662109bb2e",
+        "base_candidate_sha256": "2151292ddf56f28e9a8e6158437851c7e811bc3778d2aacd51a4e7c546c0413e"
+      },
+      "repair": {},
+      "failures": [
+        {
+          "gate": "clean",
+          "output": 0,
+          "value": 0.021897967820013676,
+          "limit": 0.02
+        }
+      ],
+      "mechanism": {
+        "policy_delta": 0.7306153178215027,
+        "neural_valid": 57,
+        "gp_new_evaluations": 174,
+        "nsga_generations": 4,
+        "nsga_new_evaluations": 82
+      },
+      "nsga_steps_with_new": 4,
+      "wall_seconds": 15.921000000002095,
+      "fit_seconds": 9.718999999997322,
+      "evaluations": 365,
+      "saved_candidate_count": 147
+    }
+  ],
+  "event_count": 530,
+  "event_counts_by_kind": {
+    "closure": 461,
+    "repair": 69
+  },
+  "selected_systems_recomputed": 32,
+  "native_estimator_reloads": 32,
+  "native_physical_reloads": 32,
+  "native_domain_rechecks": 32,
+  "saved_candidate_count": 5330,
+  "full_candidate_metrics_independently_recomputed": false,
+  "skip_pair_count": 8,
+  "maximum_cell_wall": 38.73500000000058,
+  "maximum_saved_fit_elapsed": 28.781000000002678,
+  "maximum_evaluations": 433,
+  "script_sha256": "8e383fa482316b9f6137b10d0a9205e41ebe62c9f783941941e8a0ccec5caf67"
+}

@@ -1,0 +1,1636 @@
+{
+  "status": "passed",
+  "findings": [],
+  "scope": "Independent two train reconstructions, strict raw evaluation of all 1849 saved proposals and retained feature vectors, saved score/rank comparison, all proposal-boundary and admit/denominator trace records; no initializer/lstsq/nonlinear fit/search/validation/test arrays.",
+  "versions": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "numpy": "2.5.4"
+  },
+  "key_sha256": {
+    "FREEZE.json": "5c4386a0bef1b28f530145eb274c35f389c5aa3f98bf4934bd756df50d8d3680",
+    "VERIFICATION.json": "c86a27e947881cb56463699e1b9aa1161f6559e1ebe9af55629f5f9e168e4a71",
+    "EXECUTION.json": "bb201137e87dc9616d10df73378b0737a2bf81f529c68bd99a5ca3aca5440455",
+    "FROZEN_INPUT_ARCHIVE.json": "02594bea23cba61190a31aaca76d8ec349fa00b8f3f537ca22c887d407f523df",
+    "LINEAGE_SUMMARY.json": "1f433d91ffb0d16789917de38e39abaeccc36376d64b7131343550d8630af3e8",
+    "summarize.py": "3d0ed04c257290af25948ad6620b809c2f0a6a199a6c758eba22d35385576b30",
+    "PLAN.md": "24067271368efc778929b81bf3dfe46753ea77297ade87ad556c3d77c6a05739",
+    "PRE_RUN_REVIEW.md": "3ccae071772600c1d3e2649b53bc260e32214c15e3d21bb8aef7c790a26843ca",
+    "TEST_VALIDATION.json": "d7de52fd6aabe22da6f4d10281b0c267c96149bba4760e814c2b30244872ab15"
+  },
+  "integrity": {
+    "input_count": 55,
+    "output_count": 16,
+    "live_mismatches": [],
+    "archive_mismatches": [],
+    "output_mismatches": [],
+    "final_live_mismatches": [],
+    "final_archive_mismatches": [],
+    "final_output_mismatches": []
+  },
+  "training_hashes": {
+    "logarithmic_gain_n0": "49fad8eeedb6bd4ed0c0ddba509c3e8dc7648338ec5569563284bd5dc1d7a400",
+    "algebraic_norm_n0": "c8898afa1161445cdc9c844f22a6ad584338223fd6fd0f5b61a9f1a1aa70faf4"
+  },
+  "summary_reconstructed": {
+    "status": "observed_with_rank_limitations",
+    "expected_calls": 4,
+    "completed_calls": 4,
+    "full_order_verified": 2,
+    "top12_verified": 4,
+    "rows": [
+      {
+        "case": "logarithmic_gain_n0",
+        "output": 0,
+        "observation_status": "passed",
+        "counts": {
+          "feature_evaluations": 179,
+          "linear_subproblems": 6342,
+          "proposed_structures": 254,
+          "numeric_duplicates": 24,
+          "pair_screened": 3366,
+          "residual_projections": 169,
+          "compound_products_screened": 281,
+          "retained_features": 151
+        },
+        "boundary_counts": {
+          "attempted": 6425,
+          "structure_rejected": 6150,
+          "nonfinite_error": 0
+        },
+        "facets": {
+          "log_square": {
+            "features": 1,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 154,
+            "boundary_rejected": 154
+          },
+          "sqrt_sum_squares": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          },
+          "variable_times_log_square": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          }
+        },
+        "root_log_square_features": [
+          {
+            "tree": {
+              "token": "log",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "add",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "c0",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "token": "mul",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "square",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "mul",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "c1",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "-1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                },
+                                {
+                                  "token": "x0",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "size": 9,
+            "depth": 6
+          }
+        ],
+        "direct_log_boundary_rejections": [
+          {
+            "tree": {
+              "token": "mul",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "c0",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": []
+                },
+                {
+                  "token": "log",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "add",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "mul",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "c0",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": []
+                            },
+                            {
+                              "token": "square",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "mul",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": [
+                                    {
+                                      "token": "c1",
+                                      "units": [
+                                        "0",
+                                        "0",
+                                        "-1",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0"
+                                      ],
+                                      "children": []
+                                    },
+                                    {
+                                      "token": "x0",
+                                      "units": [
+                                        "0",
+                                        "0",
+                                        "1",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0"
+                                      ],
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              0.8633498645351926,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "size": 11,
+            "depth": 7,
+            "structure_rejected": true,
+            "error": null,
+            "finite_error": null,
+            "source_line": 198
+          }
+        ],
+        "rank_mismatches": [],
+        "top12_match": true,
+        "maximum_score_difference": 2.7755575615628914e-17
+      },
+      {
+        "case": "logarithmic_gain_n0",
+        "output": 1,
+        "observation_status": "passed",
+        "counts": {
+          "feature_evaluations": 177,
+          "linear_subproblems": 4726,
+          "proposed_structures": 178,
+          "numeric_duplicates": 33,
+          "pair_screened": 619,
+          "residual_projections": 138,
+          "compound_products_screened": 281,
+          "retained_features": 140
+        },
+        "boundary_counts": {
+          "attempted": 4762,
+          "structure_rejected": 4528,
+          "nonfinite_error": 0
+        },
+        "facets": {
+          "log_square": {
+            "features": 1,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 36,
+            "boundary_rejected": 36
+          },
+          "sqrt_sum_squares": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          },
+          "variable_times_log_square": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          }
+        },
+        "root_log_square_features": [
+          {
+            "tree": {
+              "token": "log",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "add",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "c0",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "token": "mul",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "square",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "mul",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "c1",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "-1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                },
+                                {
+                                  "token": "x0",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "size": 9,
+            "depth": 6
+          }
+        ],
+        "direct_log_boundary_rejections": [],
+        "rank_mismatches": [],
+        "top12_match": true,
+        "maximum_score_difference": 2.2737367544323206e-13
+      },
+      {
+        "case": "algebraic_norm_n0",
+        "output": 0,
+        "observation_status": "ranking_unresolved",
+        "counts": {
+          "feature_evaluations": 229,
+          "linear_subproblems": 10638,
+          "proposed_structures": 785,
+          "numeric_duplicates": 60,
+          "pair_screened": 325,
+          "residual_projections": 372,
+          "compound_products_screened": 453,
+          "retained_features": 157
+        },
+        "boundary_counts": {
+          "attempted": 10664,
+          "structure_rejected": 9853,
+          "nonfinite_error": 0
+        },
+        "facets": {
+          "log_square": {
+            "features": 2,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 52,
+            "boundary_rejected": 52
+          },
+          "sqrt_sum_squares": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          },
+          "variable_times_log_square": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          }
+        },
+        "root_log_square_features": [
+          {
+            "tree": {
+              "token": "log",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "add",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "c0",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "token": "mul",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "square",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "div",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "x0",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                },
+                                {
+                                  "token": "x1",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              1.0,
+              1.0
+            ],
+            "size": 9,
+            "depth": 6
+          },
+          {
+            "tree": {
+              "token": "log",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "add",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "c0",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "token": "mul",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "square",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "div",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "x1",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                },
+                                {
+                                  "token": "x0",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              1.0,
+              1.0
+            ],
+            "size": 9,
+            "depth": 6
+          }
+        ],
+        "direct_log_boundary_rejections": [],
+        "rank_mismatches": [
+          {
+            "position": 153,
+            "independent_original_index": 154,
+            "original_score": 0.4331641347657319,
+            "original_other_score": 0.4331641347657333,
+            "recomputed_score": 0.4331641347657333,
+            "recomputed_other_score": 0.4331641347657333
+          },
+          {
+            "position": 154,
+            "independent_original_index": 153,
+            "original_score": 0.4331641347657333,
+            "original_other_score": 0.4331641347657319,
+            "recomputed_score": 0.4331641347657333,
+            "recomputed_other_score": 0.4331641347657333
+          }
+        ],
+        "top12_match": true,
+        "maximum_score_difference": 1.4779288903810084e-12
+      },
+      {
+        "case": "algebraic_norm_n0",
+        "output": 1,
+        "observation_status": "ranking_unresolved",
+        "counts": {
+          "feature_evaluations": 243,
+          "linear_subproblems": 17648,
+          "proposed_structures": 632,
+          "numeric_duplicates": 43,
+          "pair_screened": 3168,
+          "residual_projections": 405,
+          "compound_products_screened": 453,
+          "retained_features": 188
+        },
+        "boundary_counts": {
+          "attempted": 17729,
+          "structure_rejected": 17095,
+          "nonfinite_error": 0
+        },
+        "facets": {
+          "log_square": {
+            "features": 2,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 479,
+            "boundary_rejected": 479
+          },
+          "sqrt_sum_squares": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          },
+          "variable_times_log_square": {
+            "features": 0,
+            "proposals": 0,
+            "returned": 0,
+            "boundary_attempts": 0,
+            "boundary_rejected": 0
+          }
+        },
+        "root_log_square_features": [
+          {
+            "tree": {
+              "token": "log",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "add",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "c0",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "token": "mul",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "square",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "div",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "x0",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                },
+                                {
+                                  "token": "x1",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              1.0,
+              1.0
+            ],
+            "size": 9,
+            "depth": 6
+          },
+          {
+            "tree": {
+              "token": "log",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "add",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "c0",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": []
+                    },
+                    {
+                      "token": "mul",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "square",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "div",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "x1",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                },
+                                {
+                                  "token": "x0",
+                                  "units": [
+                                    "1",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              1.0,
+              1.0
+            ],
+            "size": 9,
+            "depth": 6
+          }
+        ],
+        "direct_log_boundary_rejections": [
+          {
+            "tree": {
+              "token": "mul",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "c0",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": []
+                },
+                {
+                  "token": "log",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "add",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "mul",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "c0",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": []
+                            },
+                            {
+                              "token": "square",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "div",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": [
+                                    {
+                                      "token": "x0",
+                                      "units": [
+                                        "1",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0"
+                                      ],
+                                      "children": []
+                                    },
+                                    {
+                                      "token": "x1",
+                                      "units": [
+                                        "1",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0"
+                                      ],
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              0.5798191691353864,
+              1.0,
+              1.0
+            ],
+            "size": 11,
+            "depth": 7,
+            "structure_rejected": true,
+            "error": null,
+            "finite_error": null,
+            "source_line": 198
+          },
+          {
+            "tree": {
+              "token": "mul",
+              "units": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              "children": [
+                {
+                  "token": "c0",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": []
+                },
+                {
+                  "token": "log",
+                  "units": [
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  "children": [
+                    {
+                      "token": "add",
+                      "units": [
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                      ],
+                      "children": [
+                        {
+                          "token": "c0",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": []
+                        },
+                        {
+                          "token": "mul",
+                          "units": [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                          ],
+                          "children": [
+                            {
+                              "token": "c0",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": []
+                            },
+                            {
+                              "token": "square",
+                              "units": [
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0",
+                                "0"
+                              ],
+                              "children": [
+                                {
+                                  "token": "div",
+                                  "units": [
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0",
+                                    "0"
+                                  ],
+                                  "children": [
+                                    {
+                                      "token": "x1",
+                                      "units": [
+                                        "1",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0"
+                                      ],
+                                      "children": []
+                                    },
+                                    {
+                                      "token": "x0",
+                                      "units": [
+                                        "1",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0",
+                                        "0"
+                                      ],
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "constants": [
+              0.30626273880196875,
+              1.0,
+              1.0
+            ],
+            "size": 11,
+            "depth": 7,
+            "structure_rejected": true,
+            "error": null,
+            "finite_error": null,
+            "source_line": 198
+          }
+        ],
+        "rank_mismatches": [
+          {
+            "position": 21,
+            "independent_original_index": 22,
+            "original_score": 0.011752504767209479,
+            "original_other_score": 0.011752504767209494,
+            "recomputed_score": 0.011752504767209489,
+            "recomputed_other_score": 0.011752504767209489
+          },
+          {
+            "position": 22,
+            "independent_original_index": 21,
+            "original_score": 0.011752504767209494,
+            "original_other_score": 0.011752504767209479,
+            "recomputed_score": 0.011752504767209489,
+            "recomputed_other_score": 0.011752504767209489
+          }
+        ],
+        "top12_match": true,
+        "maximum_score_difference": 8.881784197001252e-16
+      }
+    ],
+    "scope": "Syntactic facets of the four saved initializer calls; not symbolic equivalence or whole-search coverage.",
+    "verification_sha256": "c86a27e947881cb56463699e1b9aa1161f6559e1ebe9af55629f5f9e168e4a71",
+    "script_sha256": "3d0ed04c257290af25948ad6620b809c2f0a6a199a6c758eba22d35385576b30"
+  },
+  "details": [
+    {
+      "case": "logarithmic_gain_n0",
+      "output": 0,
+      "trace_event_kinds": {
+        "admit_return": 262,
+        "proposal_boundary": 6425,
+        "denominator_call": 26
+      },
+      "admit_return_lines": {
+        "109": 151,
+        "105": 24,
+        "85": 5,
+        "88": 78,
+        "99": 4
+      },
+      "feature_vector_hash_mismatches": 0,
+      "proposal_scores_recomputed": 254,
+      "maximum_difference_from_saved_independent_score": 0.0
+    },
+    {
+      "case": "logarithmic_gain_n0",
+      "output": 1,
+      "trace_event_kinds": {
+        "admit_return": 273,
+        "proposal_boundary": 4762,
+        "denominator_call": 26
+      },
+      "admit_return_lines": {
+        "109": 140,
+        "105": 33,
+        "85": 6,
+        "88": 90,
+        "99": 4
+      },
+      "feature_vector_hash_mismatches": 0,
+      "proposal_scores_recomputed": 178,
+      "maximum_difference_from_saved_independent_score": 0.0
+    },
+    {
+      "case": "algebraic_norm_n0",
+      "output": 0,
+      "trace_event_kinds": {
+        "admit_return": 379,
+        "proposal_boundary": 10664,
+        "denominator_call": 48
+      },
+      "admit_return_lines": {
+        "109": 157,
+        "105": 60,
+        "85": 11,
+        "88": 139,
+        "99": 12
+      },
+      "feature_vector_hash_mismatches": 0,
+      "proposal_scores_recomputed": 785,
+      "maximum_difference_from_saved_independent_score": 0.0
+    },
+    {
+      "case": "algebraic_norm_n0",
+      "output": 1,
+      "trace_event_kinds": {
+        "admit_return": 310,
+        "proposal_boundary": 17729,
+        "denominator_call": 48
+      },
+      "admit_return_lines": {
+        "109": 188,
+        "105": 43,
+        "85": 8,
+        "88": 59,
+        "99": 12
+      },
+      "feature_vector_hash_mismatches": 0,
+      "proposal_scores_recomputed": 632,
+      "maximum_difference_from_saved_independent_score": 0.0
+    }
+  ],
+  "total_trace_events": {
+    "admit_return": 1224,
+    "proposal_boundary": 39580,
+    "denominator_call": 148
+  },
+  "total_proposals": 1849,
+  "total_boundaries": 39580,
+  "total_structure_rejections": 37626,
+  "total_linear_subproblems": 39354,
+  "maximum_original_score_difference": 1.4779288903810084e-12,
+  "script_sha256": "56471f2b46af48083deb72e2e806ee503c6c1d70a77d66c8dbcd4f8602a29011"
+}

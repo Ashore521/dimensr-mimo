@@ -1,0 +1,17 @@
+--- locked/src/dimensr_mimo/regressor.py
++++ src/dimensr_mimo/regressor.py
+@@ -282,10 +282,12 @@
+         closure = None
+         if cfg.sharing_strategy=='closure':
+             from .sharing import protected_closure
+-            pool, closure = protected_closure(pool, evaluator, **({'grammar':grammar} if cfg.precision_repair else {}))
++            pool, closure = protected_closure(pool, evaluator, **({'grammar':grammar} if cfg.precision_repair or cfg.compositional_completion else {}))
+             repair = closure.get('precision_repair', {})
++            completion = closure.get('compositional_completion', {})
+             record('sharing_closure', 0, pool, new_systems=closure['new_evaluations'], protected_systems=closure['protected'],
+-                   **(dict(repair_new_systems=repair['new_evaluations'], repair_protected_systems=repair['protected']) if repair else {}))
++                   **(dict(repair_new_systems=repair['new_evaluations'], repair_protected_systems=repair['protected']) if repair else {}),
++                   **(dict(completion_new_systems=completion['new_evaluations'], completion_protected_systems=completion['protected']) if completion else {}))
+         # Validation may rank ONLY this frozen pool; it cannot affect later search.
+         frozen_payload = [c.to_dict() for c in pool]
+         frozen_hash = hashlib.sha256(json.dumps(frozen_payload, sort_keys=True).encode()).hexdigest()

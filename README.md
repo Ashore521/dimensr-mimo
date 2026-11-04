@@ -2,6 +2,8 @@
 
 静态多输入多输出符号回归：以整个多根公式系统为个体，联合运行输出条件 GRU、量纲 GP 和两目标 NSGA-II。每个输出保留完整公式，可发现共享子图与显式绑定参数，也可解除共享。
 
+1.7.0 提供可选的匹配闭包、隐式有理式初始化、训练精度修复与复合候选补充。已观察开发矩阵的完整精度与结构接受从7/16增至16/16，32/32输出通过保护。随后锁定候选的新输出组合验证中，两臂均为5/16完整接受，32/32输出保护通过，科学采用门槛未达。默认采用`legacy`初始化和`random`共享，两个补充开关默认关闭。详细配置、失败和证据见[1.7.0说明](docs/RELEASE_1.7.0.zh-CN.md)。
+
 1.6.0 增加可选的[结构匹配共享提案](docs/MATCHED_SHARING.zh-CN.md)：`sharing_strategy='matched'`。34/34 系统完成技术与机制核验，完整接受数从 9/17 增至 12/17，平均图规模下降 11.8%；逐输出保护为 31/34，平均干净测试误差略升，推荐失败，默认仍为 `random`。全部失败和原始图保存在实验目录中。
 
 新版从 DimenSR 0.4.0 的完整神经/GP/NSGA-II 流程重建。算法定义、来源映射及验收标准见 [中文架构](docs/ARCHITECTURE.zh-CN.md)。[首轮结果解读](docs/FIRST_ROUND.zh-CN.md)、[完整实验报告](experiments/first_round/REPORT.zh-CN.md)、[独立核验](experiments/first_round/VERIFICATION.json)和[安装复现说明](docs/REPRODUCING.zh-CN.md)均已提供。

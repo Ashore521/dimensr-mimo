@@ -1,0 +1,23 @@
+
+=================================== ERRORS ====================================
+________________ ERROR collecting tests/test_closure_study.py _________________
+ImportError while importing test module 'D:\���Żع���Ŀ\dimensr-mimo\tests\test_closure_study.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_closure_study.py:3: in <module>
+    from experiments.protected_closure_20261028 import study, worker, evaluate
+experiments\protected_closure_20261028\study.py:21: in <module>
+    supervisor = previous('study', cases=cases, worker=worker)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+experiments\second_round_20261026\cases.py:19: in previous
+    spec.loader.exec_module(module)
+experiments\first_round\study.py:17: in <module>
+    from worker import write
+E   ImportError: cannot import name 'write' from 'experiments.protected_closure_20261028.worker' (D:\���Żع���Ŀ\dimensr-mimo\experiments\protected_closure_20261028\worker.py)
+=========================== short test summary info ===========================
+ERROR tests/test_closure_study.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 2.99s

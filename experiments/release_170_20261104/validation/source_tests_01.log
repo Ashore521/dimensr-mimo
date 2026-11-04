@@ -1,0 +1,29 @@
+......................F................................................. [ 18%]
+........................................................................ [ 36%]
+........................................................................ [ 54%]
+........................................................................ [ 72%]
+........................................................................ [ 90%]
+......................................                                   [100%]
+================================== FAILURES ===================================
+_______________ test_matrix_and_isolated_verifiers[historical] ________________
+
+stage = <module 'experiments.completion_historical_20261031.study' from 'D:\\���Żع���Ŀ\\dimensr-mimo\\experiments\\completion_historical_20261031\\study.py'>
+
+    def test_matrix_and_isolated_verifiers(stage):
+        s=stage;v=he.verifier if s is historical else de.verifier
+        assert len(s.matrix())==len({s.name(j) for j in s.matrix()})==s.EXPECTED
+        assert s.LIMIT==2880 and all(j['seconds']==60 for j in s.matrix())
+        assert v.legacy.HERE==v.base.HERE==s.HERE
+        assert v.legacy.cases is v.base.cases is s.cases
+        assert v.legacy.study is v.base.study is s
+        assert v.base.evaluate.__globals__['guards'].__self__ is v
+        assert v.legacy is not (de.verifier.legacy if s is historical else he.verifier.legacy)
+        assert historical.cases is not development.cases
+>       with pytest.raises(RuntimeError,match='seal'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RuntimeError
+
+tests\test_completion_historical_study.py:55: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_completion_historical_study.py::test_matrix_and_isolated_verifiers[historical]
+1 failed, 397 passed in 131.63s (0:02:11)

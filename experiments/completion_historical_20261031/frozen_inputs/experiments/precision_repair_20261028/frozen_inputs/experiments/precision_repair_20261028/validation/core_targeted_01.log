@@ -1,0 +1,31 @@
+.............F..............                                             [100%]
+================================== FAILURES ===================================
+______ test_untriggered_complete_pool_selection_and_reload_are_identical ______
+
+tmp_path = WindowsPath('D:/���Żع���Ŀ/dimensr-mimo/outputs/pytest-repair-core-tmp1/test_untriggered_complete_pool0')
+
+    def test_untriggered_complete_pool_selection_and_reload_are_identical(tmp_path):
+        X=np.linspace(.2,1.2,20)[:,None];Y=np.column_stack((X[:,0],2*X[:,0]))
+        cfg=config(population_size=4,epochs=1,gp_generations=1,selection_generations=2,
+            max_evaluations=40,min_candidates=3,polish_candidates=0,constant_max_nfev=8,
+            constant_restarts=1,max_nodes=7,operators=('add','mul'),use_rnn=False)
+        def fit(c):
+            return DimenSRMIMORegressor(c).fit(X,Y,X_val=X[::3],Y_val=Y[::3],input_bounds=[[.2,1.2]])
+        base,patched=fit(cfg),fit(replace(cfg,precision_repair=True))
+        assert not patched.diagnostics_['sharing_closure']['precision_repair']['triggered']
+        assert base.candidates_==patched.candidates_ and base.best_.to_dict()==patched.best_.to_dict()
+        assert base.search_fingerprint_==patched.search_fingerprint_
+        path=tmp_path/'repair.json';patched.save(path);loaded=DimenSRMIMORegressor.load(path)
+        np.testing.assert_array_equal(loaded.predict(X),patched.predict(X))
+>       assert loaded.to_dict()==patched.to_dict()
+E       AssertionError: assert {'format': 'd... 2, ...}, ...} == {'format': 'd... 2, ...}, ...}
+E         
+E         Omitting 19 identical items, use -vv to show
+E         Differing items:
+E         {'config': {'population_size': 4, 'epochs': 1, 'gp_generations': 1, 'selection_generations': 2, ...}} != {'config': {'population_size': 4, 'epochs': 1, 'gp_generations': 1, 'selection_generations': 2, ...}}
+E         Use -v to get more diff
+
+tests\test_precision_repair.py:187: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_precision_repair.py::test_untriggered_complete_pool_selection_and_reload_are_identical
+1 failed, 27 passed in 23.87s

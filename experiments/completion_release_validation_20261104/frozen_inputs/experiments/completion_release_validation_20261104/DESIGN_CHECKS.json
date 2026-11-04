@@ -1,0 +1,665 @@
+{
+  "status": "design_supported_pending_harness_review",
+  "issues": [],
+  "checked_unix": 1793795336.0553806,
+  "runtime_metadata": {
+    "path": "C:\\Users\\608\\.codex\\sessions\\2026\\10\\30\\rollout-2026-10-30T17-07-49-01a18c10-baea-7b10-bd6d-96f104545fe5.jsonl",
+    "line": 1284,
+    "timestamp": "2026-11-04T12:22:05.383Z",
+    "model": "gpt-6.1-sol",
+    "effort": "high"
+  },
+  "input_sha256": {
+    "PLAN.md": "f1315cc2515e81c7f4a7a72e1174d1516285dfb2c71b5483af4660d41d5a5403",
+    "CANDIDATE_LOCK.json": "9db2256f3de2b5081f35bb2f66b484fc45291e1d707cd3200f4836f0d2eda259",
+    "cases.py": "a165e766d827bb3a8a1198169b50b6f6c652fd22aaec8f075d6a82746f0eb9ee",
+    "test_cases.py": "06fa2f177b48c6713927432296be94ada37113ddb4c9a2b113d6345fb1df5b4f",
+    "NOVELTY_AUDIT.json": "09a185c0e7cb5a494b8b36653d90d2ad4d8149bcfc5f95a894e78a2dfb8cbf37",
+    "ORACLE_AUDIT.json": "31e7cfc3aae01a8a3aea5334f5b057846610c6b4f1685e4469f86b8c12830e36",
+    "case_validation/pytest_01.log": "5e9fa626ea14dc707772b17f1bb730475b32ed6f59d0804283d1c24b2224e6b6"
+  },
+  "parent_candidate_lock_sha256": "51103c4e7085da90695f7845df5a312ca6ff693dc686bbc651772bf63c74b452",
+  "source_count": 41,
+  "source_hash_mismatches": [],
+  "source_manifest": {
+    "src/dimensr_mimo/__init__.py": "551a01c2be6369869c3e3acec3825201b04d50ba96c9fd186010be63801071d9",
+    "src/dimensr_mimo/__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279",
+    "src/dimensr_mimo/_single/__init__.py": "03a77925405ef543c67980d675445564341f8703237ca8b56a0a31e3d5533f97",
+    "src/dimensr_mimo/_single/complexity.py": "6261086ebda0b8df2de1cfd5d9d04327e416d9cb881cd133833a400a5d21fe5b",
+    "src/dimensr_mimo/_single/config.py": "486600abb379bb179d7c86cfb1352836cd6a61212baeb5dccddbd7fc3d2f5599",
+    "src/dimensr_mimo/_single/domains.py": "b2c1485554af84b5923e30dc36df61012c1e70e98b23d979cf690154e610c40e",
+    "src/dimensr_mimo/_single/evaluation.py": "58c66a18ba806d1116b7b78d453962621ec26396cdc385d81e26b108339ee7c2",
+    "src/dimensr_mimo/_single/expression.py": "324fe34d65ad94261fbfcf2b9d377c52ddea10f579241f6fa63b2cc843b2c78f",
+    "src/dimensr_mimo/_single/fitting.py": "faab19e6735effee7a5a76de9c82a4d79d9bd0979406849eb4df1147188e0040",
+    "src/dimensr_mimo/_single/genetics.py": "cd1088866844ad565078bd99c287587c014d7c7390242d281feefef5e3a999f3",
+    "src/dimensr_mimo/_single/grammar.py": "1a14031fd3fb86aa7ef8734fbe31ad05f2b981597e7efc75aeb834df8b7438d9",
+    "src/dimensr_mimo/_single/intervals.py": "8617de09e7204bc1bde0edd7bff7fe54ecc2ec37dd8ac2f3d3fa1027e2ef353c",
+    "src/dimensr_mimo/_single/pareto.py": "b01cf8f1798dd2697cf052998ead210964a77cc1fda3a454535a6673bc79a1e9",
+    "src/dimensr_mimo/_single/policy.py": "b23af3d05dbd93535b6868e93868286cc73c302a3da5d5297a71d1714ee301e7",
+    "src/dimensr_mimo/_single/regressor.py": "14d6fae70823ae8945bffb02cf8613484a1ae8958b9020e90bf8863e5e28da0a",
+    "src/dimensr_mimo/_single/seeding.py": "391f1ac9734baa2e5486398884f1d3150b4143da838e752e5516dc78924aafe5",
+    "src/dimensr_mimo/_single/structure.py": "866639d446b6f0fde2cef7806faba2d761b4634905758d9ad853a1dc1a1d3b77",
+    "src/dimensr_mimo/_single/units.py": "33fb584c2e1a25b87bb60381ff5f19f95407b3f112f05e7fd94be25d4c736cde",
+    "src/dimensr_mimo/acceptance.py": "4cf7e0a3695ef9e97d428d9ad6b25db3c44ba011f82f6b334b96a2f3d38b6c9b",
+    "src/dimensr_mimo/audit.py": "0e4d39ce26c22e2bb30742020ffc59bfb66ffffe17e0ff445081e2d7c3ce9e71",
+    "src/dimensr_mimo/cli.py": "cd04063a362c32df99456338b50c739f79fb1130254b613145eef9c393e6c84e",
+    "src/dimensr_mimo/completion.py": "5210be43a043ce38527da8a675b35efc28d7f7fd08cb8488beeb1be708782318",
+    "src/dimensr_mimo/complexity.py": "5c641fada1a296d6cf4999f58738e26157bb34c5ddfc38b78b8695f791aea5f0",
+    "src/dimensr_mimo/config.py": "38e8dbeb3fa2482beafaf42a6c446698c4c09f5d01feae873dccb204d932d084",
+    "src/dimensr_mimo/evaluation.py": "db0804c6dc46b3ac225108f97083cabc15e651f57dd97d06def8a7214a9bba19",
+    "src/dimensr_mimo/fitting.py": "72cbb8384cd351950ea1201873bb3a92796662d68bd02927155d12020fc48e6d",
+    "src/dimensr_mimo/generation.py": "f191bb372bffadaa618dcce437c59df8b5e8ab2f874bdf40a6785a5dc0958146",
+    "src/dimensr_mimo/genetics.py": "b496f27b68c5aac9e182111f732519698dcba7decd579d21307641dbed037a5b",
+    "src/dimensr_mimo/grammar.py": "39cbbe813cafeb59ec5b790613c1ce2cfc1f5abd4a3fab82af2927e86a74a91d",
+    "src/dimensr_mimo/graph.py": "a3c0ccc5fe7a9f971fdba9c32ecd9b55ae720eb7f276022c76c5effe80bb3f19",
+    "src/dimensr_mimo/pareto.py": "3c9672ce8607bc1e129c7f7e98ce3e18fcca7e5dec083227785931a0d4e7c743",
+    "src/dimensr_mimo/physical.py": "b6e771541ce4fd3e3b1d124eb9bf1bb5dd58de1627d72ba154d7b41af3a71e57",
+    "src/dimensr_mimo/physical_selection.py": "3ab5b628599ce601d7f227c1e01bf1c888775d5d5e78532f992f05cc7d5c9418",
+    "src/dimensr_mimo/policy.py": "f4c064eeb43c1a1cd34edc15d812e11e064dbc20ac76ede2686f4e682b6cd1ff",
+    "src/dimensr_mimo/regressor.py": "ba814e7b0a22fb9c02405294316429ed4239776557f465fe5df28ffc2b7e72a0",
+    "src/dimensr_mimo/repair.py": "b0678331860bb4b392514714a0ff6fe6c32da21369638d152bcb79c46fc8d08c",
+    "src/dimensr_mimo/seeds.py": "dacad4208412eaca9d3aca93e3ce0b916a26cdb511129c668a39d275c58da1e4",
+    "src/dimensr_mimo/selection.py": "ae704bc97cfe82c56b1c767346abac97c24f5e5e58998ba6572518033c746247",
+    "src/dimensr_mimo/sharing.py": "ff8b005640bba8e661a3eb37189a39562b39e6fb83d36715be72ab67a85fc3eb",
+    "src/dimensr_mimo/structure.py": "1d1457390888bc568baee979dbe87004a4977da8461ebb4c312ed481bb4223fa",
+    "src/dimensr_mimo/syntax.py": "8beb1476c983475191ed70c4c920212ccee8c40c6ed2cdbee0073f44d1fdfebf"
+  },
+  "file_birth_times": {
+    "CANDIDATE_LOCK.json": 1793794723.5892613,
+    "PLAN.md": 1793794723.901244,
+    "cases.py": 1793794814.6937935,
+    "test_cases.py": 1793794814.9122643
+  },
+  "constructed_matrix": [
+    {
+      "case": "log_affine_ratio_n0",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n0",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n0",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n0",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n1",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n1",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n1",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "log_affine_ratio_n1",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n0",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n0",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n0",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n0",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n1",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n1",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n1",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "reciprocal_quadratic_norm_n1",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n0",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n0",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n0",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n0",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n1",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n1",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n1",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "oscillatory_affine_saturation_n1",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n0",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n0",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n0",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n0",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n1",
+      "seed": 10241,
+      "method": "base",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n1",
+      "seed": 10241,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n1",
+      "seed": 10242,
+      "method": "completion",
+      "seconds": 60
+    },
+    {
+      "case": "exponential_affine_saturation_n1",
+      "seed": 10242,
+      "method": "base",
+      "seconds": 60
+    }
+  ],
+  "config": {
+    "population_size": 24,
+    "epochs": 4,
+    "gp_generations": 2,
+    "selection_generations": 4,
+    "max_nodes": 15,
+    "max_depth": 6,
+    "operators": [
+      "add",
+      "sub",
+      "mul",
+      "div",
+      "square",
+      "sin",
+      "cos",
+      "sqrt",
+      "log",
+      "exp"
+    ],
+    "hidden_size": 32,
+    "learning_rate": 0.003,
+    "risk_fraction": 0.3,
+    "entropy_weight": 0.01,
+    "imitation_weight": 0.1,
+    "crossover_rate": 0.5,
+    "candidate_fraction": 0.3,
+    "min_candidates": 30,
+    "complexity_weights": [
+      1.0,
+      0.5,
+      2.0
+    ],
+    "selection_complexity_weight": 0.01,
+    "size_radius": 1,
+    "rademacher_draws": 16,
+    "perturbations": 8,
+    "perturbation_radius": 0.1,
+    "constant_bound": 1000000.0,
+    "constant_restarts": 1,
+    "constant_max_nfev": 25,
+    "domain_restarts": 2,
+    "polish_candidates": 3,
+    "polish_max_nfev": 50,
+    "selection_budget_fraction": 0.25,
+    "variation_attempts": 4,
+    "elite_fraction": 0.25,
+    "linear_seeds": true,
+    "structured_seeds": true,
+    "boundary_probes": true,
+    "interval_checks": true,
+    "interval_max_boxes": 32,
+    "output_bounds": null,
+    "domain_probe_count": 32,
+    "validation_fraction": 0.2,
+    "max_evaluations": 1200,
+    "random_state": 0,
+    "use_rnn": true,
+    "use_gp": true,
+    "use_units": true,
+    "use_size_diversity": true,
+    "use_rademacher": true,
+    "max_references": 12,
+    "use_sharing": true,
+    "use_constraints": true,
+    "degradation_relative": 0.1,
+    "degradation_absolute": 0.02,
+    "wall_seconds": 52,
+    "initialization_fraction": 0.15,
+    "reference_budget": "expanded",
+    "time_allocation": "phased",
+    "initialization": "compound",
+    "sharing_strategy": "closure",
+    "precision_repair": false,
+    "compositional_completion": false
+  },
+  "fixed_points": [
+    [
+      0.2,
+      0.2
+    ],
+    [
+      0.2,
+      1.4
+    ],
+    [
+      1.4,
+      0.2
+    ],
+    [
+      1.4,
+      1.4
+    ],
+    [
+      0.7,
+      0.8
+    ]
+  ],
+  "oracle_independent_rows": [
+    {
+      "family": "log_affine_ratio",
+      "independent_shape": {
+        "shared_dag_vertices": 12,
+        "shared_graph_size": 12,
+        "shared_dag_operations": 7,
+        "maximum_output_depth": 6,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 26,
+        "expanded_total_operations": 13,
+        "outputs": [
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 11,
+            "independent_parameters": 3
+          },
+          {
+            "expanded_nodes": 14,
+            "expanded_operations": 7,
+            "depth": 6,
+            "unique_dag_nodes": 12,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "independent_sharing": {
+        "shared_nodes": 11,
+        "shared_parameters": 3,
+        "unique_parameters": 3,
+        "dag_size": 12
+      },
+      "max_five_point_raw_difference": 0.0,
+      "declared_units": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    {
+      "family": "reciprocal_quadratic_norm",
+      "independent_shape": {
+        "shared_dag_vertices": 8,
+        "shared_graph_size": 8,
+        "shared_dag_operations": 5,
+        "maximum_output_depth": 5,
+        "independent_parameters": 1,
+        "expanded_total_nodes": 14,
+        "expanded_total_operations": 8,
+        "outputs": [
+          {
+            "expanded_nodes": 7,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 6,
+            "independent_parameters": 1
+          },
+          {
+            "expanded_nodes": 7,
+            "expanded_operations": 4,
+            "depth": 5,
+            "unique_dag_nodes": 7,
+            "independent_parameters": 1
+          }
+        ]
+      },
+      "independent_sharing": {
+        "shared_nodes": 5,
+        "shared_parameters": 1,
+        "unique_parameters": 1,
+        "dag_size": 8
+      },
+      "max_five_point_raw_difference": 0.0,
+      "declared_units": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    {
+      "family": "oscillatory_affine_saturation",
+      "independent_shape": {
+        "shared_dag_vertices": 12,
+        "shared_graph_size": 12,
+        "shared_dag_operations": 7,
+        "maximum_output_depth": 4,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 20,
+        "expanded_total_operations": 10,
+        "outputs": [
+          {
+            "expanded_nodes": 10,
+            "expanded_operations": 5,
+            "depth": 4,
+            "unique_dag_nodes": 10,
+            "independent_parameters": 3
+          },
+          {
+            "expanded_nodes": 10,
+            "expanded_operations": 5,
+            "depth": 4,
+            "unique_dag_nodes": 10,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "independent_sharing": {
+        "shared_nodes": 8,
+        "shared_parameters": 3,
+        "unique_parameters": 3,
+        "dag_size": 12
+      },
+      "max_five_point_raw_difference": 0.0,
+      "declared_units": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    {
+      "family": "exponential_affine_saturation",
+      "independent_shape": {
+        "shared_dag_vertices": 11,
+        "shared_graph_size": 11,
+        "shared_dag_operations": 6,
+        "maximum_output_depth": 5,
+        "independent_parameters": 3,
+        "expanded_total_nodes": 22,
+        "expanded_total_operations": 11,
+        "outputs": [
+          {
+            "expanded_nodes": 10,
+            "expanded_operations": 5,
+            "depth": 4,
+            "unique_dag_nodes": 9,
+            "independent_parameters": 3
+          },
+          {
+            "expanded_nodes": 12,
+            "expanded_operations": 6,
+            "depth": 5,
+            "unique_dag_nodes": 11,
+            "independent_parameters": 3
+          }
+        ]
+      },
+      "independent_sharing": {
+        "shared_nodes": 9,
+        "shared_parameters": 3,
+        "unique_parameters": 3,
+        "dag_size": 11
+      },
+      "max_five_point_raw_difference": 2.220446049250313e-16,
+      "declared_units": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    }
+  ],
+  "analytic_domain_bounds": {
+    "log_numerator": [
+      1.08,
+      1.56
+    ],
+    "log_denominator": [
+      1.14,
+      1.98
+    ],
+    "log_ratio": [
+      0.5454545454545455,
+      1.3684210526315792
+    ],
+    "reciprocal_radicand": [
+      1.04,
+      2.96
+    ],
+    "oscillatory_denominator": [
+      1.1,
+      1.7
+    ],
+    "oscillatory_argument": [
+      0.12,
+      0.84
+    ],
+    "exponential_argument": [
+      -0.56,
+      -0.08
+    ],
+    "exponential_denominator": [
+      1.12,
+      1.84
+    ]
+  },
+  "novelty": {
+    "archived_source_files": 54,
+    "archive_mismatches": [],
+    "live_history_mismatches": [],
+    "registered_records": 120,
+    "records_with_formula_pairs": 86,
+    "records_without_formula_pairs": 34,
+    "formula_omitted_records_matching_new_units": {
+      "log_affine_ratio": [],
+      "reciprocal_quadratic_norm": [],
+      "oscillatory_affine_saturation": [],
+      "exponential_affine_saturation": []
+    },
+    "distinct_formula_pair_input_output_unit_records": 16,
+    "source_freeze_count": 13,
+    "source_freeze_sha256": {
+      "experiments/balanced_closure_20261028/FREEZE.json": "abbb7e68bec12fd1382f61f9cf348e4e4ced08d0a4edcb40c29f59f54b017abf",
+      "experiments/completion_historical_20261031/FREEZE.json": "65b5993fe09e6590811d61ff2e93f6d49df11d7fe6b41b951b6a08ab224b51ec",
+      "experiments/compound_search_20261027/FREEZE.json": "f36be8fe1c0d91a74925239c9b0a33a17d7f3c005c9088cc8ac5f63e6b3df2c0",
+      "experiments/implicit_rational_20261028/FREEZE.json": "4531ce7b0447af340badb31ca9053108e3e3d2715c3ed013e755caea4c4a8691",
+      "experiments/matched_sharing_20261028/FREEZE.json": "3c7d837e5880f0405896a4772d4416d366b68be75413cdf76a94f8c8b3feb39d",
+      "experiments/mutation_units_20261027/FREEZE.json": "79245337a966caa3d71ad9d87aacd1bd4cc1bfa1c70ed81f1f4a987bf69702c2",
+      "experiments/new_task_validation_20261030/FREEZE.json": "728fb302de07cc262f43657e479e7afd0c543744c25b0655a20f2fdcaadc89a9",
+      "experiments/noise_families_20261026/FREEZE.json": "702c28158c7ddd548b14da9df98348808131815786703af41a09e3d9ce9897ca",
+      "experiments/precision_delivery_20261026/FREEZE.json": "a23a98f602f56af7ab8eaefc1885d952603d687720b08bef7388a7846cd0fd42",
+      "experiments/precision_repair_20261028/FREEZE.json": "23c9a00582b6ef4987a6e56c9948a73403cc7908b783e791af507068cb6f7326",
+      "experiments/protected_closure_20261028/FREEZE.json": "fcbabd0badcd88cf8f7b70257b6ac912afb1c6effc2e8291c83413ecbf6bd275",
+      "experiments/typed_coverage_20261026/FREEZE.json": "5ab85ed66ade83787bf698e34dd2f8c83dcdb50964077456df464feec1942e54",
+      "experiments/unit_composition_20261026/FREEZE.json": "690173e2264309aa382d4b67a4acfd3172116b336f2812c495dd26a759fe2967"
+    },
+    "exact_hits": {
+      "log_affine_ratio": [],
+      "reciprocal_quadratic_norm": [],
+      "oscillatory_affine_saturation": [],
+      "exponential_affine_saturation": []
+    },
+    "scope": "Exact registered formula-pair/unit match over top-level experiment FREEZE specs plus archived case/plan/protocol source. Related operators and constituent structures were previously observed. This is not proof of all-history symbolic inequivalence or external benchmark novelty."
+  },
+  "tests_log_sha256": "fdade2f6e970a56a21da4709f9e753bed091120f560f27ac1f9809266b9143c9",
+  "tests_log": "......                                                                   [100%]\n6 passed in 6.18s",
+  "helper_sha256": "8e383fa482316b9f6137b10d0a9205e41ebe62c9f783941941e8a0ccec5caf67",
+  "script_sha256": "a853e9f4de21514939bb8fdfab3b6f43a863668d9ce946b1c5960c1f89b6c2cb",
+  "no_experimental_scoring_fit_search_or_preflight": true,
+  "harness_implementation_not_reviewed": true,
+  "execution_clearance": false
+}

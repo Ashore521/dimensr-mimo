@@ -1,0 +1,13 @@
+# 集成检查中的测试隔离修复
+
+主代理运行当时全部33个既有测试模块（两个新harness模块仍在编写，明确排除），结果290通过、1失败，源码和测试在运行中均未变化。命令、前后哈希和原始失败日志保存在MAIN_SOURCE_SUITE_01.json及main_source_suite_01.log。
+
+失败用例为tests/test_new_task_study.py::test_scoring_invokes_original_cell_guards_before_labels。该测试使用旧正式实验目录，正式实验已经生成SCORES.json，故评分器先触发Keep existing scores，未到本用例预设的缺封存guard。算法及既有保护行为正常，测试依赖实验尚未完成的目录状态。
+
+仅为此用例增加tmp_path，并将evaluate.base.HERE通过monkeypatch指向该临时目录；原缺封存/禁止提前读取标签断言不变。未修改任何旧实验文件、归档测试原字节或评分器。修复后整个test_new_task_study.py的45项通过（main_old_harness_isolation_01.log，2.98秒）。随后全部测试394项通过（MAIN_FULL_SUITE_02.json，89.40秒），源码/测试/harness摘要在运行中不变。
+
+## 独立harness审查与冻结证据修复
+
+独立审查者发现development准入对technical_pass/adoption_pass仅检查真值，字符串false或整数1可被放行。主代理同时确认freeze_inputs漏收新harness_review_validation目录。先为两个字段各增加字符串/整数畸形值用例，并在既有依赖闭包测试中加入审查日志；修复前5项失败、12项通过（main_gate_reproduction_01.log），明确复现四项类型漏洞和一项漏冻。
+
+仅改共享harness.py两行：两字段均要求is True，冻结目录列表加入harness_review_validation。对应两新harness模块修后107项通过（main_gate_fixed_01.log，2.79秒）；核心41源和候选锁不变，交同一独立审查者复核。最终覆盖为修前394项全套和修后107项相关，含4个新增用例，共398个不同用例得到验证；不能描述为398项单次全套。未生成正式预检、冻结或训练工件，全部失败保留。

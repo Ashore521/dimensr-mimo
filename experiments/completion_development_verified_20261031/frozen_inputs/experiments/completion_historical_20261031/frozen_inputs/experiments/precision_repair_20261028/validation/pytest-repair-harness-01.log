@@ -1,0 +1,896 @@
+.FFFFFFFFFFFFF...............                                            [100%]
+================================== FAILURES ===================================
+_______ test_replay_combines_repair_and_closure_with_separate_counters ________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE21D00>)
+
+    def test_replay_combines_repair_and_closure_with_separate_counters(evidence):
+>       model,job,frozen,save=evidence;save()
+                                       ^^^^^^
+
+tests\test_precision_repair_study.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+__________ test_replay_rejects_corrupted_provenance[trigger-trigger] __________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE22200>)
+mutation = 'trigger', match = 'trigger'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+___________ test_replay_rejects_corrupted_provenance[parent-parent] ___________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE22840>)
+mutation = 'parent', match = 'parent'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+______ test_replay_rejects_corrupted_provenance[implicit-implicit root] _______
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE231A0>)
+mutation = 'implicit', match = 'implicit root'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+_________ test_replay_rejects_corrupted_provenance[count-accounting] __________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE236A0>)
+mutation = 'count', match = 'accounting'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+_________ test_replay_rejects_corrupted_provenance[protection-guard] __________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE237E0>)
+mutation = 'protection', match = 'guard'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+________ test_replay_rejects_corrupted_provenance[pool-training pool] _________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE228E0>)
+mutation = 'pool', match = 'training pool'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+______ test_replay_rejects_corrupted_provenance[total-Evaluation total] _______
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE23C40>)
+mutation = 'total', match = 'Evaluation total'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+____ test_replay_rejects_corrupted_provenance[history-history accounting] _____
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE234C0>)
+mutation = 'history', match = 'history accounting'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+______ test_replay_rejects_corrupted_provenance[base_choice-base choice] ______
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE22980>)
+mutation = 'base_choice', match = 'base choice'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+__________ test_replay_rejects_corrupted_provenance[cap-accounting] ___________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C6F51ADE0>)
+mutation = 'cap', match = 'accounting'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+__________ test_replay_rejects_corrupted_provenance[round-round cap] __________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE8C220>)
+mutation = 'round', match = 'round cap'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+_________ test_replay_rejects_corrupted_provenance[prefix-Base pool] __________
+
+evidence = ({'config': {'population_size': 24, 'epochs': 4, 'gp_generations': 2, 'selection_generations': 4, ...}, 'feature_units...s': 4, 'gp_generations': 2, 'selection_generations': 4, ...}}, <function evidence.<locals>.save at 0x0000022C7FE8CA40>)
+mutation = 'prefix', match = 'Base pool'
+
+    @pytest.mark.parametrize('mutation,match',[
+        ('trigger','trigger'),('parent','parent'),('implicit','implicit root'),('count','accounting'),
+        ('protection','guard'),('pool','training pool'),('total','Evaluation total'),('history','history accounting'),
+        ('base_choice','base choice'),('cap','accounting'),('round','round cap'),('prefix','Base pool')])
+    def test_replay_rejects_corrupted_provenance(evidence,mutation,match):
+        model,job,frozen,save=evidence
+        record=model['diagnostics']['sharing_closure'];repair=record['precision_repair']
+        if mutation=='trigger': repair['triggered']=False
+        elif mutation=='parent': repair['parent']=candidate(1)
+        elif mutation=='implicit': repair['events'][0]['implicit_outputs']=[]
+        elif mutation=='count': repair['valid']=0
+        elif mutation=='protection': repair['events'][0]['protected']=False
+        elif mutation=='pool': record['full_training_pool_sha256']='wrong'
+        elif mutation=='total': model['diagnostics']['evaluations']=4
+        elif mutation=='history': model['history'][0]['new_evaluations']=1
+        elif mutation=='base_choice': model['post_selection']['base_candidate_index']=1
+        elif mutation=='cap': repair['new_evaluations']=13
+        elif mutation=='round': record['events']*=25
+        elif mutation=='prefix': record['base_candidate_sha256']='wrong'
+>       save()
+
+tests\test_precision_repair_study.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_precision_repair_study.py:87: in save
+    (folder/name).write_text(json.dumps(obj),encoding='utf-8')
+                             ^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\__init__.py:231: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:200: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\Python312\Lib\json\encoder.py:258: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.encoder.JSONEncoder object at 0x0000022C45C25490>
+o = Fraction(0, 1)
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type Fraction is not JSON serializable
+
+C:\Program Files\Python312\Lib\json\encoder.py:180: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_precision_repair_study.py::test_replay_combines_repair_and_closure_with_separate_counters
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[trigger-trigger]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[parent-parent]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[implicit-implicit root]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[count-accounting]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[protection-guard]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[pool-training pool]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[total-Evaluation total]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[history-history accounting]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[base_choice-base choice]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[cap-accounting]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[round-round cap]
+FAILED tests/test_precision_repair_study.py::test_replay_rejects_corrupted_provenance[prefix-Base pool]
+13 failed, 16 passed in 2.17s

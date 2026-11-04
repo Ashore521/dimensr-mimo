@@ -1,0 +1,28 @@
+--- locked/src/dimensr_mimo/config.py
++++ src/dimensr_mimo/config.py
+@@ -23,12 +23,13 @@
+     initialization_fraction: float = 0.15
+     initialization: str = 'legacy'
+     precision_repair: bool = False
++    compositional_completion: bool = False
+     final_selection: str = 'weighted'
+     acceptance: dict | None = None
+ 
+     def validate(self):
+         super().validate()
+-        for key in ('use_sharing', 'use_constraints', 'precision_repair'):
++        for key in ('use_sharing', 'use_constraints', 'precision_repair', 'compositional_completion'):
+             if type(getattr(self, key)) is not bool:
+                 raise ValueError(key + ' must be boolean.')
+         if type(self.max_references) is not int or self.max_references < 1:
+@@ -54,6 +55,10 @@
+             raise ValueError('initialization must be legacy, dimensional, compound or implicit.')
+         if self.precision_repair and (self.initialization!='compound' or self.sharing_strategy!='closure' or self.final_selection!='precision'):
+             raise ValueError('Precision repair requires compound initialization, closure sharing and precision selection.')
++        if self.precision_repair and self.compositional_completion:
++            raise ValueError('Precision repair and compositional completion are mutually exclusive.')
++        if self.compositional_completion and (self.initialization!='compound' or self.sharing_strategy!='closure' or self.final_selection!='precision'):
++            raise ValueError('Compositional completion requires compound initialization, closure sharing and precision selection.')
+         if self.final_selection not in ('weighted','guarded','precision'):
+             raise ValueError('final_selection must be weighted, guarded or precision.')
+         if self.final_selection=='precision':
