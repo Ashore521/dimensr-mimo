@@ -42,13 +42,13 @@ class System:
 
     def reachable(self, root=None):
         seen = set()
-        def visit(i):
-            if i not in seen:
-                seen.add(i)
-                for c in self.nodes[i].children:
-                    visit(c)
-        for r in self.roots if root is None else (root,):
-            visit(r)
+        pending = list(self.roots if root is None else (root,))
+        while pending:
+            i = pending.pop()
+            if i in seen:
+                continue
+            seen.add(i)
+            pending.extend(self.nodes[i].children)
         return seen
 
     @property
@@ -72,10 +72,13 @@ class System:
                 'shared_parameters': sum(sum(p in s for s in params) > 1 for p in range(self.n_parameters)),
                 'unique_parameters': self.n_parameters, 'dag_size': self.size}
 
-    def evaluate(self, X, constants):
+    def evaluate(self, X, constants, *, stats=None):
         X, constants = np.asarray(X, float), np.asarray(constants, float)
         if X.ndim != 2 or constants.shape != (self.n_parameters,):
             raise ValueError("Invalid input or parameter shape.")
+        if stats is not None:
+            stats['raw_system_predictions'] += 1
+            stats['raw_system_sample_node_values'] += len(X) * len(self.nodes)
         values = []
         with np.errstate(all='ignore'):
             for v in self.nodes:
@@ -183,6 +186,12 @@ def paths(system, root, prefix=()):
 
 
 def in_bounds(system, cfg):
+    from .capacity import rejection
+    if rejection(system, getattr(cfg, 'structure_limits', None), cfg) is not None:
+        return False
+    if cfg.final_selection == 'pareto':
+        # Capacity controls generation; evaluation memory screening is separate.
+        return True
     sizes, depths = [], []
     for v in system.nodes:
         sizes.append(min(cfg.max_nodes + 1, 1 + sum(sizes[c] for c in v.children)))

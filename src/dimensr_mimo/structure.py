@@ -54,7 +54,7 @@ def _compound_products(features, variables, y, admit, grammar, counts, check_dea
     ranked((a, b) for a in pairs for b in variables[:16])
 
 
-def structured_seeds(grammar, X, y, limit, *, compound=False, implicit=False, deadline=None):
+def structured_seeds(grammar, X, y, limit, *, compound=False, implicit=False, deadline=None, work_callback=None):
     constants = {u: Node(t, units=u) for t, u in grammar.terminals.items() if t.startswith("c")}
     features, seen, numeric_seen = [], set(), set()
     feature_limit = 384  # Reserve the remaining 128 slots for small products.
@@ -70,6 +70,8 @@ def structured_seeds(grammar, X, y, limit, *, compound=False, implicit=False, de
 
     def check_deadline():
         # Cooperative checks cannot interrupt a running NumPy/BLAS operation.
+        if work_callback is not None:
+            work_callback()
         if deadline is not None and time.monotonic() >= deadline:
             error = TimeoutError('Structured initialization deadline reached.')
             error.initialization_diagnostics = dict(counts)

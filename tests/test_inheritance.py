@@ -15,10 +15,13 @@ from dimensr_mimo.generation import SystemGrammar
 from dimensr_mimo.policy import Policy
 
 
-def test_upstream_files_have_original_hashes():
+def test_upstream_files_have_recorded_hashes():
     root = Path(__file__).resolve().parents[1]
     manifest = json.loads((root / 'docs/UPSTREAM.json').read_text(encoding='utf-8-sig'))
-    for name, sha in manifest['sha256'].items():
+    originals = manifest['sha256']
+    adapted = manifest['adapted']
+    assert not set(originals) & set(adapted)
+    for name, sha in (originals | {n: row['release_sha256'] for n, row in adapted.items()}).items():
         assert hashlib.sha256((root / 'src/dimensr_mimo/_single' / name).read_bytes()).hexdigest() == sha
 
 

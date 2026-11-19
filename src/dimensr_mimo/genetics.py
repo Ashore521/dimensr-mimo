@@ -50,9 +50,12 @@ def offspring(parent, donor, grammar, rng, operator=None):
         full, _ = system.expanded(system.roots[j], parent.constants)
         subtree, _ = system.expanded(old, parent.constants)
         try:
-            tree, _ = grammar.mutation_grammar(j, v.units).generate(rng, units=v.units,
-                        budget=cfg.max_nodes - full.size + subtree.size,
-                        depth=cfg.max_depth - len(path))
+            capacity = max(cfg.max_nodes, full.size) if cfg.final_selection == 'pareto' else cfg.max_nodes
+            depth = max(cfg.max_depth, full.depth) if cfg.final_selection == 'pareto' else cfg.max_depth
+            budget = capacity - full.size + subtree.size
+            depth -= len(path)
+            tree, _ = grammar.mutation_grammar(j, v.units, budget=budget, depth=depth).generate(
+                        rng, units=v.units, budget=budget, depth=depth)
         except ValueError:
             # No legal replacement in this bounded grammar; consume the attempt.
             return system, parent.constants.copy(), op

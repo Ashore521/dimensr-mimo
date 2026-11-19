@@ -3,11 +3,11 @@ import numpy as np
 from ._single.complexity import local_rademacher as scalar_tangent_ball
 
 
-def local_rademacher(system, constants, X, scales, signs, radius):
+def local_rademacher(system, constants, X, scales, signs, radius, *, stats=None):
     n = len(X) * len(system.roots)
     # Each unique parameter is perturbed once and affects every bound occurrence.
     # Flatten sample-major: normalization is per output, population size is n*q.
-    evaluate = lambda c: (system.evaluate(X, c) / scales).ravel()
+    evaluate = lambda c: (system.evaluate(X, c, stats=stats) / scales).ravel()
     value = scalar_tangent_ball(system, constants, np.empty((n, 0)), 1.0, signs,
                                 radius=radius, evaluate=evaluate)
     scaled = value * np.sqrt(n) / radius if radius else 0.0

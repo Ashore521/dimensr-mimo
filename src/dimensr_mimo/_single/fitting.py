@@ -37,7 +37,7 @@ def linear_solution(tree, X, y, bound, evaluate):
     return solution
 
 
-def repair_domains(tree, X, constants, bound):
+def repair_domains(tree, X, constants, bound, *, work_callback=None):
     """Repair direct constant offsets of log/sqrt/div, without changing their semantics.
 
     This is a feasible-start heuristic, not an interval-domain proof. More complex
@@ -53,6 +53,8 @@ def repair_domains(tree, X, constants, bound):
 
     def values(node, path):
         start = offsets[path]
+        if work_callback is not None:
+            work_callback(node, len(X))
         return node.evaluate(X, c[start:start + node.n_constants])
 
     for _ in range(2):
@@ -65,7 +67,8 @@ def repair_domains(tree, X, constants, bound):
             v = values(arg, arg_path)
             if not np.isfinite(v).all():
                 continue
-            if (node.token == "div" and np.all(np.abs(v) > 1e-8) or
+            # Opposite sampled signs imply a pole between samples for a continuous denominator.
+            if (node.token == "div" and (np.all(v > 1e-8) or np.all(v < -1e-8)) or
                     node.token != "div" and np.all(v > 0)):
                 continue
             if not arg.children and arg.token.startswith("c"):

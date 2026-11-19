@@ -62,24 +62,43 @@ def matched_proposals(system, constants):
     return result
 
 
-def protected_closure(pool, evaluator, grammar=None):
+def protected_closure(pool, evaluator, grammar=None, *, extensions=None, max_rounds=2, max_attempts=None):
     """Add bounded, jointly fitted sharing proposals without changing base states."""
     base = list(pool)
-    extended = list(base)
+    extended = list(base) + ([] if extensions is None else list(extensions))
     report = dict(base_candidate_count=len(base), base_candidate_sha256=digest([c.to_dict() for c in base]),
         base_search_fingerprint=digest([c.to_dict() for c in evaluator.cache.values() if c is not None]),
         base_evaluations=evaluator.calls,
         rounds=0, proposals=0, cache_skips=0, structure_rejections=0, prediction_rejections=0,
         new_evaluations=0, valid=0, protected=0, protection_rejections=0, events=[])
-    if evaluator.cfg.precision_repair:
-        from .repair import precision_repair
-        retained, report['precision_repair'] = precision_repair(base, evaluator, grammar)
-        extended.extend(retained)
-    elif evaluator.cfg.compositional_completion:
-        from .completion import compositional_completion
-        retained, report['compositional_completion'] = compositional_completion(base, evaluator, grammar)
+    if evaluator.cfg.accuracy_search and extensions is None:
+        import time
+        deadline = evaluator.deadline
+        evaluator.deadline = time.monotonic() + max(0., deadline-time.monotonic())*.25
+    try:
+        if evaluator.cfg.precision_repair and extensions is None:
+            from .repair import precision_repair
+            retained, report['precision_repair'] = precision_repair(base, evaluator, grammar)
+            extended.extend(retained)
+        elif evaluator.cfg.compositional_completion and extensions is None:
+            from .completion import compositional_completion
+            retained, report['compositional_completion'] = compositional_completion(base, evaluator, grammar)
+            extended.extend(retained)
+    finally:
+        if evaluator.cfg.accuracy_search and extensions is None:
+            evaluator.deadline = deadline
+    if evaluator.cfg.accuracy_search and extensions is None:
+        from .residual import residual_search
+        evaluator.deadline = deadline-evaluator.cfg.wall_seconds*.05
+        try:
+            retained, report['accuracy_search'] = residual_search(extended, evaluator, grammar)
+        finally:
+            evaluator.deadline = deadline
         extended.extend(retained)
     identities = {}
+    pareto_mode = evaluator.cfg.final_selection == 'pareto'
+    per_round = evaluator.cfg.sharing_evaluations_per_round if pareto_mode else 24
+    evaluation_limit = max_rounds*per_round if pareto_mode else 48
 
     def identity(system):
         if system not in identities:
@@ -87,19 +106,20 @@ def protected_closure(pool, evaluator, grammar=None):
         return identities[system]
 
     def expired():
-        return evaluator.expired() or evaluator.calls >= evaluator.cfg.max_evaluations or report['new_evaluations'] >= 48
+        return evaluator.expired() or evaluator.calls >= evaluator.cfg.max_evaluations or report['new_evaluations'] >= evaluation_limit
 
-    for step in range(2):
+    for step in range(max_rounds):
         if expired():
             break
-        parents = sorted(extended, key=lambda c:(c.error, c.complexity, identity(c.system)))[:16]
+        from .evaluation import search_score
+        parents = sorted(extended, key=lambda c:(search_score(c.errors, evaluator.cfg), c.complexity, identity(c.system)))[:16]
         proposals = {}
         for parent in parents:
             if expired():
                 break
             prediction = parent.system.evaluate(evaluator.X, parent.constants)
             for graph, warm in matched_proposals(parent.system, parent.constants):
-                if expired():
+                if expired() or (max_attempts is not None and report['proposals'] >= max_attempts):
                     break
                 report['proposals'] += 1
                 if graph in evaluator.cache:
@@ -113,14 +133,40 @@ def protected_closure(pool, evaluator, grammar=None):
                 if not np.isfinite(distance).all():
                     report['prediction_rejections'] += 1
                     continue
-                rank = (float(distance.max()), graph.size, parent.error, identity(graph), identity(parent.system))
+                rank = (float(distance.max()), graph.size, search_score(parent.errors, evaluator.cfg), identity(graph), identity(parent.system))
                 if graph not in proposals or rank < proposals[graph][0]:
                     proposals[graph] = rank, parent, warm
         report['rounds'] += 1
         retained = []
         round_start = report['new_evaluations']
-        for graph, (_, parent, warm) in sorted(proposals.items(), key=lambda item:item[1][0]):
-            if expired() or report['new_evaluations']-round_start >= 24:
+        ranked = sorted(proposals.items(), key=lambda item:item[1][0])
+        if pareto_mode:
+            cursor = 0
+            while cursor < len(ranked) and not expired() and report['new_evaluations']-round_start < per_round:
+                remaining = per_round-(report['new_evaluations']-round_start)
+                batch = ranked[cursor:cursor+remaining]
+                cursor += len(batch)
+                before, cached = evaluator.calls, set(evaluator.cache)
+                values = evaluator.evaluate_many([(graph, details[2]) for graph, details in batch])
+                report['new_evaluations'] += evaluator.calls-before
+                for (graph, (_, parent, warm)), child in zip(batch, values):
+                    protected = child is not None and bool(np.all(child.errors <=
+                        parent.errors*(1+evaluator.cfg.degradation_relative)+evaluator.cfg.degradation_absolute))
+                    report['valid'] += int(child is not None)
+                    report['protected'] += int(protected)
+                    report['protection_rejections'] += int(child is not None and not protected)
+                    report['events'].append(dict(round=step, parent_sha256=identity(parent.system),
+                        graph_sha256=identity(graph), protected=protected,
+                        training_nrmse=None if child is None else child.errors.tolist(),
+                        new_evaluation=graph not in cached and graph in evaluator.cache))
+                    if protected:
+                        retained.append(child)
+            extended.extend(retained)
+            if not retained:
+                break
+            continue
+        for graph, (_, parent, warm) in ranked:
+            if expired() or report['new_evaluations']-round_start >= per_round:
                 break
             before = evaluator.calls
             child = evaluator(graph, warm)
@@ -137,5 +183,10 @@ def protected_closure(pool, evaluator, grammar=None):
         extended.extend(retained)
         if not retained:
             break
+    if extensions is not None:
+        report['stop_reason'] = ('stage_evaluation_budget' if evaluator.expired() else
+            'evaluation_limit' if report['new_evaluations'] >= evaluation_limit else
+            'attempt_limit' if max_attempts is not None and report['proposals'] >= max_attempts else
+            'round_limit' if report['rounds'] >= max_rounds else 'no_retained_proposal')
     assert digest([c.to_dict() for c in base]) == report['base_candidate_sha256']
     return extended, report

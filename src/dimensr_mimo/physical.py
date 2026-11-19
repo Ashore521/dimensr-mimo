@@ -144,8 +144,12 @@ class PhysicalModel:
         if input_bounds is None:
             b=np.asarray(model.diagnostics_['domain']['input_bounds'])
             input_bounds=(b*np.asarray(coordinates.x_scale)[:,None]+np.asarray(coordinates.x_offset)[:,None]).tolist()
-        protected=model.config_.use_constraints and violations(model.best_.errors,model.reference_train_,model.config_)==0 and violations(model.validation_nrmse_,model.reference_validation_,model.config_)==0
         post=getattr(model,'post_selection_',{})
+        if model.config_.final_selection == 'pareto':
+            check = next(c for c in post['candidate_checks'] if c['candidate_index'] == post['recommended_index'])
+            protected = check['mean_within_bound'] and check['all_outputs_within_bounds']
+        else:
+            protected=model.config_.use_constraints and violations(model.best_.errors,model.reference_train_,model.config_)==0 and violations(model.validation_nrmse_,model.reference_validation_,model.config_)==0
         if 'validation_bounds' in post:protected=protected and all(a<=b for a,b in zip(model.validation_nrmse_,post['validation_bounds']))
         source=dict(system=model.best_.system.to_dict(),constants=model.best_.constants.tolist(),
             feature_units=[encode(u) for u in model.feature_units_],target_units=[encode(u) for u in model.target_units_],
@@ -154,6 +158,8 @@ class PhysicalModel:
             nrmse_scale_physical=(model.scales_*np.asarray(coordinates.y_scale)).tolist(),relative_constraints_ok=bool(protected),
             output_bounds=model.config_.output_bounds,search_fingerprint=model.search_fingerprint_,
             search_coordinate_acceptance=deepcopy(model.diagnostics_.get('application_acceptance')))
+        if model.config_.final_selection == 'pareto':
+            source.update(relative_constraint_policy='dual_validation_5pct', search_coordinate_selection=deepcopy(post))
         if (training_data is None)!=(validation_data is None):raise ValueError('Provide physical training and validation arrays together.')
         if training_data is not None:
             physical=cls(source,coordinates,input_bounds)

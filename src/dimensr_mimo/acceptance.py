@@ -37,6 +37,8 @@ def select(source,limits):
             base['config']['precision_repair']=False
         if 'compositional_completion' in base['config']:
             base['config']['compositional_completion']=False
+        if 'accuracy_search' in base['config']:
+            base['config']['accuracy_search']=False
         base['diagnostics'].pop('sharing_closure')
         base['diagnostics']['frozen_candidate_sha256']=guarded.digest(payload)
         anchor=base['candidates'][guarded.choose(base['candidates'],'original')['candidate_index']]
