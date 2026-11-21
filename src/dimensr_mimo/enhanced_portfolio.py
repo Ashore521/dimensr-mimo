@@ -31,6 +31,8 @@ def prefix_config(outer):
     """Validate a full child configuration and its shared scientific contract."""
     from .config import SearchConfig
     value = outer.enhanced_prefix
+    if isinstance(value, dict) and 'compression_r2_drop' not in value:
+        value = dict(value, compression_r2_drop=None)
     if not isinstance(value, dict) or set(value) != set(asdict(SearchConfig())):
         raise ValueError('Enhanced prefix requires a complete SearchConfig dictionary.')
     if value.get('enhanced_prefix') is not None:
@@ -46,7 +48,7 @@ def prefix_config(outer):
         'enhanced_prefix', 'stagnation_settings', 'stage_budgets', 'stage_windows',
         'constant_fit_mode', 'constant_max_nfev', 'constant_prediction_limit',
         'constant_jacobian', 'constant_focus_worst', 'residual_guidance',
-        'compact_seed_terms', 'compact_elites', 'imitation_scan_limit'}
+        'compact_seed_terms', 'compact_elites', 'imitation_scan_limit', 'compression_r2_drop'}
     outer_values = asdict(outer)
     mismatch = [key for key, item in asdict(child).items() if key not in independent and
                 json.dumps(item, sort_keys=True) != json.dumps(outer_values[key], sort_keys=True)]

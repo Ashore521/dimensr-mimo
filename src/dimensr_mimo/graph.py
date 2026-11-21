@@ -5,6 +5,11 @@ from ._single.expression import Node, ARITY
 from ._single.units import ZERO, unit, encode
 from ._single.intervals import audit_box
 
+_UFUNCS = {'add': np.add, 'sub': np.subtract, 'mul': np.multiply,
+           'div': np.divide, 'neg': np.negative, 'square': np.square,
+           'sqrt': np.sqrt, 'sin': np.sin, 'cos': np.cos,
+           'exp': np.exp, 'log': np.log}
+
 
 @dataclass(frozen=True)
 class Vertex:
@@ -80,6 +85,10 @@ class System:
             stats['raw_system_predictions'] += 1
             stats['raw_system_sample_node_values'] += len(X) * len(self.nodes)
         values = []
+        # Finite operands and finite results require no per-sample masking.
+        # Once any value is invalid, preserve the original checks even for
+        # operations such as 1 / inf that could otherwise hide its origin.
+        check_operands = not (np.isfinite(X).all() and np.isfinite(constants).all())
         with np.errstate(all='ignore'):
             for v in self.nodes:
                 if v.parameter is not None:
@@ -88,14 +97,13 @@ class System:
                     value = X[:, int(v.token[1:])]
                 else:
                     args = [values[c] for c in v.children]
-                    f = {'add': np.add, 'sub': np.subtract, 'mul': np.multiply,
-                         'div': np.divide, 'neg': np.negative, 'square': np.square,
-                         'sqrt': np.sqrt, 'sin': np.sin, 'cos': np.cos,
-                         'exp': np.exp, 'log': np.log}[v.token]
-                    value = f(*args)
-                    # An outer finite value must not hide an invalid intermediate.
-                    valid = np.logical_and.reduce([np.isfinite(a) for a in args])
-                    value = np.where(valid & np.isfinite(value), value, np.nan)
+                    value = _UFUNCS[v.token](*args)
+                    finite = np.isfinite(value)
+                    if check_operands or not finite.all():
+                        check_operands = True
+                        for operand in args:
+                            finite &= np.isfinite(operand)
+                        value = np.where(finite, value, np.nan)
                 values.append(value)
         return np.column_stack([values[r] for r in self.roots])
 

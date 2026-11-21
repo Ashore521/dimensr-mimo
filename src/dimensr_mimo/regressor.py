@@ -25,7 +25,7 @@ from .pareto import ordered, diverse, violations, retain_parameters
 from .audit import data_digest
 from .stopping import target_vector
 
-PACKAGE_VERSION='1.8.0'
+PACKAGE_VERSION='1.9.0'
 
 
 def arrays(X, Y):
@@ -68,6 +68,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
         if len(X) < 5:
             raise ValueError('At least five rows are required.')
         p, q = X.shape[1], Y.shape[1]
+        if isinstance(cfg.compression_r2_drop, (list, tuple)) and len(cfg.compression_r2_drop) != q:
+            raise ValueError('compression_r2_drop must match the output count; only a scalar broadcasts.')
         if cfg.fixed_training_reference is not None and len(cfg.fixed_training_reference) != q:
             raise ValueError('Fixed training reference must match the output count.')
         target = target_vector(cfg.stop_metric, cfg.stop_target, q)
@@ -371,6 +373,13 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                 pool = [c for c in pool if violations(c.errors, reference, cfg) == 0]
                 if not pool:
                     raise RuntimeError('No candidate satisfies the fixed training protection.')
+        compression_report = None
+        if cfg.compression_r2_drop is not None:
+            from .compression import compression_candidate
+            compact, compression_report = compression_candidate(
+                pool, evaluator, features, targets, constants, cfg, reference)
+            if compact is not None:
+                pool = [*pool, compact]
         frozen_payload = [c.to_dict() for c in pool]
         frozen_hash = hashlib.sha256(json.dumps(frozen_payload, sort_keys=True).encode()).hexdigest()
         ref_val = None if pareto_mode else np.sqrt(np.mean(((reference_system.evaluate(X_val, reference_constants) - Y_val) / evaluator.scales) ** 2, axis=0))
@@ -425,6 +434,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             initialization_diagnostics=seed_stats, sharing=best.system.sharing,
             training_rows=len(X), validation_rows=len(X_val),
             data_sha256=dict(training=data_digest(X,Y),validation=data_digest(X_val,Y_val)))
+        if compression_report is not None:
+            self.diagnostics_['training_compression'] = compression_report
         if cfg.budget_mode == 'evaluations':
             self.diagnostics_['evaluation_budget'] = self.budget_report_
         if pareto_mode:

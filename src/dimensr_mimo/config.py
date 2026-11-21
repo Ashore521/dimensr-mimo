@@ -61,6 +61,7 @@ class SearchConfig(SingleConfig):
     constant_focus_worst: bool = False
     portfolio_settings: dict | None = None
     enhanced_prefix: dict | None = None
+    compression_r2_drop: float | tuple | None = None
 
     @classmethod
     def accuracy_portfolio(cls, *, max_evaluations, portfolio_settings=None, **options):
@@ -122,6 +123,13 @@ class SearchConfig(SingleConfig):
         return config
 
     def validate(self):
+        if self.compression_r2_drop is not None:
+            values = self.compression_r2_drop
+            values = values if isinstance(values, (list, tuple)) else (values,)
+            if (self.final_selection != 'pareto' or not self.interval_checks or not values or
+                    any(isinstance(v, bool) or not isinstance(v, (int, float)) or
+                        not math.isfinite(v) or v < 0 for v in values)):
+                raise ValueError('compression_r2_drop requires Pareto mode, interval checks and finite nonnegative tolerances.')
         super().validate()
         for name in ('residual_guidance', 'constant_focus_worst'):
             if type(getattr(self, name)) is not bool:
