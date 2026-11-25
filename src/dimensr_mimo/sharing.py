@@ -111,6 +111,10 @@ def protected_closure(pool, evaluator, grammar=None, *, extensions=None, max_rou
     for step in range(max_rounds):
         if expired():
             break
+        display = getattr(evaluator, 'progress_display', None)
+        if display is not None and evaluator.cfg.search_schedule != 'stagnation':
+            display.show(dict(phase='sharing_round', step=step+1,
+                              action='检查共享结构', evaluations=evaluator.calls))
         from .evaluation import search_score
         parents = sorted(extended, key=lambda c:(search_score(c.errors, evaluator.cfg), c.complexity, identity(c.system)))[:16]
         proposals = {}

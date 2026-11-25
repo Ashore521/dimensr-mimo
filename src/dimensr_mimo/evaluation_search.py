@@ -85,6 +85,15 @@ class Search:
             self.evaluator.cursor = e['cursor']
             self.evaluator.restore_execution_state(e.get('execution', {}))
         owner.policy_, owner.history_ = self.policy, self.s['history']
+        from .progress import FitProgress
+        self.display = callback if isinstance(callback, FitProgress) else None
+        if self.display is not None:
+            self.display.bind(self.evaluator, self.variance)
+
+    def display_event(self, phase, **details):
+        if self.display is not None:
+            self.display.show(dict(phase=phase, cycle=self.s.get('cycle', 0),
+                evaluations=self.evaluator.calls, elapsed_seconds=self.elapsed(), **details))
 
     def make_grammar(self):
         f, t, c, extra = self.units
@@ -116,6 +125,7 @@ class Search:
             raise SearchStopped('Stop requested at a persisted phase boundary.')
 
     def enter(self, phase):
+        self.display_event(phase, action='开始或继续')
         self.evaluator.ceiling = sum(self.cfg.stage_evaluations[k] for k in STAGES[:STAGES.index(phase)+1])
         self.s['reports'].setdefault(phase, dict(allocated=self.cfg.stage_evaluations[phase],
             cumulative_ceiling=self.evaluator.ceiling, start_evaluations=self.evaluator.calls,
@@ -275,9 +285,12 @@ class Search:
                 if c is not None:
                     sampled.append(c)
             s['population'] = diverse(s['population']+sampled, cfg.population_size, cfg, s['reference'])
+            self.display_event('neural' if self.policy else 'random', round_number=s['step']+1)
             if cfg.use_gp:
-                for _ in range(cfg.gp_generations):
-                    s['population'], _ = self.evolve(s['population'], 'exploration', False)
+                for generation in range(1, cfg.gp_generations+1):
+                    s['population'], children = self.evolve(s['population'], 'exploration', False)
+                    self.display_event('gp', round_number=s['step']+1, generation=generation,
+                                       valid_offspring=len(children))
             if self.policy is not None and traces:
                 elites, skipped = [], 0
                 for c in diverse([c for c in e.cache.values() if c is not None],
@@ -302,6 +315,7 @@ class Search:
                          ordered(s['archive'], cfg, s['reference'])}.values())[:count]
         s['population'] = retain_parameters(ordered(s['seeds'], cfg, s['reference']), cfg.population_size, cfg, s['reference'])
         s['pool'] = list(s['seeds'])
+        self.display_event('admission', note=f"有效 {len(s['archive'])} 组，入围 {len(s['seeds'])} 组")
 
     def policy_elites(self, archive):
         from .capacity import imitation
@@ -390,11 +404,14 @@ class Search:
             sampled = [c for c in values if c is not None]
             self.observe_target(sampled, s['step']+1)
             s['population'] = diverse(s['population']+sampled, cfg.population_size, cfg, s['reference'])
-            for _ in range(cfg.gp_generations if cfg.use_gp else 0):
+            self.display_event('neural' if self.policy else 'random', round_number=s['step']+1)
+            for generation in range(1, (cfg.gp_generations if cfg.use_gp else 0)+1):
                 if e.expired():
                     full_epoch = False
                     break
                 s['population'], children = self.evolve_pareto(s['population'], 'exploration', False)
+                self.display_event('gp', round_number=s['step']+1, generation=generation,
+                                   valid_offspring=len(children))
                 full_epoch = full_epoch and self.generation_complete
                 self.observe_target(children, s['step']+1)
             if self.policy is not None and traces:
@@ -438,8 +455,10 @@ class Search:
         original = cfg.constant_max_nfev
         try:
             cfg.constant_max_nfev = cfg.polish_max_nfev
-            for c in diverse(s['pool'], cfg.polish_candidates, cfg, s['reference']) if cfg.polish_candidates else []:
+            plan = diverse(s['pool'], cfg.polish_candidates, cfg, s['reference']) if cfg.polish_candidates else []
+            for position, c in enumerate(plan, 1):
                 e(c.system, c.constants, refine=True)
+                self.display_event('polish_candidate', position=position)
         finally:
             cfg.constant_max_nfev = original
         s['pool'] = list({c.system: e.cache[c.system] for c in s['pool']}.values())

@@ -24,8 +24,9 @@ from .evaluation import Evaluator, Candidate, search_score
 from .pareto import ordered, diverse, violations, retain_parameters
 from .audit import data_digest
 from .stopping import target_vector
+from .progress import FitProgress
 
-PACKAGE_VERSION='1.9.0'
+PACKAGE_VERSION='1.10.0'
 
 
 def arrays(X, Y):
@@ -151,6 +152,10 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             evaluator = Evaluator(X, Y, cfg, input_bounds=input_bounds, X_domain=X_domain, deadline=base_deadline)
             policy = Policy(grammar.n_tokens, cfg.hidden_size, cfg.learning_rate, cfg.random_state,
                             grammar.context_size) if cfg.use_rnn else None
+            display = callback if isinstance(callback, FitProgress) else None
+            if display is not None:
+                display.bind(evaluator, Y.var(axis=0))
+                display.show(dict(phase='initialization', action='开始', evaluations=0))
             self.policy_, self.history_ = policy, []
             operations, changed, novel, successful = Counter(), Counter(), Counter(), Counter()
             previous_calls, previous_time = 0, time.monotonic()
@@ -335,6 +340,9 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
             archive = [c for c in evaluator.cache.values() if c is not None]
             count = max(cfg.min_candidates, int(np.ceil(cfg.candidate_fraction * len(archive))))
             seeds = list({c.system: c for c in diverse(archive, max(1, count // 2), cfg, reference) + ordered(archive, cfg, reference)}.values())[:count]
+            if display is not None:
+                display.show(dict(phase='admission', evaluations=evaluator.calls,
+                                  note=f'有效 {len(archive)} 组，入围 {len(seeds)} 组'))
             if len(seeds) < cfg.min_candidates:
                 warnings.warn(f'Only {len(seeds)} valid unique systems; requested {cfg.min_candidates}.', UserWarning)
             population, pool = retain_parameters(ordered(seeds, cfg, reference), cfg.population_size, cfg, reference), list(seeds)
@@ -352,6 +360,9 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                 old_max = cfg.constant_max_nfev
                 cfg.constant_max_nfev = cfg.polish_max_nfev
                 evaluator(c.system, c.constants, refine=True)
+                if display is not None:
+                    display.show(dict(phase='polish_candidate', evaluations=evaluator.calls,
+                                      position=evaluator.stats['refinements']))
                 cfg.constant_max_nfev = old_max
             pool = list({c.system: evaluator.cache[c.system] for c in pool}.values())
             record('polish', 0, pool)
@@ -374,6 +385,8 @@ class DimenSRMIMORegressor(RegressorMixin, BaseEstimator):
                 if not pool:
                     raise RuntimeError('No candidate satisfies the fixed training protection.')
         compression_report = None
+        if isinstance(callback, FitProgress):
+            callback.show(dict(phase='selection', action='开始', evaluations=evaluator.calls))
         if cfg.compression_r2_drop is not None:
             from .compression import compression_candidate
             compact, compression_report = compression_candidate(

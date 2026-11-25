@@ -186,6 +186,8 @@ class Evaluator:
                 (search_score(previous.errors, self.cfg), previous.error) <=
                 (search_score(candidate.errors, self.cfg), candidate.error)):
             candidate = previous
+        if getattr(self, "observe_candidate", None) is not None:
+            self.observe_candidate(candidate)
         self.cache[system] = candidate
         self.stats['evaluation_seconds'] += time.monotonic() - started
         return candidate

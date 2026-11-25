@@ -202,6 +202,8 @@ class SystemExecution:
             e.stats.update({key: value for key, value in outcome['stats'].items()
                             if key not in ('proposals', 'cache_hits', 'refinements')})
             candidate = outcome['candidate']
+            if getattr(e, 'observe_candidate', None) is not None:
+                e.observe_candidate(candidate)
             previous = e.cache.get(system)
             if previous is not None and (candidate is None or
                     (search_score(previous.errors, e.cfg), previous.error) <=
@@ -302,6 +304,8 @@ class SystemExecution:
         e.calls = recorded['calls']
         e.stats.clear()
         e.stats.update(recorded['stats'])
+        if getattr(e, 'observe_candidate', None) is not None:
+            e.observe_candidate(recorded['candidate'])
         if recorded['cached']:
             e.cache[system] = recorded['cache_value']
         self.diagnostics[index] = recorded['diagnostic']

@@ -2,8 +2,11 @@
 import argparse
 import json
 from pathlib import Path
+import sys
 import numpy as np
 from . import DimenSRMIMORegressor, SearchConfig
+from .progress import FitProgress
+from .stopping import metric_values
 
 
 def columns(path, names):
@@ -36,9 +39,24 @@ def main():
         metadata = json.loads(Path(args.metadata).read_text(encoding='utf-8-sig')) if args.metadata else {}
         bounds = metadata.pop('input_bounds', None)
         model = DimenSRMIMORegressor(cfg, feature_names=names, **metadata)
-        val = dict(X_val=columns(args.validation, names), Y_val=columns(args.validation, args.targets.split(','))) if args.validation else {}
-        model.fit(X, columns(args.data, args.targets.split(',')), input_bounds=bounds, **val)
-        model.save(args.output)
+        targets = args.targets.split(',')
+        val = dict(X_val=columns(args.validation, names), Y_val=columns(args.validation, targets)) if args.validation else {}
+        target = cfg.stop_target if cfg.stop_metric == 'r2' else None
+        log_path = Path(args.output).with_suffix('.progress.log')
+        if log_path.resolve() in {Path(name).resolve() for name in (
+                args.data, args.validation, args.config, args.metadata, args.output) if name}:
+            parser.error('The progress log path conflicts with an input or output file.')
+        with log_path.open('a', encoding='utf-8') as log:
+            progress = FitProgress(targets, sys.stderr, log, cfg, target=target)
+            try:
+                model.fit(X, columns(args.data, targets), input_bounds=bounds, callback=progress, **val)
+                model.save(args.output)
+            except (Exception, KeyboardInterrupt) as exc:
+                progress.write('拟合中断', f'{type(exc).__name__} {exc}')
+                raise
+            progress.write(f'拟合完成 | 模型 {args.output}',
+                           progress.metrics(metric_values(model.best_, 'r2', model.scales_, progress.variance),
+                                            model.best_.complexity))
         print(json.dumps(dict(formulas=model.formulas_, diagnostics=model.diagnostics_), ensure_ascii=False))
     else:
         model = DimenSRMIMORegressor.load(args.model)

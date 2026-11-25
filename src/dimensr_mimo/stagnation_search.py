@@ -47,6 +47,7 @@ class StagnationSearch(Search):
         return monitor.metric_sequences['B'] if self.worst_progress() else monitor.sequence
 
     def enter(self, phase):
+        self.display_event(phase, action='开始或继续')
         e, s = self.evaluator, self.s
         e.ceiling = self.cfg.max_evaluations
         e.stage_tag, e.cycle = phase, s['cycle']
@@ -243,11 +244,14 @@ class StagnationSearch(Search):
                 cfg.reward_violation_weight * violations(c.errors, s['reference'], cfg)) for c in values]
             sampled = [c for c in values if c is not None]
             s['population'] = diverse(s['population'] + sampled, cfg.population_size, cfg, s['reference'])
-            for _ in range(cfg.gp_generations if cfg.use_gp else 0):
+            self.display_event('neural' if self.policy else 'random', round_number=s['step']+1)
+            for generation in range(1, (cfg.gp_generations if cfg.use_gp else 0)+1):
                 if e.calls >= e.ceiling:
                     full = False
                     break
-                s['population'], _ = self.evolve_pareto(s['population'], 'exploration', False)
+                s['population'], children = self.evolve_pareto(s['population'], 'exploration', False)
+                self.display_event('gp', round_number=s['step']+1, generation=generation,
+                                   valid_offspring=len(children))
                 full = full and self.generation_complete
             if self.policy is not None and traces:
                 elites, reasons = self.policy_elites(list(e.archive.values()))

@@ -158,6 +158,8 @@ class JournalEvaluator(Evaluator):
             self.checkpoint.operation(self.cursor, request, recorded)
         else:
             candidate = recorded['candidate']
+            if getattr(self, 'observe_candidate', None) is not None:
+                self.observe_candidate(candidate)
             self.calls = recorded['calls']
             self.stats.clear()
             self.stats.update(recorded['stats'])

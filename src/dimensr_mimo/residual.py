@@ -148,6 +148,10 @@ def residual_search(base, evaluator, grammar, *, max_rounds=None, work_callback=
         if work_callback is not None:
             work_callback()
         builder = Builder()
+        display = getattr(evaluator, 'progress_display', None)
+        if display is not None:
+            display.show(dict(phase='residual_round', step=round_index+1,
+                              action='开始', evaluations=evaluator.calls))
         selections, roots, warms = [], [], []
         for j, (features, design, g) in enumerate(zip(libraries, designs, grammar.plain)):
             if evaluator.expired():
